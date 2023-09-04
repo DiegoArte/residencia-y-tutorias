@@ -1,7 +1,5 @@
-Pura doble p chachauuuoooo
+que chingue su madre el diego
 
 estas bien pendejo diego
 
 tu culo
-
-awdawdawdawdawd
