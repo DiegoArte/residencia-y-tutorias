@@ -1,0 +1,28 @@
+header {
+    background-color: var(--color7);
+    height: 70px;
+}
+
+.usuarioOp {
+    gap: 15px;
+    padding: 10px 40px;
+}
+
+.usuarioOp a, .usuarioOp p {
+    padding: 10px 0;
+    color: var(--color2);
+}
+
+.usuarioOp img {
+    height: 40px;
+    border-radius: 1.5rem;
+}
+
+.barraLateral {
+    background-color: var(--color7); 
+    position: fixed;
+    top: 0;
+    left: 0; 
+    width: 100px; 
+    height: 100%;
+}
