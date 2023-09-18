@@ -1,19 +1,72 @@
+/* Estilos generales para el cuerpo */
 body {
     display: flex;
-    flex-direction: column; /* Alineación vertical del cuerpo */
-    align-items: center; /* Centra el contenido horizontalmente */
+    flex-direction: column;
+    align-items: center;
     background-color: #D9D9D9;
     font-family: 'Open Sans', sans-serif;
-    ;
+    margin: 0; /* Elimina los márgenes predeterminados del cuerpo */
+    padding: 0; /* Elimina el espacio interior predeterminado del cuerpo */
 }
 
+/* Estilos para el encabezado */
+header {
+    background-color: #1E2C6C;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Centrar horizontalmente */
+    font-family: 'Open Sans', sans-serif;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    background-color: #1E2C6C;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Centrar horizontalmente */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    margin-bottom: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+}
+
+/* Estilos para el contenido principal */
 main {
     display: flex;
-    flex-direction: row; /* Distribución horizontal de las secciones */
-    justify-content: space-around; /* Espacio entre las secciones */
+    flex-direction: column;
+    align-items: center; /* Centrar horizontalmente */
+    justify-content: center; /* Centrar verticalmente */
     font-family: 'Open Sans', sans-serif;
+    padding: 20px;
+    margin-left: 120px; /* Ajusta según el ancho del menú */
 }
 
+/* Estilos para las secciones */
 section {
     border: 1px solid #ccc;
     background-color: #fff;
@@ -23,31 +76,31 @@ section {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-}
-header  {
-    background-color: #1E2C6C;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-family: 'Open Sans', sans-serif;
+    flex-grow: 1; /* Permite que las secciones crezcan y ocupen todo el espacio disponible */
 }
 
-button {
+/* Estilos para los botones en las secciones */
+section button {
     font-size: 17px;
     padding: 0.5em 2em;
     border: transparent;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     background: #1E3188;
     color: white;
     border-radius: 4px;
-}
-   
-button:hover {
-background: rgb(2,0,36);
-background: linear-gradient(90deg, #1e3c6c 0%, #4f648b 100%);
+    margin-top: auto; /* Empuja el botón hacia abajo en la sección */
 }
 
-button:active {
-transform: translate(0em, 0.2em);
+section button:hover {
+    background: linear-gradient(90deg, #1e3c6c 0%, #4f648b 100%);
+}
+
+section button:active {
+    transform: translate(0em, 0.2em);
+}
+
+/* Estilos para el texto en las secciones */
+section h2 {
+    font-size: medium;
+    color: rgb(80, 80, 80);
 }
