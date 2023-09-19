@@ -100,7 +100,7 @@ section button:active {
 }
 
 /* Estilos para el texto en las secciones */
-section h2 {
+section label {
     font-size: medium;
     color: rgb(80, 80, 80);
 }
