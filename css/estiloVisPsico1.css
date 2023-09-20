@@ -1,0 +1,47 @@
+.barraLateral {
+    top: 0;
+    left: 0; 
+    width: 100px; 
+}
+
+header {
+    height: 70px;
+}
+
+.usuarioOp {
+    gap: 15px;
+    padding: 10px 40px;
+}
+
+.usuarioOp a, .usuarioOp p {
+    padding: 10px 0;
+    color: var(--color2);
+}
+
+.usuarioOp img {
+    height: 40px;
+    border-radius: 1.5rem;
+}
+
+.fixed {
+    background-color: var(--color7); 
+    position: fixed;
+}
+
+table {
+    border-collapse: separate;
+    width: 100%;
+    align-content: center;
+    color: white;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+
+}
+
+th {
+    background-color: #0077ffd0;
+}
