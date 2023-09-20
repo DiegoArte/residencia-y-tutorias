@@ -1,13 +1,16 @@
-header {
+header, .headerHidden {
     height: 70px;
 }
 
 .usuarioOp {
     gap: 15px;
     padding: 10px 40px;
+    cursor: pointer;
+    position: relative;
+    display: block;
 }
 
-.usuarioOp a, .usuarioOp p {
+.usuarioOp p {
     padding: 10px 0;
     color: var(--color2);
 }
@@ -17,10 +20,36 @@ header {
     border-radius: 1.5rem;
 }
 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    min-width: 100px;
+    background-color: #fff;
+    border-radius: 0px 15px 15px 15px;
+}
+
+.dropdown-content a {
+    padding: 8px 10px;
+    color: var(--color6);
+    text-decoration: none;
+    display: block;
+    transition: 0.1s;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--color9);
+    color: #fff;
+}
+
+.usuarioOp:hover .dropdown-content {
+    display: block;
+}
+
 .barraLateral {
     top: 0;
     left: 0; 
-    width: 100px; 
+    min-width: 100px; 
 }
 
 .fixed {
@@ -30,8 +59,8 @@ header {
 
 .tasks {
     margin: 0 auto;
-    margin-top: 140px;
     gap: 70px;
+    margin-top: 5%;
 }
 
 .comentarios, .checklist, .mensajes {
@@ -337,20 +366,7 @@ header h2 {
     list-style: none;
 }
 .chatbox .outgoing {
-    margin: 20px 0;
     justify-content: flex-end;
-}
-.chatbox .incoming span {
-    width: 32px;
-    height: 32px;
-    color: #fff;
-    cursor: default;
-    text-align: center;
-    line-height: 32px;
-    align-self: flex-end;
-    background: #724ae8;
-    border-radius: 4px;
-    margin: 0 10px 7px 0;
 }
 .chatbox .chat p {
     white-space: pre-wrap;
@@ -406,10 +422,6 @@ header h2 {
     visibility: visible;
 }
 @media (max-width: 490px) {
-.chatbot-toggler {
-    right: 20px;
-    bottom: 20px;
-}
 .chatbot {
     right: 0;
     bottom: 0;
