@@ -42,7 +42,7 @@ section button {
     background: #1E3188;
     color: white;
     border-radius: 4px;
-    margin-top: auto; /* Empuja el botón hacia abajo en la sección */
+    margin-top: 10px; /* Empuja el botón hacia abajo en la sección */
 }
 
 section button:hover {
