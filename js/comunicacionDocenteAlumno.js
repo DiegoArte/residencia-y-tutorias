@@ -8,7 +8,7 @@ const createChatLi = (message, className) => {
     // Create a chat <li> element with passed message and className
     const chatLi = document.createElement("li");
     chatLi.classList.add("chat", `${className}`);
-    let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
+    let chatContent = className === "outgoing" ? `<p></p>` : `<p></p>`;
     chatLi.innerHTML = chatContent;
     chatLi.querySelector("p").textContent = message;
     return chatLi; // return chat <li> element
@@ -46,13 +46,13 @@ const handleChat = () => {
     chatbox.appendChild(createChatLi(userMessage, "outgoing"));
     chatbox.scrollTo(0, chatbox.scrollHeight);
     
-    setTimeout(() => {
+    //setTimeout(() => {
         // Display "Thinking..." message while waiting for the response
-        const incomingChatLi = createChatLi("Thinking...", "incoming");
-        chatbox.appendChild(incomingChatLi);
-        chatbox.scrollTo(0, chatbox.scrollHeight);
-        generateResponse(incomingChatLi);
-    }, 600);
+        //const incomingChatLi = createChatLi("Thinking...", "incoming");
+        //chatbox.appendChild(incomingChatLi);
+        //chatbox.scrollTo(0, chatbox.scrollHeight);
+        //generateResponse(incomingChatLi);
+    //}, 600);
 }
 chatInput.addEventListener("input", () => {
     // Adjust the height of the input textarea based on its content
