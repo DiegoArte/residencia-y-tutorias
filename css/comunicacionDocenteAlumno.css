@@ -1,5 +1,6 @@
 header, .headerHidden {
-    height: 70px;
+    min-height: 70px;
+    z-index: 1;
 }
 
 .usuarioOp {
@@ -21,6 +22,8 @@ header, .headerHidden {
 }
 
 .dropdown-content {
+    top: 55px;
+    right: 10px;
     display: none;
     position: absolute;
     z-index: 1;
@@ -49,7 +52,18 @@ header, .headerHidden {
 .barraLateral {
     top: 0;
     left: 0; 
-    min-width: 100px; 
+    min-width: 100px;
+}
+
+.back-arrow {
+    position: absolute !important;
+    margin: 90px 70px;
+    background-color: var(--color9);
+    padding: 10px;
+}
+
+.back-arrow:hover .regresar {
+    display: block !important;
 }
 
 .fixed {
@@ -58,10 +72,12 @@ header, .headerHidden {
 }
 
 .tasks {
+    z-index: 0;
     margin: 0 auto;
     gap: 70px;
-    margin-top: 5%;
+    margin-top: 7%;
 }
+
 
 .comentarios, .checklist, .mensajes {
     background: var(--color2);
@@ -87,7 +103,6 @@ header, .headerHidden {
     width: fit-content;
     transition: color 0.3s ease;
     margin-right: 20px;
-    margin-bottom: 20px;
 }
 
 .checklist label::before, .checklist label::after {
@@ -126,7 +141,6 @@ header, .headerHidden {
     display: grid;
     align-items: center;
     margin-right: 20px;
-    margin-bottom: 20px;
 }
 
 .checklist input[type="checkbox"]::before, .checklist input[type="checkbox"]::after {
@@ -264,15 +278,18 @@ header, .headerHidden {
     }
 }
 
-.comentarios textarea {
+.checklist textarea {
     resize: none;
+    grid-column: 1/3;
+    margin-bottom: 20px;
+    border-radius: 10px;
 }
 
 button {
     font-size: 15px;
     background: var(--color9);
     color: white;
-    padding: 0.5em 1em;
+    padding: 0.5em 6.5em;
     padding-left: 0.9em;
     display: flex;
     align-items: center;
@@ -321,6 +338,7 @@ to {
 }
 
 .chatbot {
+    margin: 0 auto;
     right: 35px;
     bottom: 90px;
     width: 420px;
@@ -347,7 +365,7 @@ header h2 {
 
 .chatbot .chatbox {
     overflow-y: auto;
-    height: 480px;
+    height: 430px;
     padding: 30px 20px 100px;
 }
 .chatbot :where(.chatbox, textarea)::-webkit-scrollbar {
@@ -410,7 +428,7 @@ header h2 {
 }
 .chat-input span {
     align-self: flex-end;
-    color: #724ae8;
+    color: var(--color7);
     cursor: pointer;
     height: 55px;
     display: flex;
@@ -426,12 +444,7 @@ header h2 {
     right: 0;
     bottom: 0;
     height: 100%;
-    border-radius: 0;
     width: 100%;
-}
-.chatbot .chatbox {
-    height: 90%;
-    padding: 25px 15px 100px;
 }
 .chatbot .chat-input {
     padding: 5px 15px;
@@ -439,4 +452,26 @@ header h2 {
 .chatbot header span {
     display: block;
 }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .tasks {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .barraLateral {
+        display: none;
+    }
+
+    .back-arrow {
+        margin-top: 10px;
+        z-index: 1;
+    }
+
+    .back-arrow img {
+        height: 25px;
+    }
 }

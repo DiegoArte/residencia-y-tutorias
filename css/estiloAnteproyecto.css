@@ -1,0 +1,202 @@
+/* Estilos generales para el cuerpo */
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #D9D9D9;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0; /* Elimina los márgenes predeterminados del cuerpo */
+    padding: 0; /* Elimina el espacio interior predeterminado del cuerpo */
+    height: 100%; /* Asegura que el cuerpo y el HTML ocupen toda la altura disponible */
+    margin: 0; /* Elimina los márgenes predeterminados del cuerpo */
+    justify-content: center;
+}
+
+/* Estilos para el contenido principal */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar horizontalmente */
+    justify-content: center; /* Centrar verticalmente */
+    font-family: 'Open Sans', sans-serif;
+    padding: 20px;
+    margin-left: 120px; /* Ajusta según el ancho del menú */
+}
+
+/* Estilos para las secciones */
+section {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 20px;
+    margin: 10px;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1; /* Permite que las secciones crezcan y ocupen todo el espacio disponible */
+}
+
+
+section button:hover {
+    background: linear-gradient(90deg, #1e3c6c 0%, #4f648b 100%);
+}
+
+section button:active {
+    transform: translate(0em, 0.2em);
+}
+
+/* Estilos para el texto en las secciones */
+section label {
+    font-size: medium;
+    color: rgb(80, 80, 80);
+}
+
+.barraLateral {
+    top: 0;
+    left: 0; 
+    width: 100px; 
+}
+
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 10px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    }
+
+/* Estilos para centrar la tabla en la pantalla y agregar fondo negro */
+.centrarTabla {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Cambiado a 80vh para dejar espacio en la parte inferior */
+    color: black; /* Texto blanco para contrastar */
+    margin-top: 100px;
+    font-family: 'Open Sans', sans-serif';
+    
+}
+
+/* Estilos para la tabla */
+table {
+    border: 2px solid #D9D9D9; /* Borde blanco */
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #D9D9D9; /* Encabezados con fondo gris */
+}
+
+.usuarioOp {
+    gap: 15px;
+    padding: 10px 40px;
+}
+
+.usuarioOp a, .usuarioOp p {
+    padding: 10px 0;
+    color: var(--color2);
+}
+
+.usuarioOp img {
+    height: 40px;
+    border-radius: 1.5rem;
+}
+
+.fixed {
+    background-color: var(--color7); 
+    position: fixed;
+}
+
+.barraLateral button {
+    font-size: 17px;
+    padding: 1em 3em;
+    border: transparent;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    background: #1E3188;
+    color: white;
+    border-radius: 4px;
+    margin-top: 200px; /* Empuja el botón hacia abajo en la sección */
+}
+
+.barraLateral button img{
+    height: 20px;
+
+    .barraLateral {
+        top: 0;
+        left: 0; 
+        width: 100px; 
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;  /* Alinea los elementos a la izquierda */
+    }
+    
+    .barraLateral .BtnResponder,
+    .barraLateral .BtnASS {
+        width: 100%;  /* Ocupa todo el ancho disponible */
+        margin-bottom: 5px;  /* Espacio entre los botones */
+    }
+}
+
+
+.BtnResponder {
+    padding: 10px 20px;
+    font-size: 16px;
+    top: auto;
+    border: 2px solid #1e3c6c;
+    border-radius: 5px;
+    background-color: #1e3c6c;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 50px 0;
+    font-family: "Open Sans", sans-serif;
+    display: block;
+    align-self: flex-start;
+  }
+  
+  .BtnResponder:hover {
+    background-color: #e0e0e0;
+    color: black;
+    border: 2px solid white;
+  }
+  
+  .BtnResponder:active {
+    background-color: #ccc;
+    color: black;
+    border: 2px solid white;
+  }
+  
+  .BtnASS {
+    padding: 10px 20px;
+    font-size: 16px;
+    bottom: auto;
+    border: 2px solid #1e3c6c;
+    border-radius: 5px;
+    background-color: #1e3c6c;
+    color: white;
+    cursor: pointer;
+    margin-top: 50px 0;
+    font-family: "Open Sans", sans-serif;
+    display: block;
+    align-self: flex-start;
+  }
+  
+  .BtnASS:hover {
+    background-color: #e0e0e0;
+    color: black;
+    border: 2px solid white;
+  }
+  
+  .BtnASS:active {
+    background-color: #ccc;
+    color: black;
+    border: 2px solid white;
+  }
+  
