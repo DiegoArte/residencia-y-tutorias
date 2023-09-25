@@ -52,7 +52,7 @@ header, .headerHidden {
 .barraLateral {
     top: 0;
     left: 0; 
-    min-width: 100px; 
+    min-width: 100px;
 }
 
 .back-arrow {
@@ -77,11 +77,7 @@ header, .headerHidden {
     gap: 70px;
     margin-top: 7%;
 }
-@media (max-width: 900px) {
-    .tasks {
-        flex-direction: column;
-    }
-}
+
 
 .comentarios, .checklist, .mensajes {
     background: var(--color2);
@@ -431,7 +427,7 @@ header h2 {
 }
 .chat-input span {
     align-self: flex-end;
-    color: #724ae8;
+    color: var(--color7);
     cursor: pointer;
     height: 55px;
     display: flex;
@@ -447,12 +443,7 @@ header h2 {
     right: 0;
     bottom: 0;
     height: 100%;
-    border-radius: 0;
     width: 100%;
-}
-.chatbot .chatbox {
-    height: 90%;
-    padding: 25px 15px 100px;
 }
 .chatbot .chat-input {
     padding: 5px 15px;
@@ -460,4 +451,27 @@ header h2 {
 .chatbot header span {
     display: block;
 }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .tasks {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .barraLateral {
+        display: none;
+    }
+
+    .back-arrow {
+        margin-top: 10px;
+        z-index: 1;
+    }
+
+    .back-arrow img {
+        height: 25px;
+    }
 }
