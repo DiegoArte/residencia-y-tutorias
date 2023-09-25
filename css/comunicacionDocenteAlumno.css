@@ -338,6 +338,7 @@ to {
 }
 
 .chatbot {
+    margin: 0 auto;
     right: 35px;
     bottom: 90px;
     width: 420px;
@@ -456,7 +457,6 @@ header h2 {
 /* Responsive */
 @media (max-width: 900px) {
     .tasks {
-        flex-direction: column;
         margin-bottom: 20px;
     }
 }
