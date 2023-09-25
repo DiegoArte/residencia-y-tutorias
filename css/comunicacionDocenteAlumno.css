@@ -55,6 +55,17 @@ header, .headerHidden {
     min-width: 100px; 
 }
 
+.back-arrow {
+    position: absolute !important;
+    margin: 90px 70px;
+    background-color: var(--color9);
+    padding: 10px;
+}
+
+.back-arrow:hover .regresar {
+    display: block !important;
+}
+
 .fixed {
     background-color: var(--color7); 
     position: fixed;
