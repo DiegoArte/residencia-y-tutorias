@@ -1,3 +1,13 @@
+<?php
+
+require 'php/Revision.php';
+if($_SERVER['REQUEST_METHOD']==='POST'){
+    $revision=new Revision($_POST);
+    $revision->crear();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,26 +48,26 @@
         <div class="barraLateral h-100"></div>
         <div class="tasks row">
             <div class="col">
-                <form class="checklist">
-                    <input value="1" name="r" type="checkbox" id="01">
+                <form class="checklist" method="POST" action="">
+                    <input value="1" name="nombreProyecto" type="checkbox" id="01">
                     <label for="01">Nombre del proyecto</label>
-                    <textarea name="" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
-                    <input value="2" name="r" type="checkbox" id="02">
+                    <textarea name="comnombreProyecto" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
+                    <input value="1" name="empresa" type="checkbox" id="02">
                     <label for="02">Empresa</label>
-                    <textarea name="" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
-                    <input value="3" name="r" type="checkbox" id="03">
+                    <textarea name="comempresa" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
+                    <input value="1" name="objetivos" type="checkbox" id="03">
                     <label for="03">Objetivos</label>
-                    <textarea name="" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
-                    <input value="4" name="r" type="checkbox" id="04">
+                    <textarea name="comobjetivos" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
+                    <input value="1" name="justificacion" type="checkbox" id="04">
                     <label for="04">Justificación</label>
-                    <textarea name="" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
-                    <input value="5" name="r" type="checkbox" id="05">
+                    <textarea name="comjustificacion" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
+                    <input value="1" name="cronograma" type="checkbox" id="05">
                     <label for="05">Cronograma de act.</label>
-                    <textarea name="" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
-                    <input value="6" name="r" type="checkbox" id="06">
+                    <textarea name="comcronograma" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
+                    <input value="1" name="descripcion" type="checkbox" id="06">
                     <label for="06">Descripción de act.</label>
-                    <textarea name="" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
-                    <button>
+                    <textarea name="comdescripcion" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
+                    <button id="enviarFormulario">
                         <div class="svg-wrapper-1">
                             <div class="svg-wrapper">
                             <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -94,5 +104,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="js/comunicacionDocenteAlumno.js"></script>
+    <script>
+        // Función para enviar el formulario cuando se hace clic en el botón
+        document.getElementById('enviarFormulario').addEventListener('click', function() {
+            // Obtener el formulario
+            var formulario = document.getElementsByClassName('checklist');
+            
+            // Enviar el formulario
+            formulario.submit();
+        });
+    </script>
 </body>
 </html>
