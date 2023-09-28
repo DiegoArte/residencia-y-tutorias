@@ -6,6 +6,10 @@
 
 header {
     height: 70px;
+    position: fixed;
+    width: 100%;
+    background-color: var(--color7);
+    z-index: 1;
 }
 
 .usuarioOp {
