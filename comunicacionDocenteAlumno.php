@@ -1,9 +1,15 @@
 <?php
 
-require 'php/Revision.php';
 if($_SERVER['REQUEST_METHOD']==='POST'){
-    $revision=new Revision($_POST);
-    $revision->crear();
+    if(count($_POST)>1) {
+        require 'php/Revision.php';
+        $revision=new Revision($_POST);
+        $revision->crear();
+    } else {
+        require 'php/Chat.php';
+        $chat=new Chat($_POST);
+        $chat->crear();
+    }
 }
 
 ?>
@@ -82,21 +88,21 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             </div>
             
             <div class="col">
-                <form class="chatbot">
+                <form class="chatbot" method="POST" action="">
                     <header>
                         <h2>Chat</h2>
                     </header>
                     <ul class="chatbox">
                     </ul>
-                    <div class="chat-input">
-                        <textarea placeholder="Mensaje" spellcheck="false" required></textarea>
+                    <fieldset class="chat-input">
+                        <textarea name="msj" placeholder="Mensaje" spellcheck="false" required></textarea>
                         <span id="send-btn" class="material-symbols-rounded">
                             <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 0h24v24H0z" fill="none"></path>
                                 <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z" fill="currentColor"></path>
                             </svg>
                         </span>
-                    </div>
+                    </fieldset>
                 </form>
             </div>
         </div>

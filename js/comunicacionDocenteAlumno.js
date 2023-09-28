@@ -37,6 +37,8 @@ const generateResponse = (chatElement) => {
     }).finally(() => chatbox.scrollTo(0, chatbox.scrollHeight));
 }
 const handleChat = () => {
+    var formulario = document.getElementsByClassName('chatbot')[0];
+    formulario.submit();
     userMessage = chatInput.value.trim(); // Get user entered message and remove extra whitespace
     if(!userMessage) return;
     // Clear the input textarea and set its height to default

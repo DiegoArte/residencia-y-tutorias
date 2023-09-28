@@ -24,6 +24,7 @@ class Crud {
     public function atributos() {
         $atributos=[];
         foreach(static::$columnasDB as $columna) {
+            if($columna=='id') continue;
             $atributos[$columna]=$this->$columna;
         }
         return $atributos;
