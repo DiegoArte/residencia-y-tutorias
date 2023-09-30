@@ -7,11 +7,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" /-->
+    crossorigin="anonymous" referrerpolicy="no-referrer" >
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/Envio_fecha.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Envio de fecha</title>
 </head>
 <body>
@@ -25,7 +26,8 @@
 
     <main>
         <div class="barraLateral fixed h-100">
-            <a href="#"></a></div>
+            <a href="#"></a>
+            </div>
         <section style="margin-top: 70px;">
             <form action="" class="Titulo">
                 <div>
@@ -45,28 +47,18 @@
             </form>
         </section>
         <section>
-            <form action="" class="Tabla_contenido">
-                <table>
-                    <tr>
-                        <th>
-                            none
-                        </th>
-                        <th>
-                            none
-                        </th>
-                        <th>
-                            none
-                        </th>
-                    </tr>
-                    
-                </table>
+            <form action="php/Enviartabla.php" class="Tabla_contenido" method="post">
+                <?php
+                include 'php/Mostrar_tabla.php';
+                Tabla();
+                ?>
                 
                 
-            </form>
+            
         </section>
         
 
-        <button>
+        <button type="submit" onclick="mostrar()">
             <div class="svg-wrapper-1">
               <div class="svg-wrapper">
                 <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -76,9 +68,17 @@
               </div>
             </div>
             <span>Enviar</span>
-          </button>
-    </main>
+            <script type="text/javascript">
+                function mostrar(){
+                    alert("Los datos se mandaron correctamente");
 
+                }
+            </script>
+          </button>
+          </form>
+    </main>
+    <script src="js/envia_FECH.js"></script>
+    
 
     
 </body>
