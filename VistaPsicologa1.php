@@ -17,17 +17,17 @@
 </head>
 
 <body>
-  <header class="fixed w-100">
+>
+  <main>
+      <div class="barraLateral fixed h-100">
+      </div>
+      <div class="barraLateral fixed h-100">  <header class="fixed w-100">
     <div class="usuarioOp d-flex justify-content-end">
       <img src="img/profile.png" alt="" />
       <p>Usuario</p>
       <a href="#">Cerrar sesión</a>
     </div>
-  </header>
-  <main>
-      <div class="barraLateral fixed h-100">
-      </div>
-      <div class="barraLateral fixed h-100">
+  </header
         <a href="#"></a>
       </div>
       <div class="barraLateral fixed h-100">
@@ -41,7 +41,7 @@
               <th>motivo</th>
               <th>responder</th>
             </tr>
-          </table>
+          
         <?php
         // Conecta a la base de datos (reemplaza con tus credenciales)
         $servername = "localhost";
@@ -80,6 +80,8 @@
 
         $conn->close();
         ?>
+
+    </table>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
