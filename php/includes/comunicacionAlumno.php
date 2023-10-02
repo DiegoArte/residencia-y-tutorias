@@ -2,6 +2,7 @@
 
 $revision=Revision::find("idalumno", $id);
 $revision=$revision[0];
+$chats=Chat::find2("idinput", $id, "idaoutput", $id);
 
 ?>
 
