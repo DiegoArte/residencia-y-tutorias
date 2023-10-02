@@ -1,0 +1,69 @@
+.barraLateral {
+    top: 0;
+    left: 0; 
+    width: 100px; 
+}
+
+header {
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    background-color: var(--color7);
+    z-index: 1;
+}
+
+.usuarioOp {
+    gap: 15px;
+    padding: 10px 40px;
+}
+
+.usuarioOp a, .usuarioOp p {
+    padding: 10px 0;
+    color: var(--color2);
+}
+
+.usuarioOp img {
+    height: 40px;
+    border-radius: 1.5rem;
+}
+
+.fixed {
+    background-color: var(--color7); 
+    position: fixed;
+}
+
+button{
+    font-size: 10px;
+    padding: 0.3em 1em;
+    border: transparent;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    background: #1E3188;
+    color: white;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+table {
+    border-spacing: 0;
+    width: 70%;
+    border-collapse: collapse;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  th, td {
+    width: 100;
+    padding: 0;
+    border: 1px solid black;
+    text-align: center;
+  }
+
+  th{
+    background-color: #4F648B;
+  }
+
+  input {
+    width: 100%;
+  }

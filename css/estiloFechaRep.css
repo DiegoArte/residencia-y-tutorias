@@ -42,7 +42,7 @@ section button {
     background: #1E3188;
     color: white;
     border-radius: 4px;
-    margin-top: auto; /* Empuja el botón hacia abajo en la sección */
+    margin-top: 10px; /* Empuja el botón hacia abajo en la sección */
 }
 
 section button:hover {
@@ -57,4 +57,49 @@ section button:active {
 section label {
     font-size: medium;
     color: rgb(80, 80, 80);
+}
+
+.barraLateral {
+    top: 0;
+    left: 0; 
+    width: 100px; 
+}
+
+header {
+    height: 70px;
+}
+
+.usuarioOp {
+    gap: 15px;
+    padding: 10px 40px;
+}
+
+.usuarioOp a, .usuarioOp p {
+    padding: 10px 0;
+    color: var(--color2);
+}
+
+.usuarioOp img {
+    height: 40px;
+    border-radius: 1.5rem;
+}
+
+.fixed {
+    background-color: var(--color7); 
+    position: fixed;
+}
+
+.barraLateral button {
+    font-size: 17px;
+    padding: 1em 3em;
+    border: transparent;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    background: #1E3188;
+    color: white;
+    border-radius: 4px;
+    margin-top: 100px; /* Empuja el botón hacia abajo en la sección */
+}
+
+.barraLateral button img{
+    height: 40px;
 }
