@@ -1,4 +1,5 @@
-
+<link rel="stylesheet" href="css/EstiloTabla_EF.css">
+<link rel="stylesheet" href="css/style.css">
 <?php
 // Establecer la conexión a la base de datos
 function Tabla(){
@@ -25,15 +26,15 @@ else{
             echo "<td>" . $row["Nombre"] . "</td>";
             echo "<td>" ;
             if($row["Tipo_de_archivo"] == 1){
-                echo '<i class="fa-regular fa-file-pdf" ></i>';
+                echo '<i class="fa-regular fa-file-pdf" ></i> PDF';
 
             }
             elseif($row["Tipo_de_archivo"] == 2){
-                echo '<i class="fa-regular fa-file-word"></i>';
+                echo '<i class="fa-regular fa-file-word"></i> Word';
 
             }
             elseif($row["Tipo_de_archivo"] == 3){
-                echo '<i class="fa-regular fa-file-excel" ></i>';
+                echo '<i class="fa-regular fa-file-excel" ></i> Excel';
             }
             "</td>";
             
