@@ -10,8 +10,6 @@ require 'php/app.php';
 require 'php/Chat.php';
 require 'php/Revision.php';
 
-$chats=Chat::find2("idinput", $id, "idaoutput", $id);
-
 if($_SERVER['REQUEST_METHOD']==='POST'){
     if(count($_POST)>3) {
         $revision=new Revision($_POST);

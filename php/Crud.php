@@ -52,6 +52,12 @@ class Crud {
         return $resultado;
     }
 
+    public static function find3($columna1, $valor1, $columna2, $valor2) {
+        $query="SELECT * FROM ".static::$tabla." WHERE (".$columna1."='$valor1' and ".$columna2."='$valor2') or (".$columna1."='$valor2' and ".$columna2."='$valor1')";
+        $resultado=self::consultarSQL($query);
+        return $resultado;
+    }
+
     public static function consultarSQL($query) {
         $resultado=self::$db->query($query);
         $array=[];

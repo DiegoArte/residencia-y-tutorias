@@ -1,3 +1,9 @@
+<?php
+
+$chats=Chat::find3("idinput", $id, "idaoutput", $idsec);
+
+?>
+
 <div class="col">
     <form class="checklist" method="POST" action="">
         <input type="text" name="iddocente" style="display: none" value="<?php echo $id; ?>">
