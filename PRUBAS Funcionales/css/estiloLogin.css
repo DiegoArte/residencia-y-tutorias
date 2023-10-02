@@ -1,0 +1,318 @@
+/* Aplicar estilos al body */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #D9D9D9;
+  
+    height: 100vh;
+
+}
+
+/* Establecer estilos para el contenedor principal */
+.contenedor {
+    position: relative; /* Establece posición relativa para poder posicionar elementos hijos de manera absoluta */
+    max-width: 655px;
+    height: auto;
+}
+
+/* Establecer estilos para la imagen */
+.contenedor img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Evita el espacio adicional debajo de la imagen */
+}
+
+/* Establecer estilos para el recuadro */
+.recuadroBienvenido {
+    position: absolute; /* Establece posición absoluta para superponerlo */
+    top: 30%;
+    left: 59.5%;
+    width: 582px;
+    height: 358px;
+    border-radius: 15px;
+    background: #BAC;
+    mix-blend-mode: screen;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* Establecer estilos para el texto "BIENVENIDO" dentro del recuadro */
+.recuadroBienvenido p {
+    color: #000;
+    font-family: Open;
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* Establecer estilos para recuadroUC */
+.recuadroUC {
+    width: 687px;
+    height: 677px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #1E2C6C;
+    position: absolute;
+    top: 15%;
+    left: 140%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* Establecer estilos para el texto dentro recuadroUC */
+.recuadroUC p {
+    font-size: 24px;
+    margin: 0;
+    text-align: center;
+}
+
+/* Establecer estilos para los elementos .group (inputs) dentro de recuadroUC */
+.recuadroUC .group {
+    position: relative;
+    margin-bottom: 120px; /* Aumenta el espacio entre los elementos .group */
+}
+
+/* Establecer estilos para los inputs dentro de recuadroUC */
+.recuadroUC .input {
+    font-size: 50px; /* Tamaño de fuente */
+    padding: 15px 10px 15px 5px; /* Espaciado interior (padding) */
+    display: block;
+    width: 600px; /* Ancho actual */
+    border: none;
+    border-bottom: 1px solid #17349C;
+    background: transparent;
+}
+/* Establecer estilos para los inputs en estado de foco */
+.recuadroUC .input:focus {
+    outline: none;
+}
+
+/* Establecer estilos para las etiquetas (labels) dentro de recuadroUC */
+.recuadroUC label {
+    font-size: 55px; /* Aumenta el tamaño de fuente a 60px */
+    color: #FFFFFF;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 15px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+/* Establecer estilos para los inputs con valor o en estado de foco */
+.recuadroUC .input:focus ~ label, .recuadroUC .input:valid ~ label {
+    top: -30px;
+    font-size: 30px; /* Reduce el tamaño de fuente a 30px en estado de foco */
+    color: #FFFFFF;
+}
+
+/* Establecer estilos para las barras (bar) dentro de recuadroUC */
+.recuadroUC .bar {
+    position: relative;
+    display: block;
+    width: 600px;
+}
+
+/* Establecer estilos para las barras antes y después de los inputs */
+.recuadroUC .bar:before, .recuadroUC .bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #169190;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+/* Establecer estilos para las barras antes y después de los inputs en estado de foco */
+.recuadroUC .input:focus ~ .bar:before, .recuadroUC .input:focus ~ .bar:after {
+    width: 100%;
+}
+
+/* Establecer estilos para el resaltado (highlight) dentro de recuadroUC */
+.recuadroUC .highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Establecer estilos para el resaltado (highlight) de los inputs en estado de foco */
+.recuadroUC .input:focus ~ .highlight {
+    animation: inputHighlighter 0.3s ease;
+}
+
+@keyframes inputHighlighter {
+    from {
+        background: #FFFFFF;
+    }
+
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+/*ESTILO BOTON VER CONTRASEÑA-------------------------------------------------------------------*/
+
+/* Estilos para el botón de mostrar/ocultar contraseña */
+.mostrar-contrasena {
+    --color: #a5a5b0;
+    --size: 30px;
+    position: absolute;
+    right: 10px; /* Ajusta la posición del botón según tus preferencias */
+    top: 50%; /* Ajusta la posición vertical del botón según tus preferencias */
+    transform: translateY(-50%); /* Centra verticalmente el botón en su contenedor */
+    cursor: pointer;
+    font-size: var(--size);
+    user-select: none;
+    fill: var(--color);
+}
+
+.mostrar-contrasena .eye {
+    position: absolute;
+    animation: keyframes-fill .5s;
+}
+
+.mostrar-contrasena .eye-slash {
+    position: absolute;
+    animation: keyframes-fill .5s;
+    display: none;
+}
+
+/* Cambia el tamaño de los íconos de ojo abierto y ojo tachado según tus preferencias */
+.mostrar-contrasena .eye svg,
+.mostrar-contrasena .eye-slash svg {
+    height: 1em;
+}
+
+/* Oculta el botón de ojo abierto cuando se verifica el checkbox */
+.mostrar-contrasena input:checked ~ .eye {
+    display: none;
+}
+
+/* Muestra el botón de ojo tachado cuando se verifica el checkbox */
+.mostrar-contrasena input:checked ~ .eye-slash {
+    display: block;
+}
+
+/* Oculta el checkbox predeterminado */
+.mostrar-contrasena input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Animación de los íconos */
+@keyframes keyframes-fill {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/*ESTILO BOTON LOG IN --------------------------------------------------------/*
+
+/* Estilos para el botón "Sign up" */
+.main_div {
+    --color: #3992e6;
+    position: relative;
+    z-index: 1;
+    text-align: center; /* Para centrar horizontalmente el botón */
+    margin-top: 20px; /* Ajusta el margen superior según sea necesario */
+   }
+   
+   .main_div::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    top: -7px;
+    left: -7px;
+    z-index: -5;
+    border-top: 3px solid var(--color);
+    border-left: 3px solid var(--color);
+    transition: 0.5s;
+   }
+   
+   .main_div::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    bottom: -7px;
+    right: -7px;
+    z-index: -5;    
+    border-right: 3px solid var(--color);
+    border-bottom: 3px solid var(--color);
+    transition: 0.5s;
+   }
+   
+   .main_div:hover::before {
+    width: 100%;
+    height: 100%;
+   }
+   
+   .main_div:hover::after {
+    width: 100%;
+    height: 100%;
+   }
+   
+   .main_div button {
+    padding: 0.7em 2em;
+    font-size: 30px;
+    background: #222222;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+     padding: 0.7em 2em;
+    font-size: 30px;
+    background: #222222;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    position: relative; /* Añade esta propiedad para que las líneas estén en relación con el botón */
+    z-index: 1; /* Asegura que esté por encima de las líneas azules */
+   }
+
+   /*MENSAJE ERRORR -----------------------------------------------------------------------------------/*
+
+    /* Estilo para el mensaje de error */
+    .mensaje-error {
+        background-color: #ff9999;
+        color: #ff0000;
+        padding: 10px;
+        border-radius: 20px;
+        text-align: center;
+        position: absolute;
+        top: 70px;
+        left: 47.8%;
+        width: 90%;
+        max-width: 665px;
+        z-index: 1;
+    }   
