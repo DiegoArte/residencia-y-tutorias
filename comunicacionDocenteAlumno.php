@@ -1,15 +1,26 @@
 <?php
 
+session_start();
+$_SESSION['id']="Z19023445";
+$_SESSION['rol']="docente";
+$id=$_SESSION['id'];
+$idsec="Z21020022";
+
+require 'php/app.php';
+require 'php/Chat.php';
+require 'php/Revision.php';
+
+$chats=Chat::find2("idinput", $id, "idaoutput", $id);
+
 if($_SERVER['REQUEST_METHOD']==='POST'){
-    if(count($_POST)>1) {
-        require 'php/Revision.php';
+    if(count($_POST)>3) {
         $revision=new Revision($_POST);
         $revision->crear();
     } else {
-        require 'php/Chat.php';
         $chat=new Chat($_POST);
         $chat->crear();
     }
+    header("Location: ".$_SERVER["PHP_SELF"]);
 }
 
 ?>
@@ -53,46 +64,27 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         </div>
         <div class="barraLateral h-100"></div>
         <div class="tasks row">
-            <div class="col">
-                <form class="checklist" method="POST" action="">
-                    <input value="1" name="nombreProyecto" type="checkbox" id="01">
-                    <label for="01">Nombre del proyecto</label>
-                    <textarea name="comnombreProyecto" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
-                    <input value="1" name="empresa" type="checkbox" id="02">
-                    <label for="02">Empresa</label>
-                    <textarea name="comempresa" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
-                    <input value="1" name="objetivos" type="checkbox" id="03">
-                    <label for="03">Objetivos</label>
-                    <textarea name="comobjetivos" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
-                    <input value="1" name="justificacion" type="checkbox" id="04">
-                    <label for="04">Justificación</label>
-                    <textarea name="comjustificacion" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
-                    <input value="1" name="cronograma" type="checkbox" id="05">
-                    <label for="05">Cronograma de act.</label>
-                    <textarea name="comcronograma" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
-                    <input value="1" name="descripcion" type="checkbox" id="06">
-                    <label for="06">Descripción de act.</label>
-                    <textarea name="comdescripcion" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
-                    <button id="enviarFormulario">
-                        <div class="svg-wrapper-1">
-                            <div class="svg-wrapper">
-                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z" fill="currentColor"></path>
-                            </svg>
-                            </div>
-                        </div>
-                        <span>Enviar</span>
-                    </button>
-                </form>
-            </div>
+            <?php
+                if($_SESSION['rol']=="docente") {
+                    include 'php/includes/comunicacionDocente.php';
+                } elseif($_SESSION['rol']=="alumno") {
+                    include 'php/includes/comunicacionAlumno.php';
+                }
+            ?>
             
             <div class="col">
                 <form class="chatbot" method="POST" action="">
+                    <input type="text" name="idinput" style="display: none" value="<?php echo $id; ?>">
+                    <input type="text" name="idaoutput" style="display: none" value="<?php echo $idsec; ?>">
                     <header>
                         <h2>Chat</h2>
                     </header>
                     <ul class="chatbox">
+                    <?php foreach($chats as $msj): ?>
+                        <li class="chat <?php if($msj->idinput==$id){echo "outgoing";} else{echo "incoming";} ?>">
+                            <p><?php echo $msj->msj; ?></p>
+                        </li>
+                    <?php endforeach; ?>
                     </ul>
                     <fieldset class="chat-input">
                         <textarea name="msj" placeholder="Mensaje" spellcheck="false" required></textarea>

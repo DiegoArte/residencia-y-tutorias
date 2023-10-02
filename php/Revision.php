@@ -1,7 +1,5 @@
 <?php
 
-require 'Crud.php';
-
 class Revision extends Crud {
     protected static $tabla="revision";
     protected static $columnasDB=['iddocente', 'idalumno', 'nombreProyecto', 'comnombreProyecto', 'empresa', 'comempresa', 'objetivos', 'comobjetivos', 'justificacion', 'comjustificacion', 'cronograma', 'comcronograma', 'descripcion', 'comdescripcion'];
@@ -21,8 +19,8 @@ class Revision extends Crud {
     public $comdescripcion;
 
     public function __construct($args=[]) {
-        $this->iddocente=2;
-        $this->idalumno=2;
+        $this->iddocente=$args['iddocente']??"";
+        $this->idalumno=$args['idalumno']??"";
         $this->nombreProyecto=$args['nombreProyecto']??0;
         $this->comnombreProyecto=$args['comnombreProyecto']??"";
         $this->empresa=$args['empresa']??0;

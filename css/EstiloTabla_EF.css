@@ -1,5 +1,16 @@
+/* Paleta de colores personalizada */
+:root {
+    --color-fondo: #f5f5f5;
+    --color-borde: #d1d1d1;
+    --color-fila1: #ffffff;
+    --color-fila2: #f0f0f0;
+    --color-texto: #333333;
+    --color-boton: #007BFF;
+    --color-boton-hover: #0056b3;
+}
+
 /* Estilo para la tabla */
-.miTabla{
+table{
     border-collapse: collapse;
     width: 80%;
     margin: 20px auto;
@@ -11,7 +22,7 @@
 }
 
 /* Estilo para las celdas de la tabla */
-.miTabla, tr, td {
+table, tr, td {
     border: 1px solid var(--color-borde);
     padding: 12px;
     text-align: left;
