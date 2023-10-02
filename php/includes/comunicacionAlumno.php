@@ -1,6 +1,7 @@
 <?php
 
 $revision=Revision::find("idalumno", $id);
+$revision=$revision[0];
 
 ?>
 

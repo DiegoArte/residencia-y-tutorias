@@ -43,7 +43,7 @@ class Crud {
     public static function find($columna, $valor) {
         $query="SELECT * FROM ".static::$tabla." WHERE ".$columna."='$valor'";
         $resultado=self::consultarSQL($query);
-        return array_shift($resultado);
+        return $resultado;
     }
 
     public static function find2($columna1, $valor1, $columna2, $valor2) {

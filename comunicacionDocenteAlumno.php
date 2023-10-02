@@ -1,10 +1,10 @@
 <?php
 
 session_start();
-$_SESSION['id']="Z21020022";
-$_SESSION['rol']="alumno";
+$_SESSION['id']="Z19023445";
+$_SESSION['rol']="docente";
 $id=$_SESSION['id'];
-$idsec="Z19023445";
+$idsec="Z21020022";
 
 require 'php/app.php';
 require 'php/Chat.php';
