@@ -57,24 +57,26 @@
           die("Error de conexión: " . $conn->connect_error);
         }
 
-        // Consulta SQL para obtener los datos
-        $sql = "SELECT reporte, nocontrol, nomAlu, nomMaes, motivo FROM tablavispsico";
-        $result = $conn->query($sql);
+        // Consulta SQL para enumerar las filas
+        $sl = "SELECT reporte, nocontrol, nomAlu, nomMaes, motivo FROM tablavispsico";
+        $rep = $conn->query($sl);
 
-        if ($result->num_rows > 0) {
-          // Imprime los datos en la tabla
-          while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $row["reporte"] . "</td>";
-            echo "<td>" . $row["nocontrol"] . "</td>";
-            echo "<td>" . $row["nomAlu"] . "</td>";
-            echo "<td>" . $row["nomMaes"] . "</td>";
-            echo "<td>" . $row["motivo"] . "</td>";
-            // Agrega un botón para responder en la última columna
-            echo '<td><button>Responder</button></td>';
-            echo "</tr>";
-          }
-        } else {
+        if ($rep->num_rows > 0) {
+            // Imprime los datos en la tabla
+            while ($row = $rep->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["reporte"] . "</td>";
+                echo "<td>" . $row["nocontrol"] . "</td>";
+                echo "<td>" . $row["nomAlu"] . "</td>";
+                echo "<td>" . $row["nomMaes"] . "</td>";
+                echo "<td>" . $row["motivo"] . "</td>";
+                // Agrega un botón para responder en la última columna
+                echo '<td><button>Responder</button></td>';
+                echo "</tr>";
+            }
+        }
+
+        else {
           echo "No se encontraron resultados";
         }
 

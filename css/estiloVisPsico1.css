@@ -1,3 +1,13 @@
+:root {
+    --color-fondo: #f5f5f5;
+    --color-borde: #d1d1d1;
+    --color-fila1: #ffffff;
+    --color-fila2: #f0f0f0;
+    --color-texto: #333333;
+    --color-boton: #007BFF;
+    --color-boton-hover: #0056b3;
+}
+
 .barraLateral {
     top: 0;
     left: 0; 
@@ -43,26 +53,40 @@ button{
     margin: 10px;
 }
 
+/* Estilo para la tabla */
 table {
-    border-spacing: 0;
-    width: 70%;
     border-collapse: collapse;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+    width: 80%;
+    margin: 20px auto;
+    margin-left: 10%;
+    margin-top: 80px;
+    background-color: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  th, td {
-    width: 100;
-    padding: 0;
-    border: 1px solid black;
-    text-align: center;
-  }
+/* Estilo para las celdas de la tabla */
+table, th, td {
+    border: 1px solid var(--color-borde);
+    padding: 12px;
+    text-align: left;
+}
 
-  th{
-    background-color: #4F648B;
-  }
+/* Estilo para los encabezados de columna */
+th {
+    background-color: var(--color-boton-hover);
+    color: white;
+}
+
+/* Estilo para las filas alternas */
+tr:nth-child(even) {
+    background-color: var(--color-fila1);
+}
+
+/* Estilo para las filas impares */
+tr:nth-child(odd) {
+    background-color: var(--color-fila2);
+}
 
   input {
     width: 100%;
