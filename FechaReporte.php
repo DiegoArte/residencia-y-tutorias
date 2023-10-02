@@ -60,7 +60,15 @@ if ($result->num_rows > 0) {
         echo '</form>';
     }
 } else {
-    echo "No se encontraron fechas en la tabla fecharepo1.";
+    echo '<form action="php/guardarFechaRepo1.php" method="POST">';
+    echo '<h2>Reporte 1</h2>';
+    echo '<label>Fecha de inicio</label>';
+    echo '<input type="date" name="fechaInicio1">';
+    echo '<label>Fecha final</label>';
+    echo '<input type="date" name="fechaFinal1">';
+    echo '<br>';
+    echo '<button type="submit"><span>Activar Fecha</span></button>';
+    echo '</form>';
 }
 
 // Cierra la conexión
@@ -103,7 +111,15 @@ if ($result->num_rows > 0) {
         echo '</form>';
     }
 } else {
-    echo "No se encontraron fechas en la tabla fecharepo3.";
+    echo '<form action="php/guardarFechaRepo2.php" method="POST">';
+    echo '<h2>Reporte 2</h2>';
+    echo '<label>Fecha de inicio</label>';
+    echo '<input type="date" name="fechaInicio2">';
+    echo '<label>Fecha final</label>';
+    echo '<input type="date" name="fechaFinal2">';
+    echo '<br>';
+    echo '<button type="submit"><span>Activar Fecha</span></button>';
+    echo '</form>';
 }
 
 // Cierra la conexión
@@ -113,45 +129,53 @@ $conn->close();
         
         <section>
             <    <?php
-// Establece la conexión a la base de datos (ajusta los valores según tu configuración)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "protutres";
-$conn = new mysqli($servername, $username, $password, $dbname);
+    // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "protutres";
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verifica la conexión
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
-}
-
-// Consulta SQL para obtener las fechas de la tabla fecharepo1
-$sql = "SELECT fechaini, fechafin FROM fecharepo3";
-$result = $conn->query($sql);
-
-// Verifica si hay resultados
-if ($result->num_rows > 0) {
-    // Mostrar los resultados en el formulario
-    while ($row = $result->fetch_assoc()) {
-        $fechaInicio = $row["fechaini"];
-        $fechaFinal = $row["fechafin"];
-        echo '<form action="php/guardarFechaRepo3.php" method="POST">';
-        echo '<h2>Reporte 3</h2>';
-        echo '<label>Fecha de inicio</label>';
-        echo '<input type="date" name="fechaInicio3" value="' . $fechaInicio . '">';
-        echo '<label>Fecha final</label>';
-        echo '<input type="date" name="fechaFinal3" value="' . $fechaFinal . '">';
-        echo '<br>';
-        echo '<button type="submit"><span>Activar Fecha</span></button>';
-        echo '</form>';
+    // Verifica la conexión
+    if ($conn->connect_error) {
+        die("Error de conexión: " . $conn->connect_error);
     }
-} else {
-    echo "No se encontraron fechas en la tabla fecharepo3.";
-}
 
-// Cierra la conexión
-$conn->close();
-?>
+    // Consulta SQL para obtener las fechas de la tabla fecharepo1
+    $sql = "SELECT fechaini, fechafin FROM fecharepo3";
+    $result = $conn->query($sql);
+
+    // Verifica si hay resultados
+    if ($result->num_rows > 0) {
+        // Mostrar los resultados en el formulario
+        while ($row = $result->fetch_assoc()) {
+            $fechaInicio = $row["fechaini"];
+            $fechaFinal = $row["fechafin"];
+            echo '<form action="php/guardarFechaRepo3.php" method="POST">';
+            echo '<h2>Reporte 3</h2>';
+            echo '<label>Fecha de inicio</label>';
+            echo '<input type="date" name="fechaInicio3" value="' . $fechaInicio . '">';
+            echo '<label>Fecha final</label>';
+            echo '<input type="date" name="fechaFinal3" value="' . $fechaFinal . '">';
+            echo '<br>';
+            echo '<button type="submit"><span>Activar Fecha</span></button>';
+            echo '</form>';
+        }
+        } else {
+            echo '<form action="php/guardarFechaRepo3.php" method="POST">';
+            echo '<h2>Reporte 3</h2>';
+            echo '<label>Fecha de inicio</label>';
+            echo '<input type="date" name="fechaInicio3">';
+            echo '<label>Fecha final</label>';
+            echo '<input type="date" name="fechaFinal3">';
+            echo '<br>';
+            echo '<button type="submit"><span>Activar Fecha</span></button>';
+            echo '</form>';
+        }
+
+        // Cierra la conexión
+        $conn->close();
+        ?>
         </section>
     </main>
 
