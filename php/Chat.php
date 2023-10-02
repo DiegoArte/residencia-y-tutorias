@@ -1,7 +1,5 @@
 <?php
 
-require 'Crud.php';
-
 class Chat extends Crud {
     protected static $tabla="chat";
     protected static $columnasDB=['id', 'idinput', 'idaoutput', 'msj'];
@@ -11,8 +9,8 @@ class Chat extends Crud {
     public $msj;
 
     public function __construct($args=[]) {
-        $this->idinput=200;
-        $this->idaoutput=100;
+        $this->idinput=$args['idinput']??"";
+        $this->idaoutput=$args['idaoutput']??"";
         $this->msj=$args['msj']??"";
     }
 }

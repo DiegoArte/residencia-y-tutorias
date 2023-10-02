@@ -1,6 +1,5 @@
 <?php
 
-require 'db.php';
 
 class Crud {
     protected static $db;
@@ -40,7 +39,37 @@ class Crud {
 
         return $sanitizado;
     }
+
+    public static function find($columna, $valor) {
+        $query="SELECT * FROM ".static::$tabla." WHERE ".$columna."='$valor'";
+        $resultado=self::consultarSQL($query);
+        return array_shift($resultado);
+    }
+
+    public static function find2($columna1, $valor1, $columna2, $valor2) {
+        $query="SELECT * FROM ".static::$tabla." WHERE ".$columna1."='$valor1' or ".$columna2."='$valor2'";
+        $resultado=self::consultarSQL($query);
+        return $resultado;
+    }
+
+    public static function consultarSQL($query) {
+        $resultado=self::$db->query($query);
+        $array=[];
+        while($registro=$resultado->fetch_assoc()) {
+            $array[]=static::crearObject($registro);
+        }
+        $resultado->free();
+        return $array;
+    }
+
+    protected static function crearObject($registro) {
+        $objeto=new static;
+        foreach($registro as $key=>$value) {
+            if(property_exists($objeto, $key)) {
+                $objeto->$key=$value;
+            }
+        }
+        return $objeto;
+    }
 }
 
-$db=conectar();
-Crud::setDB($db);
