@@ -33,14 +33,14 @@ header {
 }
 
 button{
-    font-size: 17px;
-    padding: 0.5em 2em;
+    font-size: 10px;
+    padding: 0.3em 1em;
     border: transparent;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     background: #1E3188;
     color: white;
     border-radius: 8px;
-    margin-top: 10px;
+    margin: 10px;
 }
 
 table {

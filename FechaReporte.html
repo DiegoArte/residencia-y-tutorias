@@ -26,40 +26,43 @@
             <button><img src="img/inicio-ubicacion-alt.png" alt=""></button>
         </div>
         <section style="margin-top: 70px;">
-            <form action="">
+            <form action="php/guardarFechaRepo1.php" method="POST">
                 <h2>Reporte 1</h2>
-                <Label>Fecha de incio</Label>
-                <input type="date">
-                <Label>Fecha final</Label>
-                <input type="date">
+                <label>Fecha de inicio</label>
+                <input type="date" name="fechaInicio1">
+                <label>Fecha final</label>
+                <input type="date" name="fechaFinal1">
                 <br>
-                <button><span>Activar Fecha</span></button>
+                <button type="submit"><span>Activar Fecha</span></button>
             </form>
         </section>
+        
         <section>
-            <form action="">
+            <form action="php/guardarFechaRepo2.php" method="POST">
                 <h2>Reporte 2</h2>
-                <Label>Fecha de incio</Label>
-                <input type="date">
-                <Label>Fecha final</Label>
-                <input type="date">
+                <label>Fecha de inicio</label>
+                <input type="date" name="fechaInicio2">
+                <label>Fecha final</label>
+                <input type="date" name="fechaFinal2">
                 <br>
-                <button><span>Activar Fecha</span></button>
+                <button type="submit"><span>Activar Fecha</span></button>
             </form>
         </section>
+        
         <section>
-            <form action="">
+            <form action="php/guardarFechaRepo3.php" method="POST">
                 <h2>Reporte 3</h2>
-                <Label>Fecha de incio</Label>
-                <input type="date">
-                <Label>Fecha final</Label>
-                <input type="date"> A
+                <label>Fecha de inicio</label>
+                <input type="date" name="fechaInicio3">
+                <label>Fecha final</label>
+                <input type="date" name="fechaFinal3">
                 <br>
-                <button><span>Activar Fecha</span></button>
+                <button type="submit"><span>Activar Fecha</span></button>
             </form>
         </section>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+</script>
 </body>
 </html>
