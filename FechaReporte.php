@@ -60,7 +60,15 @@ if ($result->num_rows > 0) {
         echo '</form>';
     }
 } else {
-    echo "No se encontraron fechas en la tabla fecharepo1.";
+    echo '<form action="php/guardarFechaRepo1.php" method="POST">';
+    echo '<h2>Reporte 1</h2>';
+    echo '<label>Fecha de inicio</label>';
+    echo '<input type="date" name="fechaInicio1">';
+    echo '<label>Fecha final</label>';
+    echo '<input type="date" name="fechaFinal1">';
+    echo '<br>';
+    echo '<button type="submit"><span>Activar Fecha</span></button>';
+    echo '</form>';
 }
 
 // Cierra la conexión
@@ -103,7 +111,15 @@ if ($result->num_rows > 0) {
         echo '</form>';
     }
 } else {
-    echo "No se encontraron fechas en la tabla fecharepo3.";
+    echo '<form action="php/guardarFechaRepo2.php" method="POST">';
+    echo '<h2>Reporte 2</h2>';
+    echo '<label>Fecha de inicio</label>';
+    echo '<input type="date" name="fechaInicio2">';
+    echo '<label>Fecha final</label>';
+    echo '<input type="date" name="fechaFinal2">';
+    echo '<br>';
+    echo '<button type="submit"><span>Activar Fecha</span></button>';
+    echo '</form>';
 }
 
 // Cierra la conexión
@@ -146,7 +162,15 @@ $conn->close();
             echo '</form>';
         }
         } else {
-            echo "No se encontraron fechas en la tabla fecharepo3.";
+            echo '<form action="php/guardarFechaRepo3.php" method="POST">';
+            echo '<h2>Reporte 3</h2>';
+            echo '<label>Fecha de inicio</label>';
+            echo '<input type="date" name="fechaInicio3">';
+            echo '<label>Fecha final</label>';
+            echo '<input type="date" name="fechaFinal3">';
+            echo '<br>';
+            echo '<button type="submit"><span>Activar Fecha</span></button>';
+            echo '</form>';
         }
 
         // Cierra la conexión

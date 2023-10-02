@@ -25,9 +25,9 @@ $conexion->query("DELETE FROM fecharepo1");
 $sql = "INSERT INTO fecharepo1 (fechaini, fechafin) VALUES ('$fechaInicio1', '$fechaFinal1')";
 
 if ($conexion->query($sql) === TRUE) {
-    echo "Datos guardados exitosamente en Reporte 1.";
+    echo "<script>alert('Fecha activada');history.go(-1);</script>";
 } else {
-    echo "Error al guardar datos: " . $conexion->error;
+    echo "Error al guardar datos: " . $conexion->error; 
 }
 
 // Cierra la conexión a la base de datos
