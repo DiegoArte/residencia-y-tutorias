@@ -98,9 +98,9 @@ label{
 
 
 
-table {
+/*table {
     border-collapse: collapse;
-    /* Ancho de la tabla */
+     Ancho de la tabla 
     margin-right: 9em;
     margin-left: 9em;
 }
@@ -109,14 +109,8 @@ th, td{
     
   border: 1px solid black;
   padding: 10px;
-}
-
-
-.Tabla_contenido {
-    padding: 20px;
-    max-height: 50em; /* Altura máxima del contenedor */
-    overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando sea necesario */
-}
+}*/
+/* Estilo para la tabla */
 
 button {
     font-family: inherit;
