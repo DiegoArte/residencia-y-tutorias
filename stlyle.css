@@ -1,138 +1,199 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 @import url('https://rsms.me/inter/inter-ui.css');
+
 ::selection {
   background: #2D2F36;
 }
+
 ::-webkit-selection {
   background: #2D2F36;
 }
+
 ::-moz-selection {
   background: #2D2F36;
 }
+
 body {
   background: white;
   font-family: 'Inter UI', sans-serif;
   margin: 0;
-  padding: 20px;
+  padding: 1%; /* Cambio a porcentaje */
+  font-size: 1rem; /* Cambio a unidades rem */
 }
+
 .page {
   background: #e2e2e5;
   display: flex;
   flex-direction: column;
-  height: calc(100% - 40px);
+  height: calc(100% - 2%); /* Cambio a porcentaje */
   position: absolute;
   place-content: center;
-  width: calc(100% - 40px);
+  width: calc(100% - 2%); /* Cambio a porcentaje */
 
   background-image: url('https://www.cdcuauhtemoc.tecnm.mx/wp-content/uploads/2021/08/Logo-TecNM.png');
-  background-size: cover; /* Ajusta el tamaño de la imagen al contenedor */
-  background-position: center center; /* Centra la imagen horizontal y verticalmente */
+  background-position: center center;
   background-repeat: no-repeat;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Recorta y ajusta la imagen al contenedor */
- 
-
-  
+  background-size: cover;
 }
+
 @media (max-width: 767px) {
   .page {
     height: auto;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+    margin-bottom: 2%; /* Cambio a porcentaje */
+    padding-bottom: 2%; /* Cambio a porcentaje */
   }
 }
+
 .container {
   display: flex;
-  height: 320px;
+  height: 50%; /* Cambio a porcentaje */
   margin: 0 auto;
-  width: 640px;
+  width: 100%; /* Cambio a porcentaje */
 }
+
 @media (max-width: 767px) {
   .container {
     flex-direction: column;
-    height: 630px;
-    width: 320px;
+    height: 100%; /* Cambio a porcentaje */
+    width: 100%; /* Cambio a porcentaje */
   }
 }
+
 .left {
-  background: white;
-  height: calc(100% - 40px);
-  top: 20px;
-  position: relative;
-  width: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  height: 56%; /* Cambio a porcentaje */
+  width: 38%; /* Cambio a porcentaje */
+  border-radius: 15px;
+  flex-shrink: 0;
+  position: absolute;
+  left: 18%; /* Cambio a porcentaje */
+  top: 18%; /* Cambio a porcentaje */
 }
+
 @media (max-width: 767px) {
   .left {
     height: 100%;
-    left: 20px;
-    width: calc(100% - 40px);
+    left: 2%; /* Cambio a porcentaje */
+    width: 96%; /* Cambio a porcentaje */
     max-height: 270px;
   }
 }
+
 .login {
-  font-size: 50px;
-  font-weight: 900;
-  margin: 100px 20px 40px;
+  color: black;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 4rem; /* Cambio a unidades rem */
+  font-weight: 500;
+  text-align: center;
+  line-height: 750%; /* Cambio a porcentaje */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
 }
 
 .right {
-  background: #1e3c6c;
-  box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
+  border-radius: 20px;
+  background: #1E2C6C;
+  box-shadow: 0px 0px 40px 16px rgba(0, 0, 0, 0.22);
   color: #F1F1F2;
   position: relative;
-  width: 50%;
+  height: 123%; /* Cambio a porcentaje */
+
+  width: 30%; /* Cambio a porcentaje */
+
+  left: 47%; /* Cambio a porcentaje */
+  top: -20%; /* Cambio a porcentaje */
 }
+
 @media (max-width: 767px) {
   .right {
     flex-shrink: 0;
     height: 100%;
     width: 100%;
     max-height: 350px;
+    left: 0;
+    top: 0;
   }
 }
+
 svg {
   position: absolute;
-  width: 320px;
+  width: 100%;
 }
+
 path {
   fill: none;
   stroke: url(#linearGradient);;
   stroke-width: 4;
   stroke-dasharray: 240 1386;
 }
+
 .form {
-  margin: 40px;
+  margin: 4%; /* Cambio a porcentaje */
   position: absolute;
 }
+
 label {
-  color:  #c2c2c5;
+  position: absolute;
+  top: 78px; /* Ajusta la distancia vertical según tu preferencia */
+  left: 3px; /* Ajusta la distancia horizontal según tu preferencia */
+  color: blue;
   display: block;
-  font-size: 14px;
-  height: 16px;
-  margin-top: 20px;
-  margin-bottom: 5px;
+  font-size: 2.5rem; /* Cambio a unidades rem */
+  height: 8rem; /* Cambio a unidades rem */
+  margin-bottom: 1.6%; /* Cambio a porcentaje */
 }
+
 input {
-  background: transparent;
+  background: white;
   border: 0;
-  color: #f2f2f2;
-  font-size: 20px;
-  height: 30px;
-  line-height: 30px;
+  color: red;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 4rem; /* Cambio a unidades rem */
+
+
+  position: relative;
+  top: 20px; /* Ajusta la distancia vertical según tu preferencia */
+  left: 3px; /* Ajusta la distancia horizontal según tu preferencia */
   outline: none !important;
-  width: 100%;
+  width: 150%;
 }
+
+@media (max-width: 767px) {
+  input {
+    height: 89%; /* Cambio a porcentaje */
+  }
+}
+
 input::-moz-focus-inner { 
   border: 0; 
 }
+
 #submit {
-  color: red;
-  margin-top: 40px;
+  color: green;
+  font-size: 3rem; /* Cambio a unidades rem */
+  margin-top: 20%; /* Cambio a porcentaje */
   transition: color 300ms;
+  position: relative;
+  top: 30px; /* Ajusta la distancia vertical según tu preferencia */
+  left: 3px; /* Ajusta la distancia horizontal según tu preferencia */
+
 }
+
 #submit:focus {
   color: #f2f2f2;
 }
+
 #submit:active {
   color: #d0d0d2;
 }
