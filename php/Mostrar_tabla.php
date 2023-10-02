@@ -1,8 +1,7 @@
 
 <style>
-    /* Paleta de colores personalizada */
-:root {
-    --color-fondo: #f5f5f5;
+    :root {
+        --color-fondo: #f5f5f5;
     --color-borde: #d1d1d1;
     --color-fila1: #ffffff;
     --color-fila2: #f0f0f0;
@@ -11,31 +10,29 @@
     --color-boton-hover: #0056b3;
 }
 
-/* Estilo para la tabla */
-table{
+ table {
     border-collapse: collapse;
     width: 90%;
     margin: 20px auto;
     margin-left: 5%;
-    margin-top: 3%;
+    margin-top: 40px;
     background-color: var(--color-fondo);
     border: 1px solid var(--color-borde);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    
 }
 
 /* Estilo para las celdas de la tabla */
-table, tr, td {
+table, th, td {
     border: 1px solid var(--color-borde);
     padding: 12px;
     text-align: left;
+    text-align: center;
 }
 
 /* Estilo para los encabezados de columna */
 th {
-    background-color: var(--color-boton);
+    background-color: var(--color-boton-hover);
     color: white;
-    text-align: center;
 }
 
 /* Estilo para las filas alternas */
@@ -74,15 +71,15 @@ else{
             echo "<td>" . $row["Nombre"] . "</td>";
             echo "<td>" ;
             if($row["Tipo_de_archivo"] == 1){
-                echo '<i class="fa-regular fa-file-pdf" ></i> PDF';
+                echo '<a href="#"><i class="fa-regular fa-file-pdf" ></i> PDF</a>';
 
             }
             elseif($row["Tipo_de_archivo"] == 2){
-                echo '<i class="fa-regular fa-file-word"></i> Word';
+                echo '<a href="#"><i class="fa-regular fa-file-word"></i> Word</a>';
 
             }
             elseif($row["Tipo_de_archivo"] == 3){
-                echo '<i class="fa-regular fa-file-excel" ></i> Excel';
+                echo '<a href="#"><i class="fa-regular fa-file-excel" ></i> Excel</a>';
             }
             "</td>";
             

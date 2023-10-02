@@ -30,7 +30,10 @@
             </div>
         <section style="margin-top: 70px;">
             <form action="" class="Titulo">
+                <h2 for="">Reporte</h2>
+                <br>
                 <div>
+
 
                 <Label class="F1">Fecha 1</Label>
                 
@@ -57,7 +60,7 @@
             
         </section>
         
-
+        <section>
         <button type="submit" onclick="mostrar()">
             <div class="svg-wrapper-1">
               <div class="svg-wrapper">
@@ -75,6 +78,7 @@
                 }
             </script>
           </button>
+          </section>
           </form>
     </main>
     <script src="js/envia_FECH.js"></script>
