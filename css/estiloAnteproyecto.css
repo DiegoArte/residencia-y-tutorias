@@ -1,201 +1,354 @@
 /* Estilos generales para el cuerpo */
 body {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #D9D9D9;
-    font-family: 'Open Sans', sans-serif;
-    margin: 0; /* Elimina los márgenes predeterminados del cuerpo */
-    padding: 0; /* Elimina el espacio interior predeterminado del cuerpo */
-    height: 100%; /* Asegura que el cuerpo y el HTML ocupen toda la altura disponible */
-    margin: 0; /* Elimina los márgenes predeterminados del cuerpo */
-    justify-content: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #D9D9D9;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0; /* Elimina los márgenes predeterminados del cuerpo */
+  padding: 0; /* Elimina el espacio interior predeterminado del cuerpo */
+  height: 100%; /* Asegura que el cuerpo y el HTML ocupen toda la altura disponible */
+  margin: 0; /* Elimina los márgenes predeterminados del cuerpo */
+  justify-content: center;
 }
 
 /* Estilos para el contenido principal */
 main {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centrar horizontalmente */
-    justify-content: center; /* Centrar verticalmente */
-    font-family: 'Open Sans', sans-serif;
-    padding: 20px;
-    margin-left: 120px; /* Ajusta según el ancho del menú */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar horizontalmente */
+  justify-content: center; /* Centrar verticalmente */
+  font-family: 'Open Sans', sans-serif;
+  padding: 20px;
+  margin-left: 120px; /* Ajusta según el ancho del menú */
 }
 
 /* Estilos para las secciones */
 section {
-    border: 1px solid #ccc;
-    background-color: #fff;
-    padding: 20px;
-    margin: 10px;
-    font-family: 'Open Sans', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-grow: 1; /* Permite que las secciones crezcan y ocupen todo el espacio disponible */
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 20px;
+  margin: 10px;
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-grow: 1; /* Permite que las secciones crezcan y ocupen todo el espacio disponible */
 }
 
 
 section button:hover {
-    background: linear-gradient(90deg, #1e3c6c 0%, #4f648b 100%);
+  background: linear-gradient(90deg, #1e3c6c 0%, #4f648b 100%);
 }
 
 section button:active {
-    transform: translate(0em, 0.2em);
+  transform: translate(0em, 0.2em);
 }
 
 /* Estilos para el texto en las secciones */
 section label {
-    font-size: medium;
-    color: rgb(80, 80, 80);
+  font-size: medium;
+  color: rgb(80, 80, 80);
 }
 
 .barraLateral {
-    top: 0;
-    left: 0; 
-    width: 100px; 
+  top: 0;
+  left: 0; 
+  width: 100px; 
 }
 
-    header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: #ffffff;
-        padding: 10px;
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        z-index: 1000; /* Asegura que esté por encima de otros elementos */
-    }
+  header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ffffff;
+      padding: 10px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  }
 
 /* Estilos para centrar la tabla en la pantalla y agregar fondo negro */
 .centrarTabla {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh; /* Cambiado a 80vh para dejar espacio en la parte inferior */
-    color: black; /* Texto blanco para contrastar */
-    margin-top: 100px;
-    font-family: 'Open Sans', sans-serif';
-    
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 80vh; /* Cambiado a 80vh para dejar espacio en la parte inferior */
+  color: black; /* Texto blanco para contrastar */
+  margin-top: 10px;
+  font-family: 'Open Sans', sans-serif';
+  
 }
 
 /* Estilos para la tabla */
 table {
-    border: 2px solid #D9D9D9; /* Borde blanco */
+  border: 2px solid #D9D9D9; /* Borde blanco */
+  border-spacing: 0;
+          width: 70%;
+          border-collapse: collapse;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        
 }
 
 th, td {
-    padding: 10px;
-    text-align: center;
+  width: 100;
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
 }
 
 th {
-    background-color: #D9D9D9; /* Encabezados con fondo gris */
+  background-color: #D9D9D9; /* Encabezados con fondo gris */
 }
 
 .usuarioOp {
-    gap: 15px;
-    padding: 10px 40px;
+  gap: 15px;
+  padding: 10px 40px;
 }
 
 .usuarioOp a, .usuarioOp p {
-    padding: 10px 0;
-    color: var(--color2);
+  padding: 10px 0;
+  color: var(--color2);
 }
 
 .usuarioOp img {
-    height: 40px;
-    border-radius: 1.5rem;
+  height: 40px;
+  border-radius: 1.5rem;
 }
 
 .fixed {
-    background-color: var(--color7); 
-    position: fixed;
+  background-color: var(--color7); 
+  position: fixed;
 }
 
 .barraLateral button {
-    font-size: 17px;
-    padding: 1em 3em;
-    border: transparent;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-    background: #1E3188;
-    color: white;
-    border-radius: 4px;
-    margin-top: 200px; /* Empuja el botón hacia abajo en la sección */
+  font-size: 17px;
+  padding: 1em 3em;
+  border: transparent;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  background: #1E3188;
+  color: white;
+  border-radius: 4px;
+  margin-top: 200px; /* Empuja el botón hacia abajo en la sección */
+
 }
 
 .barraLateral button img{
-    height: 20px;
+  height: 20px;
 
-    .barraLateral {
-        top: 0;
-        left: 0; 
-        width: 100px; 
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;  /* Alinea los elementos a la izquierda */
-    }
-    
-    .barraLateral .BtnResponder,
-    .barraLateral .BtnASS {
-        width: 100%;  /* Ocupa todo el ancho disponible */
-        margin-bottom: 5px;  /* Espacio entre los botones */
-    }
+  .barraLateral {
+      top: 0;
+      left: 0; 
+      width: 100px; 
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;  /* Alinea los elementos a la izquierda */
+      
+  }
+  
+  .barraLateral .BtnResponder,
+  .barraLateral .BtnASS {
+      width: 100%;  /* Ocupa todo el ancho disponible */
+      margin-bottom: 5px;  /* Espacio entre los botones */
+      
+  }
+}
+
+
+button {
+--primary-color: darkgreen;
+--secondary-color: #fff;
+--hover-color: green;
+--arrow-width: 10px;
+--arrow-stroke: 2px;
+box-sizing: border-box;
+border: 0;
+border-radius: 5px;
+color: var(--secondary-color);
+padding: 1em 1.8em;
+background: var(--primary-color);
+display: flex;
+transition: 0.2s background;
+align-items: center;
+gap: 0.6em;
+width: 150px;
+height: 40px;
+font-weight: bold;
+position: absolute;
+top: 290px;
+left: 1350px;
+position: fixed;
+
+}
+
+button .arrow-wrapper {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+button .arrow {
+margin-top: 1px;
+width: var(--arrow-width);
+background: var(--primary-color);
+height: var(--arrow-stroke);
+position: relative;
+transition: 0.2s;
+}
+
+button .arrow::before {
+content: "";
+box-sizing: border-box;
+position: absolute;
+border: solid var(--secondary-color);
+border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+display: inline-block;
+top: -3px;
+right: 3px;
+transition: 0.2s;
+padding: 3px;
+transform: rotate(-45deg);
+}
+
+button:hover {
+background-color: var(--hover-color);
+}
+
+button:hover .arrow {
+background: var(--secondary-color);
+}
+
+button:hover .arrow:before {
+right: 0;
+}
+
+.BtnEliminar {
+position: fixed;
+width: 150px;
+height: 40px;
+cursor: pointer;
+display: flex;
+align-items: center;
+border: 1px solid #cc0000;
+background-color: #e50000;
+overflow: hidden;
+top: 390px;
+left: 1350px;
+
+}
+
+.BtnEliminar, .BtnEliminar__icon, .BtnEliminar__text {
+transition: all 0.3s;
+}
+
+.BtnEliminar .BtnEliminar__text {
+transform: translateX(35px);
+color: #fff;
+font-weight: 600;
+}
+
+.BtnEliminar .BtnEliminar__icon {
+position: absolute;
+transform: translateX(109px);
+height: 100%;
+width: 39px;
+background-color: #cc0000;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.BtnEliminar .svg {
+width: 20px;
+}
+
+.BtnEliminar:hover {
+background: #cc0000;
+}
+
+.BtnEliminar:hover .BtnEliminar__text {
+color: transparent;
+}
+
+.BtnEliminar:hover .BtnEliminar__icon {
+width: 148px;
+transform: translateX(0);
+}
+
+.BtnEliminar:active .BtnEliminar__icon {
+background-color: #b20000;
+}
+
+.BtnEliminar:active {
+border: 1px solid #b20000;
 }
 
 
 .BtnResponder {
-    padding: 10px 20px;
-    font-size: 16px;
-    top: auto;
-    border: 2px solid #1e3c6c;
-    border-radius: 5px;
-    background-color: #1e3c6c;
-    color: white;
-    cursor: pointer;
-    margin-bottom: 50px 0;
-    font-family: "Open Sans", sans-serif;
-    display: block;
-    align-self: flex-start;
-  }
-  
-  .BtnResponder:hover {
-    background-color: #e0e0e0;
-    color: black;
-    border: 2px solid white;
-  }
-  
-  .BtnResponder:active {
-    background-color: #ccc;
-    color: black;
-    border: 2px solid white;
-  }
-  
-  .BtnASS {
-    padding: 10px 20px;
-    font-size: 16px;
-    bottom: auto;
-    border: 2px solid #1e3c6c;
-    border-radius: 5px;
-    background-color: #1e3c6c;
-    color: white;
-    cursor: pointer;
-    margin-top: 50px 0;
-    font-family: "Open Sans", sans-serif;
-    display: block;
-    align-self: flex-start;
-  }
-  
-  .BtnASS:hover {
-    background-color: #e0e0e0;
-    color: black;
-    border: 2px solid white;
-  }
-  
-  .BtnASS:active {
-    background-color: #ccc;
+  padding: 10px 20px;
+  font-size: 16px;
+  top: auto;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 50px 0;
+  font-family: "Open Sans", sans-serif;
+  display: block;
+  align-self: flex-start;
+  position: fixed;
+top: 10px; /* Posiciona los botones 100 píxeles desde la parte superior de la ventana */
+left: 110px
+ 
+}
+
+.BtnResponder:hover {
+  background-color: #e0e0e0;
+  color: black;
+  border: 2px solid white;
+}
+
+.BtnResponder:active {
+  background-color: #ccc;
+  color: black;
+  border: 2px solid white;
+}
+
+.BtnReportes {
+  padding: 10px 20px;
+  font-size: 16px;
+  bottom: auto;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  margin-top: 50px 0;
+  font-family: "Open Sans", sans-serif;
+  display: block;
+  align-self: flex-start;
+  position: fixed;
+top: 90px; /* Posiciona los botones 100 píxeles desde la parte superior de la ventana */
+left: 110px
+}
+
+.BtnReportes:hover {
+  background-color: #e0e0e0;
+  color: black;
+  border: 2px solid white;
+}
+
+.BtnReportes:active {
+  background-color: #ccc;
+  color: black;
+  border: 2px solid white;
+}
+
     color: black;
     border: 2px solid white;
   }
