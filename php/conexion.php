@@ -1,21 +1,15 @@
 <?php
-// Establecer la conexión a la base de datos
-function Conex(){
-
-
-$servername = "localhost"; // Cambia esto si es necesario
-$username = "root";
-$password = "";
-$dbname = "prueba_de_ryt";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verificar la conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
+function conecta()
+{
+    global $conexion;
+    
+    $conexion= mysqli_connect("localhost","root","");
+        if(!$conexion)
+        {
+            echo "No se puede establecer una conexion";
+        }
+        else
+        {
+            echo "Conexion Existosa Registro completado!!! ";
+        }
 }
-else{
-    return $conn;
-}
-}
-?>
