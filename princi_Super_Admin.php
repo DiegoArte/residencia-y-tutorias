@@ -33,9 +33,9 @@
     </div>
 </header>
 
-    <a href="archivo.php" class="boton1">Registrar Carrera</a>
-    <a href="archivo.php" class="boton2">Registrar Docente</a>
-    <a href="archivo.php" class="boton3">Registrar Alumno</a>
+    <a href="RegistraCarrera.php" class="boton1">Registrar Carrera</a>
+    <a href="RegistraDOC.php" class="boton2">Registrar Docente</a>
+    <a href="RegistraUS.php" class="boton3">Registrar Alumno</a>
     <!--<a href="archivo.php" class="boton4">Ingeniería en Sistemas </br>
      Computacionales</a></br></br>
     <a href="archivo.php" class="boton5">Ingeniería en Gestion </br>

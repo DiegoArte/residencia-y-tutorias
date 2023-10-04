@@ -80,13 +80,13 @@
         
             // Redirecciona a la página correspondiente según el tipo de usuario
             if ($_SESSION['tipo_usuario'] === 'Admistrador') {
-                header("Location: RegistraCarrera.php");
+                header("Location: princi_Super_Admin.php");
                 exit; // Termina el script después de la redirección
             } elseif ($_SESSION['tipo_usuario'] === 'docente') {
-                header("Location: RegistraDOC.php");
+                header("Location: princi_Super_Admin.php");
                 exit;
             } elseif ($_SESSION['tipo_usuario'] === 'alumno') {
-                header("Location: RegistraUS.php");
+                header("Location: princi_Super_Admin.php");
                 exit;
             }
         } else {
