@@ -1,0 +1,124 @@
+
+header{
+    z-index: 1;
+}
+
+#titulo{
+    position: absolute;
+    top:20px;
+    left:100px;
+    color:white;
+}
+
+#alum{
+    position: absolute;
+    top:100px;
+    left:22%;
+    /*z-index: 2;*/
+}
+
+#doc{
+    position: absolute;
+    top:100px;
+    left:55%;
+}
+
+#asig{
+    position: absolute;
+    top:140px;
+    left:43%;
+}
+
+#sinDatos{
+    width: 30%;
+    text-align: center;
+    position: absolute;
+    top:190px;
+    left: 40%;
+    color:red;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 1px 1px 5px black;
+}
+
+#alumnos {
+    position: absolute;
+    top: 140px;
+    left: 22%;
+    width: 200px;
+    background-color: #ffffff;
+    border: 1px solid #a3a3a3;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor:pointer;
+}
+
+#docentes {
+    position: absolute;
+    top: 140px;
+    left: 55%;
+    width: 200px;
+    background-color: #ffffff;
+    border: 1px solid #a3a3a3;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor:pointer;
+}
+
+
+
+.enviar{
+    font-size: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:10%;
+    height: 35px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    background: #1C3089;
+    color:white;
+    position: absolute;
+    top: 130px;
+    left: 76%;
+    border: transparent;
+}
+
+.enviar:hover {
+    background: linear-gradient(90deg, #2445D9 0%, #2445D9 100%);
+    color: white;
+}
+
+.enviar:active {
+    transform: translate(0em, 0.2em);
+}
+
+
+
+table {
+    position: absolute;
+    top:250px;
+    left: 15%;
+    width: 80%;
+    background-color: #ffffff;
+}
+
+/* Estilos para todas las celdas (encabezados y datos) */
+th, td {
+    border: 10px solid #00e238;
+    text-align: left;
+    padding: 8px;
+    width: 50%; /* Ancho uniforme para ambas columnas */
+}
+
+/* Estilos para el fondo del encabezado */
+th {
+    color:rgb(255, 255, 255);
+    background-color: #3164b6;
+}
+
+/* Estilos para el hover */
+tr:hover {
+    background-color: #bde9e6;
+}
+
