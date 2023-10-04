@@ -1,42 +1,3 @@
-<?php
- // Inicia la sesión (si no lo has hecho ya)
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
-    $conexion = new mysqli("localhost", "root", "changeme", "pruebas_residenciaytuto");
-
-    if ($conexion->connect_error) {
-        die("La conexión a la base de datos falló: " . $conexion->connect_error);
-    }
-
-    // Obtiene los datos del formulario
-    $usuario = $_POST['usuarioInput'];
-    $contrasena = $_POST['contrasenaInput'];
-
-    // Consulta la base de datos para verificar el usuario y la contraseña
-    $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND contrasena = '$contrasena'";
-    $resultado = $conexion->query($sql);
-
-    if ($resultado->num_rows == 1) {
-        // Inicio de sesión exitoso, almacena el nombre de usuario en una variable de sesión
-        session_start();
-        $_SESSION['usuario'] = $usuario;
-
-        // Redirecciona a la página de inicio
-        header("Location: inicio.php");
-        exit; // Termina el script para evitar que el HTML se siga ejecutando
-    } else {
-        // Inicio de sesión fallido, muestra un mensaje de error
-        echo '<div class="mensaje-error">
-                <p>Inicio de sesión fallido. Verifica tu usuario y contraseña.</p>
-            </div>';
-    }
-
-    // Cierra la conexión a la base de datos
-    $conexion->close();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,11 +54,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 
     <?php
-    // Verifica si se ha iniciado sesión
-    if (isset($_SESSION['usuario'])) {
-        // El usuario ha iniciado sesión, redirige a la página de inicio
-        header("Location: inicio.php");
-        exit; // Termina el script para evitar que el HTML se siga ejecutando
+    session_start(); // Inicia la sesión (si no lo has hecho ya)
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
+        $conexion = new mysqli("localhost", "root", "", "Tutorias_Residencia");
+
+        if ($conexion->connect_error) {
+            die("La conexión a la base de datos falló: " . $conexion->connect_error);
+        }
+
+        // Obtiene los datos del formulario
+        $usuario = $_POST['usuarioInput'];
+        $contrasena = $_POST['contrasenaInput'];
+
+        // Consulta la base de datos para verificar el usuario y la contraseña
+        $sql = "SELECT usuario, tipo_usuario FROM usuarios WHERE usuario = '$usuario' AND contrasena = '$contrasena'";
+        $resultado = $conexion->query($sql);
+
+        if ($resultado->num_rows == 1) {
+            // Inicio de sesión exitoso, almacena el nombre de usuario y tipo de usuario en la sesión
+            $row = $resultado->fetch_assoc();
+            $_SESSION['usuario'] = $row['usuario'];
+            $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
+        
+            // Redirecciona a la página correspondiente según el tipo de usuario
+            if ($_SESSION['tipo_usuario'] === 'Admistrador') {
+                header("Location: RegistraCarrera.php");
+                exit; // Termina el script después de la redirección
+            } elseif ($_SESSION['tipo_usuario'] === 'docente') {
+                header("Location: RegistraDOC.php");
+                exit;
+            } elseif ($_SESSION['tipo_usuario'] === 'alumno') {
+                header("Location: RegistraUS.php");
+                exit;
+            }
+        } else {
+            // Inicio de sesión fallido, muestra un mensaje de error
+            echo '<div class="mensaje-error">
+                    <p>Inicio de sesión fallido. Verifica tu usuario y contraseña.</p>
+                </div>';
+        }
+
+        // Cierra la conexión a la base de datos
+        $conexion->close();
     }
     ?>
 

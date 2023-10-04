@@ -4,33 +4,34 @@ body {
     padding: 0;
     display: flex;
     background-color: #D9D9D9;
-  
-    height: 100vh;
-
+    height: 85vh;
 }
 
 /* Establecer estilos para el contenedor principal */
 .contenedor {
-    position: relative; /* Establece posición relativa para poder posicionar elementos hijos de manera absoluta */
-    max-width: 655px;
+    position: relative;
+    max-width: 455px; /* Reduce el ancho máximo */
     height: auto;
+   
+    top: 15%;
+    left: 20%;
 }
 
 /* Establecer estilos para la imagen */
 .contenedor img {
     max-width: 100%;
     height: auto;
-    display: block; /* Evita el espacio adicional debajo de la imagen */
-}
+    display: block;
 
+}
 /* Establecer estilos para el recuadro */
 .recuadroBienvenido {
-    position: absolute; /* Establece posición absoluta para superponerlo */
-    top: 30%;
-    left: 59.5%;
-    width: 582px;
-    height: 358px;
-    border-radius: 15px;
+    position: absolute;
+    top: 20%;
+    left: 60%;
+    width: 390px; /* Reduce el ancho */
+    height: 239px; /* Reduce la altura */
+    border-radius: 10px; /* Reduce el radio de borde */
     background: #BAC;
     mix-blend-mode: screen;
     display: flex;
@@ -44,7 +45,7 @@ body {
 .recuadroBienvenido p {
     color: #000;
     font-family: Open;
-    font-size: 70px;
+    font-size: 36px; /* Reduce el tamaño de fuente */
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -52,40 +53,43 @@ body {
 
 /* Establecer estilos para recuadroUC */
 .recuadroUC {
-    width: 687px;
-    height: 677px;
+    width: 515px; /* Reduce el ancho */
+    height: 507px; /* Reduce la altura */
     flex-shrink: 0;
-    border-radius: 20px;
+    border-radius: 15px; /* Reduce el radio de borde */
     background: #1E2C6C;
     position: absolute;
-    top: 15%;
-    left: 140%;
+    top: 5%;
+    left: 130%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 /* Establecer estilos para el texto dentro recuadroUC */
 .recuadroUC p {
-    font-size: 24px;
+    font-size: 18px; /* Reduce el tamaño de fuente */
     margin: 0;
     text-align: center;
+    
 }
-
 /* Establecer estilos para los elementos .group (inputs) dentro de recuadroUC */
 .recuadroUC .group {
     position: relative;
-    margin-bottom: 120px; /* Aumenta el espacio entre los elementos .group */
+    margin-bottom: 40px; /* Reduce el espacio entre los elementos .group */
+    margin-left: 5%;
 }
+
 
 /* Establecer estilos para los inputs dentro de recuadroUC */
 .recuadroUC .input {
-    font-size: 50px; /* Tamaño de fuente */
-    padding: 15px 10px 15px 5px; /* Espaciado interior (padding) */
+    font-size: 20px; /* Reduce el tamaño de fuente */
+    padding: 15px 5px; /* Reduce el espaciado interior */
     display: block;
-    width: 600px; /* Ancho actual */
+    width: 85%;
+    margin-left: 4%;
     border: none;
     border-bottom: 1px solid #17349C;
     background: transparent;
@@ -97,13 +101,13 @@ body {
 
 /* Establecer estilos para las etiquetas (labels) dentro de recuadroUC */
 .recuadroUC label {
-    font-size: 55px; /* Aumenta el tamaño de fuente a 60px */
+    font-size: 20px; /* Reduce el tamaño de fuente */
     color: #FFFFFF;
     font-weight: normal;
     position: absolute;
     pointer-events: none;
     left: 5px;
-    top: 15px;
+    top: 10px;
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
@@ -111,16 +115,17 @@ body {
 
 /* Establecer estilos para los inputs con valor o en estado de foco */
 .recuadroUC .input:focus ~ label, .recuadroUC .input:valid ~ label {
-    top: -30px;
-    font-size: 30px; /* Reduce el tamaño de fuente a 30px en estado de foco */
+    top: -20px; /* Reduce la posición superior en estado de foco */
+    font-size: 16px; /* Reduce el tamaño de fuente en estado de foco */
     color: #FFFFFF;
 }
+
 
 /* Establecer estilos para las barras (bar) dentro de recuadroUC */
 .recuadroUC .bar {
     position: relative;
     display: block;
-    width: 600px;
+    width: 410px;
 }
 
 /* Establecer estilos para las barras antes y después de los inputs */
@@ -144,13 +149,14 @@ body {
 /* Establecer estilos para el resaltado (highlight) dentro de recuadroUC */
 .recuadroUC .highlight {
     position: absolute;
-    height: 60%;
+    height: 40%; /* Reduce la altura del resaltado */
     width: 100px;
-    top: 25%;
+    top: 30%;
     left: 0;
     pointer-events: none;
     opacity: 0.5;
 }
+
 
 /* Establecer estilos para el resaltado (highlight) de los inputs en estado de foco */
 .recuadroUC .input:focus ~ .highlight {
@@ -175,7 +181,7 @@ body {
     --color: #a5a5b0;
     --size: 30px;
     position: absolute;
-    right: 10px; /* Ajusta la posición del botón según tus preferencias */
+    left: 450px; /* Ajusta la posición del botón según tus preferencias */
     top: 50%; /* Ajusta la posición vertical del botón según tus preferencias */
     transform: translateY(-50%); /* Centra verticalmente el botón en su contenedor */
     cursor: pointer;
@@ -240,7 +246,7 @@ body {
     position: relative;
     z-index: 1;
     text-align: center; /* Para centrar horizontalmente el botón */
-    margin-top: 20px; /* Ajusta el margen superior según sea necesario */
+    top: 50px; /* Ajusta el margen superior según sea necesario */
    }
    
    .main_div::before {
@@ -250,8 +256,8 @@ body {
     height: 30px;
     background: transparent;
     top: -7px;
-    left: -7px;
-    z-index: -5;
+    left: 135px;
+    z-index: -5; 
     border-top: 3px solid var(--color);
     border-left: 3px solid var(--color);
     transition: 0.5s;
@@ -264,7 +270,7 @@ body {
     height: 30px;
     background: transparent;
     bottom: -7px;
-    right: -7px;
+    right: 135px;
     z-index: -5;    
     border-right: 3px solid var(--color);
     border-bottom: 3px solid var(--color);
@@ -272,12 +278,12 @@ body {
    }
    
    .main_div:hover::before {
-    width: 100%;
+    width: 45%;
     height: 100%;
    }
    
    .main_div:hover::after {
-    width: 100%;
+    width: 45%;
     height: 100%;
    }
    
@@ -289,8 +295,8 @@ body {
     border: none;
     cursor: pointer;
     font-family: inherit;
-     padding: 0.7em 2em;
-    font-size: 30px;
+    padding: 0.7em 2em;
+    font-size: 25px;
     background: #222222;
     color: #fff;
     border: none;

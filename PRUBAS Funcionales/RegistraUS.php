@@ -94,6 +94,12 @@
                 } else {
                     echo "Error al eliminar datos existentes: " . $mysqli->error . "<br>";
                 }
+                $deleteQuery = "DELETE FROM usuarios WHERE tipo_usuario = 'alumno'";
+                if ($mysqli->query($deleteQuery)) {
+                   // echo "Datos existentes eliminados correctamente.<br>";
+                } else {
+                    echo "Error al eliminar datos existentes: " . $mysqli->error . "<br>";
+                }
             }
             
             // Cargo la hoja de cálculo
@@ -117,7 +123,7 @@
             for ($i = 2; $i <= $numRows; $i++) { // Comenzar desde la segunda fila (fila 2)
                 $rowData = array();
                 $filaVacia = true; // Inicializamos la bandera para verificar si la fila está vacía
-
+            
                 foreach ($requiredColumns as $column) {
                     $cellValue = $objPHPExcel->getActiveSheet()->getCell($column . $i)->getValue();
                     $rowData[] = $cellValue;
@@ -132,56 +138,68 @@
                 if ($filaVacia) {
                     continue;
                 }
-
+            
                 foreach ($requiredColumns as $column) {
                     $cellValue = $objPHPExcel->getActiveSheet()->getCell($column . $i)->getValue();
                     $rowData[] = $cellValue;
-
+            
                     // Verificar si el campo está vacío o contiene datos no válidos
                     if (in_array($column, $requiredColumns) && (empty($cellValue) || !esValido($cellValue))) {
                         $valid = false;
                         $errorMsg = "Error en la fila $i: Los datos de la columna $column son inválidos.";
-
+            
                         // Llama a una función JavaScript para mostrar el modal de error
                         echo '<script>';
                         echo 'mostrarErrorModal("' . addslashes($errorMsg) . '");';
                         echo '</script>';
-
+            
                         break; // Sal del bucle si hay un error en esta columna (excepto si es columna A)
                     }
-
+            
                     // Verificar si la columna tiene algún dato para considerar la fila como no vacía
                     if (!empty($cellValue)) {
                         $filaVacia = false;
                     }
                 }
-
+            
                 // Si la fila está vacía y no es la última fila, sal del bucle
                 if ($filaVacia && $i < $numRows) {
                     break;
                 }
-
+            
                 if (!$valid) {
                     break; // No es necesario continuar la validación si ya hay un error
                 }
-
+            
                 $Academia = $objPHPExcel->getActiveSheet()->getCell('A' . $i)->getValue();
                 $NumerodeControl = $objPHPExcel->getActiveSheet()->getCell('B' . $i)->getValue();
                 $NombredelEstudiante = $objPHPExcel->getActiveSheet()->getCell('C' . $i)->getValue();
                 $NombredelAnteproyecto = $objPHPExcel->getActiveSheet()->getCell('D' . $i)->getValue();
-
+            
                 // Verificar si los datos no están vacíos antes de procesarlos
                 if (!empty($Academia) && !empty($NumerodeControl) && !empty($NombredelEstudiante) && !empty($NombredelAnteproyecto)) {
-                    // Insertar los datos en la tabla
-                    $insertQuery = "INSERT INTO alumnos (Academia, NumerodeControl, NombredelEstudiante, NombredelAnteproyecto) VALUES ('$Academia', '$NumerodeControl', '$NombredelEstudiante', '$NombredelAnteproyecto')";
-                    if ($mysqli->query($insertQuery)) {
-                        //echo "Datos insertados correctamente.<br>";
+                    // Insertar los datos en la tabla "alumnos"
+                    $insertQueryAlumnos = "INSERT INTO alumnos (Academia, NumerodeControl, NombredelEstudiante, NombredelAnteproyecto) VALUES ('$Academia', '$NumerodeControl', '$NombredelEstudiante', '$NombredelAnteproyecto')";
+                    
+                    if ($mysqli->query($insertQueryAlumnos) ) {
+                        // Insertar usuario de alumno en la tabla "usuarios"
+                        $usuario = $NumerodeControl;
+                        $contrasena = $NumerodeControl; // Puedes establecer una contraseña predeterminada aquí
+                        
+            
+                        $sqlInsertAlumno = "INSERT INTO usuarios (usuario, contrasena, tipo_usuario) VALUES ('$usuario', '$contrasena','alumno')";
+            
+                        if ($mysqli->query($sqlInsertAlumno) === TRUE) {
+                            //echo "Usuario $usuario agregado correctamente.<br>";
+                        } else {
+                            echo "Error al agregar usuario $usuario: " . $mysqli->error . "<br>";
+                        }
                     } else {
-                        echo "Error al insertar datos: " . $mysqli->error . "<br>";
+                        echo "Error al insertar datos en la tabla alumnos: " . $mysqli->error . "<br>";
                     }
                 }
             }
-
+            
         }
     }
 

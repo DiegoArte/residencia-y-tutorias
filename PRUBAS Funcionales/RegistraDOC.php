@@ -113,10 +113,10 @@
             }
 
         } else {
-            echo "Error: Datos de selección no válidos.";
+           // echo "Error: Datos de selección no válidos.";
         }
     } else {
-        echo "Error: No se han recibido datos de selección.";
+       // echo "Error: No se han recibido datos de selección.";
     }
 
     // Verificar si se ha enviado un archivo
@@ -124,7 +124,7 @@
         $archivo = $_FILES['archivo']['tmp_name'];
         
         if (empty($archivo)) {
-            echo "Por favor, selecciona un archivo Excel.<br>";
+            //echo "Por favor, selecciona un archivo Excel.<br>";
         } else {
             //Variable con el nombre del archivo
             $nombreArchivo = $_FILES['archivo']['name'];
@@ -134,6 +134,12 @@
             if (isset($_POST['reemplazar']) && $_POST['reemplazar'] === 'si') {
                 // Eliminar los datos existentes de la tabla
                 $deleteQuery = "DELETE FROM docentes";
+                if ($mysqli->query($deleteQuery)) {
+                   // echo "Datos existentes eliminados correctamente.<br>";
+                } else {
+                    echo "Error al eliminar datos existentes: " . $mysqli->error . "<br>";
+                }
+                $deleteQuery = "DELETE FROM usuarios WHERE tipo_usuario = 'docente'";
                 if ($mysqli->query($deleteQuery)) {
                    // echo "Datos existentes eliminados correctamente.<br>";
                 } else {
@@ -224,11 +230,25 @@
                     // Insertar los datos en la tabla
                     $insertQuery = "INSERT INTO docentes (Academia, NumerodeControl, NombredelDocente, Asesor, Presidente, Secretaria) 
                                     VALUES ('$Academia', '$NumerodeControl', '$NombredelDocente', '$Asesor', '$Presidente', '$Secretaria')";
-                    if ($mysqli->query($insertQuery)) {
-                        //echo "Datos insertados correctamente.<br>";
+
+                    
+                    if ($mysqli->query($insertQuery) ) {
+                        // Insertar usuario de alumno en la tabla "usuarios"
+                        $usuario = $NumerodeControl;
+                        $contrasena = $NumerodeControl; // Puedes establecer una contraseña predeterminada aquí
+                        
+
+                        $sqlInsertAlumno = "INSERT INTO usuarios (usuario, contrasena, tipo_usuario) VALUES ('$usuario', '$contrasena','docente')";
+
+                        if ($mysqli->query($sqlInsertAlumno) === TRUE) {
+                            //echo "Usuario $usuario agregado correctamente.<br>";
+                        } else {
+                            echo "Error al agregar usuario $usuario: " . $mysqli->error . "<br>";
+                        }
                     } else {
-                        echo "Error al insertar datos: " . $mysqli->error . "<br>";
+                        echo "Error al insertar datos en la tabla alumnos: " . $mysqli->error . "<br>";
                     }
+
                 }
             }
         }
