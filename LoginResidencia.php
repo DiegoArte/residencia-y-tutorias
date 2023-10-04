@@ -44,7 +44,7 @@
                 </div>
                 <!-- Botón "Sign up" -->
                 <div class="main_div">
-                    <button>Inciar Secion</button>
+                    <button>Iniciar Sesión</button>
                 </div> 
 
             </form>
@@ -58,7 +58,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
-        $conexion = new mysqli("localhost", "root", "", "Tutorias_Residencia");
+        $conexion = new mysqli("localhost", "root", "", "tutorias_residencia");
 
         if ($conexion->connect_error) {
             die("La conexión a la base de datos falló: " . $conexion->connect_error);
