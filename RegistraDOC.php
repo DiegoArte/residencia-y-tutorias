@@ -71,7 +71,7 @@
 
     
     <?php
-    $mysqli = new mysqli("localhost", "root", "", "Tutorias_Residencia");
+    $mysqli = new mysqli("localhost", "root", "", "tutorias_residencia");
 
     if (mysqli_connect_errno()) {
         echo 'Conexion Fallida: ' . mysqli_connect_error();

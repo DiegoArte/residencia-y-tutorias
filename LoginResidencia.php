@@ -79,7 +79,7 @@
             $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
         
             // Redirecciona a la página correspondiente según el tipo de usuario
-            if ($_SESSION['tipo_usuario'] === 'Admistrador') {
+            if ($_SESSION['tipo_usuario'] === 'Administrador') {
                 header("Location: princi_Super_Admin.php");
                 exit; // Termina el script después de la redirección
             } elseif ($_SESSION['tipo_usuario'] === 'docente') {

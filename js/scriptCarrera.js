@@ -40,7 +40,7 @@ function confirmarEliminar() {
     modal.style.display = "none";
     
     // Redirige para eliminar la fila
-    window.location.href = "eliminar_filaCarrera.php?id=" + filaIdEliminarCarrera;
+    window.location.href = "php/eliminar_filaCarrera.php?id=" + filaIdEliminarCarrera;
 }
 
 function cancelarEliminar() {

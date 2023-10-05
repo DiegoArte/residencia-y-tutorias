@@ -1,7 +1,7 @@
 <?php
 
 function conectar() :mysqli {
-    $db=new mysqli('localhost', 'root', 'changeme', 'pruebas_residenciaytuto');
+    $db=new mysqli('localhost', 'root', '', 'tutorias_residencia');
 
     if(!$db){
         echo 'No se conecto';

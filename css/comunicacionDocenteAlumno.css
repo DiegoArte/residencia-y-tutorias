@@ -83,7 +83,8 @@ header, .headerHidden {
     background: var(--color2);
     border-radius: 10px;
     position: relative;
-    box-shadow: 0 10px 30px rgba(65, 72, 86, 0.05);
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
+                0 32px 64px -48px rgba(0,0,0,0.5);
     padding: 30px 85px;
 }
 
