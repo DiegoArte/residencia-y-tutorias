@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
 
     if ($stmt->execute()) {
         // Redirige de nuevo a la página principal o a donde desees después de eliminar
-        header("Location: RegistraUS.php");
+        header("Location: ../RegistraUS.php");
         exit();
     } else {
         echo "Error al eliminar fila: " . $stmt->error;

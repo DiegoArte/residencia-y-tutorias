@@ -221,9 +221,9 @@
                 // Eliminamos la columna relacionada con "ANTEPROYECTO"
 
                 // Valores por defecto para las columnas Asesor, Presidente y Secretaria
-                $Asesor = false;
-                $Presidente = false;
-                $Secretaria = false;
+                $Asesor = 0;
+                $Presidente = 0;
+                $Secretaria = 0;
 
                 // Verificar si los datos no están vacíos antes de procesarlos
                 if (!empty($Academia) && !empty($NumerodeControl) && !empty($NombredelDocente)) {

@@ -41,7 +41,7 @@ function confirmarEliminar() {
     modal.style.display = "none";
     
     // Redirige para eliminar la fila
-    window.location.href = "eliminar_fila.php?id=" + filaIdEliminar;
+    window.location.href = "php/eliminar_fila.php?id=" + filaIdEliminar;
 }
 
 function cancelarEliminar() {

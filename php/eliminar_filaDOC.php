@@ -3,7 +3,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Realiza la eliminación en la base de datos (reemplaza "nombre_de_la_tabla" con el nombre de tu tabla)
-    $mysqli = new mysqli("localhost", "root", "", "Tutorias_Residencia");
+    $mysqli = new mysqli("localhost", "root", "", "tutorias_residencia");
     if (mysqli_connect_errno()) {
         echo "Error de conexión a MySQL: " . mysqli_connect_error();
         exit();
@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
 
     if ($stmt->execute()) {
         // Redirige de nuevo a la página principal o a donde desees después de eliminar
-        header("Location: RegistraDOC.php");
+        header("Location: ../RegistraDOC.php");
         exit();
     } else {
         echo "Error al eliminar fila: " . $stmt->error;
