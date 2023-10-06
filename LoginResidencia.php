@@ -58,7 +58,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
-        $conexion = new mysqli("localhost", "root", "", "tutorias_residencia");
+        $conexion = new mysqli("localhost", "root", "", "protutres");
 
         if ($conexion->connect_error) {
             die("La conexión a la base de datos falló: " . $conexion->connect_error);
@@ -83,7 +83,7 @@
                 header("Location: princi_Super_Admin.php");
                 exit; // Termina el script después de la redirección
             } elseif ($_SESSION['tipo_usuario'] === 'docente') {
-                header("Location: princi_Super_Admin.php");
+                header("Location: Vistadocentes.php?usuario=".urldecode($_SESSION['usuario']));
                 exit;
             } elseif ($_SESSION['tipo_usuario'] === 'alumno') {
                 header("Location: princi_Super_Admin.php");
