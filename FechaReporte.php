@@ -31,7 +31,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "protutres";
+$dbname = "tutorias_residencia";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Verifica la conexión
@@ -82,7 +82,7 @@ $conn->close();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "protutres";
+$dbname = "tutorias_residencia";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Verifica la conexión
@@ -133,7 +133,7 @@ $conn->close();
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "protutres";
+    $dbname = "tutorias_residencia";
     $conn = new mysqli($servername, $username, $password, $dbname);
 
     // Verifica la conexión

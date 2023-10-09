@@ -35,11 +35,11 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">
-    <title>Document</title>
+    <title>Comunicación docente-alumno</title>
 </head>
 <body>
     <header class="fixed w-100">
-        <a href="" class="back-arrow rounded-pill d-flex justify-content-start">
+        <a href="Anteproyecto.php" class="back-arrow rounded-pill d-flex justify-content-start">
             <img src="img/back.svg" alt="" height="50">
             <span class="regresar d-none text-white m-auto">Regresar</span>
         </a>
@@ -55,7 +55,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
     <main class="d-flex">
         <div class="barraLateral fixed h-100">
-            <a href="" class="back-arrow rounded-pill d-flex">
+            <a href="Anteproyecto.php" class="back-arrow rounded-pill d-flex">
                 <img src="img/back.svg" alt="" height="50">
                 <span class="regresar d-none text-white m-auto">Regresar</span>
             </a>

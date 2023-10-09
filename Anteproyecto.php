@@ -32,8 +32,9 @@
       <a href="#"></a>
     </div>
     <div class="barraLateral fixed h-100">
-
-      <button class="BtnResponder" name="responder">Responder </button>
+      <a href="comunicacionDocenteAlumno.php">
+        <button class="BtnResponder" name="responder">Responder </button>
+      </a>
       <button class="BtnReportes" name="Reportes">Reportes </button>
     </div>
     <form id="form1" name="form1" method="post" action="php/llena.php"  enctype="multipart/form-data">

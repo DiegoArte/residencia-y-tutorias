@@ -41,7 +41,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "asignar_tutores";
+$dbname = "tutorias_residencia";
 
 // Crear una conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
