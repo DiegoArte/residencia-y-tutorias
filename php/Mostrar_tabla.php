@@ -49,7 +49,7 @@ tr:nth-child(odd) {
 // Establecer la conexión a la base de datos
 function Tabla(){
 include 'conexion.php';
-$conn = Conex();
+$conn = conecta();
 // Verificar la conexión
 $tABLA_ = "fecha_enviada";
 if ($conn->connect_error) {
