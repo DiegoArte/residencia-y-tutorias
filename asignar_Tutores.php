@@ -55,9 +55,9 @@ if ($conn->connect_error) {
 
 // Mostrar el formulario de selección de nombre
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $sql_alum = "SELECT DISTINCT nombre FROM alumnos";
+    $sql_alum = "SELECT DISTINCT NombredelEstudiante FROM alumnos";
     $result_alum = $conn->query($sql_alum);
-    $sql_doc = "SELECT DISTINCT nombre FROM docentes";
+    $sql_doc = "SELECT DISTINCT NombredelDocente FROM docentes";
     $result_doc = $conn->query($sql_doc);
 
     if ($result_alum->num_rows > 0) {
@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         echo "<select id='alumnos' name='Lista1'>";
 
         while ($row = $result_alum->fetch_assoc()) {
-            echo "<option value='" . $row["nombre"] . "'>" . $row["nombre"] . "</option>";
+            echo "<option value='" . $row["NombredelEstudiante"] . "'>" . $row["NombredelEstudiante"] . "</option>";
         }
         echo "</select>";
 
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         echo "<select id='docentes' name='Lista2'>";
 
         while ($row = $result_doc->fetch_assoc()) {
-            echo "<option value='" . $row["nombre"] . "'>" . $row["nombre"] . "</option>";
+            echo "<option value='" . $row["NombredelDocente"] . "'>" . $row["NombredelDocente"] . "</option>";
         }
         echo "</select>";
 
@@ -127,7 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
     else {
-    $sql_doc = "SELECT DISTINCT nombre FROM docentes";
+    $sql_doc = "SELECT DISTINCT NombredelDocente FROM docentes";
     $result_doc = $conn->query($sql_doc);
 
     // Consulta SQL para obtener los datos de la tabla asesorados
