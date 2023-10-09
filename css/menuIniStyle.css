@@ -1,0 +1,59 @@
+body {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+    height: 100vh; /* Aprovecha toda la altura de la ventana del navegador */
+    margin: 0; /* Elimina los márgenes predeterminados del cuerpo */
+    background: var(--color4);
+    flex-direction: column;
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-between; /* Coloca los botones a cada lado */
+    align-items: center; /* Centra verticalmente el contenido del contenedor */
+    width: 80%; /* Ajusta el ancho del contenedor central */
+
+}
+
+.botones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    background-color: var(--color7);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.button img {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 10px;
+}
+
+.button:hover {
+    background-color: var(--color9);
+}
+
+.logo{
+    width: 100px;
+    height: 100px;
+}
+
+img{
+    width: 400px;
+    height: 500px;
+}
