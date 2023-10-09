@@ -30,7 +30,7 @@
     if (isset($_GET['usuario'])) {
         $usuario = $_GET['usuario'];
 
-        $conexion = new mysqli("localhost", "root", "", "protutres");
+        $conexion = new mysqli("localhost", "root", "", "tutorias_residencia");
 
         $sql_presidente = "SELECT * FROM docentes WHERE NumerodeControl = '$usuario' AND Presidente = 1";
         $resultado_presidente = $conexion->query($sql_presidente);
