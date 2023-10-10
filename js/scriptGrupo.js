@@ -40,7 +40,7 @@ function confirmarEliminar() {
     modal.style.display = "none";
     
     // Redirige para eliminar la fila
-    window.location.href = "eliminar_filaGrupo.php?id=" + filaIdEliminarGrupo;
+    window.location.href = "php/eliminar_filaGrupo.php?id=" + filaIdEliminarGrupo;
 }
 
 function cancelarEliminar() {

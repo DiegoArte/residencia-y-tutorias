@@ -73,6 +73,11 @@
     transform: translate(0em, 0.2em);
    }
 
+   .boton10 {
+    top: 310px;
+    left: 35px;
+   }
+
 
    .boton4 {
     font-size: 17px;
