@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">
 
-    <title>Asignar tutores a grupos</title>
+    <title>Asignar Asesorados a Asesores</title>
 
 </head>
 
@@ -33,7 +33,7 @@
         <p>Usuario</p>
         <a href="#">Cerrar sesión</a>
     </div>
-    <h4 id="titulo">Asignar Tutores a Grupos:</h4>
+    <h4 id="titulo">Asignar Asesorados a Asesores:</h4>
 </header>
 
 
@@ -55,31 +55,31 @@ if ($conn->connect_error) {
 
 // Mostrar el formulario de selección de nombre
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $sql_alum = "SELECT DISTINCT NombredelEstudiante FROM alumnos";
+    $sql_alum = "SELECT DISTINCT nombre FROM alumnos";
     $result_alum = $conn->query($sql_alum);
-    $sql_doc = "SELECT DISTINCT NombredelDocente FROM docentes";
+    $sql_doc = "SELECT DISTINCT nombre FROM docentes";
     $result_doc = $conn->query($sql_doc);
 
     if ($result_alum->num_rows > 0) {
         echo "<html>";
         echo "<body>";
 
-        echo "<h4 id='alum'>Grupos</h4>";
+        echo "<h4 id='alum'>Asesorados</h4>";
         echo "<form action='guardar_asigado.php' method='POST'>";
         echo "<select id='alumnos' name='Lista1'>";
 
         while ($row = $result_alum->fetch_assoc()) {
-            echo "<option value='" . $row["NombredelEstudiante"] . "'>" . $row["NombredelEstudiante"] . "</option>";
+            echo "<option value='" . $row["nombre"] . "'>" . $row["nombre"] . "</option>";
         }
         echo "</select>";
 
         echo "<h4 id='asig'>Asignar a:</h4>";
 
-        echo "<h4 id='doc'>Docentes</h4>";
+        echo "<h4 id='doc'>Asesores</h4>";
         echo "<select id='docentes' name='Lista2'>";
 
         while ($row = $result_doc->fetch_assoc()) {
-            echo "<option value='" . $row["NombredelDocente"] . "'>" . $row["NombredelDocente"] . "</option>";
+            echo "<option value='" . $row["nombre"] . "'>" . $row["nombre"] . "</option>";
         }
         echo "</select>";
 
@@ -87,14 +87,14 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         echo "</form>";
 
         // Consulta SQL para obtener los datos de la tabla asesorados
-        $sql_asesorados = "SELECT Grupo, Tutor FROM tabla_tutorados";
+        $sql_asesorados = "SELECT alumno, asesor FROM asesorados";
         $result_asesorados = $conn->query($sql_asesorados);
 
         echo "<table>";
         echo "    <thead>";
         echo "        <tr>";
-        echo "            <th>Grupos</th>";
-        echo "            <th>Tutores</th>";
+        echo "            <th>Asesorados</th>";
+        echo "            <th>Asesores</th>";
         echo "            <th></th>";
         echo "        </tr>";
         echo "    </thead>";
@@ -103,12 +103,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
         while ($row = $result_asesorados->fetch_assoc()) {
             echo "       <tr>";
-            echo "            <td>" . $row["Grupo"] . "</td>";
-            echo "            <td>" . $row["Tutor"] . "</td>";
+            echo "            <td>" . $row["alumno"] . "</td>";
+            echo "            <td>" . $row["asesor"] . "</td>";
             echo "            <td>";
             echo "            <form action='eliminar_registro.php' method='POST'>";
-            echo "                <input type='hidden' name='alumno' value='" . $row["Grupo"] . "'>";
-            echo "                <input type='hidden' name='asesor' value='" . $row["Tutor"] . "'>";
+            echo "                <input type='hidden' name='alumno' value='" . $row["alumno"] . "'>";
+            echo "                <input type='hidden' name='asesor' value='" . $row["asesor"] . "'>";
             echo "                <input type='submit' name='eliminar' value='Eliminar'>";
             echo "            </form>";
             echo "            </td>";
@@ -127,24 +127,24 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
     else {
-    $sql_doc = "SELECT DISTINCT NombredelDocente FROM docentes";
+    $sql_doc = "SELECT DISTINCT nombre FROM docentes";
     $result_doc = $conn->query($sql_doc);
 
     // Consulta SQL para obtener los datos de la tabla asesorados
-    $sql_asesorados = "SELECT Grupo, Tutor FROM tabla_tutorados";
+    $sql_asesorados = "SELECT alumno, asesor FROM asesorados";
     $result_asesorados = $conn->query($sql_asesorados);
 
-    echo "<h4 id='alum'>Grupos</h4>";
+    echo "<h4 id='alum'>Asesorados</h4>";
     echo "<select id='alumnos' name='Lista1'>";
     echo "</select>";
 
     echo "<h4 id='asig'>Asignar a:</h4>";
 
-    echo "<h4 id='doc'>Docentes</h4>";
+    echo "<h4 id='doc'>Asesor</h4>";
         echo "<select id='docentes' name='Lista2'>";
 
         while ($row = $result_doc->fetch_assoc()) {
-            echo "<option value='" . $row["NombredelDocente"] . "'>" . $row["NombredelDocente"] . "</option>";
+            echo "<option value='" . $row["nombre"] . "'>" . $row["nombre"] . "</option>";
         }
     echo "</select>";
 
@@ -154,8 +154,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     echo "<table>";
     echo "    <thead>";
     echo "        <tr>";
-    echo "            <th>Grupos</th>";
-    echo "            <th>Tutores</th>";
+    echo "            <th>Asesorados</th>";
+    echo "            <th>Asesores</th>";
     echo "            <th></th>";
     echo "        </tr>";
     echo "    </thead>";
@@ -164,12 +164,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     while ($row = $result_asesorados->fetch_assoc()) {
         echo "       <tr>";
-        echo "            <td>" . $row["Grupo"] . "</td>";
-        echo "            <td>" . $row["Tutor"] . "</td>";
+        echo "            <td>" . $row["alumno"] . "</td>";
+        echo "            <td>" . $row["asesor"] . "</td>";
         echo "            <td>";
         echo "            <form action='eliminar_registro.php' method='POST'>";
-        echo "                <input type='hidden' name='alumno' value='" . $row["Grupo"] . "'>";
-        echo "                <input type='hidden' name='asesor' value='" . $row["Tutor"] . "'>";
+        echo "                <input type='hidden' name='alumno' value='" . $row["alumno"] . "'>";
+        echo "                <input type='hidden' name='asesor' value='" . $row["asesor"] . "'>";
         echo "                <input type='submit' name='eliminar' value='Eliminar'>";
         echo "            </form>";
         echo "            </td>";
