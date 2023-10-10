@@ -21,13 +21,14 @@
   <main>
       <div class="barraLateral fixed h-100">
       </div>
-      <div class="barraLateral fixed h-100">  <header class="fixed w-100">
-    <div class="usuarioOp d-flex justify-content-end">
-      <img src="img/profile.png" alt="" />
-      <p>Usuario</p>
-      <a href="#">Cerrar sesión</a>
-    </div>
-  </header
+      <div class="barraLateral fixed h-100">  
+    <header class="fixed w-100">
+      <div class="usuarioOp d-flex justify-content-end">
+        <img src="img/profile.png" alt="" />
+        <p>Usuario</p>
+        <a href="#">Cerrar sesión</a>
+      </div>
+    </header
         <a href="#"></a>
       </div>
       <div class="barraLateral fixed h-100">
