@@ -28,26 +28,47 @@
         <div class="barraLateral fixed h-100">
             <a href="#"></a>
             </div>
-        <section style="margin-top: 70px;">
-            <form action="" class="Titulo">
-                <h2 for="">Reporte</h2>
-                <br>
-                <div>
+            <section style="margin-top: 70px;">
+        <?php
+// Establece la conexión a la base de datos (ajusta los valores según tu configuración)
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tutorias_residencia";
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verifica la conexión
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
+
+// Consulta SQL para obtener las fechas de la tabla fecharepo1
+$sql = "SELECT fechaini, fechafin FROM fecharepo1";
+$result = $conn->query($sql);
 
 
-                <Label class="F1">Fecha 1</Label>
-                
-                
-                <input type="datetime" class="tiem" readonly value="10/07/2023">
-                </div>
-                <br>
-                <div><Label class="a">a</Label></div>
-                <div><Label class="F2">Fecha 2</Label>
-                
-                <input type="datetime" class="tiem" name="" id="" readonly value="10/09/2023">
-            </div>
-                
-            </form>
+// Verifica si hay resultados
+if ($result->num_rows > 0) {
+    // Mostrar los resultados en el formulario
+    while ($row = $result->fetch_assoc()) {
+        $fechaInicio = $row["fechaini"];
+        $fechaFinal = $row["fechafin"];
+        
+        echo '<form action="" method="POST">';
+        echo '<h2>Reporte</h2>';
+        echo '<label>Fecha de inicio</label>';
+        echo '<input type="date" name="fechaFinal1" value="' . $fechaInicio . '" readonly >';
+        echo '<label>Fecha final</label>';
+        echo '<input type="date" name="fechaFinal1" value="' . $fechaFinal . '" readonly >';
+        echo '<br>';
+        
+        echo '</form>';
+    }
+}
+
+// Cierra la conexión
+$conn->close();
+?>
         </section>
         <section>
             <form action="php/Enviartabla.php" class="Tabla_contenido" method="post">

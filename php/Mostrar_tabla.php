@@ -31,8 +31,8 @@ table, th, td {
 
 /* Estilo para los encabezados de columna */
 th {
-    background-color: var(--color-boton-hover);
-    color: white;
+    background-color: var(--color-fila2);
+    color: black;
 }
 
 /* Estilo para las filas alternas */

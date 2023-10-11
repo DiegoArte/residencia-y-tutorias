@@ -1,6 +1,6 @@
 <?php
 
-$chats=Chat::find3("idinput", $id, "idaoutput", $idsec);
+$chats=Chat::find("(idinput='$id' and idaoutput='$idsec') or (idinput='$idsec' and idaoutput='$id')");
 
 ?>
 
