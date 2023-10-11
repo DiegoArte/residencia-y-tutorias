@@ -40,20 +40,8 @@ class Crud {
         return $sanitizado;
     }
 
-    public static function find($columna, $valor) {
-        $query="SELECT * FROM ".static::$tabla." WHERE ".$columna."='$valor'";
-        $resultado=self::consultarSQL($query);
-        return $resultado;
-    }
-
-    public static function find2($columna1, $valor1, $columna2, $valor2) {
-        $query="SELECT * FROM ".static::$tabla." WHERE ".$columna1."='$valor1' or ".$columna2."='$valor2'";
-        $resultado=self::consultarSQL($query);
-        return $resultado;
-    }
-
-    public static function find3($columna1, $valor1, $columna2, $valor2) {
-        $query="SELECT * FROM ".static::$tabla." WHERE (".$columna1."='$valor1' and ".$columna2."='$valor2') or (".$columna1."='$valor2' and ".$columna2."='$valor1')";
+    public static function find($clause) {
+        $query="SELECT * FROM ".static::$tabla." WHERE ".$clause;
         $resultado=self::consultarSQL($query);
         return $resultado;
     }
