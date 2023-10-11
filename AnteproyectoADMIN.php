@@ -64,7 +64,7 @@
         <?php
         function conectar()
         {
-          $conexion = mysqli_connect("localhost", "root", "", "anteproyecto");
+          $conexion = mysqli_connect("localhost", "root", "", "tutorias_residencia");
 
           if (!$conexion) {
             echo "No se puede establecer una conexión: " . mysqli_connect_error();
