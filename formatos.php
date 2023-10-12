@@ -33,7 +33,7 @@
         </div>
         <div class="tasks d-flex">
         </div>
-
+        
         <button class="beautiful-button">
             Hoja de vida
             </button>

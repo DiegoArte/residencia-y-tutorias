@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["eliminar"])) {
     $sql_eliminar = "DELETE FROM tabla_tutorados WHERE Grupo = '$alumno' AND Tutor = '$asesor'";
 
     if ($conn->query($sql_eliminar) === TRUE) {
-        echo "Error al eliminar el registro: " . $conn->error;
+        echo "Registro insertado exitosamente.";
     } else {
         echo "Error al eliminar el registro: " . $conn->error;
     }
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["eliminar"])) {
     $sql_generar = "INSERT INTO `grupos` (`NumerodeControl`) VALUES ('$alumno')";
 
     if ($conn->query($sql_generar) === TRUE) {
-        echo "Error al eliminar el registro: " . $conn->error;
+        echo "Registro insertado exitosamente.";
     } else {
         echo "Error al eliminar el registro: " . $conn->error;
     }

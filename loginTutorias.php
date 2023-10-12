@@ -85,10 +85,10 @@
                 header("Location: princi_Super_Admin.php");
                 exit; // Termina el script después de la redirección
             } elseif ($_SESSION['tipo_usuario'] === 'docente') {
-                header("Location: Anteproyecto v.7/ADMIN/index.php");
+                header("Location: formatos.php");
                 exit;
             } elseif ($_SESSION['tipo_usuario'] === 'alumno') {
-                header("Location: Anteproyecto v.7/USER/index.php");
+                header("Location: ");
                 exit;
             }elseif ($_SESSION['tipo_usuario'] === 'psicologa') {
                 header("Location: VistaPsicologa1.php");
