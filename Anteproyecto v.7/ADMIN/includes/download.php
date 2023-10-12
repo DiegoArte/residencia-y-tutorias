@@ -3,7 +3,7 @@ include "db.php";
 
 
 // Obtener el nombre del archivo desde la URL
-$idalumno = $_GET['idalumno'];
+$idalumno = $_GET['id'];
 
 // Buscar el archivo en la base de datos
 $sql = "SELECT * FROM documento WHERE idalumno = '$idalumno'";
