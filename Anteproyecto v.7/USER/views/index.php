@@ -39,6 +39,7 @@
                             <th>Archivo</th>
                             <th>Descargar</th>
                             <th>Ver PDF</th>
+                            <th>Ver Revisión</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,6 +64,14 @@
                                 <td>
                                     <a href="../includes/visualizar_pdf.php?id=<?php echo $fila['idalumno']; ?>" class="btn btn-success">
                                         <i class="fas fa-eye"></i> Ver PDF
+                                    </a>
+                                </td>
+                                <td>
+                                    <?php
+                                        $asesor = mysqli_fetch_assoc(mysqli_query($conexion, "SELECT Asesor FROM asesorados WHERE Alumno='$id'"));
+                                    ?>
+                                    <a href="../../../comunicacionDocenteAlumno.php?id=<?php echo $asesor['Asesor']; ?>" class="btn btn-danger">
+                                        <i class="fas fa-message"></i> Ver revisión
                                     </a>
                                 </td>
                             </tr>

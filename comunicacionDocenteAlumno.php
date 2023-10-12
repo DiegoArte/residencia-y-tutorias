@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         $chat=new Chat($_POST);
         $chat->crear();
     }
-    header("Location: ".$_SERVER["PHP_SELF"]);
+    header("Location: ".$_SERVER["PHP_SELF"]."?id=".$idsec);
 }
 
 ?>
