@@ -36,6 +36,15 @@
     <a href="RegistraCarrera.php" class="boton1">Registrar Carrera</a>
     <a href="RegistraDOC.php" class="boton2">Registrar Docente</a>
     <a href="RegistraUS.php" class="boton3">Registrar Alumno</a>
+    <?php
+        session_start();
+        if($_SESSION['pagina']=='tutorias'){
+            ?>
+            <a href="RegistraGrupo.php" class="boton1 boton4">Registrar Grupo</a>
+            <a href="RegistraMaterias.php" class="boton1 boton5">Registrar Materia</a>
+            <?php
+        }
+    ?>
 
     <div class="button-container">
     <?php
