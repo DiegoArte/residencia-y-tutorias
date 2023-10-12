@@ -55,9 +55,9 @@ if ($conn->connect_error) {
 
 // Mostrar el formulario de selección de nombre
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $sql_alum = "SELECT DISTINCT grupo FROM tabla_grupos";
+    $sql_alum = "SELECT DISTINCT NombredeCarrera, Semestre, NumerodeControl FROM grupos";
     $result_alum = $conn->query($sql_alum);
-    $sql_doc = "SELECT DISTINCT nombre FROM tabla_docentes";
+    $sql_doc = "SELECT DISTINCT NombredelDocente, NumerodeControl FROM docentes";
     $result_doc = $conn->query($sql_doc);
 
     if ($result_alum->num_rows > 0) {
@@ -65,10 +65,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         echo "<body>";
 
         echo "<h4 id='alum'>Grupos</h4>";
-        echo "<form action='guardar_asigado.php' method='POST'>";
+        echo "<form action='php/guardar_asigado.php' method='POST'>";
         echo "<select id='alumnos' name='Lista1'>";
         while ($row = $result_alum->fetch_assoc()) {
-            echo "<option value='" . $row["grupo"] . "'>" . $row["grupo"] . "</option>";
+            echo "<option value='" . $row["NumerodeControl"] . "'>" . $row["NombredeCarrera"] ." ". $row["Semestre"] ."</option>";
         }
         echo "</select>";
 
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         echo "<select id='docentes' name='Lista2'>";
 
         while ($row = $result_doc->fetch_assoc()) {
-            echo "<option value='" . $row["nombre"] . "'>" . $row["nombre"] . "</option>";
+            echo "<option value='" . $row["NumerodeControl"] . "'>" . $row["NombredelDocente"] ." ". "</option>";
         }
         echo "</select>";
 
@@ -105,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             echo "            <td>" . $row["grupo"] . "</td>";
             echo "            <td>" . $row["tutor"] . "</td>";
             echo "            <td>";
-            echo "            <form action='eliminar_registro.php' method='POST'>";
+            echo "            <form action='php/eliminar_registro.php' method='POST'>";
             echo "                <input type='hidden' name='alumno' value='" . $row["grupo"] . "'>";
             echo "                <input type='hidden' name='asesor' value='" . $row["tutor"] . "'>";
             echo "                <input type='submit' name='eliminar' value='Eliminar'>";
@@ -141,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         echo "</select>";
 
         echo "<input type='submit' class='enviar' value='Asignar'>";
-        echo "<h5 id='sinDatos'>No hay alumnos para ser asignados</h5>";
+        echo "<h5 id='sinDatos'>No hay grupos para ser asignados</h5>";
 
         echo "<table>";
         echo "    <thead>";
@@ -159,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             echo "            <td>" . $row["grupo"] . "</td>";
             echo "            <td>" . $row["tutor"] . "</td>";
             echo "            <td>";
-            echo "            <form action='eliminar_registro.php' method='POST'>";
+            echo "            <form action='php/eliminar_registro.php' method='POST'>";
             echo "                <input type='hidden' name='alumno' value='" . $row["grupo"] . "'>";
             echo "                <input type='hidden' name='asesor' value='" . $row["tutor"] . "'>";
             echo "                <input type='submit' name='eliminar' value='Eliminar'>";

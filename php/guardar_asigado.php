@@ -18,14 +18,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Consultas
-    $sql_insert = "INSERT INTO asesorados (alumno, asesor) VALUES ('$alumnoSeleccionado', '$docenteSeleccionado')";
+    $sql_insert = "INSERT INTO tabla_tutorados (grupo, tutor) VALUES ('$alumnoSeleccionado', '$docenteSeleccionado')";
 
     if ($conn->query($sql_insert) === TRUE) {
     } else {
         echo "Error al insertar datos: " . $conn->error;
     }
 
-    $sql_eliminar = "DELETE FROM alumnos WHERE Nombre = '$alumnoSeleccionado'";
+    $sql_eliminar = "DELETE FROM grupos WHERE NumerodeControl = '$alumnoSeleccionado'";
 
     if ($conn->query($sql_eliminar) === TRUE) {
         echo "Error al eliminar el registro: " . $conn->error;
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error al eliminar el registro: " . $conn->error;
     }
 
-    header("Location: asignar_Tutores.php");
+    header("Location: ../asignar_Tutores.php");
     exit();
 
     // Cierra la conexión a la base de datos

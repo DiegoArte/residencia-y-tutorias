@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["eliminar"])) {
     $asesor = $_POST["asesor"];
 
     // Consulta SQL para eliminar el registro
-    $sql_eliminar = "DELETE FROM asesorados WHERE alumno = '$alumno' AND asesor = '$asesor'";
+    $sql_eliminar = "DELETE FROM tabla_tutorados WHERE Grupo = '$alumno' AND Tutor = '$asesor'";
 
     if ($conn->query($sql_eliminar) === TRUE) {
         echo "Error al eliminar el registro: " . $conn->error;
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["eliminar"])) {
         echo "Error al eliminar el registro: " . $conn->error;
     }
 
-    $sql_generar = "INSERT INTO `alumnos` (`Nombre`) VALUES ('$alumno')";
+    $sql_generar = "INSERT INTO `grupos` (`NumerodeControl`) VALUES ('$alumno')";
 
     if ($conn->query($sql_generar) === TRUE) {
         echo "Error al eliminar el registro: " . $conn->error;
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["eliminar"])) {
     }
 
 
-    header("Location: asignar_Tutores.php");
+    header("Location: ../asignar_Tutores.php");
     exit();
 }
 
