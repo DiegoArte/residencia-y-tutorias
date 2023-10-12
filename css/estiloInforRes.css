@@ -58,4 +58,6 @@ label{
 .inpLargo{
     width: 600px;
     height: 300px;
+    resize: vertical;
+    overflow: auto;
 }

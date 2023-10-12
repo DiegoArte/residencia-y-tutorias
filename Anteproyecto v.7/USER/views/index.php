@@ -19,7 +19,7 @@
 
     <div class="container">
         <div class="col-sm-12">
-            <h2 style="text-align: center;">Anteproyecto</h2>
+            <h2 style="text-align: center;">Mi Anteproyecto</h2>
             <br>
             <div>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#agregar"> Agregar </button>
@@ -39,12 +39,15 @@
                             <th>Archivo</th>
                             <th>Descargar</th>
                             <th>Ver PDF</th>
+                            <th>Ver Revisión</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         require_once "../includes/db.php";
-                        $consulta = mysqli_query($conexion, "SELECT * FROM documento");
+                        session_start();
+                        $id=$_SESSION['usuario'];
+                        $consulta = mysqli_query($conexion, "SELECT * FROM documento WHERE idalumno='$id'");
                         while ($fila = mysqli_fetch_assoc($consulta)) :
                         ?>
                             <tr>
@@ -61,6 +64,14 @@
                                 <td>
                                     <a href="../includes/visualizar_pdf.php?id=<?php echo $fila['idalumno']; ?>" class="btn btn-success">
                                         <i class="fas fa-eye"></i> Ver PDF
+                                    </a>
+                                </td>
+                                <td>
+                                    <?php
+                                        $asesor = mysqli_fetch_assoc(mysqli_query($conexion, "SELECT Asesor FROM asesorados WHERE Alumno='$id'"));
+                                    ?>
+                                    <a href="../../../comunicacionDocenteAlumno.php?id=<?php echo $asesor['Asesor']; ?>" class="btn btn-danger">
+                                        <i class="fas fa-message"></i> Ver revisión
                                     </a>
                                 </td>
                             </tr>

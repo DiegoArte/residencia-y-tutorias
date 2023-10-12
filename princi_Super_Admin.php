@@ -36,49 +36,103 @@
     <a href="RegistraCarrera.php" class="boton1">Registrar Carrera</a>
     <a href="RegistraDOC.php" class="boton2">Registrar Docente</a>
     <a href="RegistraUS.php" class="boton3">Registrar Alumno</a>
-    <a href="RegistraGrupo.php" class="boton3 boton10">Registrar Grupo</a>
-    <!--<a href="archivo.php" class="boton4">Ingeniería en Sistemas </br>
-     Computacionales</a></br></br>
-    <a href="archivo.php" class="boton5">Ingeniería en Gestion </br>
-     Empresarial</a></br></br>
-    <a href="archivo.php" class="boton6">Ingeniería en </br>
-     Administración</a></br></br>
-    <a href="archivo.php" class="boton7">Ingeniería en </br>
-     Electromecánica</a></br></br>
-    <a href="archivo.php" class="boton8">Ingeniería Industrial</a>
-    <a href="archivo.php" class="boton9">Contador Público</a>-->
+    <?php
+        session_start();
+        if($_SESSION['pagina']=='tutorias'){
+            ?>
+            <a href="RegistraGrupo.php" class="boton1 boton4">Registrar Grupo</a>
+            <a href="RegistraMaterias.php" class="boton1 boton5">Registrar Materia</a>
+            <?php
+        }
+    ?>
 
-    <form action="archivo.php" method="get">
-        <button class="boton4"> Ingeniería en Sistemas</br>
-                Computacionales </button></br></br>
-    </form>
+    <div class="button-container">
+    <?php
 
-    <form action="archivo.php" method="get">
-        <button class="boton5"> Ingeniería en Gestion</br> 
-            Empresarial</button></br></br>
-    </form>
+        // Conexión a la base de datos (ajusta los valores según tu configuración)
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "tutorias_residencia"; // Nombre de tu base de datos
 
-    <form action="archivo.php" method="get">
-        <button class="boton6"> Ingeniería en</br> 
-            Administración</button></br></br>
-    </form>
+        // Crear conexión
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-    <form action="archivo.php" method="get">
-        <button class="boton7"> Ingeniería en</br>
-            Electromecánica </button></br></br>
-    </form>
-
-    <form action="archivo.php" method="get">
-        <button class="boton8"> Ingeniería Industrial </button></br></br>
-    </form>
-
-    <form action="archivo.php" method="get">
-        <button class="boton9"> Contador Público </button></br></br>
-    </form>
+        // Verificar la conexión
+        if ($conn->connect_error) {
+            die("La conexión a la base de datos falló: " . $conn->connect_error);
+        }
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="js/comunicacionDocenteAlumno.js"></script>
+        if($_SESSION['pagina']=='tutorias'){
+            $sql = "SELECT * FROM grupos";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                $counter = 0;
+                echo '<div class="button-table">';
+                
+                while ($row = $result->fetch_assoc()) {
+                    // Iniciar una nueva fila cada tres botones
+                    if ($counter % 3 == 0) {
+                        echo '<div class="button-row">';
+                    }
+                    
+                    echo '<div class="button-cell">';
+                    echo '<a href=""><button class="custom-button" type="submit" name="button_id" value="' . $row["NombredeCarrera"] . '">' . $row["NombredeCarrera"]." ".$row["Semestre"]  . '</button></a>';
+                    echo '</div>';
+                    
+                    $counter++;
+                    
+                    // Cerrar la fila después de tres botones o al final
+                    if ($counter % 3 == 0 || $counter == $result->num_rows) {
+                        echo '</div>';
+                    }
+                }
+                
+                echo '</div>';
+            } else {
+                echo "No se encontraron registros en la tabla.";
+            }
+        }else {
+            // Consulta para obtener los datos de la tabla
+            $sql = "SELECT * FROM carrera";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                $counter = 0;
+                echo '<div class="button-table">';
+                
+                while ($row = $result->fetch_assoc()) {
+                    // Iniciar una nueva fila cada tres botones
+                    if ($counter % 3 == 0) {
+                        echo '<div class="button-row">';
+                    }
+                    
+                    echo '<div class="button-cell">';
+                    echo '<a href="Anteproyecto v.7/ADMIN/index.php"><button class="custom-button" type="submit" name="button_id" value="' . $row["NombredeCarrera"] . '">' . $row["NombredeCarrera"] . '</button></a>';
+                    echo '</div>';
+                    
+                    $counter++;
+                    
+                    // Cerrar la fila después de tres botones o al final
+                    if ($counter % 3 == 0 || $counter == $result->num_rows) {
+                        echo '</div>';
+                    }
+                }
+                
+                echo '</div>';
+            } else {
+                echo "No se encontraron registros en la tabla.";
+            }
+        }
+
+        // Cerrar la conexión
+        $conn->close();
+        ?>
+    </div>
+
+
 </body>
 
 </html>

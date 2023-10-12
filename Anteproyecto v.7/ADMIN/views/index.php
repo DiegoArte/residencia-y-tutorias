@@ -39,6 +39,12 @@
                             <th>Archivo</th>
                             <th>Descargar</th>
                             <th>Ver PDF</th>
+                            <?php
+                                session_start();
+                                if($_SESSION['tipo_usuario'] === 'docente'):               
+                            ?>
+                                <th>Responder</th>
+                            <?php endif; ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,6 +70,15 @@
                                         <i class="fas fa-eye"></i> Ver PDF
                                     </a>
                                 </td>
+                                <?php
+                                    if($_SESSION['tipo_usuario'] === 'docente'):               
+                                ?>
+                                    <td>
+                                        <a href="../../../comunicacionDocenteAlumno.php?id=<?php echo $fila['idalumno']; ?>" class="btn btn-danger">
+                                            <i class="fas fa-message"></i> Responder
+                                        </a>
+                                    </td>
+                                <?php endif; ?>
                             </tr>
                         <?php endwhile; ?>
                     </tbody>
