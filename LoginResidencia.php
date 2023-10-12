@@ -87,7 +87,7 @@
                 header("Location: Anteproyecto v.7/ADMIN/index.php");
                 exit;
             } elseif ($_SESSION['tipo_usuario'] === 'alumno') {
-                header("Location: princi_Super_Admin.php");
+                header("Location: Anteproyecto v.7/USER/index.php");
                 exit;
             }
         } else {

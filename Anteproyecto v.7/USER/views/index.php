@@ -19,7 +19,7 @@
 
     <div class="container">
         <div class="col-sm-12">
-            <h2 style="text-align: center;">Anteproyecto</h2>
+            <h2 style="text-align: center;">Mi Anteproyecto</h2>
             <br>
             <div>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#agregar"> Agregar </button>
@@ -44,7 +44,9 @@
                     <tbody>
                         <?php
                         require_once "../includes/db.php";
-                        $consulta = mysqli_query($conexion, "SELECT * FROM documento");
+                        session_start();
+                        $id=$_SESSION['usuario'];
+                        $consulta = mysqli_query($conexion, "SELECT * FROM documento WHERE idalumno='$id'");
                         while ($fila = mysqli_fetch_assoc($consulta)) :
                         ?>
                             <tr>

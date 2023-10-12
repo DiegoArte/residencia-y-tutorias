@@ -2,8 +2,8 @@
 include "db.php";
 
 // Verificar si se proporcionó un ID válido
-if(isset($_GET['idalumno'])) {
-    $idalumno = $_GET['idalumno'];
+if(isset($_GET['id'])) {
+    $idalumno = $_GET['id'];
 
     // Buscar el archivo en la base de datos
     $sql = "SELECT * FROM documento WHERE idalumno = '$idalumno'";
