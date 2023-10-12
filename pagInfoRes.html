@@ -33,7 +33,7 @@
     <main>
         <section>
             <h2>Informe de Resultados de Tutoría</h2>
-            <form>
+            <form action="php/informeReusltados.php" method="post">
                 <label>TUTOR(A) DE ATENCIÓN INDIVIDUAL</label>
                 <input type="text" name="Tutor" id="tutor">
                 <br>
@@ -46,7 +46,7 @@
                 <input type="text" name="grupo" id="grupo">
                 <br>
                 <label>PROGRAMA DE ESTUDIOS</label>
-                <select>
+                <select name="proEstu" id="proEstu">
                     <option>Sistemas computacionales</option>
                     <option>Electormecanica</option>
                     <option>Gestion empresarial</option>
@@ -86,6 +86,8 @@
                 <label>9.-. INFORMACIÓN COMPLEMENTARIA</label>
                 <br>
                 <input type="text" name="infCom" id="infCom" class="inpLargo">
+                <br>
+                <input type="submit" value="enviar">
             </form>
         </section>
     </main>
