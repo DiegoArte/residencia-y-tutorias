@@ -1,6 +1,5 @@
 <?php
     require_once '../phpoffice/vendor/autoload.php';
-    require_once '../docxToPdf/vendor/autoload.php';
 
     $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('../Formatos/Informe_resultados.docx');
 
@@ -35,7 +34,7 @@
     $templateProcessor-> setValue('Info_Comple',$infCom);
 
     $templateProcessor->saveAs('Informe de Resultados'.date('d-m-y').'.docx');
-
+  
     header("Content-Disposition: attachment; filename=Informe de Resultados".date('d-m-y').".docx; charset=iso-8859-1");
     echo file_get_contents('Informe de Resultados'.date('d-m-y').'.docx');
 
