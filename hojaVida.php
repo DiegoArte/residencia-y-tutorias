@@ -4,7 +4,7 @@
     <meta charset="UTF-8">  
     <title>Hoja de vida</title>
     <link rel="stylesheet" href="css/estilo5.css">
-    <link rel="stylesheet" href="css/estilofromatos.css">
+    <link rel="stylesheet" href="css/estiloHV.css">
     <link rel="stylesheet" href="css/estiloBoton.css">
     <link rel="stylesheet" href="css/estiloModal.css"> <!-- Agrega el estilo del modal -->
     <link rel="stylesheet" href="css/normalize.css">
@@ -34,28 +34,9 @@
         </div>
 
         <div class="container">
-            <h2>Registrate</h2>
+            <h2>Hoja de vida</h2>
             <form action="REGISTRAR.php" method="post">
-                <label for="Nombre">Nombre:</label>
-                <input type="text" id="Nombre" name="Nombre" required>
-
-                <label for="Edad">Edad:</label>
-                <input type="number" id="Edad" name="Edad" required>
                 
-                <label for="edad">Genero:</label>
-                <input type="text" id="Genero" name="Genero" required>
-                
-                <label for="Email">Email:</label>
-                <input type="email" id="Email" name="Email" required>
-                
-                <label for="Contrasena">Contrasena:</label>
-                <input type="text" id="Contrasena" name="Contrasena" required>
-                
-                <label for="Ccontrasena">Confirmar Contraseña:</label>
-                <input type="text" id="Ccontrasena" name="Ccontrasena" required>
-                
-
-                <input class="botonenviar" type="submit" value="Enviar">
             </form>
         </div>
 
