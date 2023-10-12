@@ -33,40 +33,12 @@
     </div>
 </header>
 
-    <a href="archivo.php" class="boton1">Registrar Carrera</a>
-    <a href="archivo.php" class="boton2">Registrar Docente</a>
-    <a href="archivo.php" class="boton3">Registrar Alumno</a>
+    <a href="RegistraCarrera.php" class="boton1">Registrar Carrera</a>
+    <a href="RegistraDOC.php" class="boton2">Registrar Docente</a>
+    <a href="RegistraUS.php" class="boton3">Registrar Alumno</a>
 
     <div class="button-container">
     <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Verificar si se envió el formulario mediante POST
-        
-            // Recibir los datos del formulario
-            $nombre = $_POST["button_id"];
-        
-            $urlDestino = "archivo.php?param1=" . urlencode($nombre);
-            header("Location: " . $urlDestino);
-        }
-
-
-        function funcion_Carreras() {
-            echo "Hola, mundo!";
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                // Verificar si se envió el formulario mediante POST
-            
-                // Recibir los datos del formulario
-                $nombre = $_POST["button_id"];
-            
-                // Realizar acciones con los datos recibidos
-                echo "Carrera: " . $nombre . "<br>";
-            } else {
-                // El formulario no se envió mediante POST, puedes manejarlo aquí
-                echo "El formulario no se ha enviado.";
-            }
-        }
-
-
 
         // Conexión a la base de datos (ajusta los valores según tu configuración)
         $servername = "localhost";
@@ -83,7 +55,7 @@
         }
 
         // Consulta para obtener los datos de la tabla
-        $sql = "SELECT * FROM tabla_carreras";
+        $sql = "SELECT * FROM carrera";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -97,9 +69,7 @@
                 }
                 
                 echo '<div class="button-cell">';
-                echo '<form method="post" action="princi_Super_Admin.php">';
-                echo '<button class="custom-button" type="submit" name="button_id" value="' . $row["Nombre"] . '">' . $row["Nombre"] . '</button>';
-                echo '</form>';
+                echo '<a href="Anteproyecto v.7/ADMIN/index.php"><button class="custom-button" type="submit" name="button_id" value="' . $row["NombredeCarrera"] . '">' . $row["NombredeCarrera"] . '</button></a>';
                 echo '</div>';
                 
                 $counter++;

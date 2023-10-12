@@ -1,4 +1,8 @@
 
+header{
+  z-index: 1;
+}
+
   .boton1 {
     font-size: 17px;
     padding: 1em 1.2em;
@@ -7,7 +11,7 @@
     background: #1C3089;
     color: white;
     /*border-radius: 4px;*/
-    position: absolute;
+    position:fixed;
     top: 100px;
     left: 35px;
     cursor: pointer;
@@ -32,7 +36,7 @@
     background: #1C3089;
     color: white;
     /*border-radius: 4px;*/
-    position: absolute;
+    position: fixed;
     top: 170px;
     left: 35px;
     cursor: pointer;
@@ -57,7 +61,7 @@
     background: #1C3089;
     color: white;
     /*border-radius: 4px;*/
-    position: absolute;
+    position: fixed;
     top: 240px;
     left: 35px;
     cursor: pointer;
@@ -73,298 +77,53 @@
     transform: translate(0em, 0.2em);
    }
 
-   .boton10 {
-    top: 310px;
-    left: 35px;
-   }
-
-
-   .boton4 {
-    font-size: 17px;
-    padding: 1em 1.2em;
-    border: transparent;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-    background: #1C3089;
-    color: white;
-    border-radius: 10px;
-    position: absolute;
-    top: 250px;
-    left: 460px;
-    cursor: pointer;
-   }
-   
-   .boton4:hover {
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, #2445D9 0%, #2445D9 100%);
-   }
-   
-   .boton4:active {
-    transform: translate(0em, 0.2em);
-   }
-
-
-   .boton5 {
-    font-size: 17px;
-    padding: 1em 1.5em;
-    border: transparent;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-    background: #1C3089;
-    color: white;
-    border-radius: 10px;
-    position: absolute;
-    top: 350px;
-    left: 460px;
-    cursor: pointer;
-   }
-   
-   .boton5:hover {
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, #2445D9 0%, #2445D9 100%);
-   }
-   
-   .boton5:active {
-    transform: translate(0em, 0.2em);
-   }
-
-
-   .boton6 {
-    font-size: 17px;
-    padding: 1em 3em;
-    border: transparent;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-    background: #1C3089;
-    color: white;
-    border-radius: 10px;
-    position: absolute;
-    top: 450px;
-    left: 460px;
-    cursor: pointer;
-   }
-   
-   .boton6:hover {
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, #2445D9 0%, #2445D9 100%);
-   }
-   
-   .boton6:active {
-    transform: translate(0em, 0.2em);
-   }
-
-
-   .boton7 {
-    font-size: 17px;
-    padding: 1em 2.6em;
-    border: transparent;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-    background: #1C3089;
-    color: white;
-    border-radius: 10px;
-    position: absolute;
-    top: 250px;
-    left: 720px;
-    cursor: pointer;
-   }
-   
-   .boton7:hover {
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, #2445D9 0%, #2445D9 100%);
-   }
-   
-   .boton7:active {
-    transform: translate(0em, 0.2em);
-   }
-
-
-   .boton8 {
-    font-size: 17px;
-    padding: 1.65em 1.8em;
-    border: transparent;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-    background: #1C3089;
-    color: white;
-    border-radius: 10px;
-    position: absolute;
-    top: 350px;
-    left: 720px;
-    cursor: pointer;
-   }
-   
-   .boton8:hover {
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, #2445D9 0%, #2445D9 100%);
-   }
-   
-   .boton8:active {
-    transform: translate(0em, 0.2em);
-   }
-
-
-   .boton9 {
-    font-size: 17px;
-    padding: 1.5em 2.4em;
-    border: transparent;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-    background: #1C3089;
-    color: white;
-    border-radius: 10px;
-    position: absolute;
-    top: 450px;
-    left: 720px;
-    cursor: pointer;
-   }
-   
-   .boton9:hover {
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, #2445D9 0%, #2445D9 100%);
-   }
-   
-   .boton9:active {
-    transform: translate(0em, 0.2em);
-   }
 
 
 
 
 
 
-   @media (max-width: 950px) {
-    .boton4 {
-      font-size: 17px;
-      position: absolute;
-      top: 200px;
-      left: 360px;
-     }
-  
-     .boton5 {
-      font-size: 17px;
-      top: 300px;
-      left: 360px;
-     }
-     
-     .boton6 {
-      font-size: 17px;
-      position: absolute;
-      top: 400px;
-      left: 360px;
-     }
-    
-     .boton7 {
-      font-size: 17px;
-      position: absolute;
-      top: 200px;
-      left: 630px;
-     }
-    
-     .boton8 {
-      font-size: 17px;
-      position: absolute;
-      top: 300px;
-      left: 630px;
-     }
-    
-    .boton9 {
-      font-size: 17px;
-      position: absolute;
-      top: 400px;
-      left: 630px;
-    }
-
+/* Estilo para la tabla de botones */
+.button-table {
+  display: table;
+  position: relative;
+  top:150px;
+  left:250px;
 }
 
-
-
-
-
-
-@media (max-width: 850px) {
-  .boton4 {
-    font-size: 17px;
-    position: absolute;
-    top: 200px;
-    left: 260px;
-   }
-
-   .boton5 {
-    font-size: 17px;
-    top: 300px;
-    left: 260px;
-   }
-   
-   .boton6 {
-    font-size: 17px;
-    position: absolute;
-    top: 400px;
-    left: 260px;
-   }
+/* Estilo para las filas de la tabla */
+.button-row {
+  display: table-row;
   
-   .boton7 {
-    font-size: 17px;
-    position: absolute;
-    top: 200px;
-    left: 530px;
-   }
-  
-   .boton8 {
-    font-size: 17px;
-    position: absolute;
-    top: 300px;
-    left: 530px;
-   }
-  
-  .boton9 {
-    font-size: 17px;
-    position: absolute;
-    top: 400px;
-    left: 530px;
-  }
-
 }
 
-
-
-
-
-
-@media (max-width: 750px) {
-  .boton4 {
-    font-size: 15px;
-    position: absolute;
-    top: 100px;
-    left: 260px;
-   }
-
-   .boton5 {
-    font-size: 15px;
-    top: 180px;
-    left: 260px;
-   }
-   
-   .boton6 {
-    font-size: 15px;
-    position: absolute;
-    top: 260px;
-    left: 260px;
-   }
-  
-   .boton7 {
-    font-size: 15px;
-    position: absolute;
-    top: 340px;
-    left: 260px;
-   }
-  
-   .boton8 {
-    font-size: 15px;
-    position: absolute;
-    top: 420px;
-    left: 260px;
-   }
-  
-  .boton9 {
-    font-size: 15px;
-    position: absolute;
-    top: 500px;
-    left: 260px;
-  }
-
+/* Estilo para las celdas de la tabla */
+.button-cell {
+  display: table-cell;
+  padding: 20px;
 }
+
+/* Estilo para los botones */
+.custom-button {
+  width: 300px;
+  height: 80px;
+
+  font-size: 17px;
+  padding: 1.5em 2.4em;
+  border: transparent;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+  background: #1C3089;
+  color: white;
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.custom-button:hover {
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, #2445D9 0%, #2445D9 100%);
+ }
+ 
+ .custom-button:active {
+  transform: translate(0em, 0.2em);
+ }
