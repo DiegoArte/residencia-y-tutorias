@@ -78,16 +78,20 @@
             $row = $resultado->fetch_assoc();
             $_SESSION['usuario'] = $row['usuario'];
             $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
+            $_SESSION['pagina'] = 'tutorias';
         
             // Redirecciona a la página correspondiente según el tipo de usuario
             if ($_SESSION['tipo_usuario'] === 'Administrador') {
                 header("Location: princi_Super_Admin.php");
                 exit; // Termina el script después de la redirección
             } elseif ($_SESSION['tipo_usuario'] === 'docente') {
-                header("Location: Anteproyecto v.7/ADMIN/index.php");
+                header("Location: formatos.php");
                 exit;
             } elseif ($_SESSION['tipo_usuario'] === 'alumno') {
-                header("Location: Anteproyecto v.7/USER/index.php");
+                header("Location: ");
+                exit;
+            }elseif ($_SESSION['tipo_usuario'] === 'psicologa') {
+                header("Location: VistaPsicologa1.php");
                 exit;
             }
         } else {

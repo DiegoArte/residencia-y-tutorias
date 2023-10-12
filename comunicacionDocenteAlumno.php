@@ -1,10 +1,8 @@
 <?php
 
 session_start();
-$_SESSION['id']="Z19023445";
-$_SESSION['rol']="docente";
-$id=$_SESSION['id'];
-$idsec="Z21020022";
+$id=$_SESSION['usuario'];
+$idsec=$_GET['id'];
 
 require 'php/app.php';
 require 'php/Chat.php';
@@ -18,7 +16,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         $chat=new Chat($_POST);
         $chat->crear();
     }
-    header("Location: ".$_SERVER["PHP_SELF"]);
+    header("Location: ".$_SERVER["PHP_SELF"]."?id=".$idsec);
 }
 
 ?>
@@ -39,7 +37,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 </head>
 <body>
     <header class="fixed w-100">
-        <a href="Anteproyecto.php" class="back-arrow rounded-pill d-flex justify-content-start">
+        <a href="Anteproyecto v.7/ADMIN/index.php" class="back-arrow rounded-pill d-flex justify-content-start">
             <img src="img/back.svg" alt="" height="50">
             <span class="regresar d-none text-white m-auto">Regresar</span>
         </a>
@@ -63,9 +61,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         <div class="barraLateral h-100"></div>
         <div class="tasks row">
             <?php
-                if($_SESSION['rol']=="docente") {
+                if($_SESSION['tipo_usuario']=="docente") {
                     include 'php/includes/comunicacionDocente.php';
-                } elseif($_SESSION['rol']=="alumno") {
+                } elseif($_SESSION['tipo_usuario']=="alumno") {
                     include 'php/includes/comunicacionAlumno.php';
                 }
             ?>
