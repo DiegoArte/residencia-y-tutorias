@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,7 +67,7 @@
         }
 
         // Obtiene los datos del formulario
-        session_start(); // Inicia la sesión (si no lo has hecho ya)
+        // Inicia la sesión (si no lo has hecho ya)
         $usuario = $_POST['usuarioInput'];
         $contrasena = $_POST['contrasenaInput'];
 
