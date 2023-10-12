@@ -1,0 +1,63 @@
+.container{
+
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 100px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            background-color:#1e3188;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            background-color:#1e3188;
+            color: #ffffff;
+            text-align: center;
+   
+   
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #007bff;
+            color:#404F6E;
+        }
+        .boto{
+            position: absolute; /* Posición absoluta para centrar verticalmente */
+            top: 120%; /* Coloca el elemento en el 50% superior de la página */
+            left: 45%; /* Coloca el elemento en el 50% izquierdo de la página */
+            border: 1px solid  #1E2C6C; /*anchura, estilo y color borde*/
+            padding: 10px; /*espacio alrededor texto*/
+            background-color: #1E2C6C; /*color botón*/
+            color: #ffffff; /*color texto*/
+            text-align: center;
+            font-family: 'open', sans-serif; /*tipografía texto*/
+            border-radius: 30px; /*bordes redondos*/
+             
+        }
