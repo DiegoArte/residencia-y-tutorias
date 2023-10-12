@@ -33,10 +33,10 @@
     $templateProcessor-> setValue('Num_Repro',$numRepro);
     $templateProcessor-> setValue('Info_Comple',$infCom);
 
-    $templateProcessor->saveAs('Informe de Resultados'.date('d-m-y').'.docx');
+    $templateProcessor->saveAs('Informe de Resultados '.date('d-m-y').'.docx');
   
-    header("Content-Disposition: attachment; filename=Informe de Resultados".date('d-m-y').".docx; charset=iso-8859-1");
-    echo file_get_contents('Informe de Resultados'.date('d-m-y').'.docx');
+    header("Content-Disposition: attachment; filename=Informe de Resultados ".date('d-m-y').".docx; charset=iso-8859-1");
+    echo file_get_contents('Informe de Resultados '.date('d-m-y').'.docx');
 
     unlink('Informe de Resultados'.date('d-m-y').'.docx');
 
