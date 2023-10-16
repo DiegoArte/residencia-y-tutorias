@@ -80,6 +80,7 @@
             $row = $resultado->fetch_assoc();
             $_SESSION['usuario'] = $row['usuario'];
             $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
+            $_SESSION['pagina'] = 'residencia';
         
             // Redirecciona a la página correspondiente según el tipo de usuario
             if ($_SESSION['tipo_usuario'] === 'Administrador') {
