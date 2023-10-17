@@ -10,6 +10,7 @@
     <title>Login</title>
 </head>
 <body>
+
     <div class="contenedor">
         <img src="img/Logo-TecNM.png" alt="Logo TecNM">
         <div class="recuadroBienvenido">
@@ -49,6 +50,8 @@
                 </div> 
 
             </form>
+            <br>
+            <a href="index.html" class="regresar">Regresar al menu de seleccion</a>
         </div>
     </div>
 
@@ -105,6 +108,5 @@
         $conexion->close();
     }
     ?>
-
 </body>
 </html>

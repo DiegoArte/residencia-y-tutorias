@@ -322,3 +322,10 @@ body {
         max-width: 665px;
         z-index: 1;
     }   
+
+    .regresar{
+        color: #FFFFFF;
+        padding-top: 50px;
+        text-align: center;
+        font-size: small;
+    }

@@ -50,6 +50,8 @@
                 </div> 
 
             </form>
+            <br>
+            <a href="index.html" class="regresar">Regresar al menu de seleccion</a>
         </div>
     </div>
 
