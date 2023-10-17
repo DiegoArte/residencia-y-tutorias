@@ -82,13 +82,8 @@
         Lista de asistencia
         </button>
 
-
-
-
-
     </main>
 
-    
 
 </body>
 </html>

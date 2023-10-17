@@ -7,7 +7,65 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/menuIniStyle.css">
 
-    <title>Residencia-tutorias</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="index.js"></script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var current = null;
+          
+          document.querySelector('#email').addEventListener('focus', function(e) {
+            if (current) current.pause();
+            current = anime({
+              targets: 'path',
+              strokeDashoffset: {
+                value: 0,
+                duration: 700,
+                easing: 'easeOutQuart'
+              },
+              strokeDasharray: {
+                value: '240 1386',
+                duration: 700,
+                easing: 'easeOutQuart'
+              }
+            });
+          });
+          
+          document.querySelector('#password').addEventListener('focus', function(e) {
+            if (current) current.pause();
+            current = anime({
+              targets: 'path',
+              strokeDashoffset: {
+                value: -336,
+                duration: 700,
+                easing: 'easeOutQuart'
+              },
+              strokeDasharray: {
+                value: '240 1386',
+                duration: 700,
+                easing: 'easeOutQuart'
+              }
+            });
+          });
+          
+          document.querySelector('#submit').addEventListener('focus', function(e) {
+            if (current) current.pause();
+            current = anime({
+              targets: 'path',
+              strokeDashoffset: {
+                value: -730,
+                duration: 700,
+                easing: 'easeOutQuart'
+              },
+              strokeDasharray: {
+                value: '530 1386',
+                duration: 700,
+                easing: 'easeOutQuart'
+              }
+            });
+          });
+        });
+        </script>
 </head>
 <body>
     <h1>Bienvenidos</h1>

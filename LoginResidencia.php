@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,7 +67,7 @@
         }
 
         // Obtiene los datos del formulario
-        session_start(); // Inicia la sesión (si no lo has hecho ya)
+        // Inicia la sesión (si no lo has hecho ya)
         $usuario = $_POST['usuarioInput'];
         $contrasena = $_POST['contrasenaInput'];
 
@@ -78,6 +80,7 @@
             $row = $resultado->fetch_assoc();
             $_SESSION['usuario'] = $row['usuario'];
             $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
+            $_SESSION['pagina'] = 'residencia';
         
             // Redirecciona a la página correspondiente según el tipo de usuario
             if ($_SESSION['tipo_usuario'] === 'Administrador') {
