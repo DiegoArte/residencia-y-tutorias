@@ -41,38 +41,3 @@ header {
     background-color: var(--color7); 
     position: fixed;
 }
-
-section{
-    margin-top: 80px;
-    margin-left: 150px;
-    display: flex;
-    flex-direction: column;
-}
-
-input,
-label{
-    margin: 10px;
-}
-
-.inpLargo{
-    width: 600px;
-    height: 300px;
-    resize: vertical;
-    overflow: auto;
-}
-
-.bottonEnv{
-    width: 200px;
-    height: 50px;
-    font-size: x-large;
-    border: 0px;
-    margin-bottom: 30px;
-    border-radius: 5px;
-    background-color: #1e3188;
-    color: #EEEEEE;
-}
-
-section{
-    text-align: center;
-    align-items: center;
-}

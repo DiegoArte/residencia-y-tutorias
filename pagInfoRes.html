@@ -31,65 +31,98 @@
     </div>    
 
     <main>
-        <section>
-            <h2>Informe de Resultados de Tutoría</h2>
-            <form action="php/informeReusltados.php" method="post">
-                <label>TUTOR(A) DE ATENCIÓN INDIVIDUAL</label>
-                <input type="text" name="Tutor" id="tutor">
-                <br>
-                <label>JEFATURA DE DIVISIÓN ACADÉMICA:</label>
-                <input type="text" name="jefAca" id="jefAca">
-                <br>
-                <label>PERIODO SEMESTRAL</label>
-                <input type="text" name="pedSem" id="pedSem">
-                <label>GRUPO</label>
-                <input type="text" name="grupo" id="grupo">
-                <br>
-                <label>PROGRAMA DE ESTUDIOS</label>
-                <select name="proEstu" id="proEstu">
-                    <option>Sistemas computacionales</option>
-                    <option>Electormecanica</option>
-                    <option>Gestion empresarial</option>
-                    <option>Contador publico</option>
-                    <option>ingenieria industrial</option>
-                </select>
-                <br>
-                <hr>
-                <label>1. NÚMERO DE TUTORADOS(AS) ASIGNADOS(AS)</label>
-                <input type="number" name="numTut" id="numTut">
-                <br>
-                <label>2. NÚMERO DE ENTREVISTAS INDIVIDUALES APLICADAS O ACTUALIZADAS</label>
-                <input type="number" name="numEntr" id="numEntr">
-                <br>
-                <label>3. NÚMERO DE TUTORADOS(AS) A QUIENES SE DETECTARON NECESIDADES</label>
-                <input type="number" name="numDec" id="numDec">
-                <br>
-                <label>4. LISTA DE NECESIDADES DETECTADAS</label>
-                <br>
-                <textarea name="lisNed" id="lisNed" class="inpLargo"></textarea>
-                <br>
-                <label>5. ACCIONES DE ATENCIÓN TUTORIAL RECOMENDADAS</label>
-                <br>
-                <textarea name="accRec" id="accRec" class="inpLargo"></textarea>
-                <br>
-                <label>6. ÁREAS DE APOYO A DONDE SE CANALIZARON LOS(AS) TUTORADOS(AS) QUE LO REQUIRIERON</label>
-                <br>
-                <textarea name="areApo" id="areApo" class="inpLargo"></textarea>
-                <br>
-                <label>7. NÚMERO DE TUTORADOS(AS) QUE APROBARON TODAS SUS ASIGNATURAS</label>
-                <input type="number" name="numApro" id="numApro">
-                <br>
-                <label>8. NÚMERO DE TUTORADOS(AS) QUE REPROBARON UNA O MÁS ASIGNATURAS POR SEGUNDA VEZ 
-                    <br>(SOLO PARA TUTORADOS(AS) DEL SEGUNDO SEMESTRE EN ADELANTE)</label>
-                <input type="number" name="numRepro" id="numRepro">
-                <br>
-                <label>9. INFORMACIÓN COMPLEMENTARIA</label>
-                <br>
-                <textarea name="infCom" id="infCom" class="inpLargo"></textarea>
-                <br>
-                <input type="submit" value="enviar" class="bottonEnv">
-            </form>
-        </section>
+        <div class="container" style="margin-top: 80px;">
+            <div class="row">
+                <div class="col-md-10 offset-md-2">
+                    <h2>Informe de Resultados de Tutoría</h2>
+                    <hr>
+                    <form action="php/informeReusltados.php" method="post">
+                        
+                        <div class="mb-3">
+                            <label class="form-label">TUTOR(A) DE ATENCIÓN INDIVIDUAL</label>
+                            <input type="text" name="Tutor" id="tutor" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">JEFATURA DE DIVISIÓN ACADÉMICA</label>
+                            <input type="text" name="jefAca" id="jefAca" class="form-control">
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class=" col mb-6">
+                                <label class="form-label">PERIODO SEMESTRAL</label>
+                                <input type="text" name="pedSem" id="pedSem" class="form-control">
+                            </div>
+                            <div class="col mb-6">
+                                <label class="form-label">GRUPO</label>
+                                <input type="text" name="grupo" id="grupo" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">PROGRAMA DE ESTUDIOS</label>
+                            <select name="proEstu" id="proEstu" class="form-select">
+                                <option>Sistemas computacionales</option>
+                                <option>Electormecanica</option>
+                                <option>Gestion empresarial</option>
+                                <option>Contador publico</option>
+                                <option>ingenieria industrial</option>
+                            </select>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">1. NÚMERO DE TUTORADOS(AS) ASIGNADOS(AS)</label>
+                            <input type="number" name="numTut" id="numTut" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">2. NÚMERO DE ENTREVISTAS INDIVIDUALES APLICADAS O ACTUALIZADAS</label>
+                            <input type="number" name="numEntr" id="numEntr" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">3. NÚMERO DE TUTORADOS(AS) A QUIENES SE DETECTARON NECESIDADES</label>
+                            <input class="form-control" type="number" name="numDec" id="numDec">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">4. LISTA DE NECESIDADES DETECTADAS</label>
+                            <textarea class="form-control" name="lisNed" id="lisNed" ></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">5. ACCIONES DE ATENCIÓN TUTORIAL RECOMENDADAS</label>
+                            <textarea class="form-control" name="accRec" id="accRec"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">6. ÁREAS DE APOYO A DONDE SE CANALIZARON LOS(AS) TUTORADOS(AS) QUE LO REQUIRIERON</label>
+                            <textarea name="areApo" id="areApo" class="form-control"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">7. NÚMERO DE TUTORADOS(AS) QUE APROBARON TODAS SUS ASIGNATURAS</label>
+                            <input class="form-control" type="number" name="numApro" id="numApro">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">8. NÚMERO DE TUTORADOS(AS) QUE REPROBARON UNA O MÁS ASIGNATURAS POR SEGUNDA VEZ 
+                                <br>(SOLO PARA TUTORADOS(AS) DEL SEGUNDO SEMESTRE EN ADELANTE)</label>
+                            <input class="form-control" type="number" name="numRepro" id="numRepro">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">9. INFORMACIÓN COMPLEMENTARIA</label>
+                            <textarea name="infCom" id="infCom" class="form-control"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">Generar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
 
 </body>
