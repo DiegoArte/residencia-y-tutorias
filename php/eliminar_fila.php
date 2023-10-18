@@ -3,11 +3,9 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Realiza una consulta para obtener el NumerodeControl basado en el id
-    $mysqli = new mysqli("localhost", "root", "", "Tutorias_Residencia");
-    if (mysqli_connect_errno()) {
-        echo "Error de conexión a MySQL: " . mysqli_connect_error();
-        exit();
-    }
+    require 'php/db.php';
+
+    $mysqli=conectar();
 
     // Consulta para obtener el NumerodeControl basado en el id
     $selectQuery = "SELECT NumerodeControl FROM alumnos WHERE id = ?";
