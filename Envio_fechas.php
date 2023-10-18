@@ -31,16 +31,9 @@
             <section style="margin-top: 70px;">
         <?php
 // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "tutorias_residencia";
-$conn = new mysqli($servername, $username, $password, $dbname);
+require 'php/db.php';
 
-// Verifica la conexión
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
-}
+$conn=conectar();
 
 // Consulta SQL para obtener las fechas de la tabla fecharepo1
 $sql = "SELECT fechaini, fechafin FROM fecharepo1";

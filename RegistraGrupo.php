@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,11 +22,20 @@
 
     <!-- RAYAS DE ARRIBA,IZ -->
     <header class="fixed w-100">
+    <a href="princi_Super_Admin.php" class="back-arrow rounded-pill d-flex justify-content-start">
+            <img src="img/back.svg" alt="" height="50">
+            <span class="regresar d-none text-white m-auto">Regresar</span>
+    </a>
         <div class="usuarioOp d-flex justify-content-end">
-            <img src="img/profile.png" alt="" >
-            <p>Usuario</p>
-            <a href="#">Cerrar sesión</a>
+            <img src="img/profile.png" alt="">
+            <?php
+            $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+            echo '<p>' . $nombre . '</p>';
+            ?>
+            <div class="dropdown-content">
+                <a href="logout.php">Cerrar sesión</a>
         </div>
+    </div>
     </header>
 
     <main class="d-flex">
@@ -64,12 +76,12 @@
 
 
     <?php
-    $mysqli = new mysqli("localhost", "root", "", "tutorias_residencia");
+    require 'php/db.php';
 
-    if (mysqli_connect_errno()) {
-        echo 'Conexion Fallida: ' . mysqli_connect_error();
-        exit();
-    }
+    $mysqli=conectar();
+    // Cambia la localización de MySQL a español
+    $mysqli->set_charset("utf8"); // Configura el juego de caracteres
+    $mysqli->query("SET lc_messages = 'es_ES'"); // Cambia la localización a español
     // Utilizar PhpSpreadsheet en lugar de PHPExcel
     require 'vendor/autoload.php'; // Asegúrate de que autoload.php apunte al directorio correcto
 
@@ -117,7 +129,15 @@
             // Define un array de columnas que deben estar completas
             $requiredColumns = array('A', 'B', 'C', 'D', 'E'); // Ejemplo: las columnas A, B, C y D son requeridas
 
-            $valid = true; // Inicializamos la bandera como verdadera
+            
+            $nombreDeCarrerasVistos  = array();
+            $numerosDeControlVistos = array();
+            $numerosDeSemestreVistos = array();
+            $numerosDeEdificioVistos = array();
+            $numerosDeSalonVistos = array();
+
+            $elementosDuplicados = false;
+
 
             for ($i = 2; $i <= $numRows; $i++) { // Comenzar desde la segunda fila (fila 2)
                 $rowData = array();
@@ -170,21 +190,42 @@
                     break; // No es necesario continuar la validación si ya hay un error
                 }
 
-                $NombredeCarrera = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getValue();
-                $NumerodeControl = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getValue();
-                $Semestre = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getValue();
-                $Edificio = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getValue();
-                $Salon = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getValue();
-            
-                // Verificar si los datos no están vacíos antes de procesarlos
-                if (!empty($NumerodeControl) && !empty($NombredeCarrera) && !empty($Semestre)&& !empty($Edificio)&& !empty($Salon)) {
+                if (in_array($rowData[1], $numerosDeControlVistos)) {
+                    $elementosDuplicados = true;
+                    $errorMsg = "Se encontraron elementos duplicados en el archivo Excel: ";
+                
+                    if (in_array($rowData[1], $numerosDeControlVistos)) {
+                        $errorMsg .= " NumerodeControl: " . $rowData[1];
+                    }
+                
+                    // Llama a una función JavaScript para mostrar el modal de error
+                    echo '<script>';
+                    echo 'mostrarErrorModal("' . addslashes($errorMsg) . '");';
+                    echo '</script>';
+
+                }else{
+
+                    $nombreDeCarrerasVistos[]  = $rowData[0];
+                    $numerosDeControlVistos[] = $rowData[1];
+                    $numerosDeSemestreVistos[] =  $rowData[2];
+                    $numerosDeEdificioVistos[] = $rowData[3];
+                    $numerosDeSalonVistos[] = $rowData[4];
+
+                    // Verificar si los datos no están vacíos antes de procesarlos
+
                     // Insertar los datos en la tabla
-                    $insertQuery = "INSERT INTO grupos (NombredeCarrera , NumerodeControl, Semestre, Edificio, Salon) VALUES ('$NombredeCarrera', '$NumerodeControl', '$Semestre','$Edificio','$Salon')";
+                    $insertQuery = "INSERT INTO grupos (NombredeCarrera , NumerodeControl, Semestre, Edificio, Salon) VALUES ('$rowData[0]', '$rowData[1]', '$rowData[2]','$rowData[3]','$rowData[4]')";
                     if ($mysqli->query($insertQuery)) {
                         //echo "Datos insertados correctamente.<br>";
                     } else {
-                        echo "Error al insertar datos: " . $mysqli->error . "<br>";
-                    }
+                        $valid = false;
+                        $errorMsg =  "Error al insertar datos: " . $mysqli->error  ;
+
+                        // Llama a una función JavaScript para mostrar el modal de error
+                        echo '<script>';
+                        echo 'mostrarErrorModal("' . addslashes($errorMsg) . '");';
+                        echo '</script>';
+                    }          
                 }
             }
         }

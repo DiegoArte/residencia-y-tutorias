@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -26,12 +29,13 @@
     </header>
     <main>
     <?php
-    session_start();
+    
     if (isset($_GET['usuario'])) {
         $usuario = $_GET['usuario'];
 
-        $conexion = new mysqli("localhost", "root", "", "tutorias_residencia");
+        require 'php/db.php';
 
+    $conexion=conectar();
         $sql_presidente = "SELECT * FROM docentes WHERE NumerodeControl = '$usuario' AND Presidente = 1";
         $resultado_presidente = $conexion->query($sql_presidente);
     

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,11 +22,20 @@
 
     <!-- RAYAS DE ARRIBA,IZ -->
     <header class="fixed w-100">
+    <a href="princi_Super_Admin.php" class="back-arrow rounded-pill d-flex justify-content-start">
+            <img src="img/back.svg" alt="" height="50">
+            <span class="regresar d-none text-white m-auto">Regresar</span>
+    </a>
         <div class="usuarioOp d-flex justify-content-end">
-            <img src="img/profile.png" alt="" >
-            <p>Usuario</p>
-            <a href="#">Cerrar sesión</a>
+            <img src="img/profile.png" alt="">
+            <?php
+            $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+            echo '<p>' . $nombre . '</p>';
+            ?>
+            <div class="dropdown-content">
+                <a href="logout.php">Cerrar sesión</a>
         </div>
+    </div>
     </header>
 
     <main class="d-flex">
@@ -63,12 +75,12 @@
     </div>
 
     <?php
-    $mysqli = new mysqli("localhost", "root", "", "tutorias_residencia");
+    require 'php/db.php';
 
-    if (mysqli_connect_errno()) {
-        echo 'Conexion Fallida: ' . mysqli_connect_error();
-        exit();
-    }
+    $mysqli=conectar();
+    // Cambia la localización de MySQL a español
+    $mysqli->set_charset("utf8"); // Configura el juego de caracteres
+    $mysqli->query("SET lc_messages = 'es_ES'"); // Cambia la localización a español
     // Utilizar PhpSpreadsheet en lugar de PHPExcel
     require 'vendor/autoload.php'; // Asegúrate de que autoload.php apunte al directorio correcto
 
@@ -117,6 +129,14 @@
 
             // Define un array de columnas que deben estar completas
             $requiredColumns = array('A', 'B', 'C', 'D'); // Ejemplo: las columnas A, B, C y D son requeridas
+
+            $nombreDeCarrerasVistos  = array();
+            $numerosDeControlVistos = array();
+            $nombreDeEstudianteVistos = array();
+            $nombreDeAnteproyectoVistos = array();
+
+
+            $elementosDuplicados = false;
 
             $valid = true; // Inicializamos la bandera como verdadera
 
@@ -170,34 +190,71 @@
                 if (!$valid) {
                     break; // No es necesario continuar la validación si ya hay un error
                 }
-            
-                $Academia = $objPHPExcel->getActiveSheet()->getCell('A' . $i)->getValue();
-                $NumerodeControl = $objPHPExcel->getActiveSheet()->getCell('B' . $i)->getValue();
-                $NombredelEstudiante = $objPHPExcel->getActiveSheet()->getCell('C' . $i)->getValue();
-                $NombredelAnteproyecto = $objPHPExcel->getActiveSheet()->getCell('D' . $i)->getValue();
-            
-                // Verificar si los datos no están vacíos antes de procesarlos
-                if (!empty($Academia) && !empty($NumerodeControl) && !empty($NombredelEstudiante) && !empty($NombredelAnteproyecto)) {
-                    // Insertar los datos en la tabla "alumnos"
-                    $insertQueryAlumnos = "INSERT INTO alumnos (Academia, NumerodeControl, NombredelEstudiante, NombredelAnteproyecto) VALUES ('$Academia', '$NumerodeControl', '$NombredelEstudiante', '$NombredelAnteproyecto')";
+                // Verificar si ya se ha visto el valor en cada columna
+                if (in_array($rowData[1], $numerosDeControlVistos)) {
+                    $elementosDuplicados = true;
+                    $errorMsg = "Se encontraron elementos duplicados en el archivo Excel: ";
                     
-                    if ($mysqli->query($insertQueryAlumnos) ) {
-                        // Insertar usuario de alumno en la tabla "usuarios"
-                        $usuario = $NumerodeControl;
-                        $contrasena = $NumerodeControl; // Puedes establecer una contraseña predeterminada aquí
+                    if (in_array($rowData[1], $numerosDeControlVistos)) {
+                        $errorMsg .= " Control del Estudiante: " . $rowData[1];
+                    }
+                
+                    // Llama a una función JavaScript para mostrar el modal de error
+                    echo '<script>';
+                    echo 'mostrarErrorModal("' . addslashes($errorMsg) . '");';
+                    echo '</script>';
+                }else
+                {
+
+                    $Academia = $objPHPExcel->getActiveSheet()->getCell('A' . $i)->getValue();
+                    $NumerodeControl = $objPHPExcel->getActiveSheet()->getCell('B' . $i)->getValue();
+                    $NombredelEstudiante = $objPHPExcel->getActiveSheet()->getCell('C' . $i)->getValue();
+                    $NombredelAnteproyecto = $objPHPExcel->getActiveSheet()->getCell('D' . $i)->getValue();
+
+                    $nombreDeCarrerasVistos[]   = $rowData[0];
+                    $numerosDeControlVistos[] = $rowData[1];
+                    $nombreDeEstudianteVistos[] =  $rowData[2];
+                    $nombreDeAnteproyectoVistos[] = $rowData[3];
+                
+                    // Verificar si los datos no están vacíos antes de procesarlos
+                    if (!empty($Academia) && !empty($NumerodeControl) && !empty($NombredelEstudiante) && !empty($NombredelAnteproyecto)) {
+                        // Insertar los datos en la tabla "alumnos"
+                        $insertQueryAlumnos = "INSERT INTO alumnos (Academia, NumerodeControl, NombredelEstudiante, NombredelAnteproyecto) VALUES ('$rowData[0]', '$rowData[1]', '$rowData[2]', ' $rowData[3]')";
                         
-            
-                        $sqlInsertAlumno = "INSERT INTO usuarios (usuario, contrasena, tipo_usuario) VALUES ('$usuario', '$contrasena','alumno')";
-            
-                        if ($mysqli->query($sqlInsertAlumno) === TRUE) {
-                            //echo "Usuario $usuario agregado correctamente.<br>";
+                        if ($mysqli->query($insertQueryAlumnos) ) {
+                            // Insertar usuario de alumno en la tabla "usuarios"
+                            $usuario = $rowData[1];
+                            $contrasena = $rowData[1]; // Puedes establecer una contraseña predeterminada aquí
+                            
+                
+                            $sqlInsertAlumno = "INSERT INTO usuarios (usuario, contrasena, tipo_usuario) VALUES ('$usuario', '$contrasena','alumno')";
+                
+                            if ($mysqli->query($sqlInsertAlumno) === TRUE) {
+                                //echo "Usuario $usuario agregado correctamente.<br>";
+                            } else {
+                                $valid = false;
+                                $errorMsg = "Error al agregar usuario $usuario: " . $mysqli->error  ;
+        
+                                // Llama a una función JavaScript para mostrar el modal de error
+                                echo '<script>';
+                                echo 'mostrarErrorModal("' . addslashes($errorMsg) . '");';
+                                echo '</script>';
+                            }
                         } else {
-                            echo "Error al agregar usuario $usuario: " . $mysqli->error . "<br>";
+                            $valid = false;
+                            $errorMsg =  "Error al insertar datos en la tabla alumnos: " . $mysqli->error ;
+    
+                            // Llama a una función JavaScript para mostrar el modal de error
+                            echo '<script>';
+                            echo 'mostrarErrorModal("' . addslashes($errorMsg) . '");';
+                            echo '</script>';
+                            
+                            
                         }
-                    } else {
-                        echo "Error al insertar datos en la tabla alumnos: " . $mysqli->error . "<br>";
                     }
                 }
+            
+               
             }
             
         }

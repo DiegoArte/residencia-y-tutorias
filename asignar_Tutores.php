@@ -38,18 +38,10 @@
 
 
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "tutorias_residencia";
 
-// Crear una conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
+require 'php/db.php';
 
-// Verificar la conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
+$conn=conectar();
 
 
 

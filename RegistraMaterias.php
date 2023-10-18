@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,11 +22,20 @@
 
     <!-- RAYAS DE ARRIBA,IZ -->
     <header class="fixed w-100">
+    <a href="princi_Super_Admin.php" class="back-arrow rounded-pill d-flex justify-content-start">
+            <img src="img/back.svg" alt="" height="50">
+            <span class="regresar d-none text-white m-auto">Regresar</span>
+    </a>
         <div class="usuarioOp d-flex justify-content-end">
-            <img src="img/profile.png" alt="" >
-            <p>Usuario</p>
-            <a href="#">Cerrar sesión</a>
+            <img src="img/profile.png" alt="">
+            <?php
+            $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+            echo '<p>' . $nombre . '</p>';
+            ?>
+            <div class="dropdown-content">
+                <a href="logout.php">Cerrar sesión</a>
         </div>
+    </div>
     </header>
 
     <main class="d-flex">
@@ -64,12 +76,12 @@
 
 
     <?php
-    $mysqli = new mysqli("localhost", "root", "", "Tutorias_Residencia");
+    require 'php/db.php';
 
-    if (mysqli_connect_errno()) {
-        echo 'Conexion Fallida: ' . mysqli_connect_error();
-        exit();
-    }
+    $mysqli=conectar();
+    // Cambia la localización de MySQL a español
+    $mysqli->set_charset("utf8"); // Configura el juego de caracteres
+    $mysqli->query("SET lc_messages = 'es_ES'"); // Cambia la localización a español
     // Utilizar PhpSpreadsheet en lugar de PHPExcel
     require 'vendor/autoload.php'; // Asegúrate de que autoload.php apunte al directorio correcto
 

@@ -20,6 +20,11 @@ class Crud {
         $resultado= self::$db->query($query);
     }
 
+    public static function eliminar($clause) {
+        $query="DELETE FROM ".static::$tabla." WHERE ".$clause;
+        $resultado=self::$db->query($query);
+    }
+
     public function atributos() {
         $atributos=[];
         foreach(static::$columnasDB as $columna) {
@@ -38,6 +43,12 @@ class Crud {
         }
 
         return $sanitizado;
+    }
+
+    public static function all() {
+        $query="SELECT * FROM ".static::$tabla;
+        $resultado=self::consultarSQL($query);
+        return $resultado;
     }
 
     public static function find($clause) {

@@ -1,4 +1,59 @@
 <?php session_start(); ?>
+<?php
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
+    require 'php/db.php';
+
+$conexion=conectar();
+
+    // Obtiene los datos del formulario
+    $usuario = $_POST['usuarioInput'];
+    $contrasena = $_POST['contrasenaInput'];
+
+    // Consulta la base de datos para verificar el usuario y la contraseña
+    $sql = "SELECT usuario, tipo_usuario FROM usuarios WHERE usuario = '$usuario' AND contrasena = '$contrasena'";
+    $resultado = $conexion->query($sql);
+
+    if ($resultado->num_rows == 1) {
+        // Inicio de sesión exitoso, almacena el nombre de usuario y tipo de usuario en la sesión
+        $row = $resultado->fetch_assoc();
+        $_SESSION['usuario'] = $row['usuario'];
+        $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
+        $_SESSION['pagina'] = 'tutorias';
+    
+        // Redirecciona a la página correspondiente según el tipo de usuario
+        if ($_SESSION['tipo_usuario'] === 'Administrador') {
+            $_SESSION['nombre'] = 'Administrador';
+            header("Location: princi_Super_Admin.php");
+            exit; // Termina el script después de la redirección
+        } elseif ($_SESSION['tipo_usuario'] === 'docente') {
+            $sql = "SELECT NombredelDocente FROM docentes WHERE NumerodeControl = '$numControl'";
+            $resultado = $conexion->query($sql);
+            $_SESSION['nombre'] = $resultado;
+            header("Location: formatos.php");
+            exit;
+        } elseif ($_SESSION['tipo_usuario'] === 'alumno') {
+            $sql = "SELECT NombredelEstudiante FROM alumnos WHERE NumerodeControl = '$numControl'";
+            $resultado = $conexion->query($sql);
+            $_SESSION['nombre'] = $resultado;
+            header("Location: ");
+            exit;
+        }elseif ($_SESSION['tipo_usuario'] === 'psicologa') {
+            header("Location: VistaPsicologa1.php");
+            exit;
+        }
+    } else {
+        // Inicio de sesión fallido, muestra un mensaje de error
+        echo '<div class="mensaje-error">
+                <p>Inicio de sesión fallido. Verifica tu usuario y contraseña.</p>
+            </div>';
+    }
+
+    // Cierra la conexión a la base de datos
+    $conexion->close();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,59 +109,5 @@
             <a href="index.html" class="regresar">Regresar al menu de seleccion</a>
         </div>
     </div>
-
-    
-
-    <?php
-    
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
-        $conexion = new mysqli("localhost", "root", "", "tutorias_residencia");
-
-        if ($conexion->connect_error) {
-            die("La conexión a la base de datos falló: " . $conexion->connect_error);
-        }
-
-        // Obtiene los datos del formulario
-        $usuario = $_POST['usuarioInput'];
-        $contrasena = $_POST['contrasenaInput'];
-
-        // Consulta la base de datos para verificar el usuario y la contraseña
-        $sql = "SELECT usuario, tipo_usuario FROM usuarios WHERE usuario = '$usuario' AND contrasena = '$contrasena'";
-        $resultado = $conexion->query($sql);
-
-        if ($resultado->num_rows == 1) {
-            // Inicio de sesión exitoso, almacena el nombre de usuario y tipo de usuario en la sesión
-            $row = $resultado->fetch_assoc();
-            $_SESSION['usuario'] = $row['usuario'];
-            $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
-            $_SESSION['pagina'] = 'tutorias';
-        
-            // Redirecciona a la página correspondiente según el tipo de usuario
-            if ($_SESSION['tipo_usuario'] === 'Administrador') {
-                header("Location: princi_Super_Admin.php");
-                exit; // Termina el script después de la redirección
-            } elseif ($_SESSION['tipo_usuario'] === 'docente') {
-                header("Location: formatos.php");
-                exit;
-            } elseif ($_SESSION['tipo_usuario'] === 'alumno') {
-                header("Location: ");
-                exit;
-            }elseif ($_SESSION['tipo_usuario'] === 'psicologa') {
-                header("Location: VistaPsicologa1.php");
-                exit;
-            }
-        } else {
-            // Inicio de sesión fallido, muestra un mensaje de error
-            echo '<div class="mensaje-error">
-                    <p>Inicio de sesión fallido. Verifica tu usuario y contraseña.</p>
-                </div>';
-        }
-
-        // Cierra la conexión a la base de datos
-        $conexion->close();
-    }
-    ?>
 </body>
 </html>

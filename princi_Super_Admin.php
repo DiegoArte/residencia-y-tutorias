@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -26,10 +30,14 @@
 </main>
 
 <header class="fixed w-100">
-    <div class="usuarioOp d-flex justify-content-end">
-        <img src="img/profile.png" alt="" >
-        <p>Usuario</p>
-        <a href="#">Cerrar sesión</a>
+<div class="usuarioOp d-flex justify-content-end">
+    <img src="img/profile.png" alt="" >
+    <?php
+            $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+            echo '<p>' . $nombre . '</p>';
+            ?>
+            <div class="dropdown-content">
+                <a href="logout.php">Cerrar sesión</a>
     </div>
 </header>
 
@@ -37,7 +45,6 @@
     <a href="RegistraDOC.php" class="boton2">Registrar Docente</a>
     <a href="RegistraUS.php" class="boton3">Registrar Alumno</a>
     <?php
-        session_start();
         if($_SESSION['pagina']=='tutorias'){
             ?>
             <a href="RegistraGrupo.php" class="boton1 boton4">Registrar Grupo</a>
@@ -50,18 +57,9 @@
     <?php
 
         // Conexión a la base de datos (ajusta los valores según tu configuración)
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "tutorias_residencia"; // Nombre de tu base de datos
+        require 'php/db.php';
 
-        // Crear conexión
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Verificar la conexión
-        if ($conn->connect_error) {
-            die("La conexión a la base de datos falló: " . $conn->connect_error);
-        }
+$conn=conectar();
 
 
         if($_SESSION['pagina']=='tutorias'){

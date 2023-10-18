@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,11 +22,20 @@
 
     <!-- RAYAS DE ARRIBA,IZ -->
     <header class="fixed w-100">
+    <a href="princi_Super_Admin.php" class="back-arrow rounded-pill d-flex justify-content-start">
+            <img src="img/back.svg" alt="" height="50">
+            <span class="regresar d-none text-white m-auto">Regresar</span>
+    </a>
         <div class="usuarioOp d-flex justify-content-end">
-            <img src="img/profile.png" alt="" >
-            <p>Usuario</p>
-            <a href="#">Cerrar sesión</a>
+            <img src="img/profile.png" alt="">
+            <?php
+            $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+            echo '<p>' . $nombre . '</p>';
+            ?>
+            <div class="dropdown-content">
+                <a href="logout.php">Cerrar sesión</a>
         </div>
+    </div>
     </header>
 
     <main class="d-flex">
@@ -71,12 +83,12 @@
 
     
     <?php
-    $mysqli = new mysqli("localhost", "root", "", "tutorias_residencia");
+    require 'php/db.php';
 
-    if (mysqli_connect_errno()) {
-        echo 'Conexion Fallida: ' . mysqli_connect_error();
-        exit();
-    }
+    $mysqli=conectar();
+    // Cambia la localización de MySQL a español
+    $mysqli->set_charset("utf8"); // Configura el juego de caracteres
+    $mysqli->query("SET lc_messages = 'es_ES'"); // Cambia la localización a español
     // Utilizar PhpSpreadsheet en lugar de PHPExcel
     require 'vendor/autoload.php'; // Asegúrate de que autoload.php apunte al directorio correcto
 
@@ -146,13 +158,15 @@
                     echo "Error al eliminar datos existentes: " . $mysqli->error . "<br>";
                 }
             }
+        }
             
-            // Cargo la hoja de cálculo
+            // Cargar la hoja de cálculo
             $objPHPExcel = IOFactory::load($nombreArchivo);
 
-            //Asigno la hoja de calculo activa
+            // Asignar la hoja de cálculo activa
             $objPHPExcel->setActiveSheetIndex(0);
-            //Obtengo el numero de filas del archivo
+
+            // Obtener el número de filas del archivo
             $numRows = $objPHPExcel->getActiveSheet()->getHighestRow();
 
             // Variables para realizar la validación
@@ -160,9 +174,14 @@
             $errorMsg = "";
 
             // Define un array de columnas que deben estar completas
-            $requiredColumns = array('A', 'B', 'C'); // Ejemplo: las columnas A, B, C y D son requeridas
+            $requiredColumns = array('A', 'B', 'C'); // Ejemplo: las columnas A, B y C son requeridas
 
-            $valid = true; // Inicializamos la bandera como verdadera
+            // Arrays para hacer un seguimiento de valores duplicados en cada columna
+            $academiasVistas = array();
+            $numerosDeControlVistos = array();
+            $nombresDelDocenteVistos = array();
+
+            $elementosDuplicados = false;
 
             for ($i = 2; $i <= $numRows; $i++) { // Comenzar desde la segunda fila (fila 2)
                 $rowData = array();
@@ -171,13 +190,13 @@
                 foreach ($requiredColumns as $column) {
                     $cellValue = $objPHPExcel->getActiveSheet()->getCell($column . $i)->getValue();
                     $rowData[] = $cellValue;
-            
+
                     // Verificar si la columna tiene algún dato para considerar la fila como no vacía
                     if (!empty($cellValue) && in_array($column, $requiredColumns)) {
                         $filaVacia = false;
                     }
                 }
-            
+
                 // Si la fila está vacía, sal del bucle
                 if ($filaVacia) {
                     continue;
@@ -211,48 +230,65 @@
                     break;
                 }
 
-                if (!$valid) {
-                    break; // No es necesario continuar la validación si ya hay un error
-                }
-
-                $Academia = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getValue();
-                $NumerodeControl = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getValue();
-                $NombredelDocente = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getValue();
-                // Eliminamos la columna relacionada con "ANTEPROYECTO"
-
-                // Valores por defecto para las columnas Asesor, Presidente y Secretaria
-                $Asesor = 0;
-                $Presidente = 0;
-                $Secretaria = 0;
-
-                // Verificar si los datos no están vacíos antes de procesarlos
-                if (!empty($Academia) && !empty($NumerodeControl) && !empty($NombredelDocente)) {
-                    // Insertar los datos en la tabla
-                    $insertQuery = "INSERT INTO docentes (Academia, NumerodeControl, NombredelDocente, Asesor, Presidente, Secretaria) 
-                                    VALUES ('$Academia', '$NumerodeControl', '$NombredelDocente', '$Asesor', '$Presidente', '$Secretaria')";
-
+                // Verificar si ya se ha visto el valor en cada columna
+                if (in_array($rowData[1], $numerosDeControlVistos) || in_array($rowData[2], $nombresDelDocenteVistos)) {
+                    $elementosDuplicados = true;
+                    $errorMsg = "Se encontraron elementos duplicados en el archivo Excel: ";
+                
+                    if (in_array($rowData[1], $numerosDeControlVistos)) {
+                        $errorMsg .= " NumerodeControl: " . $rowData[1];
+                    }
                     
-                    if ($mysqli->query($insertQuery) ) {
-                        // Insertar usuario de alumno en la tabla "usuarios"
-                        $usuario = $NumerodeControl;
-                        $contrasena = $NumerodeControl; // Puedes establecer una contraseña predeterminada aquí
-                        
+                    if (in_array($rowData[2], $nombresDelDocenteVistos)) {
+                        $errorMsg .= " NombredelDocente: " . $rowData[2];
+                    }
+                
+                    // Llama a una función JavaScript para mostrar el modal de error
+                    echo '<script>';
+                    echo 'mostrarErrorModal("' . addslashes($errorMsg) . '");';
+                    echo '</script>';
+                } else {
+                    // Agregar el valor actual a los arrays de seguimiento
+                    $academiasVistas[] = $rowData[0];
+                    $numerosDeControlVistos[] = $rowData[1];
+                    $nombresDelDocenteVistos[] = $rowData[2];
 
-                        $sqlInsertAlumno = "INSERT INTO usuarios (usuario, contrasena, tipo_usuario) VALUES ('$usuario', '$contrasena','docente')";
+                    // El resto de tu código de inserción
+                    $Asesor = 0;
+                    $Presidente = 0;
+                    $Secretaria = 0;
+                    $insertQuery = "INSERT INTO docentes (Academia, NumerodeControl, NombredelDocente, Asesor, Presidente, Secretaria) 
+                                    VALUES ('$rowData[0]', '$rowData[1]', '$rowData[2]', '$Asesor', '$Presidente', '$Secretaria')";
 
-                        if ($mysqli->query($sqlInsertAlumno) === TRUE) {
+                    if ($mysqli->query($insertQuery)) {
+                        // Insertar usuario de docente en la tabla "usuarios"
+                        $usuario = $rowData[1];
+                        $contrasena = $rowData[1]; // Puedes establecer una contraseña predeterminada aquí
+                        $sqlInsertDocente = "INSERT INTO usuarios (usuario, contrasena, tipo_usuario) VALUES ('$usuario', '$contrasena', 'docente')";
+
+                        if ($mysqli->query($sqlInsertDocente) === TRUE) {
                             //echo "Usuario $usuario agregado correctamente.<br>";
                         } else {
-                            echo "Error al agregar usuario $usuario: " . $mysqli->error . "<br>";
+                            $valid = false;
+                            $errorMsg = "Error al agregar docente $usuario: " . $mysqli->error;
+                            // Llama a una función JavaScript para mostrar el modal de error
+                            echo '<script>';
+                            echo 'mostrarErrorModal("' . addslashes($errorMsg) . '");';
+                            echo '</script>';
                         }
                     } else {
-                        echo "Error al insertar datos en la tabla alumnos: " . $mysqli->error . "<br>";
-                    }
+                        $valid = false;
+                        $errorMsg = "Error al insertar datos en la tabla docente: " . $mysqli->error;
 
+                        // Llama a una función JavaScript para mostrar el modal de error
+                        echo '<script>';
+                        echo 'mostrarErrorModal("' . addslashes($errorMsg) . '");';
+                        echo '</script>';
+                    }
                 }
             }
+
         }
-    }
 
      // Función para verificar si un valor es válido (puedes personalizar esta función según tus requisitos)
      function esValido($valor) {
@@ -285,56 +321,93 @@
         }
     }
 
-    // Consulta SQL para seleccionar todos los registros de la tabla    
-    $selectQuery = "SELECT * FROM docentes";
 
-    // Ejecutar la consulta
-    $result = $mysqli->query($selectQuery);
 
-if ($result) {
-    echo '<table border=2><tr><td>Academia</td><td>NumerodeControl</td><td>NombredelDocente</td><td>Asesor</td><td>Presidente</td><td>Secretaria</td><td>Acción</td></tr>'; // Cambio de "Estudiante" a "Docente"
-    while ($row = $result->fetch_assoc()) {
-        echo '<tr id="fila-' . $row['id'] . '">';
-        echo '<td>'. $row['Academia'].'</td>';
-        echo '<td>'. $row['NumerodeControl'].'</td>';
-        echo '<td>'. $row['NombredelDocente'].'</td>';
-    
-        // Casilla de verificación para Asesor
-        echo '<td><input type="checkbox" id="asesor-' . $row['id'] . '" name="asesor[]" value="' . $row['id'] . '"';
-        if ($row['Asesor'] == 1) {
-            echo ' checked';
-        }
-        echo '></td>';
-    
-        // Casilla de verificación para Presidente (usar radio)
-        echo '<td><input type="radio" id="presidente-' . $row['id'] . '" name="presidente" value="' . $row['id'] . '"';
-        if ($row['Presidente'] == 1) {
-            echo ' checked';
-        }
-        echo '></td>';
-    
-        // Casilla de verificación para Secretaria (usar radio)
-        echo '<td><input type="radio" id="secretaria-' . $row['id'] . '" name="secretaria" value="' . $row['id'] . '"';
-        if ($row['Secretaria'] == 1) {
-            echo ' checked';
-        }
-        echo '></td>';
-    
-        // Botón para eliminar la fila
-        echo '<td><button class="btn" onclick="eliminarFilaDOC(' . $row['id'] . ')">
-            <svg viewBox="0 0 15 17.5" height="17.5" width="15" xmlns="http://www.w3.org/2000/svg" class="icon">
-                <path transform="translate(-2.5 -1.25)" d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z" id="Fill"></path>
-            </svg>
-        </button></td>';
-    
-        echo '</tr>';
+    if($_SESSION['pagina']=='tutorias'){
+                // Consulta SQL para seleccionar todos los registros de la tabla    
+                $selectQuery = "SELECT * FROM docentes";
+
+                // Ejecutar la consulta
+                $result = $mysqli->query($selectQuery);
+        
+                if ($result) {
+                    echo '<table border=2><tr><td>Academia</td><td>NumerodeControl</td><td>NombredelDocente</td><td>Acción</td></tr>'; // Cambio de "Estudiante" a "Docente"
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<tr id="fila-' . $row['id'] . '">';
+                        echo '<td>'. $row['Academia'].'</td>';
+                        echo '<td>'. $row['NumerodeControl'].'</td>';
+                        echo '<td>'. $row['NombredelDocente'].'</td>';
+                
+                        // Botón para eliminar la fila
+                        echo '<td><button class="btn" onclick="eliminarFilaDOC(' . $row['id'] . ')">
+                            <svg viewBox="0 0 15 17.5" height="17.5" width="15" xmlns="http://www.w3.org/2000/svg" class="icon">
+                                <path transform="translate(-2.5 -1.25)" d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z" id="Fill"></path>
+                            </svg>
+                        </button></td>';
+                    
+                        echo '</tr>';
+                    }
+                    
+                    echo '</table>';
+                    $result->free(); // Liberar el resultado
+                } else {
+                    echo "Error al consultar datos: " . $mysqli->error . "<br>";
+                }
+
+    }else{
+                // Consulta SQL para seleccionar todos los registros de la tabla    
+                $selectQuery = "SELECT * FROM docentes";
+
+                // Ejecutar la consulta
+                $result = $mysqli->query($selectQuery);
+        
+                if ($result) {
+                    echo '<table border=2><tr><td>Academia</td><td>NumerodeControl</td><td>NombredelDocente</td><td>Asesor</td><td>Presidente</td><td>Secretaria</td><td>Acción</td></tr>'; // Cambio de "Estudiante" a "Docente"
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<tr id="fila-' . $row['id'] . '">';
+                        echo '<td>'. $row['Academia'].'</td>';
+                        echo '<td>'. $row['NumerodeControl'].'</td>';
+                        echo '<td>'. $row['NombredelDocente'].'</td>';
+                    
+                        // Casilla de verificación para Asesor
+                        echo '<td><input type="checkbox" id="asesor-' . $row['id'] . '" name="asesor[]" value="' . $row['id'] . '"';
+                        if ($row['Asesor'] == 1) {
+                            echo ' checked';
+                        }
+                        echo '></td>';
+                    
+                        // Casilla de verificación para Presidente (usar radio)
+                        echo '<td><input type="radio" id="presidente-' . $row['id'] . '" name="presidente" value="' . $row['id'] . '"';
+                        if ($row['Presidente'] == 1) {
+                            echo ' checked';
+                        }
+                        echo '></td>';
+                    
+                        // Casilla de verificación para Secretaria (usar radio)
+                        echo '<td><input type="radio" id="secretaria-' . $row['id'] . '" name="secretaria" value="' . $row['id'] . '"';
+                        if ($row['Secretaria'] == 1) {
+                            echo ' checked';
+                        }
+                        echo '></td>';
+                    
+                        // Botón para eliminar la fila
+                        echo '<td><button class="btn" onclick="eliminarFilaDOC(' . $row['id'] . ')">
+                            <svg viewBox="0 0 15 17.5" height="17.5" width="15" xmlns="http://www.w3.org/2000/svg" class="icon">
+                                <path transform="translate(-2.5 -1.25)" d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z" id="Fill"></path>
+                            </svg>
+                        </button></td>';
+                    
+                        echo '</tr>';
+                    }
+                    
+                    echo '</table>';
+                    $result->free(); // Liberar el resultado
+                } else {
+                    echo "Error al consultar datos: " . $mysqli->error . "<br>";
+                }
     }
+
     
-    echo '</table>';
-    $result->free(); // Liberar el resultado
-} else {
-    echo "Error al consultar datos: " . $mysqli->error . "<br>";
-}
 ?>
 
 </body>

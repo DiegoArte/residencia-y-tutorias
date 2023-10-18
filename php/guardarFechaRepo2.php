@@ -1,18 +1,9 @@
 <?php
 // Establece la conexión a tu base de datos (debes configurar esto)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "tutorias_residencia";
 
+require 'php/db.php';
 
-$conexion = new mysqli($servername, $username, $password, $dbname);
-
-
-// Verifica la conexión
-if ($conexion->connect_error) {
-    die("Error en la conexión: " . $conexion->connect_error);
-}
+    $conexion=conectar();
 
 // Obtiene las fechas desde el formulario
 $fechaInicio2 = $_POST['fechaInicio2'];

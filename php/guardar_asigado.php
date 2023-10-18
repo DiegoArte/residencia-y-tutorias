@@ -6,16 +6,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $docenteSeleccionado = $_POST["Lista2"];
 
     // Realiza la conexión a la base de datos (reemplaza con tus propios datos de conexión)
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "tutorias_residencia";
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    require 'php/db.php';
 
-    if ($conn->connect_error) {
-        die("Conexión fallida: " . $conn->connect_error);
-    }
+    $conn=conectar();
 
     // Consultas
     $sql_insert = "INSERT INTO tabla_tutorados (grupo, tutor) VALUES ('$alumnoSeleccionado', '$docenteSeleccionado')";
@@ -28,12 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql_eliminar = "DELETE FROM grupos WHERE NumerodeControl = '$alumnoSeleccionado'";
 
     if ($conn->query($sql_eliminar) === TRUE) {
-        echo "Error al eliminar el registro: " . $conn->error;
+        header("Location: ../asignar_Tutores.php");
     } else {
         echo "Error al eliminar el registro: " . $conn->error;
     }
-
-    header("Location: ../asignar_Tutores.php");
+    
     exit();
 
     // Cierra la conexión a la base de datos

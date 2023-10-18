@@ -3,11 +3,9 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Realiza la eliminación en la base de datos (reemplaza "nombre_de_la_tabla" con el nombre de tu tabla)
-    $mysqli = new mysqli("localhost", "root", "", "Tutorias_Residencia");
-    if (mysqli_connect_errno()) {
-        echo "Error de conexión a MySQL: " . mysqli_connect_error();
-        exit();
-    }
+    require 'php/db.php';
+
+    $mysqli=conectar();
 
     $deleteQuery = "DELETE FROM materias WHERE id = ?";
     $stmt = $mysqli->prepare($deleteQuery);
