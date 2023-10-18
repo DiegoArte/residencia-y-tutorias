@@ -45,18 +45,11 @@
           
         <?php
         // Conecta a la base de datos (reemplaza con tus credenciales)
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "tutorias_residencia";
 
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
+        require 'php/db.php';
 
-        // Verifica la conexión
-        if ($conn->connect_error) {
-          die("Error de conexión: " . $conn->connect_error);
-        }
+    $conn=conectar();
 
         // Consulta SQL para enumerar las filas
         $sl = "SELECT reporte, nocontrol, nomAlu, nomMaes, motivo FROM tablavispsico";
