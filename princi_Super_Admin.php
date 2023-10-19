@@ -1,5 +1,6 @@
 <?php
 session_start();
+$carrera=$_GET['carrera'];
 ?>
 
 <!DOCTYPE html>
@@ -61,41 +62,69 @@ session_start();
 
 $conn=conectar();
 
-
+        // Consulta para obtener los datos de la tabla
+        $sql = "SELECT * FROM carrera";
+        $result = $conn->query($sql);
         if($_SESSION['pagina']=='tutorias'){
-            $sql = "SELECT * FROM grupos";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                $counter = 0;
-                echo '<div class="button-table">';
-                
-                while ($row = $result->fetch_assoc()) {
-                    // Iniciar una nueva fila cada tres botones
-                    if ($counter % 3 == 0) {
-                        echo '<div class="button-row">';
-                    }
+            if($carrera==""){
+                if ($result->num_rows > 0) {
+                    $counter = 0;
+                    echo '<div class="button-table">';
                     
-                    echo '<div class="button-cell">';
-                    echo '<a href=""><button class="custom-button" type="submit" name="button_id" value="' . $row["NombredeCarrera"] . '">' . $row["NombredeCarrera"]." ".$row["Semestre"]  . '</button></a>';
-                    echo '</div>';
-                    
-                    $counter++;
-                    
-                    // Cerrar la fila después de tres botones o al final
-                    if ($counter % 3 == 0 || $counter == $result->num_rows) {
+                    while ($row = $result->fetch_assoc()) {
+                        // Iniciar una nueva fila cada tres botones
+                        if ($counter % 3 == 0) {
+                            echo '<div class="button-row">';
+                        }
+                        
+                        echo '<div class="button-cell">';
+                        echo '<a href="princi_Super_Admin.php?carrera=' . $row["NombredeCarrera"] . '"><button class="custom-button" type="submit" name="button_id">' . $row["NombredeCarrera"]. '</button></a>';
                         echo '</div>';
+                        
+                        $counter++;
+                        
+                        // Cerrar la fila después de tres botones o al final
+                        if ($counter % 3 == 0 || $counter == $result->num_rows) {
+                            echo '</div>';
+                        }
                     }
+                    
+                    echo '</div>';
+                } else {
+                    echo "No se encontraron registros en la tabla.";
                 }
-                
-                echo '</div>';
             } else {
-                echo "No se encontraron registros en la tabla.";
+                $sql = "SELECT * FROM grupos WHERE NombredeCarrera='$carrera'";
+                $result2 = $conn->query($sql);
+                if ($result2->num_rows > 0) {
+                    $counter = 0;
+                    echo '<div class="button-table">';
+                    
+                    while ($row = $result2->fetch_assoc()) {
+                        // Iniciar una nueva fila cada tres botones
+                        if ($counter % 3 == 0) {
+                            echo '<div class="button-row">';
+                        }
+                        
+                        echo '<div class="button-cell">';
+                        echo '<a href=""><button class="custom-button" type="submit" name="button_id" value="' . $row["NombredeCarrera"] . '">' . $row["NombredeCarrera"]." ".$row["Semestre"]  . '</button></a>';
+                        echo '</div>';
+                        
+                        $counter++;
+                        
+                        // Cerrar la fila después de tres botones o al final
+                        if ($counter % 3 == 0 || $counter == $result2->num_rows) {
+                            echo '</div>';
+                        }
+                    }
+                    
+                    echo '</div>';
+                } else {
+                    echo "No se encontraron registros en la tabla.";
+                }
             }
+            
         }else {
-            // Consulta para obtener los datos de la tabla
-            $sql = "SELECT * FROM carrera";
-            $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 $counter = 0;
