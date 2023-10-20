@@ -1,0 +1,43 @@
+:root {
+    --color-fondo: #f5f5f5;
+    --color-borde: #d1d1d1;
+    --color-fila1: #ffffff;
+    --color-fila2: #f0f0f0;
+    --color-texto: #333333;
+    --color-boton: #007BFF;
+    --color-boton-hover: #0056b3;
+}
+
+.barraLateral {
+    top: 0;
+    left: 0; 
+    width: 100px; 
+}
+
+header {
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    background-color: var(--color7);
+    z-index: 1;
+}
+
+.usuarioOp {
+    gap: 15px;
+    padding: 10px 40px;
+}
+
+.usuarioOp a, .usuarioOp p {
+    padding: 10px 0;
+    color: var(--color2);
+}
+
+.usuarioOp img {
+    height: 40px;
+    border-radius: 1.5rem;
+}
+
+.fixed {
+    background-color: var(--color7); 
+    position: fixed;
+}

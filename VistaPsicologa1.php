@@ -17,7 +17,6 @@
 </head>
 
 <body>
->
   <main>
       <div class="barraLateral fixed h-100">
       </div>

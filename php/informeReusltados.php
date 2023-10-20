@@ -11,12 +11,12 @@
     $numTut=$_POST["numTut"];
     $numEntr=$_POST["numEntr"];
     $numDec=$_POST["numDec"];
-    $lisNed=$_POST["lisNed"];
-    $accRec=$_POST["accRec"];
-    $areApo=$_POST["areApo"];
+    $lisNed=str_replace("\n", "<w:br/>", $_POST["lisNed"]);
+    $accRec=str_replace("\n", "<w:br/>", $_POST["accRec"]);
+    $areApo=str_replace("\n", "<w:br/>", $_POST["areApo"]);
     $numApro=$_POST["numApro"];
     $numRepro=$_POST["numRepro"];
-    $infCom=$_POST["infCom"];
+    $infCom=str_replace("\n", "<w:br/>",$_POST["infCom"]);
 
     $templateProcessor-> setValue('Nobre_Tutor',$Tutor);
     $templateProcessor-> setValue('Jefe_Div_Aca',$jefAca);
@@ -35,9 +35,10 @@
 
     $templateProcessor->saveAs('Informe de Resultados '.date('d-m-y').'.docx');
   
-    header("Content-Disposition: attachment; filename=Informe de Resultados ".date('d-m-y').".docx; charset=iso-8859-1");
+    header("Content-Disposition: attachment; filename=Informe de Resultados " . date('d-m-y') . ".docx; charset=iso-8859-1");
     echo file_get_contents('Informe de Resultados '.date('d-m-y').'.docx');
 
-    unlink('Informe de Resultados'.date('d-m-y').'.docx');
+    unlink('Informe de Resultados ' . date('d-m-y') . '.docx');
+
 
 ?>
