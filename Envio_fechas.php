@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/Envio_fecha.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <title>Envio de fecha</title>
+    <title>Envío de fecha</title>
 </head>
 <body>
     <header class="fixed w-100">
@@ -28,7 +28,8 @@
         <div class="barraLateral fixed h-100">
             <a href="#"></a>
             </div>
-            <section style="margin-top: 70px;">
+            <section style="margin-top: 70px;
+                            width: 200%;">
         <?php
 // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
 require 'php/db.php';
@@ -63,7 +64,14 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
         </section>
-        <section>
+        <section style="margin-top: 10px;
+                        margin-left: 10px;
+                        margin-right: 10px;
+                        
+                        width: 200%;
+    padding: 10px;
+    padding-right : 10px;">
+    
             <form action="php/Enviartabla.php" class="Tabla_contenido" method="post">
                 <?php
                 include 'php/Mostrar_tabla.php';
@@ -74,7 +82,8 @@ $conn->close();
             
         </section>
         
-        <section>
+        <section style="margin-top: 10px;
+            ">
         <button type="submit" onclick="mostrar()">
             <div class="svg-wrapper-1">
               <div class="svg-wrapper">
