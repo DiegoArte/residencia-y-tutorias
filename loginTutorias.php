@@ -106,7 +106,7 @@ $conexion=conectar();
 
             </form>
             <br>
-            <a href="index.html" class="regresar">Regresar al menu de seleccion</a>
+            <a href="index.html" class="regresar">Regresar al menú de selección</a>
         </div>
     </div>
 </body>

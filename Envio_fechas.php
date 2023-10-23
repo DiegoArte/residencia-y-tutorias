@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/Envio_fecha.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <title>Envio de fecha</title>
+    <title>Envío de fecha</title>
 </head>
 <body>
     <header class="fixed w-100">

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">  
-    <title>Creacion de formatos</title>
+    <title>Creación de formatos</title>
     <link rel="stylesheet" href="css/estilo5.css">
     <link rel="stylesheet" href="css/estilofromatos.css">
     <link rel="stylesheet" href="css/estiloBoton.css">
