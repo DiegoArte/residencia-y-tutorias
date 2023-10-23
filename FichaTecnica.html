@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" >
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/FichaTEc.css">
+    <link rel="stylesheet" href="js/app.js">
+    <script type="text/javascript" src="R-ITSZaS-8.5-20Formato Ficha Técnica/jspdf.min.js"></script>
+    <title>Ficha técnica</title>
+</head>
+<body>
+    <br>
+    <header class="fixed w-100">
+        <div class="usuarioOp d-flex justify-content-end">
+            <img src="img/profile.png" alt="" >
+            <p>Usuario</p>
+            <a href="#">Cerrar sesión</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="barraLateral fixed h-100">
+            <a href="#"></a>
+            </div>
+            <section style="margin-top: 70px;">
+            <h2>
+                Ficha técnica parcial tutorial
+            </h2>
+        
+
+
+
+        </section>
+        <section>
+            <form action="" class="Tabla_contenido" method="post">
+                <label for="">Periodo:</label><input type="text" name="Periodo" id="Periodo">
+                <br>
+                
+                <label for="">Fecha:</label><input type="date" name="Fecha" id="Fecha">
+                <br>
+                <label for="">Nombre del estudiante:</label><input type="text" name="NE" id="NE">
+                <br>
+                <label for="">Semestre:</label><input type="text" name="Semestre" id="Semestre">
+                <br>
+                <label for="">Plan de estudio</label><input type="text" name="PE" id="PE">
+                <br>
+                <label for="">Actividades de seguimeinto realizadas:</label><input type="text" name="ASR" id="ASR">
+                <br>
+                <label for="">Desercion:</label><input type="text" name="Desercion" id="Desercion">
+                <br>
+                <label for="">Observasiones:</label><input type="text" name="Observasiones" id="Observasiones">
+                <br>
+                <br>
+                <h4>Tutor(A)</h4>
+                <br>
+                <label for="">Nombre</label><input type="text" name="" id="">
+                <br>
+                <label for=""></label><input type="text" name="" id="">
+                <br>
+                <label for="">Firma</label>
+                <br>
+                
+                
+                
+                
+            </form>
+        </section>
+        
+        <section>
+        <button type="submit" onclick="mostrar()" >
+            <div class="svg-wrapper-1">
+              <div class="svg-wrapper">
+                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z" fill="currentColor"></path>
+                </svg>
+              </div>
+            </div>
+            <span>Enviar</span>
+            <script type="text/javascript">
+                function mostrar(){
+                    
+                    swal("Correcto", "Los datos fueron enviados correctamente", "success");
+            
+
+                }
+            </script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js">
+            </script>
+
+            
+            <script type="text/javascript">
+                function genPDF(){
+                    var doc = new jsPDF();
+                    doc.text(20,20,"Este es un pdf")
+                    doc.save('midocumento.pdf')
+                }
+            </script>
+
+          </button>
+          </section>
+          </form>
+    </main>
+    <script src="js/envia_FECH.js"></script>
+    
+
+    
+</body>
+</html>
