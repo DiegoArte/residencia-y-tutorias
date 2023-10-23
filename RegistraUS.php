@@ -13,6 +13,7 @@ session_start();
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">
     <script src="js/scriptUsuario.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -72,6 +73,71 @@ session_start();
             <p id="errorMensaje"></p>
             <button class="modal-button" onclick="cerrarErrorModal()">Aceptar</button>
         </div>
+    </div>
+
+        <!-- Modal de edicion -->
+        <div id="editar-modal" class="editar-modal modal" style="display: none;">
+        <div class="editar-modal-content modal-content">
+            <span class="editar-close close" onclick="cerrarFormularioEdicion()">&times;</span>
+            <form action="UPDATE.php" method="post" onsubmit="return validarFormulario();">
+                <input type="hidden" name="tabla" value="alumnos"> <!-- Campo oculto para el nombre de la tabla -->
+                <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraUS.php"> <!-- Campo oculto para el nombre del archivo -->
+                <input type="hidden" name="id" id="editar-id" value="">
+                <div class="editar-form-group form-group">
+                    <label for="Academia">Academia:</label>
+                    <input type="text" name="Academia" id="Academia">
+                </div>
+                <div class="editar-form-group form-group">
+                    <label for="NumerodeControl">Número de Control:</label>
+                    <input type="text" name="NumerodeControl" id="NumerodeControl">
+                </div>
+                <div class="editar-form-group form-group">
+                    <label for="NombredelEstudiante">Nombre del Estudiante:</label>
+                    <input type="text" name="NombredelEstudiante" id="NombredelEstudiante">
+                </div>
+                <div class="editar-form-group form-group">
+                    <label for="NombredelAnteproyecto">Nombre del Anteproyecto:</label>
+                    <input type="text" name="NombredelAnteproyecto" id="NombredelAnteproyecto">
+                </div>
+                <button type="submit" class="editar-guardar-btn guardar-btn">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <button id="nuevoRegistroButton"  onclick="abrirFormularioRegistro()" >Nuevo Registro</button>
+
+    <!-- Modal de registro -->
+    <div id="registro-modal" class="registro-modal modal" style="display: none;">
+        <div class="registro-modal-content modal-content">
+            <span class="registro-close close" onclick="cerrarFormularioRegistro()">&times;</span>
+            <form action="INSERT.php" method="post" onsubmit="return validarFormularioRegistro();">
+                <input type="hidden" name="tabla" value="alumnos"> <!-- Campo oculto para el nombre de la tabla -->
+                <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraUS.php"> <!-- Campo oculto para el nombre del archivo -->
+                <div class="registro-form-group form-group">
+                    <label for="NuevoNumeroControl">Nuevo Número de Control:</label>
+                    <input type="text" name="NuevoNumeroControl" id="NuevoNumeroControl">
+                </div>
+                <div class="registro-form-group form-group">
+                    <label for="NuevoNombreCarrera">Nuevo Nombre de la Carrera:</label>
+                    <input type="text" name="NuevoNombreCarrera" id="NuevoNombreCarrera">
+                </div>
+                <div class="registro-form-group form-group">
+                    <label for="NuevoNombreAlumno">Nuevo Nombre de Alumno:</label>
+                    <input type="text" name="NuevoNombreAlumno" id="NuevoNombreAlumno">
+                </div>
+                <div class="registro-form-group form-group">
+                    <label for="NuevoNombreAnteproyecto">Nuevo Nombre de Anteproyecto:</label>
+                    <input type="text" name="NuevoNombreAnteproyecto" id="NuevoNombreAnteproyecto">
+                </div>
+                <button type="submit" class="registro-guardar-btn guardar-btn">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Barra Serch -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Buscar por Número de Control, Nombre de Carrera o Número de Semestre">
+        <button onclick="search()">Buscar</button>
     </div>
 
     <?php
@@ -306,11 +372,21 @@ session_start();
             echo '<td>'. $row['NumerodeControl'].'</td>';
             echo '<td>'. $row['NombredelEstudiante'].'</td>';
             echo '<td>'. $row['NombredelAnteproyecto'].'</td>';
-            echo '<td><button class="btn" onclick="eliminarFila(' . $row['id'] . ')">
-  <svg viewBox="0 0 15 17.5" height="17.5" width="15" xmlns="http://www.w3.org/2000/svg" class="icon">
-    <path transform="translate(-2.5 -1.25)" d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z" id="Fill"></path>
-  </svg>
-  </button></td>';
+            echo '<td>
+            <button class="btn" onclick="eliminarFila(' . $row['id'] . ')">
+                <svg viewBox="0 0 15 17.5" height="17.5" width="15" xmlns="http://www.w3.org/2000/svg" class="icon">
+                    <path transform="translate(-2.5 -1.25)" d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z" id="Fill"></path>
+                </svg>
+            </button>
+
+            <button class="btn" onclick="abrirFormularioEdicion(' . $row['id'] . ' , \' ' . $row['Academia'] . ' \', \' ' . $row['NumerodeControl'] . ' \', \' ' . $row['NombredelEstudiante'] . ' \', \' ' . $row['NombredelAnteproyecto'] . ' \')">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                </svg>
+            </button>
+  
+            </td>';
 
             echo '</tr>';
         }
