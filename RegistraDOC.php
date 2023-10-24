@@ -392,7 +392,7 @@ session_start();
                 $result = $mysqli->query($selectQuery);
         
                 if ($result) {
-                    echo '<table border=2><tr><td>Academia</td><td>NumerodeControl</td><td>NombredelDocente</td><td>Acción</td></tr>'; // Cambio de "Estudiante" a "Docente"
+                    echo '<table border=2><tr><td>Academia</td><td>Numero de Control</td><td>Nombre del Docente</td><td>Acción</td></tr>'; // Cambio de "Estudiante" a "Docente"
                     while ($row = $result->fetch_assoc()) {
                         echo '<tr id="fila-' . $row['id'] . '">';
                         echo '<td>'. $row['Academia'].'</td>';
@@ -404,7 +404,16 @@ session_start();
                             <svg viewBox="0 0 15 17.5" height="17.5" width="15" xmlns="http://www.w3.org/2000/svg" class="icon">
                                 <path transform="translate(-2.5 -1.25)" d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z" id="Fill"></path>
                             </svg>
-                        </button></td>';
+                        </button>
+                        
+                        <button class="btn" onclick="abrirFormularioEdicion(' . $row['id'] . ' , \' ' . $row['Academia'] . ' \', \' ' . $row['NumerodeControl'] . ' \', \' ' . $row['NombredelDocente'] . ' \')">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                                <path d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                            </svg>
+                        </button>
+
+                        </td>';
                     
                         echo '</tr>';
                     }
@@ -423,7 +432,7 @@ session_start();
                 $result = $mysqli->query($selectQuery);
         
                 if ($result) {
-                    echo '<table border=2><tr><td>Academia</td><td>NumerodeControl</td><td>NombredelDocente</td><td>Asesor</td><td>Presidente</td><td>Secretaria</td><td>Acción</td></tr>'; // Cambio de "Estudiante" a "Docente"
+                    echo '<table border=2><tr><td>Academia</td><td>Numero de Control</td><td>Nombre del Docente</td><td>Asesor</td><td>Presidente</td><td>Secretaria</td><td>Acción</td></tr>'; // Cambio de "Estudiante" a "Docente"
                     while ($row = $result->fetch_assoc()) {
                         echo '<tr id="fila-' . $row['id'] . '">';
                         echo '<td>'. $row['Academia'].'</td>';

@@ -365,7 +365,7 @@ session_start();
     $result = $mysqli->query($selectQuery);
 
     if ($result) {
-        echo '<table border=2><tr><td>Academia</td><td>NumerodeControl</td><td>NombredelEstudiante</td><td>NombredelAnteproyecto</td><td>Acción</td></tr>';
+        echo '<table border=2><tr><td>Academia</td><td>Numero de Control</td><td>Nombre del Estudiante</td><td>Nombre del Anteproyecto</td><td>Acción</td></tr>';
         while ($row = $result->fetch_assoc()) {
             echo '<tr id="fila-' . $row['id'] . '">';
             echo '<td>'. $row['Academia'].'</td>';
