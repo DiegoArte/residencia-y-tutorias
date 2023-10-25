@@ -40,7 +40,10 @@
                             <label class="form-label">Selecciona la carrera</label>
                             <select class="form-select" name="acade">
                                 <option value="ISC">Ingenieria en sistemas computacionales</option>
+                                <option value="IGE">Ingenieria en gestion Empresarial</option>
+                                <option value="IA">Ingeniereia en administracion</option>
                                 <option value="IEM">Ingenieria en electromecanica</option>
+                                <option value="II">Ingenieria industrial</option>
                                 <option value="IGE">Contador público</option>
                             </select>
                         </div>
@@ -50,6 +53,11 @@
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
+                                <option value="1">4</option>
+                                <option value="2">5</option>
+                                <option value="3">6</option>
+                                <option value="2">7</option>
+                                <option value="3">8</option>
                             </select>
                         </div>
                     </div>
