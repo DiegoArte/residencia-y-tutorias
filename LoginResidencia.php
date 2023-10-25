@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Inicio de sesión fallido, muestra un mensaje de error
         echo '<div class="mensaje-error">
-                <p>Inicio de sesión fallido. Verifica tu usuario y contraseña.</p>
+                <p>Inicio de sesión fallido. Verifica tu usuario y/o contraseña.</p>
             </div>';
     }
 

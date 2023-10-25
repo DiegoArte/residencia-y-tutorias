@@ -198,3 +198,106 @@ function updateTable(results) {
         rows[i].style.display = shouldDisplay ? '' : 'none';
     }
 }
+
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+function abrirFormularioEdicionEspecial(id, Academia, NumerodeControl, NombredelEstudiante) {
+    // Muestra el formulario modal
+    var modal = document.getElementById('editar-modal-especial');
+    modal.style.display = 'block';
+
+    // Llena los campos del formulario con los datos de la fila correspondiente
+    document.getElementById('editar-id').value = id;
+    document.getElementById('Academia_Especial').value = Academia;
+    document.getElementById('NumerodeControl_Especial').value = NumerodeControl;
+    document.getElementById('NombredelEstudiante_Especial').value = NombredelEstudiante;
+}
+
+
+function cerrarFormularioEdicionEspecial() {
+    // Oculta el modal
+    var modal = document.getElementById("editar-modal-especial");
+    modal.style.display = "none";
+}
+
+function validarFormularioEspecial() {
+    // Obtén los valores de los campos
+    var numeroControl = document.getElementById("NumerodeControl_Especial").value;
+    var nombreAcademia = document.getElementById("Academia_Especial").value;
+    var nombreEstudiante = document.getElementById("NombredelEstudiante_Especial").value;
+
+    // Expresión regular para validar que los campos no contengan caracteres especiales
+    var expresion = /^[a-zA-Z0-9\s]+$/;
+
+    if (numeroControl === "" || nombreAcademia === "" || nombreEstudiante === "") {
+        Swal.fire({
+            title: 'Llena todos los campos',
+            text: 'Asegúrate de llenar todos los campos',
+            icon: 'error',
+            confirmButtonText: 'Cerrar',
+            confirmButtonColor: '#197B7A' 
+        });
+        return false;
+    } else if (!expresion.test(numeroControl) || !expresion.test(nombreAcademia) || !expresion.test(nombreEstudiante)) {
+        Swal.fire({
+            title: 'Campo(s) inválido(s)',
+            text: "Los campos no deben contener caracteres especiales",
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+          })
+        return false;
+    }
+
+    // Si todo está bien, el formulario se envía
+    return true;
+}   
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+function abrirFormularioRegistroEspecial() {
+    // Muestra el formulario modal de registro
+    var modal = document.getElementById('registro-modal-especial');
+    modal.style.display = 'block';
+}
+
+function cerrarFormularioRegistroEspecial() {
+    // Oculta el formulario modal de registro
+    var modal = document.getElementById('registro-modal-especial');
+    modal.style.display = 'none';
+}
+
+function validarFormularioRegistroEspecial() {
+    // Obtén los valores de los campos
+    var NuevoNumeroControl = document.getElementById("NuevoNumeroControl_Especial").value;
+    var NuevoNombreCarrera = document.getElementById("NuevoNombreCarrera_Especial").value;
+    var NuevoNombreAlumno = document.getElementById("NuevoNombreAlumno_Especial").value;
+
+
+    // Expresión regular para validar que los campos no contengan caracteres especiales
+    var expresión = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ,.-]+$/;
+
+    if (NuevoNumeroControl === "" ||NuevoNombreCarrera === ""  || NuevoNombreAlumno === "" ) {
+        Swal.fire({
+            title: 'Llena todos los campos',
+            text: 'Asegúrate de llenar todos los campos',
+            icon: 'error',
+            confirmButtonText: 'Cerrar',
+            confirmButtonColor: '#197B7A'
+        });
+        return false;
+    } else if (!expresión.test(NuevoNumeroControl) || !expresión.test(NuevoNombreCarrera) || !expresión.test(NuevoNombreAlumno)) {
+        Swal.fire({
+            title: 'Campo(s) inválido(s)',
+            text: "Los campos no deben contener caracteres especiales",
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+        });
+        return false;
+    }
+
+    // Si todo está bien, el formulario se envía
+    return true;
+}
