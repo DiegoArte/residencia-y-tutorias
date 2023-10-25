@@ -322,7 +322,7 @@ session_start();
     $result = $mysqli->query($selectQuery);
 
     if ($result) {
-        echo '<table border=2><tr><td>NumerodeControlAcademia</td><td>NumerodeControl</td><td>NombredelaMateria</td><td>NumerodeControlDocente</td><td>Acción</td></tr>';
+        echo '<table border=2><tr><td>Numero de Control de la Academia</td><td>Numero de Control de la Materia</td><td>Nombre de la Materia</td><td>Numero de Control del Docente</td><td>Acción</td></tr>';
         while ($row = $result->fetch_assoc()) {
             echo '<tr id="fila-' . $row['id'] . '">';
             echo '<td>'. $row['NumerodeControlAcademia'].'</td>';

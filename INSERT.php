@@ -8,6 +8,7 @@ $resultado = ''; // Inicializa la variable de resultado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id'];
     $tabla = $_POST['tabla'];
+    $tipo = $_POST["tipo"];
 
     if ($tabla === 'carrera') {
         $NuevoNumeroControlAcademia = $_POST['NuevoNumeroControlAcademia'];
@@ -73,19 +74,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $resultado = agregarRegistro($conn, $tabla, $campos);
 
     } elseif ($tabla === 'alumnos') {
+
         $NuevoNumeroControl = $_POST['NuevoNumeroControl'];
         $NuevoNombreCarrera = $_POST['NuevoNombreCarrera'];
         $NuevoNombreAlumno = $_POST['NuevoNombreAlumno'];
-        $NuevoNombreAnteproyecto = $_POST['NuevoNombreAnteproyecto'];
-
+        $NuevoNombreAnteproyecto = ($tipo === 'normal') ? null : $_POST['NuevoNombreAnteproyecto'];
+        
         $campos = array(
             'NumerodeControl' => $NuevoNumeroControl,
             'Academia' => $NuevoNombreCarrera,
             'NombredelEstudiante' => $NuevoNombreAlumno,
             'NombredelAnteproyecto' => $NuevoNombreAnteproyecto,
         );
-
+        
         $resultado = agregarRegistro($conn, $tabla, $campos);
+
+
     }
 
      // Recupera el nombre del archivo de origen
