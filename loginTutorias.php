@@ -46,7 +46,7 @@ $conexion=conectar();
     } else {
         // Inicio de sesión fallido, muestra un mensaje de error
         echo '<div class="mensaje-error">
-                <p>Inicio de sesión fallido. Verifica tu usuario y contraseña.</p>
+                <p>Inicio de sesión fallido. Verifica tu usuario y/o contraseña.</p>
             </div>';
     }
 
@@ -106,7 +106,7 @@ $conexion=conectar();
 
             </form>
             <br>
-            <a href="index.html" class="regresar">Regresar al menu de seleccion</a>
+            <a href="index.html" class="regresar">Regresar al menú de selección</a>
         </div>
     </div>
 </body>

@@ -35,11 +35,11 @@
           <table>
             <tr>
               <th>Reporte</th>
-              <th>numero de control</th>
-              <th>Nombre Alumno</th>
-              <th>Nombre del maestro que envia</th>
-              <th>motivo</th>
-              <th>responder</th>
+              <th>Número de control</th>
+              <th>Nombre del Alumno</th>
+              <th>Nombre del maestro que envía</th>
+              <th>Motivo</th>
+              <th>Responder</th>
             </tr>
           
         <?php

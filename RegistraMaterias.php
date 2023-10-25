@@ -13,6 +13,7 @@ session_start();
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">
     <script src="js/scriptMaterias.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -74,6 +75,79 @@ session_start();
         </div>
     </div>
 
+    <!-- Modal de edicion -->
+    <div id="editar-modal" class="editar-modal modal" style="display: none;">
+        <div class="editar-modal-content modal-content">
+            <span class="editar-close close" onclick="cerrarFormularioEdicion()">&times;</span>
+            <form action="UPDATE.php" method="post" onsubmit="return validarFormulario();">
+                <input type="hidden" name="tabla" value="materias"> <!-- Campo oculto para el nombre de la tabla -->
+                <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraMaterias.php"> <!-- Campo oculto para el nombre del archivo -->
+                <input type="hidden" name="id" id="editar-id" value="">
+                <div class="editar-form-group form-group">
+                    <label for="NumerodeControlAcademia">Número de Control Academia:</label>
+                    <input type="text" name="NumerodeControlAcademia" id="NumerodeControlAcademia">
+                </div>
+                <div class="editar-form-group form-group">
+                    <label for="NumerodeControl">Número de Control:</label>
+                    <input type="text" name="NumerodeControl" id="NumerodeControl">
+                </div>
+                <div class="editar-form-group form-group">
+                    <label for="NombredelaMateria">Nombre de la Materia:</label>
+                    <input type="text" name="NombredelaMateria" id="NombredelaMateria">
+                </div>
+                <div class="editar-form-group form-group">
+                    <label for="NumerodeControlDocente">Número de Control Docente:</label>
+                    <input type="text" name="NumerodeControlDocente" id="NumerodeControlDocente">
+                </div>
+                <div class="editar-form-group form-group">
+                    <label for="Unidades">Unidades:</label>
+                    <input type="text" name="Unidades" id="Unidades">
+                </div>
+                <button type="submit" class="editar-guardar-btn guardar-btn">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <button id="nuevoRegistroButton"  onclick="abrirFormularioRegistro()" >Nuevo Registro</button>
+
+    <!-- Modal de registro -->
+    <div id="registro-modal" class="registro-modal modal">
+        <div class="registro-modal-content modal-content">
+            <span class="registro-close close" onclick="cerrarFormularioRegistro()">&times;</span>
+            <form action="INSERT.php" method="post" onsubmit="return validarFormularioRegistro();">
+                <input type="hidden" name="tabla" value="materias"> <!-- Campo oculto para el nombre de la tabla -->
+                <input type="hidden" name="archivo_origen" id="archivo_origen_registro" value="RegistraMaterias.php"> <!-- Campo oculto para el nombre del archivo -->
+                <div class="registro-form-group form-group">
+                    <label for="NuevoNumeroControlAcademia">Nuevo Número de Control Academia:</label>
+                    <input type="text" name="NuevoNumeroControlAcademia" id="NuevoNumeroControlAcademia">
+                </div>
+                <div class="registro-form-group form-group">
+                    <label for="NuevoNumeroControl">Nuevo Número de Control:</label>
+                    <input type="text" name="NuevoNumeroControl" id="NuevoNumeroControl">
+                </div>
+                <div class="registro-form-group form-group">
+                    <label for="NuevoNombreMateria">Nuevo Nombre de la Materia:</label>
+                    <input type="text" name="NuevoNombreMateria" id="NuevoNombreMateria">
+                </div>
+                <div class="registro-form-group form-group">
+                    <label for="NuevoNumeroControlDocente">Nuevo Número de Control Docente:</label>
+                    <input type="text" name="NuevoNumeroControlDocente" id="NuevoNumeroControlDocente">
+                </div>
+                <div class="registro-form-group form-group">
+                    <label for="NuevoUnidades">Nuevo Unidades:</label>
+                    <input type="text" name="NuevoUnidades" id="NuevoUnidades">
+                </div>
+                <button type="submit" class="registro-guardar-btn guardar-btn">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Barra Serch -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Buscar por Número de Control, Nombre de Carrera o Número de Semestre">
+        <button onclick="search()">Buscar</button>
+    </div>
+
 
     <?php
     require 'php/db.php';
@@ -129,7 +203,7 @@ session_start();
             $errorMsg = "";
 
             // Define un array de columnas que deben estar completas
-            $requiredColumns = array('A', 'B', 'C', 'D'); // Ejemplo: las columnas A, B, C y D son requeridas
+            $requiredColumns = array('A','B','C','D','E'); // Ejemplo: las columnas A, B, C y D son requeridas
 
             $valid = true; // Inicializamos la bandera como verdadera
 
@@ -188,52 +262,21 @@ session_start();
                 $NumerodeControl = $objPHPExcel->getActiveSheet()->getCell('B' . $i)->getValue();
                 $NombredelaMateria = $objPHPExcel->getActiveSheet()->getCell('C' . $i)->getValue();
                 $NumerodeControlDocente = $objPHPExcel->getActiveSheet()->getCell('D' . $i)->getValue();
-
+                $Unidades = $objPHPExcel->getActiveSheet()->getCell('E' . $i)->getValue();
+                
                 // Verificar si los datos no están vacíos antes de procesarlos
-                if (!empty($NumerodeControlAcademia) && !empty($NumerodeControl) && !empty($NombredelaMateria) && !empty($NumerodeControlDocente)) {
-                    // Verificar si el número de control del docente existe en la tabla "docentes"
-                    $queryDocenteExistente = "SELECT COUNT(*) FROM docentes WHERE NumerodeControl = '$NumerodeControlDocente'";
-                    $resultadoDocente = $mysqli->query($queryDocenteExistente);
-                    $existeDocente = $resultadoDocente->fetch_row()[0];
-                    
-                    // Verificar si el número de control de la academia existe en la tabla "carrera"
-                    $queryAcademiaExistente = "SELECT COUNT(*) FROM carrera WHERE NumerodeControl = '$NumerodeControlAcademia'";
-                    $resultadoAcademia = $mysqli->query($queryAcademiaExistente);
-                    $existeAcademia = $resultadoAcademia->fetch_row()[0];
-                    
-                    if ($existeDocente && $existeAcademia) {
-                        // Ambos números de control existen, entonces insertar los datos en la tabla "materias"
-                        $insertQueryMaterias = "INSERT INTO materias (NumerodeControlAcademia, NumerodeControl, NombredelaMateria, NumerodeControlDocente) VALUES ('$NumerodeControlAcademia', '$NumerodeControl', '$NombredelaMateria', '$NumerodeControlDocente')";
-                        
-                        if ($mysqli->query($insertQueryMaterias)) {
-                            // La inserción fue exitosa
-                            // Puedes mostrar un mensaje de éxito si lo deseas
-                            // echo "Materia registrada correctamente.<br>";
-                        } else {
-                            // Error al insertar datos en la tabla "materias"
-                            echo "Error al insertar datos en la tabla materias.<br>";
-                        }
-                    } else {
-                        // Al menos uno de los números de control no existe
-                        echo "Error: ";
-                        if (!$existeDocente) {
-                            $errorMsg = "El número de control del docente ('$NumerodeControlDocente') no existe. ";
-            
-                            // Llama a una función JavaScript para mostrar el modal de error
-                            echo '<script>';
-                            echo 'mostrarErrorModal("' . addslashes($errorMsg) . '");';
-                            echo '</script>';
-                        }
-                        if (!$existeAcademia) {
-                            $errorMsg = "El número de control de la academia ('$NumerodeControlAcademia') no existe.";
-
-                            // Llama a una función JavaScript para mostrar el modal de error
-                            echo '<script>';
-                            echo 'mostrarErrorModal("' . addslashes($errorMsg) . '");';
-                            echo '</script>';
-                        }
-                        echo "<br>";
-                    }
+                
+                // Ambos números de control existen, entonces insertar los datos en la tabla "materias"
+                $insertQueryMaterias = "INSERT INTO materias (NumerodeControlAcademia, NumerodeControl, NombredelaMateria, NumerodeControlDocente, Unidades) 
+                VALUES ('$NumerodeControlAcademia', '$NumerodeControl', '$NombredelaMateria', '$NumerodeControlDocente', '$Unidades')";
+                
+                if ($mysqli->query($insertQueryMaterias)) {
+                    // La inserción fue exitosa
+                    // Puedes mostrar un mensaje de éxito si lo deseas
+                    // echo "Materia registrada correctamente.<br>";
+                } else {
+                    // Error al insertar datos en la tabla "materias"
+                    echo "Error al insertar datos en la tabla materias.<br>";
                 }
             }
             
@@ -279,7 +322,7 @@ session_start();
     $result = $mysqli->query($selectQuery);
 
     if ($result) {
-        echo '<table border=2><tr><td>NumerodeControlAcademia</td><td>NumerodeControl</td><td>NombredelaMateria</td><td>NumerodeControlDocente</td><td>Acción</td></tr>';
+        echo '<table border=2><tr><td>Numero de Control de la Academia</td><td>Numero de Control de la Materia</td><td>Nombre de la Materia</td><td>Numero de Control del Docente</td><td>Acción</td></tr>';
         while ($row = $result->fetch_assoc()) {
             echo '<tr id="fila-' . $row['id'] . '">';
             echo '<td>'. $row['NumerodeControlAcademia'].'</td>';
