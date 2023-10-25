@@ -8,7 +8,7 @@ $resultado = ''; // Inicializa la variable de resultado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id'];
     $tabla = $_POST['tabla'];
-    $tipo = $_POST["tipo"];
+
     
 
     if ($tabla === 'carrera') {
@@ -76,6 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // ... lógica para la tabla materia
 
     } elseif ($tabla === 'alumnos') {
+
+        $tipo = $_POST["tipo"];
 
         if ($tipo === "residente") {
             $NumerodeControl = trim($_POST['NumerodeControl']);
