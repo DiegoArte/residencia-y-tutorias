@@ -48,7 +48,7 @@ require 'php/Materias.php';
             foreach($materias as $materia) { 
             ?>
             <form action="">
-
+                
             </form>
             <?php
             }
