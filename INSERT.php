@@ -8,7 +8,7 @@ $resultado = ''; // Inicializa la variable de resultado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id'];
     $tabla = $_POST['tabla'];
-    $tipo = $_POST["tipo"];
+ 
 
     if ($tabla === 'carrera') {
         $NuevoNumeroControlAcademia = $_POST['NuevoNumeroControlAcademia'];
@@ -74,6 +74,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $resultado = agregarRegistro($conn, $tabla, $campos);
 
     } elseif ($tabla === 'alumnos') {
+
+        $tipo = $_POST["tipo"];
 
         $NuevoNumeroControl = $_POST['NuevoNumeroControl'];
         $NuevoNombreCarrera = $_POST['NuevoNombreCarrera'];
