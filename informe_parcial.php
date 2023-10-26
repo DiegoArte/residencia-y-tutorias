@@ -2,6 +2,36 @@
 session_start();
 require 'php/app.php';
 require 'php/Materias.php';
+
+function enteroARomano($numero) {
+    $valores = array(
+        1000 => 'M',
+        900  => 'CM',
+        500  => 'D',
+        400  => 'CD',
+        100  => 'C',
+        90   => 'XC',
+        50   => 'L',
+        40   => 'XL',
+        10   => 'X',
+        9    => 'IX',
+        5    => 'V',
+        4    => 'IV',
+        1    => 'I'
+    );
+
+    $resultado = '';
+
+    foreach ($valores as $valor => $romano) {
+        while ($numero >= $valor) {
+            $resultado .= $romano;
+            $numero -= $valor;
+        }
+    }
+
+    return $resultado;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,13 +78,77 @@ require 'php/Materias.php';
             foreach($materias as $materia) { 
             ?>
             <form action="">
-                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Asignatura</th>
+                            <?php
+                            for($i=1; $i<=$materia->Unidades; $i++){
+                                $unidad=enteroARomano($i);
+                                ?>
+                                <th><?php echo $unidad ?></th>
+                                <?php
+                            } 
+                            ?>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>Datos solicitados</th>
+                            <?php
+                            for($i=1; $i<=$materia->Unidades; $i++){
+                                ?>
+                                <th>No R</th>
+                                <th>%R</th>
+                                <?php
+                            } 
+                            ?>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Datos</td>
+                            <?php
+                            for($i=1; $i<=$materia->Unidades; $i++){
+                                ?>
+                                <td>
+                                    <input type="text">
+                                </td>
+                                <td>
+                                    <input type="text">
+                                </td>
+                                <?php
+                            } 
+                            ?>
+                            <th>Núm. De Estudiantes</th>
+                        </tr>
+                        <tr>
+                            <td>Promedio aprobados</td>
+                            <?php
+                            for($i=1; $i<=$materia->Unidades; $i++){
+                                ?>
+                                <td>
+                                    <input type="text">
+                                </td>
+                                <?php
+                            } 
+                            ?>
+                            <td>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Listado de estudiantes reprobados en el período</th>
+                        </tr>
+                    </tbody>
+                </table>
             </form>
             <?php
             }
             ?>
         </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
 
