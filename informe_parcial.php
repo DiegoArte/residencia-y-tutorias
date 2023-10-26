@@ -43,7 +43,7 @@ require 'php/Materias.php';
         </div>
         <div class="">
             <?php
-            $numero_control=$_SESSION['nombre'];
+            $numero_control=$_SESSION['usuario'];
             $materias=Materias::find("NumerodeControlDocente='$numero_control'");
             foreach($materias as $materia) { 
             ?>

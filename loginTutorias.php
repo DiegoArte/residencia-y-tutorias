@@ -18,7 +18,8 @@ $conexion=conectar();
     if ($resultado->num_rows == 1) {
         // Inicio de sesión exitoso, almacena el nombre de usuario y tipo de usuario en la sesión
         $row = $resultado->fetch_assoc();
-        $_SESSION['usuario'] = $row['usuario'];
+        $numControl=$row['usuario'];
+        $_SESSION['usuario'] = $numControl;
         $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
         $_SESSION['pagina'] = 'tutorias';
     
