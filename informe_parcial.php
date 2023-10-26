@@ -90,13 +90,18 @@ function enteroARomano($numero) {
                                 <th><?php echo $unidad ?></th>
                                 <?php
                             } 
+                            for($i=$materia->Unidades; $i<=6; $i++){
+                                ?>
+                                <th></th>
+                                <?php
+                            } 
                             ?>
                             <th></th>
                         </tr>
                         <tr>
                             <th>Datos solicitados</th>
                             <?php
-                            for($i=1; $i<=$materia->Unidades; $i++){
+                            for($i=1; $i<=6; $i++){
                                 ?>
                                 <th>No R</th>
                                 <th>%R</th>
@@ -110,7 +115,7 @@ function enteroARomano($numero) {
                         <tr>
                             <td>Datos</td>
                             <?php
-                            for($i=1; $i<=$materia->Unidades; $i++){
+                            for($i=1; $i<=6; $i++){
                                 ?>
                                 <td>
                                     <input type="text">
@@ -126,7 +131,7 @@ function enteroARomano($numero) {
                         <tr>
                             <td>Promedio aprobados</td>
                             <?php
-                            for($i=1; $i<=$materia->Unidades; $i++){
+                            for($i=1; $i<=7; $i++){
                                 ?>
                                 <td>
                                     <input type="text">
@@ -134,17 +139,26 @@ function enteroARomano($numero) {
                                 <?php
                             } 
                             ?>
-                            <td>
-                                <input type="text">
-                            </td>
                         </tr>
                         <tr>
                             <th>Listado de estudiantes reprobados en el período</th>
+                        </tr>
+                        <tr>
+                            <th>No.</th>
+                            <th>Número de control</th>
+                            <th>Nombre completo del estudiante</th>
+                            <th>Unidad(es)</th>
+                        </tr>
+                        <tr>
+                            <button>
+                                <i class="bi bi-plus-circle"></i>
+                            </button>
                         </tr>
                     </tbody>
                 </table>
             </form>
             <?php
+            
             }
             ?>
         </div>
