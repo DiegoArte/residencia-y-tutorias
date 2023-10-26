@@ -71,7 +71,8 @@ function enteroARomano($numero) {
         <div class="barraLateral fixed h-100">
             <a href="#"></a>
         </div>
-        <div class="">
+        <div class="barraLateral h-100"></div>
+        <div class="tasks">
             <?php
             $numero_control=$_SESSION['usuario'];
             $materias=Materias::find("NumerodeControlDocente='$numero_control'");

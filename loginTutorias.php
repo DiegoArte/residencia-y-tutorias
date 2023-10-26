@@ -31,13 +31,15 @@ $conexion=conectar();
         } elseif ($_SESSION['tipo_usuario'] === 'docente') {
             $sql = "SELECT NombredelDocente FROM docentes WHERE NumerodeControl = '$numControl'";
             $resultado = $conexion->query($sql);
-            $_SESSION['nombre'] = $resultado;
+            $resultado=$resultado->fetch_assoc();
+            $_SESSION['nombre'] = $resultado['NombredelDocente'];
             header("Location: formatos.php");
             exit;
         } elseif ($_SESSION['tipo_usuario'] === 'alumno') {
             $sql = "SELECT NombredelEstudiante FROM alumnos WHERE NumerodeControl = '$numControl'";
             $resultado = $conexion->query($sql);
-            $_SESSION['nombre'] = $resultado;
+            $resultado=$resultado->fetch_assoc();
+            $_SESSION['nombre'] = $resultado['NombredelDocente'];
             header("Location: ");
             exit;
         }elseif ($_SESSION['tipo_usuario'] === 'psicologa') {

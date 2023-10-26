@@ -42,7 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } elseif ($_SESSION['tipo_usuario'] === 'alumno') {
             $sql = "SELECT NombredelEstudiante FROM alumnos WHERE NumerodeControl = '$numControl'";
             $resultado = $conexion->query($sql);
-            $_SESSION['nombre'] = $resultado;
+            $resultado=$resultado->fetch_assoc();
+            $_SESSION['nombre'] = $resultado['NombredelDocente'];
             header("Location: Anteproyecto v.7/USER/index.php");
             exit;
         }
