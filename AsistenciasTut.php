@@ -36,29 +36,41 @@
                 <h2>Lista de asistencia</h2>
                 <form action="" method="post">
                     <div class="row mb-3">
+                        <div class="col">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="Actividad"></textarea>
+                                <label for="Actividad">Actividad del dia planeada</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <div class="col mb-3">
-                            <label class="form-label">Selecciona la carrera</label>
-                            <select class="form-select" name="acade">
-                                <option value="ISC">Ingenieria en sistemas computacionales</option>
-                                <option value="IGE">Ingenieria en gestion Empresarial</option>
-                                <option value="IA">Ingeniereia en administracion</option>
-                                <option value="IEM">Ingenieria en electromecanica</option>
-                                <option value="II">Ingenieria industrial</option>
-                                <option value="IGE">Contador público</option>
-                            </select>
+                            <div class="form-floating">
+                                <select class="form-select" name="acade" id="acade">
+                                    <option value="ISC">Ingenieria en sistemas computacionales</option>
+                                    <option value="IGE">Ingenieria en gestion Empresarial</option>
+                                    <option value="IA">Ingeniereia en administracion</option>
+                                    <option value="IEM">Ingenieria en electromecanica</option>
+                                    <option value="II">Ingenieria industrial</option>
+                                    <option value="IGE">Contador público</option>
+                                </select>
+                                <label for="acade">Selecciona la carrera</label>
+                            </div>
                         </div>
                         <div class="col mb-3">
-                            <label class="form-label">Selecciona el periodo semestral</label>
-                            <select class="form-select">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="1">4</option>
-                                <option value="2">5</option>
-                                <option value="3">6</option>
-                                <option value="2">7</option>
-                                <option value="3">8</option>
-                            </select>
+                            <div class="form-floating">
+                                <select class="form-select" id="semes">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="1">4</option>
+                                    <option value="2">5</option>
+                                    <option value="3">6</option>
+                                    <option value="2">7</option>
+                                    <option value="3">8</option>
+                                </select>
+                                <label for="semes">Selecciona el periodo semestral</label>
+                            </div>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -71,9 +83,6 @@
                         </div>
                 </div>
             </form>
-            <div class="col mb-3">
-                <button type="submit" class="btn btn-primary">Generar Reporte</button>
-            </div>
         </div>
             <hr>
             <?php
@@ -110,10 +119,11 @@
                 }
                 echo "</tbody>";
                 echo "</table>";
+                echo "<div class='col mb-3'>";
+                    echo "<button type='submit' class='btn btn-primary'>Guardar</button>";
+                echo "</div>";
             }
             ?>
-            </tbody>
-        </table>
 
         </div>
     </main>

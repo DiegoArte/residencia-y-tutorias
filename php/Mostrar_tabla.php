@@ -1,4 +1,11 @@
-
+<script>
+        function mostrarPDF() {
+            // URL del PDF que deseas mostrar
+            var pdfURL = 'tu-archivo.pdf';
+            // Abrir una ventana emergente con el PDF
+            window.open(pdfURL, 'Ventana del PDF', 'width=800, height=600');
+        }
+</script>
 <style>
     :root {
         --color-fondo: #f5f5f5;
@@ -12,7 +19,7 @@
 
  table {
     border-collapse: collapse;
-    width: 90%;
+    width: 200%;
     margin: 20px auto;
     margin-left: 5%;
     margin-top: 40px;
@@ -20,6 +27,11 @@
     border: 1px solid var(--color-borde);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.pdf-iframe {
+            width: 100%;
+            height: 500px; /* Ajusta la altura según tus necesidades */
+            border: none;
+        }
 
 /* Estilo para las celdas de la tabla */
 table, th, td {
@@ -71,15 +83,16 @@ else{
             echo "<td>" . $row["Nombre"] . "</td>";
             echo "<td>" ;
             if($row["Tipo_de_archivo"] == 1){
-                echo '<a href="#"><i class="fa-regular fa-file-pdf" ></i> PDF</a>';
-
+                echo '<a href="javascript:void(0);" onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-pdf" ></i> PDF</a>';
+                
             }
             elseif($row["Tipo_de_archivo"] == 2){
-                echo '<a href="#"><i class="fa-regular fa-file-word"></i> Word</a>';
+                echo '<a href="javascript:void(0);" onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-word"></i> Word</a>';
+
 
             }
             elseif($row["Tipo_de_archivo"] == 3){
-                echo '<a href="#"><i class="fa-regular fa-file-excel" ></i> Excel</a>';
+                echo '<a href="javascript:void(0);" onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-excel" ></i> Excel</a>';
             }
             "</td>";
             

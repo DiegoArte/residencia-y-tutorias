@@ -29,7 +29,8 @@
             <a href="#"></a>
             </div>
             <section style="margin-top: 70px;
-                            width: 200%;">
+                            width: 200%;
+                            align-items: center;">
         <?php
 // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
 require 'php/db.php';
