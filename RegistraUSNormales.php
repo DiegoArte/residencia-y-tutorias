@@ -12,7 +12,7 @@ session_start();
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">
-    <script src="js/scriptUsuario.js"></script>
+    <script src="js/scriptUsuarioNormal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -352,7 +352,7 @@ session_start();
             echo '<td>'. $row['NumeroDeControl'].'</td>';
             echo '<td>'. $row['NombreDelEstudiante'].'</td>';
             echo '<td>
-            <button class="btn" onclick="eliminarFila(' . $row['id'] . ')">
+            <button class="btn" onclick="eliminarFilaNormal(' . $row['id'] . ')">
                 <svg viewBox="0 0 15 17.5" height="17.5" width="15" xmlns="http://www.w3.org/2000/svg" class="icon">
                     <path transform="translate(-2.5 -1.25)" d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z" id="Fill"></path>
                 </svg>
