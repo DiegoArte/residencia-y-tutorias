@@ -75,65 +75,6 @@ session_start();
         </div>
     </div>
 
-        <!-- Modal de edicion -->
-        <div id="editar-modal" class="editar-modal modal" style="display: none;">
-        <div class="editar-modal-content modal-content">
-            <span class="editar-close close" onclick="cerrarFormularioEdicion()">&times;</span>
-            <form action="UPDATE.php" method="post" onsubmit="return validarFormulario();">
-                <input type="hidden" name="tabla" value="alumnos"> <!-- Campo oculto para el nombre de la tabla -->
-                <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraUS.php"> <!-- Campo oculto para el nombre del archivo -->
-                <input type="hidden" name="id" id="editar-id" value="">
-                <div class="editar-form-group form-group">
-                    <label for="Academia">Academia:</label>
-                    <input type="text" name="Academia" id="Academia">
-                </div>
-                <div class="editar-form-group form-group">
-                    <label for="NumerodeControl">Número de Control:</label>
-                    <input type="text" name="NumerodeControl" id="NumerodeControl">
-                </div>
-                <div class="editar-form-group form-group">
-                    <label for="NombredelEstudiante">Nombre del Estudiante:</label>
-                    <input type="text" name="NombredelEstudiante" id="NombredelEstudiante">
-                </div>
-                <div class="editar-form-group form-group">
-                    <label for="NombredelAnteproyecto">Nombre del Anteproyecto:</label>
-                    <input type="text" name="NombredelAnteproyecto" id="NombredelAnteproyecto">
-                </div>
-                <button type="submit" class="editar-guardar-btn guardar-btn">Guardar</button>
-            </form>
-        </div>
-    </div>
-
-    <button id="nuevoRegistroButton"  onclick="abrirFormularioRegistro()" >Nuevo Registro</button>
-
-    <!-- Modal de registro -->
-    <div id="registro-modal" class="registro-modal modal" style="display: none;">
-        <div class="registro-modal-content modal-content">
-            <span class="registro-close close" onclick="cerrarFormularioRegistro()">&times;</span>
-            <form action="INSERT.php" method="post" onsubmit="return validarFormularioRegistro();">
-                <input type="hidden" name="tabla" value="alumnos"> <!-- Campo oculto para el nombre de la tabla -->
-                <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraUS.php"> <!-- Campo oculto para el nombre del archivo -->
-                <div class="registro-form-group form-group">
-                    <label for="NuevoNumeroControl">Nuevo Número de Control:</label>
-                    <input type="text" name="NuevoNumeroControl" id="NuevoNumeroControl">
-                </div>
-                <div class="registro-form-group form-group">
-                    <label for="NuevoNombreCarrera">Nuevo Nombre de la Carrera:</label>
-                    <input type="text" name="NuevoNombreCarrera" id="NuevoNombreCarrera">
-                </div>
-                <div class="registro-form-group form-group">
-                    <label for="NuevoNombreAlumno">Nuevo Nombre de Alumno:</label>
-                    <input type="text" name="NuevoNombreAlumno" id="NuevoNombreAlumno">
-                </div>
-                <div class="registro-form-group form-group">
-                    <label for="NuevoNombreAnteproyecto">Nuevo Nombre de Anteproyecto:</label>
-                    <input type="text" name="NuevoNombreAnteproyecto" id="NuevoNombreAnteproyecto">
-                </div>
-                <button type="submit" class="registro-guardar-btn guardar-btn">Guardar</button>
-            </form>
-        </div>
-    </div>
-
     <!-- Barra Serch -->
     <div class="search-bar">
         <input type="text" id="searchInput" placeholder="Buscar por Número de Control, Nombre de Carrera o Número de Semestre">
@@ -146,7 +87,7 @@ session_start();
             <span class="editar-close close" onclick="cerrarFormularioEdicionEspecial()">&times;</span>
             <form action="UPDATE.php" method="post" accept-charset="UTF-8" onsubmit="return validarFormularioEspecial();">
                 <input type="hidden" name="tabla" value="alumnosnormales"> <!-- Campo oculto para el nombre de la tabla -->
-                <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraUS.php"> <!-- Campo oculto para el nombre del archivo -->
+                <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraUSNormales.php"> <!-- Campo oculto para el nombre del archivo -->
                 <input type="hidden" name="id" id="editar-id" value="">
                 <div class="editar-form-group form-group">
                     <label for="AcademiaNormal">Academia:</label>
@@ -173,7 +114,7 @@ session_start();
             <span class="registro-close close" onclick="cerrarFormularioRegistroEspecial()">&times;</span>
             <form action="INSERT.php" method="post" onsubmit="return validarFormularioRegistroEspecial();">
                 <input type="hidden" name="tabla" value="alumnosnormales"> <!-- Campo oculto para el nombre de la tabla -->
-                <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraUS.php"> <!-- Campo oculto para el nombre del archivo -->
+                <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraUSNormales.php"> <!-- Campo oculto para el nombre del archivo -->
                 <div class="registro-form-group form-group">
                     <label for="NuevoNumeroControl_Especial">Nuevo Número de Control:</label>
                     <input type="text" name="NuevoNumeroControl__Especial" id="NuevoNumeroControl_Especial">
@@ -203,6 +144,7 @@ session_start();
 
     use PhpOffice\PhpSpreadsheet\IOFactory;
 
+    
     // Verificar si se ha enviado un archivo
     if (isset($_FILES['archivo'])) {
         $archivo = $_FILES['archivo']['tmp_name'];
@@ -217,13 +159,7 @@ session_start();
             // Verificar si el usuario desea reemplazar los datos existentes
             if (isset($_POST['reemplazar']) && $_POST['reemplazar'] === 'si') {
                 // Eliminar los datos existentes de la tabla
-                $deleteQuery = "DELETE FROM alumnos";
-                if ($mysqli->query($deleteQuery)) {
-                // echo "Datos existentes eliminados correctamente.<br>";
-                } else {
-                    echo "Error al eliminar datos existentes: " . $mysqli->error . "<br>";
-                }
-                $deleteQuery = "DELETE FROM usuarios WHERE tipo_usuario = 'alumno'";
+                $deleteQuery = "DELETE FROM alumnosnormales";
                 if ($mysqli->query($deleteQuery)) {
                 // echo "Datos existentes eliminados correctamente.<br>";
                 } else {
@@ -245,13 +181,11 @@ session_start();
             $errorMsg = "";
 
             // Define un array de columnas que deben estar completas
-            $requiredColumns = array('A', 'B', 'C', 'D'); // Ejemplo: las columnas A, B, C y D son requeridas
+            $requiredColumns = array('A', 'B', 'C'); // Ejemplo: las columnas A, B, C y D son requeridas
 
             $nombreDeCarrerasVistos  = array();
             $numerosDeControlVistos = array();
             $nombreDeEstudianteVistos = array();
-            $nombreDeAnteproyectoVistos = array();
-
 
             $elementosDuplicados = false;
 
@@ -281,7 +215,7 @@ session_start();
                     $rowData[] = $cellValue;
             
                     // Verificar si el campo está vacío o contiene datos no válidos
-                    if (in_array($column, $requiredColumns) && (empty($cellValue) || !esValido($cellValue))) {
+                    if (in_array($column, $requiredColumns) && (empty($cellValue) || !esValidoNormal($cellValue))) {
                         $valid = false;
                         $errorMsg = "Error en la fila $i: Los datos de la columna $column son inválidos.";
             
@@ -324,23 +258,21 @@ session_start();
                 {
 
                     $Academia = $objPHPExcel->getActiveSheet()->getCell('A' . $i)->getValue();
-                    $NumerodeControl = $objPHPExcel->getActiveSheet()->getCell('B' . $i)->getValue();
-                    $NombredelEstudiante = $objPHPExcel->getActiveSheet()->getCell('C' . $i)->getValue();
-                    $NombredelAnteproyecto = $objPHPExcel->getActiveSheet()->getCell('D' . $i)->getValue();
+                    $NumeroDeControl = $objPHPExcel->getActiveSheet()->getCell('B' . $i)->getValue();
+                    $NombreDelEstudiante = $objPHPExcel->getActiveSheet()->getCell('C' . $i)->getValue();
 
                     $nombreDeCarrerasVistos[]   = $rowData[0];
                     $numerosDeControlVistos[] = $rowData[1];
                     $nombreDeEstudianteVistos[] =  $rowData[2];
-                    $nombreDeAnteproyectoVistos[] = $rowData[3];
                 
                     // Verificar si los datos no están vacíos antes de procesarlos
-                    if (!empty($Academia) && !empty($NumerodeControl) && !empty($NombredelEstudiante) && !empty($NombredelAnteproyecto)) {
-                        // Insertar los datos en la tabla "alumnos"
-                        $insertQueryAlumnos = "INSERT INTO alumnos (Academia, NumerodeControl, NombredelEstudiante, NombredelAnteproyecto) VALUES ('$rowData[0]', '$rowData[1]', '$rowData[2]', ' $rowData[3]')";
+                    if (!empty($Academia) && !empty($NumeroDeControl) && !empty($NombreDelEstudiante)) {
+                        // Insertar los datos en la tabla "alumnosNormales"
+                        $insertQueryAlumnosNormales = "INSERT INTO alumnosnormales (Academia, NumeroDeControl, NombreDelEstudiante) VALUES ('$rowData[0]', '$rowData[1]', '$rowData[2]')";
                         
-                        if ($mysqli->query($insertQueryAlumnos) ) {
+                        if ($mysqli->query($insertQueryAlumnosNormales) ) {
                             // Insertar usuario de alumno en la tabla "usuarios"
-                            $usuario = $rowData[1];
+                            /*$usuario = $rowData[1];
                             $contrasena = $rowData[1]; // Puedes establecer una contraseña predeterminada aquí
                             
                 
@@ -356,10 +288,10 @@ session_start();
                                 echo '<script>';
                                 echo 'mostrarErrorModal("' . addslashes($errorMsg) . '");';
                                 echo '</script>';
-                            }
+                            }*/
                         } else {
                             $valid = false;
-                            $errorMsg =  "Error al insertar datos en la tabla alumnos: " . $mysqli->error ;
+                            $errorMsg =  "Error al insertar datos en la tabla alumnosNormales: " . $mysqli->error ;
     
                             // Llama a una función JavaScript para mostrar el modal de error
                             echo '<script>';
@@ -368,15 +300,15 @@ session_start();
                             
                             
                         }
+                        
                     }
-                }
-            }        
+                }     
+            }
         }
     }
 
-
     // Función para verificar si un valor es válido (puedes personalizar esta función según tus requisitos)
-    function esValido($valor) {
+    function esValidoNormal($valor) {
         // Aquí puedes agregar lógica para verificar si el valor es válido.
         // Por ejemplo, verificar si es una cadena no vacía y no contiene caracteres especiales.
         // Puedes implementar tus propias reglas de validación.
@@ -398,7 +330,7 @@ session_start();
     // Verificar si se ha enviado una solicitud para eliminar una fila
     if (isset($_POST['eliminar'])) {
         $idEliminar = $_POST['eliminar'];
-        $deleteRowQuery = "DELETE FROM alumnos WHERE id = $idEliminar";
+        $deleteRowQuery = "DELETE FROM alumnosnormales WHERE id = $idEliminar";
         if ($mysqli->query($deleteRowQuery)) {
             //echo "Fila eliminada correctamente.<br>";
         } else {
@@ -407,19 +339,18 @@ session_start();
     }
     
     // Consulta SQL para seleccionar todos los registros de la tabla
-    $selectQuery = "SELECT * FROM alumnos";
+    $selectQuery = "SELECT * FROM alumnosnormales";
 
     // Ejecutar la consulta
     $result = $mysqli->query($selectQuery);
 
     if ($result) {
-        echo '<table border=2><tr><td>Academia</td><td>Numero de Control</td><td>Nombre del Estudiante</td><td>Nombre del Anteproyecto</td><td>Acción</td></tr>';
+        echo '<table border=2><tr><td>Academia</td><td>Numero de Control</td><td>Nombre del Estudiante</td><td>Acción</td></tr>';
         while ($row = $result->fetch_assoc()) {
             echo '<tr id="fila-' . $row['id'] . '">';
             echo '<td>'. $row['Academia'].'</td>';
-            echo '<td>'. $row['NumerodeControl'].'</td>';
-            echo '<td>'. $row['NombredelEstudiante'].'</td>';
-            echo '<td>'. $row['NombredelAnteproyecto'].'</td>';
+            echo '<td>'. $row['NumeroDeControl'].'</td>';
+            echo '<td>'. $row['NombreDelEstudiante'].'</td>';
             echo '<td>
             <button class="btn" onclick="eliminarFila(' . $row['id'] . ')">
                 <svg viewBox="0 0 15 17.5" height="17.5" width="15" xmlns="http://www.w3.org/2000/svg" class="icon">
@@ -427,7 +358,7 @@ session_start();
                 </svg>
             </button>
 
-            <button class="btn" onclick="abrirFormularioEdicion(' . $row['id'] . ' , \' ' . $row['Academia'] . ' \', \' ' . $row['NumerodeControl'] . ' \', \' ' . $row['NombredelEstudiante'] . ' \', \' ' . $row['NombredelAnteproyecto'] . ' \')">
+            <button class="btn" onclick="abrirFormularioEdicionEspecial(' . $row['id'] . ' , \' ' . $row['Academia'] . ' \', \' ' . $row['NumeroDeControl'] . ' \', \' ' . $row['NombreDelEstudiante'] . ' \')">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
                     <path d="M0 0h24v24H0z" fill="none"/>
                     <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
@@ -443,7 +374,6 @@ session_start();
     } else {
         echo "Error al consultar datos: " . $mysqli->error . "<br>";
     }
-    
 
     ?>
 
