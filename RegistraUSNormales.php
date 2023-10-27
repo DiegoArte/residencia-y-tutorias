@@ -76,10 +76,8 @@ session_start();
     </div>
 
     <!-- Barra Serch -->
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Buscar por Número de Control, Nombre de Carrera o Número de Semestre">
-        <button onclick="search()">Buscar</button>
-    </div>
+    <input type="text" id="searchInput" placeholder="Buscar" onkeyup="search()">
+
 
     <!-- Modal de edicion para los que no usan Anteproyecto -->
     <div id="editar-modal-especial" class="editar-modal modal" style="display: none;">
@@ -112,20 +110,20 @@ session_start();
     <div id="registro-modal-especial" class="registro-modal modal" style="display: none;">
         <div class="registro-modal-content modal-content">
             <span class="registro-close close" onclick="cerrarFormularioRegistroEspecial()">&times;</span>
-            <form action="INSERT.php" method="post" onsubmit="return validarFormularioRegistroEspecial();">
+            <form action="INSERT.php" method="post" accept-charset="UTF-8" onsubmit="return validarFormularioRegistroEspecial();">
                 <input type="hidden" name="tabla" value="alumnosnormales"> <!-- Campo oculto para el nombre de la tabla -->
                 <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraUSNormales.php"> <!-- Campo oculto para el nombre del archivo -->
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNumeroControl_Especial">Nuevo Número de Control:</label>
-                    <input type="text" name="NuevoNumeroControl__Especial" id="NuevoNumeroControl_Especial">
+                    <label for="NuevoNumeroControlNormal">Nuevo Número de Control:</label>
+                    <input type="text" name="NuevoNumeroControlNormal" id="NuevoNumeroControlNormal">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNombreCarrera_Especial">Nuevo Nombre de la Carrera:</label>
-                    <input type="text" name="NuevoNombreCarrera_Especial" id="NuevoNombreCarrera_Especial">
+                    <label for="NuevoNombreCarreraNormal">Nuevo Nombre de la Carrera:</label>
+                    <input type="text" name="NuevoNombreCarreraNormal" id="NuevoNombreCarreraNormal">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNombreAlumno_Especial">Nuevo Nombre de Alumno:</label>
-                    <input type="text" name="NuevoNombreAlumno_Especial" id="NuevoNombreAlumno_Especial">
+                    <label for="NuevoNombreAlumnoNormal">Nuevo Nombre de Alumno:</label>
+                    <input type="text" name="NuevoNombreAlumnoNormal" id="NuevoNombreAlumnoNormal">
                 </div>
                 <button type="submit" class="registro-guardar-btn guardar-btn">Guardar</button>
             </form>

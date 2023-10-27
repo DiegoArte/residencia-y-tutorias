@@ -3,7 +3,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Realiza una consulta para obtener el NumerodeControl basado en el id
-    require 'php/db.php';
+    require 'db.php';
 
     $mysqli=conectar();
 

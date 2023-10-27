@@ -136,10 +136,7 @@ session_start();
     </div>
 
     <!-- Barra Serch -->
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Buscar por Número de Control, Nombre de Carrera o Número de Semestre">
-        <button onclick="search()">Buscar</button>
-    </div>
+    <input type="text" id="searchInput" placeholder="Buscar" onkeyup="search()">
 
 
     

@@ -3,7 +3,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Realiza la eliminación en la base de datos (reemplaza "nombre_de_la_tabla" con el nombre de tu tabla)
-    require 'php/db.php';
+    require 'db.php';
 
     $mysqli=conectar();
 
