@@ -47,11 +47,11 @@
                         <div class="col mb-3">
                             <div class="form-floating">
                                 <select class="form-select" name="acade" id="acade">
-                                    <option value="ISC">Ingenieria en sistemas computacionales</option>
-                                    <option value="IGE">Ingenieria en gestion Empresarial</option>
-                                    <option value="IA">Ingeniereia en administracion</option>
-                                    <option value="IEM">Ingenieria en electromecanica</option>
-                                    <option value="II">Ingenieria industrial</option>
+                                    <option value="ISC">Ingeniería en sistemas computacionales</option>
+                                    <option value="IGE">Ingeniería en gestión Empresarial</option>
+                                    <option value="IA">Ingeniería en administración</option>
+                                    <option value="IEM">Ingeniería en electromecánica</option>
+                                    <option value="II">Ingeniería industrial</option>
                                     <option value="IGE">Contador público</option>
                                 </select>
                                 <label for="acade">Selecciona la carrera</label>
@@ -110,7 +110,7 @@
                         echo "<tr>";
                         echo "<td>" . $fila["NumerodeControl"] . "</td>";
                         echo "<td>" . $fila["NombredelEstudiante"] . "</td>";
-                        echo "<td><input type='checkbox' name='asistencia[]' value='" . $fila["NumerodeControl"] . "'></td>";
+                        echo "<td><input type='checkbox' name='asistencia[]' value='1'" . $fila["NumerodeControl"] . "'></td>";
                         echo "</tr>";
                     }
                 }
