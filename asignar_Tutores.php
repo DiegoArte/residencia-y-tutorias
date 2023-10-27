@@ -105,10 +105,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 $rowgru = Grupos::find("NumerodeControl='$row->Grupo'");
                 $rowdoc = Docentes::find("NumerodeControl='$row->Tutor'");
                 ?>
-                <td><?php echo $rowgru[0]->NombredelEstudiante; ?></td>
+                <td><?php echo $rowgru[0]->NombredeCarrera." ".$rowgru[0]->Semestre; ?></td>
                 <td><?php echo $rowdoc[0]->NombredelDocente; ?></td>
                 <td>
-                    <form action='php/eliminar_asesor.php' method='POST'>
+                    <form action='php/eliminar_registro.php' method='POST'>
                         <input type='hidden' name='alumno' value='<?php echo $row->Grupo; ?>'>
                         <input type='hidden' name='asesor' value='<?php echo $row->Tutor; ?>'>
                         <input type='submit' name='eliminar' value='Eliminar'>
