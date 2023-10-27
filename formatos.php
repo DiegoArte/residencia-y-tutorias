@@ -34,53 +34,39 @@
         <div class="tasks d-flex">
         </div>
         
-        <button class="beautiful-button">
-            Hoja de vida
-            </button>
+        <a href="hoja de vida/hv2.html"class="beautiful-button">Hoja de vida</a>
 
-        <button class="beautiful-button1">
-        Plan de acción
-        </button>
+        <a class="beautiful-button1">Plan de acción</a>
 
-        <button class="beautiful-button2">
-        Evaluación al docente
-        </button>
+        <a class="beautiful-button2">Evaluación al docente</a>
 
 
-       <button class="beautiful-button3">
-        Informe de resultados
-        </button>
+        <a class="beautiful-button3">
+        Informe de resultados</a>
 
 
-        <button class="beautiful-button4">
-        Formato de canalización
-        </button>
+        <a class="beautiful-button4">
+        Formato de canalización</a>
 
-       <button class="beautiful-button5">
-        Evaluación al alumno
-        </button>
+        <a class="beautiful-button5">
+        Evaluación al alumno</a>
 
 
-        <button class="beautiful-button6">
-        Informe parcial
-        </button>
+        <a class="beautiful-button6">
+        Informe parcial</a>
 
-        <button class="beautiful-button7">
-        Ficha técnica
-        </button>
+        <a class="beautiful-button7">
+        Ficha técnica</a>
 
-        <button class="beautiful-button8">
-        Diagnóstico original
-        </button>
+        <a class="beautiful-button8">
+        Diagnóstico original</a>
 
 
-        <button class="beautiful-button9">
-        Retícula
-        </button>
+        <a class="beautiful-button9">
+        Retícula</a>
 
-        <button class="beautiful-button10">
-        Lista de asistencia
-        </button>
+        <a class="beautiful-button10">
+        Lista de asistencia</a>
 
     </main>
 
