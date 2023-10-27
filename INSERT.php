@@ -6,7 +6,6 @@ $conn = conectarBaseDeDatos();
 $resultado = ''; // Inicializa la variable de resultado
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST['id'];
     $tabla = $_POST['tabla'];
 
     // Crear una función para validar si un número de control ya existe en la tabla ALUMNOS NORMALES
@@ -111,7 +110,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $campos = array(
                     'NumerodeControl' => $NuevoNumeroControl,
                     'Academia' => $NuevoNombreCarrera,
-                    'NombredelDocente' => $NuevoNombreDocente
+                    'NombredelDocente' => $NuevoNombreDocente,
+                    'Asesor'=>0,
+                    'Presidente'=>0,
+                    'Secretaria'=>0
                 );
 
                 $resultado = agregarRegistro($conn, $tabla, $campos);
