@@ -18,8 +18,9 @@ header {
     height: 70px;
     position: fixed;
     width: 100%;
-    background-color: var(--color7);
-    z-index: 1;
+    background-color: var(--color7); /* Corregir el nombre de la variable */
+    z-index: 100; /* Asegurarse de que z-index sea mayor que otros elementos */
+    top: 0;
 }
 
 .usuarioOp {
@@ -38,6 +39,6 @@ header {
 }
 
 .fixed {
-    background-color: var(--color7); 
+    background-color: var(--color7); /* Usar la variable correcta */
     position: fixed;
 }
