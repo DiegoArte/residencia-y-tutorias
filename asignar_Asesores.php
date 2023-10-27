@@ -98,8 +98,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     foreach($result_asesorados as $row) {
         ?>
             <tr>
-                <td><?php echo $row->Alumno; ?></td>
-                <td><?php echo $row->Asesor; ?></td>
+                <?php
+                $rowal = Alumnos::find("NumerodeControl='$row->Alumno'");
+                $rowdoc = Docentes::find("NumerodeControl='$row->Asesor'");
+                ?>
+                <td><?php echo $rowal[0]->NombredelEstudiante; ?></td>
+                <td><?php echo $rowdoc[0]->NombredelDocente; ?></td>
                 <td>
                     <form action='php/eliminar_asesor.php' method='POST'>
                         <input type='hidden' name='alumno' value='<?php echo $row->Alumno; ?>'>

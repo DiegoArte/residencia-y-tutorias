@@ -28,6 +28,10 @@ $conexion=conectar();
             $_SESSION['nombre'] = 'Administrador';
             header("Location: princi_Super_Admin.php");
             exit; // Termina el script después de la redirección
+        }elseif ($_SESSION['tipo_usuario'] === 'encargado tutorias') {
+            $_SESSION['nombre'] = 'Encargado de tuturias';
+            header("Location: asignar_Tutores.php");
+            exit;
         } elseif ($_SESSION['tipo_usuario'] === 'docente') {
             $sql = "SELECT NombredelDocente FROM docentes WHERE NumerodeControl = '$numControl'";
             $resultado = $conexion->query($sql);

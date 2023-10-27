@@ -3,6 +3,9 @@ include 'databaseUPDATE.php';
 
 $conn = conectarBaseDeDatos();
 
+$conn->set_charset("utf8"); // Configura el juego de caracteres
+$conn->query("SET lc_messages = 'es_ES'"); // Cambia la localización a español
+
 $resultado = ''; // Inicializa la variable de resultado
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -77,51 +80,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     } elseif ($tabla === 'alumnos') {
 
-        $tipo = $_POST["tipo"];
-
-        if ($tipo === "residente") {
-            $NumerodeControl = trim($_POST['NumerodeControl']);
-            $Academia = trim($_POST['Academia']);
-            $NombredelEstudiante = trim($_POST['NombredelEstudiante']);
-            $NombredelAnteproyecto = trim($_POST['NombredelAnteproyecto']);
+        $NumerodeControl = trim($_POST['NumerodeControl']);
+        $Academia = trim($_POST['Academia']);
+        $NombredelEstudiante = trim($_POST['NombredelEstudiante']);
+        $NombredelAnteproyecto = trim($_POST['NombredelAnteproyecto']);
+    
+        $campos = [
+            'NumerodeControl' => $NumerodeControl,
+            'Academia' => $Academia,
+            'NombredelEstudiante' => $NombredelEstudiante,
+            'NombredelAnteproyecto' => $NombredelAnteproyecto,
+        ];
+    
+        $resultado = actualizarTabla($conn, $tabla, $id, $campos);
+   
+    } elseif ($tabla === "alumnosnormales"){
+        $NumerodeControlNormal = trim($_POST['NumerodeControlNormal']);
+        $AcademiaNormal = trim($_POST['AcademiaNormal']);
+        $NombredelEstudianteNormal = trim($_POST['NombredelEstudianteNormal']);
         
-            $campos = [
-                'NumerodeControl' => $NumerodeControl,
-                'Academia' => $Academia,
-                'NombredelEstudiante' => $NombredelEstudiante,
-                'NombredelAnteproyecto' => $NombredelAnteproyecto,
-            ];
+        $campos = [
+            'NumeroDeControl' => $NumerodeControlNormal,
+            'Academia' => $AcademiaNormal,
+            'NombreDelEstudiante' => $NombredelEstudianteNormal,
+        ];
         
-            $resultado = actualizarTabla($conn, $tabla, $id, $campos);
-        
-        } elseif ($tipo === "normal") {
-            $NumerodeControl_Especial = trim($_POST['NumerodeControl_Especial']);
-            $Academia_Especial = trim($_POST['Academia_Especial']);
-            $NombredelEstudiante_Especial = trim($_POST['NombredelEstudiante_Especial']);
-            $NombredelAnteproyecto_Especial = null;
-              
-            // Prepara una consulta SQL segura
-            $sql = "UPDATE alumnos SET NumerodeControl=?, Academia=?, NombredelEstudiante=?, NombredelAnteproyecto=? WHERE id=?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssssi", $NumerodeControl_Especial, $Academia_Especial, $NombredelEstudiante_Especial, $NombredelAnteproyecto_Especial, $id);
-
-            if ($stmt->execute()) {
-
-                error_log("ID: " . $id); // Agregar esto para depurar
-                error_log("NumerodeControl: " . $NumerodeControl); // Agregar esto para depurar
-                error_log("Academia: " . $Academia); // Agregar esto para depurar
-                error_log("NombredelEstudiante: " . $NombredelEstudiante); // Agregar esto para depurar
-
-                $resultado = "La actualización se realizó con éxito.";
-
-            } else {
-                $resultado = "Error en la actualización: " . $stmt->error;
-            }
-
-            $stmt->close();
-        }
-        
-        
+        $resultado = actualizarTabla($conn, $tabla, $id, $campos);
 
     }
 

@@ -36,7 +36,7 @@
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre del proyecto</label>
-                                <input type="text" id="nombreproyecto" name="nombreproyecto" class="form-control" required>
+                                <input type="text" id="nombreproyecto" name="nombreproyecto" class="form-control" required readonly value="<?php echo $alumno['NombredelAnteproyecto'] ?>">
                             </div>
                         </div>
                     </div>

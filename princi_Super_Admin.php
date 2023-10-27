@@ -1,6 +1,6 @@
 <?php
 session_start();
-$carrera=$_GET['carrera'];
+$carrera=$_GET['carrera']??"";
 ?>
 
 <!DOCTYPE html>
@@ -44,10 +44,17 @@ $carrera=$_GET['carrera'];
 
     <a href="RegistraCarrera.php" class="boton1">Registrar Carrera</a>
     <a href="RegistraDOC.php" class="boton2">Registrar Docente</a>
-    <a href="RegistraUS.php" class="boton3">Registrar Alumno</a>
+    <?php
+        if($_SESSION['pagina']=='resdencia'){
+            ?>
+                <a href="RegistraUS.php" class="boton3">Registrar Alumno</a>
+            <?php
+        }
+    ?>
     <?php
         if($_SESSION['pagina']=='tutorias'){
             ?>
+            <a href="RegistraUSNormales.php" class="boton3">Registrar Alumno</a>
             <a href="RegistraGrupo.php" class="boton1 boton4">Registrar Grupo</a>
             <a href="RegistraMaterias.php" class="boton1 boton5">Registrar Materia</a>
             <?php
@@ -137,7 +144,7 @@ $conn=conectar();
                     }
                     
                     echo '<div class="button-cell">';
-                    echo '<a href="Anteproyecto v.7/ADMIN/index.php"><button class="custom-button" type="submit" name="button_id" value="' . $row["NombredeCarrera"] . '">' . $row["NombredeCarrera"] . '</button></a>';
+                    echo '<a href="Anteproyecto v.8/ADMIN/index.php"><button class="custom-button" type="submit" name="button_id" value="' . $row["NombredeCarrera"] . '">' . $row["NombredeCarrera"] . '</button></a>';
                     echo '</div>';
                     
                     $counter++;
