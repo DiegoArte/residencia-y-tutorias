@@ -9,14 +9,16 @@
             <div class="modal-body">
 
                 <form action="../includes/upload.php" method="POST" enctype="multipart/form-data">
-
-
+                <?php
+                $consulta = mysqli_query($conexion, "SELECT * FROM alumnos WHERE NumerodeControl='$id'");
+                $alumno = mysqli_fetch_assoc($consulta)
+                ?>
                 
                 <div class="row">
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Id</label>
-                                <input type="text" id="idalumno" name="idalumno" class="form-control" required>
+                                <input type="text" id="idalumno" name="idalumno" class="form-control" required readonly value="<?php echo $id ?>">
 
                             </div>
                         </div>
@@ -26,7 +28,7 @@
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre del alumno</label>
-                                <input type="text" id="nombrealumno" name="nombrealumno" class="form-control" required>
+                                <input type="text" id="nombrealumno" name="nombrealumno" class="form-control" required readonly value="<?php echo $alumno['NombredelEstudiante'] ?>">
 
                             </div>
                         </div>
@@ -35,7 +37,7 @@
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre del proyecto</label>
-                                <input type="text" id="nombreproyecto" name="nombreproyecto" class="form-control" required>
+                                <input type="text" id="nombreproyecto" name="nombreproyecto" class="form-control" required readonly value="<?php echo $alumno['NombredelAnteproyecto'] ?>">
                             </div>
                         </div>
                     </div>

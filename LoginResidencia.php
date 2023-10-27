@@ -36,15 +36,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if($resultado['Presidente']==1) {
                 header("Location: asignar_Asesores.php");
             } else{
-                header("Location: Anteproyecto v.7/ADMIN/index.php");
+                header("Location: Anteproyecto v.8/ADMIN/index.php");
             }
             exit;
         } elseif ($_SESSION['tipo_usuario'] === 'alumno') {
             $sql = "SELECT NombredelEstudiante FROM alumnos WHERE NumerodeControl = '$numControl'";
             $resultado = $conexion->query($sql);
             $resultado=$resultado->fetch_assoc();
-            $_SESSION['nombre'] = $resultado['NombredelDocente'];
-            header("Location: Anteproyecto v.7/USER/index.php");
+            $_SESSION['nombre'] = $resultado['NombredelEstudiante'];
+            header("Location: Anteproyecto v.8/USER/index.php");
             exit;
         }
     } else {

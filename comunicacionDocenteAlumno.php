@@ -37,15 +37,18 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 </head>
 <body>
     <header class="fixed w-100">
-        <a href="Anteproyecto v.7/ADMIN/index.php" class="back-arrow rounded-pill d-flex justify-content-start">
+        <a href="<?php if ($_SESSION['tipo_usuario'] === 'docente'){ echo 'Anteproyecto v.8/ADMIN/index.php'; } elseif ($_SESSION['tipo_usuario'] === 'alumno'){ echo 'Anteproyecto v.8/USER/index.php'; } ?>" class="back-arrow rounded-pill d-flex justify-content-start">
             <img src="img/back.svg" alt="" height="50">
             <span class="regresar d-none text-white m-auto">Regresar</span>
         </a>
         <div class="usuarioOp d-flex justify-content-end">
             <img src="img/profile.png" alt="" >
-            <p>Usuario</p>
+            <?php
+            $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+            echo '<p>' . $nombre . '</p>';
+            ?>
             <div class="dropdown-content">
-                <a href="#">Cerrar sesión</a>
+                <a href="logout.php">Cerrar sesión</a>
             </div>
         </div>
     </header>
