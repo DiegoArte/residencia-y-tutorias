@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["eliminar"])) {
         echo "Error al eliminar el registro: ";
     }
 
-    header("Location: ../asignar_Tutores.php");
+    header("Location: ../asignar_Asesores.php");
     exit();
 }
 

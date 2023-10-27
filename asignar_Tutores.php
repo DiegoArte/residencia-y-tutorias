@@ -1,3 +1,9 @@
+<?php
+
+use Svg\Tag\Group;
+
+session_start();
+?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -14,7 +20,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">
 
-    <title>Asignar tutores a grupos</title>
+    <title>Asignar tutores</title>
 
 </head>
 
@@ -28,147 +34,96 @@
 
 
 <header class="fixed w-100">
-    <div class="usuarioOp d-flex justify-content-end">
-        <img src="img/profile.png" alt="" >
-        <p>Usuario</p>
-        <a href="#">Cerrar sesión</a>
+<div class="usuarioOp d-flex justify-content-end">
+    <img src="img/profile.png" alt="" >
+    <?php
+            $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+            echo '<p>' . $nombre . '</p>';
+            ?>
+            <div class="dropdown-content">
+                <a href="logout.php">Cerrar sesión</a>
     </div>
-    <h4 id="titulo">Asignar Tutores a Grupos:</h4>
 </header>
 
 
 <?php
-
-require 'php/db.php';
-
-$conn=conectar();
-
-
+require 'php/app.php';
+require 'php/Grupos.php';
+require 'php/Docentes.php';
+require 'php/Tutorados.php';
 
 // Mostrar el formulario de selección de nombre
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $sql_alum = "SELECT DISTINCT NombredeCarrera, Semestre, NumerodeControl FROM grupos";
-    $result_alum = $conn->query($sql_alum);
-    $sql_doc = "SELECT DISTINCT NombredelDocente, NumerodeControl FROM docentes";
-    $result_doc = $conn->query($sql_doc);
+    $result_alum = Grupos::find("NumerodeControl NOT IN (SELECT Grupo FROM tabla_tutorados)");
+    $result_doc = Docentes::all();
+    ?>
 
-    if ($result_alum->num_rows > 0) {
-        echo "<html>";
-        echo "<body>";
+    <h4 id='alum'>Grupos</h4>
+    <form action='php/guardar_asigado.php' method='POST'>
+    <select id='alumnos' name='Lista1'>
+    <?php
+    foreach($result_alum as $row) {
+    ?>
+        <option value='<?php echo $row->NumerodeControl; ?>'> <?php echo $row->NombredeCarrera." ".$row->Semestre; ?></option>
+    <?php
+    }?>
+    </select>
 
-        echo "<h4 id='alum'>Grupos</h4>";
-        echo "<form action='php/guardar_asigado.php' method='POST'>";
-        echo "<select id='alumnos' name='Lista1'>";
-        while ($row = $result_alum->fetch_assoc()) {
-            echo "<option value='" . $row["NumerodeControl"] . "'>" . $row["NombredeCarrera"] ." ". $row["Semestre"] ."</option>";
-        }
-        echo "</select>";
-
-        echo "<h4 id='asig'>Asignar a:</h4>";
-        
-        echo "<h4 id='doc'>Docentes</h4>";
-        echo "<select id='docentes' name='Lista2'>";
-
-        while ($row = $result_doc->fetch_assoc()) {
-            echo "<option value='" . $row["NumerodeControl"] . "'>" . $row["NombredelDocente"] ." ". "</option>";
-        }
-        echo "</select>";
-
-        echo "<input type='submit' class='enviar' value='Asignar'>";
-        echo "</form>";
-
-        // Consulta SQL para obtener los datos de la tabla asesorados
-        $sql_asesorados = "SELECT grupo, tutor FROM tabla_tutorados";
-        $result_asesorados = $conn->query($sql_asesorados);
-
-        echo "<table>";
-        echo "    <thead>";
-        echo "        <tr>";
-        echo "            <th>Grupos</th>";
-        echo "            <th>Tutores</th>";
-        echo "            <th></th>";
-        echo "        </tr>";
-        echo "    </thead>";
-
-        echo "    <tbody>";
-
-        while ($row = $result_asesorados->fetch_assoc()) {
-            echo "       <tr>";
-            echo "            <td>" . $row["grupo"] . "</td>";
-            echo "            <td>" . $row["tutor"] . "</td>";
-            echo "            <td>";
-            echo "            <form action='php/eliminar_registro.php' method='POST'>";
-            echo "                <input type='hidden' name='alumno' value='" . $row["grupo"] . "'>";
-            echo "                <input type='hidden' name='asesor' value='" . $row["tutor"] . "'>";
-            echo "                <input type='submit' name='eliminar' value='Eliminar'>";
-            echo "            </form>";
-            echo "            </td>";
-            echo "        </tr>";
-        }
-
-        echo "    </tbody>";
-        echo "</table>";
-
-        echo "</body>";
-        echo "</html>";
-    }
+    <h4 id='asig'>Asignar a:</h4>
     
-    else {
-        // Consulta SQL para obtener los datos de la tabla asesorados
-        $sql_asesorados = "SELECT grupo, tutor FROM tabla_tutorados";
-        $result_asesorados = $conn->query($sql_asesorados);
+    <h4 id='doc'>Docentes</h4>
+    <select id='docentes' name='Lista2'>
+    <?php
+    foreach($result_doc as $row) {
+        ?>
+        <option value='<?php echo $row->NumerodeControl; ?>'> <?php echo $row->NombredelDocente; ?></option>
+    <?php
+    }?>
+    </select>
 
-        echo "<h4 id='alum'>Grupos</h4>";
-        echo "<select id='alumnos' name='Lista1'>";
-        echo "</select>";
+    <input type='submit' class='enviar' value='Asignar'>
+    "</form>
+    <?php
+    // Consulta SQL para obtener los datos de la tabla asesorados
+    $result_asesorados = Tutorados::all();
+    ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Grupos</th>
+                <th>Tutores</th>
+                <th></th>
+            </tr>   
+        </thead>
 
-        echo "<h4 id='asig'>Asignar a:</h4>";
-
-        echo "<h4 id='doc'>Docentes</h4>";
-            echo "<select id='docentes' name='Lista2'>";
-
-            while ($row = $result_doc->fetch_assoc()) {
-                echo "<option value='" . $row["grupo"] . "'>" . $row["grupo"] . "</option>";
-            }
-        echo "</select>";
-
-        echo "<input type='submit' class='enviar' value='Asignar'>";
-        echo "<h5 id='sinDatos'>No hay grupos para ser asignados</h5>";
-
-        echo "<table>";
-        echo "    <thead>";
-        echo "        <tr>";
-        echo "            <th>Grupos</th>";
-        echo "            <th>Tutores</th>";
-        echo "            <th></th>";
-        echo "        </tr>";
-        echo "    </thead>";
-
-        echo "    <tbody>";
-
-        while ($row = $result_asesorados->fetch_assoc()) {
-            echo "       <tr>";
-            echo "            <td>" . $row["grupo"] . "</td>";
-            echo "            <td>" . $row["tutor"] . "</td>";
-            echo "            <td>";
-            echo "            <form action='php/eliminar_registro.php' method='POST'>";
-            echo "                <input type='hidden' name='alumno' value='" . $row["grupo"] . "'>";
-            echo "                <input type='hidden' name='asesor' value='" . $row["tutor"] . "'>";
-            echo "                <input type='submit' name='eliminar' value='Eliminar'>";
-            echo "            </form>";
-            echo "            </td>";
-            echo "        </tr>";
-        }
-
-        echo "    </tbody>";
-        echo "</table>";
-
-        echo "</body>";
-        echo "</html>";
+        <tbody> 
+    <?php
+    foreach($result_asesorados as $row) {
+        ?>
+            <tr>
+                <?php
+                $rowgru = Grupos::find("NumerodeControl='$row->Grupo'");
+                $rowdoc = Docentes::find("NumerodeControl='$row->Tutor'");
+                ?>
+                <td><?php echo $rowgru[0]->NombredelEstudiante; ?></td>
+                <td><?php echo $rowdoc[0]->NombredelDocente; ?></td>
+                <td>
+                    <form action='php/eliminar_asesor.php' method='POST'>
+                        <input type='hidden' name='alumno' value='<?php echo $row->Grupo; ?>'>
+                        <input type='hidden' name='asesor' value='<?php echo $row->Tutor; ?>'>
+                        <input type='submit' name='eliminar' value='Eliminar'>
+                    </form>
+                </td>
+            </tr>
+        <?php
     }
+        ?>
+
+        </tbody>
+    </table>
+    <?php
 }
 
-$conn->close();
 ?>
 
 

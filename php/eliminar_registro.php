@@ -1,31 +1,20 @@
 <?php
 
-// Crear una conexión
-require 'php/db.php';
-
-    $conn=conectar();
+require 'app.php';
+require 'Tutorados.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["eliminar"])) {
     $alumno = $_POST["alumno"];
     $asesor = $_POST["asesor"];
 
     // Consulta SQL para eliminar el registro
-    $sql_eliminar = "DELETE FROM tabla_tutorados WHERE Grupo = '$alumno' AND Tutor = '$asesor'";
+    $sql_eliminar = Tutorados::eliminar("Grupo = '$alumno' AND Tutor = '$asesor'");
 
-    if ($conn->query($sql_eliminar) === TRUE) {
+    if ($sql_eliminar) {
         echo "Registro insertado exitosamente.";
     } else {
-        echo "Error al eliminar el registro: " . $conn->error;
+        echo "Error al eliminar el registro: ";
     }
-
-    $sql_generar = "INSERT INTO `grupos` (`NumerodeControl`) VALUES ('$alumno')";
-
-    if ($conn->query($sql_generar) === TRUE) {
-        echo "Registro insertado exitosamente.";
-    } else {
-        echo "Error al eliminar el registro: " . $conn->error;
-    }
-
 
     header("Location: ../asignar_Tutores.php");
     exit();

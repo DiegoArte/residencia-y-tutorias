@@ -1,6 +1,6 @@
 <?php
 session_start();
-$carrera=$_GET['carrera'];
+$carrera=$_GET['carrera']??"";
 ?>
 
 <!DOCTYPE html>
