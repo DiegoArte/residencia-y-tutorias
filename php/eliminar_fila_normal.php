@@ -7,13 +7,13 @@ if (isset($_GET['id'])) {
 
     $mysqli=conectar();
 
-    $deleteQuery = "DELETE FROM grupos WHERE id = ?";
+    $deleteQuery = "DELETE FROM alumnosnormales WHERE id = ?";
     $stmt = $mysqli->prepare($deleteQuery);
     $stmt->bind_param("i", $id);
 
     if ($stmt->execute()) {
         // Redirige de nuevo a la página principal o a donde desees después de eliminar
-        header("Location: ../RegistraGrupo.php");
+        header("Location: ../RegistraUSNormales.php");
         exit();
     } else {
         echo "Error al eliminar fila: " . $stmt->error;

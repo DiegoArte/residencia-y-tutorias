@@ -26,10 +26,10 @@ function mostrarBotonEliminar(id) {
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-var filaIdEliminar; // Variable global para almacenar el ID de la fila que se va a eliminar
+var filaIdEliminarNormal; // Variable global para almacenar el ID de la fila que se va a eliminar
 
-function eliminarFila(id) {
-    filaIdEliminar = id;
+function eliminarFilaNormal(id) {
+    filaIdEliminarNormal = id;
     // Muestra el modal
     var modal = document.getElementById("eliminarModal");
     modal.style.display = "block";
@@ -41,7 +41,7 @@ function confirmarEliminar() {
     modal.style.display = "none";
     
     // Redirige para eliminar la fila
-    window.location.href = "php/eliminar_fila.php?id=" + filaIdEliminar;
+    window.location.href = "php/eliminar_fila_normal.php?id=" + filaIdEliminarNormal;
 }
 
 function cancelarEliminar() {
@@ -59,108 +59,6 @@ function cerrarErrorModal() {
     document.getElementById('errorModal').style.display = 'none';
 }
 
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-function abrirFormularioEdicion(id, Academia, NumerodeControl, NombredelEstudiante,NombredelAnteproyecto) {
-    // Muestra el formulario modal
-    var modal = document.getElementById('editar-modal');
-    modal.style.display = 'block';
-
-    // Llena los campos del formulario con los datos de la fila correspondiente
-    document.getElementById('editar-id').value = id;
-    document.getElementById('Academia').value = Academia;
-    document.getElementById('NumerodeControl').value = NumerodeControl;
-    document.getElementById('NombredelEstudiante').value = NombredelEstudiante;
-    document.getElementById('NombredelAnteproyecto').value = NombredelAnteproyecto;
-}
-
-
-function cerrarFormularioEdicion() {
-    // Oculta el modal
-    var modal = document.getElementById("editar-modal");
-    modal.style.display = "none";
-}
-
-function validarFormulario() {
-    // Obtén los valores de los campos
-    var numeroControl = document.getElementById("NumerodeControl").value;
-    var nombreAcademia = document.getElementById("Academia").value;
-    var nombreEstudiante = document.getElementById("NombredelEstudiante").value;
-    var nombreAnteproyecto = document.getElementById("NombredelAnteproyecto").value;
-
-    // Expresión regular para validar que los campos no contengan caracteres especiales
-    var expresion = /^[a-zA-Z0-9\s]+$/;
-
-    if (numeroControl === "" || nombreAcademia === "" || nombreEstudiante === "" || nombreAnteproyecto === "") {
-        Swal.fire({
-            title: 'Llena todos los campos',
-            text: 'Asegúrate de llenar todos los campos',
-            icon: 'error',
-            confirmButtonText: 'Cerrar',
-            confirmButtonColor: '#197B7A' 
-        });
-        return false;
-    } else if (!expresion.test(numeroControl) || !expresion.test(nombreAcademia) || !expresion.test(nombreEstudiante) || !expresion.test(nombreAnteproyecto)) {
-        Swal.fire({
-            title: 'Campo(s) inválido(s)',
-            text: "Los campos no deben contener caracteres especiales",
-            icon: 'warning',
-            confirmButtonColor: '#3085d6',
-          })
-        return false;
-    }
-
-    // Si todo está bien, el formulario se envía
-    return true;
-}   
-
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-function abrirFormularioRegistro() {
-    // Muestra el formulario modal de registro
-    var modal = document.getElementById('registro-modal');
-    modal.style.display = 'block';
-}
-
-function cerrarFormularioRegistro() {
-    // Oculta el formulario modal de registro
-    var modal = document.getElementById('registro-modal');
-    modal.style.display = 'none';
-}
-
-function validarFormularioRegistro() {
-    // Obtén los valores de los campos
-    var NuevoNumeroControl = document.getElementById("NuevoNumeroControl").value;
-    var NuevoNombreCarrera = document.getElementById("NuevoNombreCarrera").value;
-    var NuevoNombreAlumno = document.getElementById("NuevoNombreAlumno").value;
-    var NuevoNombreAnteproyecto = document.getElementById("NuevoNombreAnteproyecto").value;
-
-
-    // Expresión regular para validar que los campos no contengan caracteres especiales
-    var expresion = /^[a-zA-Z0-9\s]+$/;
-
-    if (NuevoNumeroControl === "" ||NuevoNombreCarrera === ""  || NuevoNombreAlumno === ""  || NuevoNombreAnteproyecto === "" ) {
-        Swal.fire({
-            title: 'Llena todos los campos',
-            text: 'Asegúrate de llenar todos los campos',
-            icon: 'error',
-            confirmButtonText: 'Cerrar',
-            confirmButtonColor: '#197B7A'
-        });
-        return false;
-    } else if (!expresión.test(NuevoNumeroControl) || !expresión.test(NuevoNombreCarrera) || !expresión.test(NuevoNombreAlumno) || !expresión.test(NuevoNombreAnteproyecto)) {
-        Swal.fire({
-            title: 'Campo(s) inválido(s)',
-            text: "Los campos no deben contener caracteres especiales",
-            icon: 'warning',
-            confirmButtonColor: '#3085d6',
-        });
-        return false;
-    }
-
-    // Si todo está bien, el formulario se envía
-    return true;
-}
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -185,6 +83,8 @@ function search() {
         rows[i].style.display = shouldDisplay ? '' : 'none';
     }
 }
+
+
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -255,9 +155,9 @@ function cerrarFormularioRegistroEspecial() {
 
 function validarFormularioRegistroEspecial() {
     // Obtén los valores de los campos
-    var NuevoNumeroControl = document.getElementById("NumerodeControlNormal").value;
-    var NuevoNombreCarrera = document.getElementById("AcademiaNormal").value;
-    var NuevoNombreAlumno = document.getElementById("NombredelEstudianteNormal").value;
+    var NuevoNumeroControl = document.getElementById("NuevoNumeroControlNormal").value;
+    var NuevoNombreCarrera = document.getElementById("NuevoNombreCarreraNormal").value;
+    var NuevoNombreAlumno = document.getElementById("NuevoNombreAlumnoNormal").value;
 
 
     // Expresión regular para validar que los campos no contengan caracteres especiales

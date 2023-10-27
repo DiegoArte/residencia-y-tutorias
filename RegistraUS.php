@@ -81,7 +81,6 @@ session_start();
             <span class="editar-close close" onclick="cerrarFormularioEdicion()">&times;</span>
             <form action="UPDATE.php" method="post" onsubmit="return validarFormulario();">
                 <input type="hidden" name="tabla" value="alumnos"> <!-- Campo oculto para el nombre de la tabla -->
-                <input type="hidden" name="tipo" value="residente"> <!-- Campo oculto para el nombre de la tabla -->
                 <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraUS.php"> <!-- Campo oculto para el nombre del archivo -->
                 <input type="hidden" name="id" id="editar-id" value="">
                 <div class="editar-form-group form-group">
@@ -113,7 +112,6 @@ session_start();
             <span class="registro-close close" onclick="cerrarFormularioRegistro()">&times;</span>
             <form action="INSERT.php" method="post" onsubmit="return validarFormularioRegistro();">
                 <input type="hidden" name="tabla" value="alumnos"> <!-- Campo oculto para el nombre de la tabla -->
-                <input type="hidden" name="tipo" value="residente"> <!-- Campo oculto para el nombre de la tabla -->
                 <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraUS.php"> <!-- Campo oculto para el nombre del archivo -->
                 <div class="registro-form-group form-group">
                     <label for="NuevoNumeroControl">Nuevo Número de Control:</label>
@@ -137,63 +135,7 @@ session_start();
     </div>
 
     <!-- Barra Serch -->
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Buscar por Número de Control, Nombre de Carrera o Número de Semestre">
-        <button onclick="search()">Buscar</button>
-    </div>
-
-    <!-- Modal de edicion para los que no usan Anteproyecto -->
-    <div id="editar-modal-especial" class="editar-modal modal" style="display: none;">
-        <div class="editar-modal-content modal-content">
-            <span class="editar-close close" onclick="cerrarFormularioEdicionEspecial()">&times;</span>
-            <form action="UPDATE.php" method="post" onsubmit="return validarFormularioEspecial();">
-                <input type="hidden" name="tabla" value="alumnos"> <!-- Campo oculto para el nombre de la tabla -->
-                <input type="hidden" name="tipo" value="normal"> <!-- Campo oculto para el nombre de la tabla -->
-                <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraUS.php"> <!-- Campo oculto para el nombre del archivo -->
-                <input type="hidden" name="idNormal" id="editar-idNormal" value="">
-                <div class="editar-form-group form-group">
-                    <label for="Academia_Especial">Academia:</label>
-                    <input type="text" name="Academia_Especial" id="Academia_Especial">
-                </div>
-                <div class="editar-form-group form-group">
-                    <label for="NumerodeControl_Especial">Número de Control:</label>
-                    <input type="text" name="NumerodeControl_Especial" id="NumerodeControl_Especial">
-                </div>
-                <div class="editar-form-group form-group">
-                    <label for="NombredelEstudiante_Especial">Nombre del Estudiante:</label>
-                    <input type="text" name="NombredelEstudiante_Especial" id="NombredelEstudiante_Especial">
-                </div>
-                <button type="submit" class="editar-guardar-btn guardar-btn">GuardarR</button>
-            </form>
-        </div>
-    </div>
-
-    <button id="nuevoRegistroButton"  onclick="abrirFormularioRegistroEspecial()" >Nuevo Registro</button>
-
-    <!-- Modal de registro para los que no usan Anteproyecto -->
-    <div id="registro-modal-especial" class="registro-modal modal" style="display: none;">
-        <div class="registro-modal-content modal-content">
-            <span class="registro-close close" onclick="cerrarFormularioRegistroEspecial()">&times;</span>
-            <form action="INSERT.php" method="post" onsubmit="return validarFormularioRegistroEspecial();">
-                <input type="hidden" name="tabla" value="alumnos"> <!-- Campo oculto para el nombre de la tabla -->
-                <input type="hidden" name="tipo" value="normal"> <!-- Campo oculto para el nombre de la tabla -->
-                <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraUS.php"> <!-- Campo oculto para el nombre del archivo -->
-                <div class="registro-form-group form-group">
-                    <label for="NuevoNumeroControl_Especial">Nuevo Número de Control:</label>
-                    <input type="text" name="NuevoNumeroControl__Especial" id="NuevoNumeroControl_Especial">
-                </div>
-                <div class="registro-form-group form-group">
-                    <label for="NuevoNombreCarrera_Especial">Nuevo Nombre de la Carrera:</label>
-                    <input type="text" name="NuevoNombreCarrera_Especial" id="NuevoNombreCarrera_Especial">
-                </div>
-                <div class="registro-form-group form-group">
-                    <label for="NuevoNombreAlumno_Especial">Nuevo Nombre de Alumno:</label>
-                    <input type="text" name="NuevoNombreAlumno_Especial" id="NuevoNombreAlumno_Especial">
-                </div>
-                <button type="submit" class="registro-guardar-btn guardar-btn">Guardar</button>
-            </form>
-        </div>
-    </div>
+    <input type="text" id="searchInput" placeholder="Buscar" onkeyup="search()">
 
     <?php
     require 'php/db.php';
@@ -223,13 +165,13 @@ session_start();
                 // Eliminar los datos existentes de la tabla
                 $deleteQuery = "DELETE FROM alumnos";
                 if ($mysqli->query($deleteQuery)) {
-                   // echo "Datos existentes eliminados correctamente.<br>";
+                // echo "Datos existentes eliminados correctamente.<br>";
                 } else {
                     echo "Error al eliminar datos existentes: " . $mysqli->error . "<br>";
                 }
                 $deleteQuery = "DELETE FROM usuarios WHERE tipo_usuario = 'alumno'";
                 if ($mysqli->query($deleteQuery)) {
-                   // echo "Datos existentes eliminados correctamente.<br>";
+                // echo "Datos existentes eliminados correctamente.<br>";
                 } else {
                     echo "Error al eliminar datos existentes: " . $mysqli->error . "<br>";
                 }
@@ -374,10 +316,7 @@ session_start();
                         }
                     }
                 }
-            
-               
-            }
-            
+            }        
         }
     }
 
@@ -412,46 +351,7 @@ session_start();
             echo "Error al eliminar fila: " . $mysqli->error . "<br>";
         }
     }
-
-    if($_SESSION['pagina']=='tutorias'){
-    // Consulta SQL para seleccionar todos los registros de la tabla
-    $selectQuery = "SELECT * FROM alumnos";
-
-    // Ejecutar la consulta
-    $result = $mysqli->query($selectQuery);
-
-    if ($result) {
-        echo '<table border=2><tr><td>Academia</td><td>Numero de Control</td><td>Nombre del Estudiante</td><td>Acción</td></tr>';
-        while ($row = $result->fetch_assoc()) {
-            echo '<tr id="fila-' . $row['id'] . '">';
-            echo '<td>'. $row['Academia'].'</td>';
-            echo '<td>'. $row['NumerodeControl'].'</td>';
-            echo '<td>'. $row['NombredelEstudiante'].'</td>';
-            echo '<td>
-            <button class="btn" onclick="eliminarFila(' . $row['id'] . ')">
-                <svg viewBox="0 0 15 17.5" height="17.5" width="15" xmlns="http://www.w3.org/2000/svg" class="icon">
-                    <path transform="translate(-2.5 -1.25)" d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z" id="Fill"></path>
-                </svg>
-            </button>
-
-            <button class="btn" onclick="abrirFormularioEdicionEspecial(' . $row['id'] . ' , \' ' . $row['Academia'] . ' \', \' ' . $row['NumerodeControl'] . ' \', \' ' . $row['NombredelEstudiante'] . ' \')">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-                    <path d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-                </svg>
-            </button>
-  
-            </td>';
-
-            echo '</tr>';
-        }
-        echo '</table>';
-        $result->free(); // Liberar el resultado
-    } else {
-        echo "Error al consultar datos: " . $mysqli->error . "<br>";
-    }
-
-}else{
+    
     // Consulta SQL para seleccionar todos los registros de la tabla
     $selectQuery = "SELECT * FROM alumnos";
 
@@ -479,7 +379,7 @@ session_start();
                     <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
                 </svg>
             </button>
-  
+
             </td>';
 
             echo '</tr>';
@@ -489,7 +389,7 @@ session_start();
     } else {
         echo "Error al consultar datos: " . $mysqli->error . "<br>";
     }
-}
+    
 
     ?>
 
