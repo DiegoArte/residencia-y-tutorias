@@ -14,7 +14,7 @@
 
  table {
     border-collapse: collapse;
-    width: 250%;
+    width: 210%;
     margin: 20px auto;
     margin-left: 5%;
     margin-top: 40px;
@@ -31,10 +31,21 @@
 /* Estilo para las celdas de la tabla */
 table, th, td {
     border: 1px solid var(--color-borde);
-    padding: 12px;
+    padding: 10px;
     text-align: left;
     text-align: center;
+
 }
+.A{
+    width: 30%;
+}
+.tipo{
+    width: 7%;
+}
+.n{
+    width: 8%;
+}
+
 
 /* Estilo para los encabezados de columna */
 th {
@@ -74,9 +85,9 @@ else{
             echo "</tr>";
         while ($row = $resultado->fetch_array()){
             echo "<tr>";
-            echo "<td>" . $row["Archivo"] . "</td>";
-            echo "<td>" . $row["Nombre"] . "</td>";
-            echo "<td>" ;
+            echo "<td class = 'A'>" . $row["Archivo"] . "</td>";
+            echo "<td class = 'n'>" . $row["Nombre"] . "</td>";
+            echo "<td class = 'tipo' >" ;
             $extension  = pathinfo($row["Archivo"],PATHINFO_EXTENSION);
             if($row["Tipo_de_archivo"] == 1){
                 echo '<a href=php/'.$row["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-pdf" ></i> '.$extension.'</a>';
