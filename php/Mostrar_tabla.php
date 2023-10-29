@@ -1,10 +1,5 @@
 <script>
-        function mostrarPDF() {
-            // URL del PDF que deseas mostrar
-            var pdfURL = 'tu-archivo.pdf';
-            // Abrir una ventana emergente con el PDF
-            window.open(pdfURL, 'Ventana del PDF', 'width=800, height=600');
-        }
+       
 </script>
 <style>
     :root {
@@ -19,7 +14,7 @@
 
  table {
     border-collapse: collapse;
-    width: 200%;
+    width: 250%;
     margin: 20px auto;
     margin-left: 5%;
     margin-top: 40px;
@@ -82,17 +77,18 @@ else{
             echo "<td>" . $row["Archivo"] . "</td>";
             echo "<td>" . $row["Nombre"] . "</td>";
             echo "<td>" ;
+            $extension  = pathinfo($row["Archivo"],PATHINFO_EXTENSION);
             if($row["Tipo_de_archivo"] == 1){
-                echo '<a href="javascript:void(0);" onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-pdf" ></i> PDF</a>';
+                echo '<a href=php/'.$row["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-pdf" ></i> '.$extension.'</a>';
                 
             }
             elseif($row["Tipo_de_archivo"] == 2){
-                echo '<a href="javascript:void(0);" onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-word"></i> Word</a>';
+                echo '<a href=php/'.$row["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-word"></i> '.$extension.'</a>';
 
 
             }
             elseif($row["Tipo_de_archivo"] == 3){
-                echo '<a href="javascript:void(0);" onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-excel" ></i> Excel</a>';
+                echo '<a href=php/'.$row["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-excel" ></i> '.$extension.'</a>';
             }
             "</td>";
             

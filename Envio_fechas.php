@@ -29,7 +29,8 @@
             <a href="#"></a>
             </div>
             <section style="margin-top: 70px;
-                            width: 200%;
+                margin-left:50px;
+                            width: 100%;
                             align-items: center;">
         <?php
 // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
@@ -66,10 +67,10 @@ $conn->close();
 ?>
         </section>
         <section style="margin-top: 10px;
-                        margin-left: 10px;
-                        margin-right: 10px;
+                        margin-left: 50px;
+                        margin-right: 50px;
                         
-                        width: 200%;
+                        width: 100%;
     padding: 10px;
     padding-right : 10px;">
     
@@ -84,6 +85,10 @@ $conn->close();
         </section>
         
         <section style="margin-top: 10px;
+                        margin: left 500px;
+                        align-items:center;
+                        pading: left 20px;
+                        justify-content: center;
             ">
         <button type="submit" onclick="mostrar()">
             <div class="svg-wrapper-1">
