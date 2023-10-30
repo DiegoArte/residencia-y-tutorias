@@ -5,16 +5,16 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 $temlateProcesor = new \PhpOffice\PhpWord\TemplateProcessor('../Formatos/FichaTec.docx');
 
 
-$Periodo = 'Per';
-$Feca = '31/04/2087';
-$nombreE = "Carlos Nolasco Hernandez";
-$semestre = "6to";
-$planE = "Sistemas Computacionales";
-$Actiidades = "Nada";
-$Dercicion = "Nada2";
-$Observaciones = 'Nada3';
-$NombreT = 'Raudel';
-$Firma = 'Nada8';
+$Periodo = $_POST["Periodo"];
+$Feca = $_POST["Fecha"];
+$nombreE = $_POST["NE"];
+$semestre = $_POST["Semestre"];
+$planE = $_POST["PE"];
+$Actiidades = $_POST["ASR"];
+$Dercicion = $_POST["Desercion"];
+$Observaciones = $_POST["Observasiones"];
+$NombreT = $_POST["NP"];
+$Firma = $_POST["Firma"];
 
 
 $temlateProcesor->setValue('Periodo_FT',$Periodo);
@@ -34,8 +34,10 @@ echo file_get_contents('FichaTecnica.docx.docx');
 
 unlink('FichaTecnica.docx.docx');
 
-use PhpOffice\PhpWord\TemplateProcessor;
 
 
 
 ?>
+<script type="text/javascript">
+swal("Correcto", "Los datos fueron enviados correctamente", "success");
+</script>

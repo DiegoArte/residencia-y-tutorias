@@ -13,6 +13,26 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/Envio_fecha.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        /* Estilo para el diálogo modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            width: 50%;
+            margin: 100px auto;
+            padding: 20px;
+            border: 1px solid #333;
+        }
+    </style>
     <title>Envío de fecha</title>
 </head>
 <body>
@@ -84,12 +104,14 @@ $conn->close();
             
         </section>
         
-        <section style="margin-top: 10px;
+        <section class="container" style="margin-top: 10px;
                         margin: left 500px;
                         align-items:center;
                         
                         justify-content: center;
             ">
+            <div class="row">
+                <div class="col-md-6">
         <button type="submit" onclick="mostrar()">
             <div class="svg-wrapper-1">
               <div class="svg-wrapper">
@@ -106,11 +128,46 @@ $conn->close();
 
                 }
             </script>
+            </div>
+            </div>
           </button>
-          </section>
           </form>
+          <div class="col-md-6">
+          <input type="submit" value="Nuevo" onclick="mostrarModal()">
+          </div>
+          
+          
+          </section>
+          <div class="modal" id="myModal">
+        <div class="modal-content">
+            <span onclick="cerrarModal()" style="cursor: pointer; float: right;">Cerrar &times;</span>
+            <h2>Formulario</h2>
+            <form action="php/llenado_Archivo_EF.php" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario()">
+                <input type="text" name="Nombre" id="Nombre">
+                <input name="fichero" type="file" size="150" maxlength="150">
+                <br>
+                <br>
+                <button type="submit">Insertar</button>
+            </form>
+        </div>
+    </div>
+          
     </main>
     <script src="js/envia_FECH.js"></script>
+    <script>
+        function mostrarModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function cerrarModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function validarFormulario() {
+            // Aquí puedes agregar lógica de validación del formulario
+            return true; // Devuelve true si el formulario es válido
+        }
+    </script>
     
 
     
