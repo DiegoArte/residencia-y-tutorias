@@ -91,7 +91,7 @@ function validarFormulario() {
     var numeroSalon = document.getElementById("Salon").value;
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
-    var expresion = /^[a-zA-Z0-9\s]+$/;
+    //var expresion = /^[a-zA-Z0-9\s]+$/;
 
     if (numeroControl === "" || nombreCarrera === "" || numeroSemestres === "" || nombreEdificio === ""  || numeroSalon === "" ) {
         Swal.fire({
@@ -139,7 +139,7 @@ function validarFormularioRegistro() {
     var NuevoSalon = document.getElementById("NuevoSalon").value;
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
-    var expresión = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ,.-]+$/;
+    //var expresión = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ,.-]+$/;
 
     if (NuevoNumeroControl === "" ||NuevoNombreCarrera === ""  || NuevoSemestres === ""  || NuevoEdificio === ""  || NuevoSalon === "") {
         Swal.fire({

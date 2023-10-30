@@ -88,7 +88,7 @@ function validarFormulario() {
     var numeroSemestres = document.getElementById("NumerodeSemestres").value;
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
-    var expresion = /^[a-zA-Z0-9\s]+$/;
+    //var expresion = /^[a-zA-Z0-9\s]+$/;
 
     if (numeroControl === "" || nombreCarrera === "" || numeroSemestres === "") {
         Swal.fire({
@@ -134,7 +134,7 @@ function validarFormularioRegistro() {
     var nuevoUSemestres = document.getElementById("NuevoSemestres").value;
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
-    var expresión = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ,.-]+$/;
+    //var expresión = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ,.-]+$/;
 
     if (nuevoNumeroControlAcademia === "" ||nuevoNombreCarrera === ""  || nuevoUSemestres === "") {
         Swal.fire({
