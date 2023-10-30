@@ -186,6 +186,8 @@ function search() {
     }
 }
 
+
+
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function abrirFormularioEdicionEspecial(id, Academia, NumeroDeControl, NombreDelEstudiante) {
@@ -214,7 +216,7 @@ function validarFormularioEspecial() {
     var nombreEstudiante = document.getElementById("NombredelEstudianteNormal").value;
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
-    var expresion = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]+$/;
+    //var expresion = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]+$/;
 
     if (numeroControl === "" || nombreAcademia === "" || nombreEstudiante === "") {
         Swal.fire({
@@ -261,7 +263,7 @@ function validarFormularioRegistroEspecial() {
 
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
-    var expresion = /^[a-zA-Z0-9\s]+$/;
+    //var expresión = /^[a-zA-Z0-9\s]+$/;
 
     if (NuevoNumeroControl === "" ||NuevoNombreCarrera === ""  || NuevoNombreAlumno === "" ) {
         Swal.fire({

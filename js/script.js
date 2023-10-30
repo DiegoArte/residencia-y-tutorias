@@ -138,7 +138,7 @@ function validarFormulario() {
     var nombreDocente = document.getElementById("NombredelDocente").value;
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
-    var expresion = /^[a-zA-Z0-9\s]+$/;
+    //var expresion = /^[a-zA-Z0-9\s]+$/;
 
     if (numeroControl === "" || nombreAcademia === "" || nombreDocente === "") {
         Swal.fire({
@@ -187,7 +187,7 @@ function validarFormularioRegistro() {
 
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
-    var expresión = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ,.-]+$/;
+    //var expresión = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ,.-]+$/;
 
     if (NuevoNumeroControl === "" ||NuevoNombreCarrera === ""  || NuevoNombreDocente === "") {
         Swal.fire({
