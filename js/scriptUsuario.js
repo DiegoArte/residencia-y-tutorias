@@ -186,6 +186,8 @@ function search() {
     }
 }
 
+
+
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function abrirFormularioEdicionEspecial(id, Academia, NumeroDeControl, NombreDelEstudiante) {

@@ -1,20 +1,77 @@
+header {
+    height: 70px;
+}
 
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background-color: #D9D9D9;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0; /* Elimina los márgenes predeterminados del cuerpo */
+    padding: 0; /* Elimina el espacio interior predeterminado del cuerpo */
+}
+
+main {
+    display: flex;
+    flex-direction: column; /* Los elementos se apilan en forma de columna */
+     /* Centra horizontalmente en el centro */
+    justify-content: space-between; /* Espacio entre los elementos */
+     /* Altura del 100% del viewport */
+    
+    
+    padding-left: 70px;
+
+}
 
 /*codigo mio*/
 
-.divFEcha{
-    margin-top: 1000px;
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 10%;
-    padding: 10px;
-    align-items: center;
+
+
+
+
+.usuarioOp {
+    gap: 15px;
+    padding: 10px 40px;
 }
 
+.usuarioOp a, .usuarioOp p {
+    padding: 10px 0;
+    color: var(--color2);
+}
 
+.usuarioOp img {
+    height: 40px;
+    border-radius: 1.5rem;
+}
 
+.barraLateral {
+    top: 0;
+    left: 0; 
+    width: 100px; 
+}
 
+.fixed {
+    background-color: var(--color7); 
+    position: fixed;
+}
 
+section {
+    text-align: center;
+    margin-left: 100px;
+    margin-right: 50px;
+    width: 30%;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 1em;
+    padding: 10px;
+    margin: 10px;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    flex-grow: 1; /* Permite que las secciones crezcan y ocupen todo el espacio disponible */
+}
 
 
 
@@ -50,13 +107,6 @@ button {
     border-radius: 16px;
     overflow: hidden;
     transition: all 0.2s;
-}
-.botonE{
-    position: absolute;
-    bottom: 30px;
-    width: 5.6em;
-    right: 10%;
-
 }
 
 button span {

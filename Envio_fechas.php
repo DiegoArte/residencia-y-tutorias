@@ -28,8 +28,9 @@
         <div class="barraLateral fixed h-100">
             <a href="#"></a>
             </div>
-            <section style="margin-top: 70px;
-                            width: 200%;
+            <section style="margin-top: 80px;
+                margin-left:50px;
+                            width: 95%;
                             align-items: center;">
         <?php
 // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
@@ -66,10 +67,10 @@ $conn->close();
 ?>
         </section>
         <section style="margin-top: 10px;
-                        margin-left: 10px;
-                        margin-right: 10px;
+                        margin-left: 50px;
+                        margin-right: 50px;
                         
-                        width: 200%;
+                        width: 95%;
     padding: 10px;
     padding-right : 10px;">
     
@@ -84,6 +85,10 @@ $conn->close();
         </section>
         
         <section style="margin-top: 10px;
+                        margin: left 500px;
+                        align-items:center;
+                        
+                        justify-content: center;
             ">
         <button type="submit" onclick="mostrar()">
             <div class="svg-wrapper-1">
