@@ -10,7 +10,7 @@ function conecta()
         }
         else
         {
-            echo "Conexion Existosa Registro completado!!! ";
+            //echo "Conexion Existosa Registro completado!!! ";
         }
     return $conexion;
 }

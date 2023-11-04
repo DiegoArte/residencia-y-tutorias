@@ -9,7 +9,7 @@ $archivo = $_FILES["fichero"]["name"];
 echo "<br>";
 
 //echo "<br>";
-$ruta = "upload/uno/";
+$ruta = "upload/dos/";
 $t = $archivo;
 //echo "<br>";
 $extension = pathinfo($archivo, PATHINFO_EXTENSION);
@@ -61,7 +61,7 @@ $extension = pathinfo($archivo, PATHINFO_EXTENSION);
             echo "<br>";
 
 
-           $query = "INSERT INTO fecha_enviada (`id`, `Archivo`, `Nombre`, `Tipo_de_archivo`,`ruta`)
+           $query = "INSERT INTO fecha_enviada2 (`id`, `Archivo`, `Nombre`, `Tipo_de_archivo`,`ruta`)
            VALUES (NULL,'".$nombrefinal."','".$Nombre."', '".$Tipo_dearch."', '".$upload."');";
 //VALUES ('$archivo','$Nombre','$Tipo_dearch')"; 
 //echo $query;
