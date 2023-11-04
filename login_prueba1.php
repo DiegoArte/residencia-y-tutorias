@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
     require 'php/db.php';
@@ -22,89 +23,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
         $_SESSION['pagina'] = 'resdencia';
 
-    
-        // Redirecciona a la página correspondiente según el tipo de usuario
         if ($_SESSION['tipo_usuario'] === 'Administrador') {
             $_SESSION['nombre'] = 'Administrador';
             header("Location: princi_Super_Admin.php");
             exit; // Termina el script después de la redirección
-            
+
         } elseif ($_SESSION['tipo_usuario'] === 'docente') {
-            $sql = "SELECT NombredelDocente, Presidente FROM docentes WHERE NumerodeControl = '$numControl'";
-            $resultado = $conexion->query($sql);
-            $resultado=$resultado->fetch_assoc();
-            $_SESSION['nombre'] = $resultado['NombredelDocente'];
-            if($resultado['Presidente']==1) {
-                header("Location: asignar_Asesores.php");
-            } else{
-                header("Location: Anteproyecto v.7/ADMIN/index.php");
-            }
-            exit;
-        } elseif ($_SESSION['tipo_usuario'] === 'alumno') {
-            $sql = "SELECT NombredelEstudiante FROM alumnos WHERE NumerodeControl = '$numControl'";
-            $resultado = $conexion->query($sql);
-            $_SESSION['nombre'] = $resultado;
-            header("Location: Anteproyecto v.7/USER/index.php");
-
-            if (!isset($_COOKIE['primeravisita'])) 
-            {
-                setcookie('primeravisita', '60', time() + 365 * 24 * 3600); // Caduca en un año.
-
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    // Procesa el formulario de cambio de contraseña.
-                    $nuevaContraseña = $_POST['nuevaContraseña'];
-                    $confirmacionContraseña = $_POST['confirmacionContraseña'];
-
-                    // Realiza validaciones de seguridad de contraseñas aquí.
-
-                    if ($nuevaContraseña === $confirmacionContraseña) {
-                        // Almacena la nueva contraseña de forma segura en tu base de datos.
-                        // Actualiza el registro del usuario como "no es la primera visita".
-
-                        // Redirige al usuario a la página principal o a donde desee acceder.
-                        header("Location: Anteproyecto v.7/USER/index.php");
-                        exit();
-                    } else {
-                        $mensajeError = "Las contraseñas no coinciden. Por favor, inténtelo de nuevo.";
-                    }
+            if ($usuario === $contrasena) {
+                // Redirige al usuario a una página para cambiar la contraseña
+                header("Location: cambiar_contrasena.php");
+                exit;
+            }else {
+                $sql = "SELECT NombredelDocente, Presidente FROM docentes WHERE NumerodeControl = '$numControl'";
+                $resultado = $conexion->query($sql);
+                $resultado=$resultado->fetch_assoc();
+                $_SESSION['nombre'] = $resultado['NombredelDocente'];
+                if($resultado['Presidente']==1) {
+                    header("Location: asignar_Asesores.php");
+                } else{
+                    header("Location: Anteproyecto v.7/ADMIN/index.php");
                 }
+                exit;
+                }
+        }elseif ($_SESSION['tipo_usuario'] === 'alumno') {
+            if ($usuario=== $contrasena) {
+                // Redirige al usuario a una página para cambiar la contraseña
+                header("Location: cambiar_contrasena.php");
+                exit;
+            } else {
+                // ... (código existente para alumno)
+                $sql = "SELECT NombredelEstudiante FROM alumnos WHERE NumerodeControl = '$numControl'";
+                $resultado = $conexion->query($sql);
+                $resultado=$resultado->fetch_assoc();
+                $_SESSION['nombre'] = $resultado['NombredelDocente'];
+                header("Location: Anteproyecto v.7/USER/index.php");
+                exit;
             }
-                ?>
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>Cambio de Contraseña</title>
-                </head>
-                <body>
-                    <h1>Cambio de Contraseña</h1>
-                    <?php if (isset($mensajeError)) { echo "<p>$mensajeError</p>"; } ?>
-    
-                    <form method="POST">
-                        <label for="nuevaContraseña">Nueva Contraseña:</label>
-                        <input type="password" id="nuevaContraseña" name="nuevaContraseña" required><br>
-    
-                        <label for="confirmacionContraseña">Confirmar Contraseña:</label>
-                        <input type="password" id="confirmacionContraseña" name="confirmacionContraseña" required><br>
-    
-                        <input type="submit" value="Cambiar Contraseña">
-                    </form>
-                </body>
-                </html>
-            
-            <?php
-            exit;
         }
     } else {
         // Inicio de sesión fallido, muestra un mensaje de error
         echo '<div class="mensaje-error">
-                <p>Inicio de sesión fallido. Verifica tu usuario y contraseña.</p>
+                <p>Inicio de sesión fallido. Verifica tu usuario y/o contraseña.</p>
             </div>';
     }
 
-    // Cierra la conexión a la base de datos
-    $conexion->close();
+    
+ // Cierra la conexión a la base de datos
+ $conexion->close();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
