@@ -19,15 +19,15 @@
 </head>
 <body>
     <header class="fixed w-100">
-    <a href="princi_Super_Admin.php" class="back-arrow rounded-pill d-flex justify-content-start">
-            <img src="back.svg" alt="" height="50">
-            <span class="regresar d-none text-white m-auto">Regresar</span>
-    </a>
         <div class="usuarioOp d-flex justify-content-end">
             <img src="profile.png" alt="" >
-            <p>Usuario</p>
+            <?php
+            session_start();
+            $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+            echo '<p>' . $nombre . '</p>';
+            ?>
             <div class="dropdown-content">
-                <a href="logout.php">Cerrar sesión</a>
+                <a href="../../../logout.php">Cerrar sesión</a>
             </div>
         </div>
     </header>
@@ -60,12 +60,14 @@
                         <th>Archivo</th>
                         <th>Descargar</th>
                         <th>Ver PDF</th>
+                        <th>Ver Revisión</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     require_once "../includes/db.php";
-                    $consulta = mysqli_query($conexion, "SELECT * FROM documento");
+                    $id=$_SESSION['usuario'];
+                    $consulta = mysqli_query($conexion, "SELECT * FROM documento WHERE idalumno='$id'");
                     while ($fila = mysqli_fetch_assoc($consulta)) :
                     ?>
                         <tr>
@@ -82,6 +84,14 @@
                             <td>
                                 <a href="../includes/visualizar_pdf.php?id=<?php echo $fila['idalumno']; ?>" class="btn btn-success">
                                     <i class="fas fa-eye"></i> Ver PDF
+                                </a>
+                            </td>
+                            <td>
+                                <?php
+                                    $asesor = mysqli_fetch_assoc(mysqli_query($conexion, "SELECT Asesor FROM asesorados WHERE Alumno='$id'"));
+                                ?>
+                                <a href="../../../comunicacionDocenteAlumno.php?id=<?php echo $asesor['Asesor']; ?>" class="btn btn-danger">
+                                    <i class="fas fa-message"></i> Ver revisión
                                 </a>
                             </td>
                         </tr>

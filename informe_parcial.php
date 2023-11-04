@@ -41,6 +41,7 @@ function enteroARomano($numero) {
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">
+    <link rel="stylesheet" href="css/informe_parcial.css">
     <script src="js/script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -82,17 +83,17 @@ function enteroARomano($numero) {
                 <table>
                     <thead>
                         <tr>
-                            <th>Asignatura</th>
+                            <th colspan="2">Asignatura</th>
                             <?php
                             for($i=1; $i<=$materia->Unidades; $i++){
                                 $unidad=enteroARomano($i);
                                 ?>
-                                <th><?php echo $unidad ?></th>
+                                <th colspan="2"><?php echo $unidad ?></th>
                                 <?php
                             } 
-                            for($i=$materia->Unidades; $i<=6; $i++){
+                            for($i=$materia->Unidades; $i<6; $i++){
                                 ?>
-                                <th></th>
+                                <th colspan="2"></th>
                                 <?php
                             } 
                             ?>
@@ -117,10 +118,10 @@ function enteroARomano($numero) {
                             <?php
                             for($i=1; $i<=6; $i++){
                                 ?>
-                                <td>
+                                <td colspan=".5">
                                     <input type="text">
                                 </td>
-                                <td>
+                                <td colspan=".5"> 
                                     <input type="text">
                                 </td>
                                 <?php
@@ -141,21 +142,23 @@ function enteroARomano($numero) {
                             ?>
                         </tr>
                         <tr>
-                            <th>Listado de estudiantes reprobados en el período</th>
+                            <th colspan="8">Listado de estudiantes reprobados en el período</th>
                         </tr>
                         <tr>
                             <th>No.</th>
-                            <th>Número de control</th>
-                            <th>Nombre completo del estudiante</th>
+                            <th colspan="2">Número de control</th>
+                            <th colspan="4">Nombre completo del estudiante</th>
                             <th>Unidad(es)</th>
                         </tr>
-                        <tr>
-                            <button>
-                                <i class="bi bi-plus-circle"></i>
-                            </button>
-                        </tr>
+                        
                     </tbody>
                 </table>
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                </button>
             </form>
             <?php
             

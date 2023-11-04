@@ -93,6 +93,7 @@ body {
     border: none;
     border-bottom: 1px solid #17349C;
     background: transparent;
+    color: #FFFFFF;
 }
 /* Establecer estilos para los inputs en estado de foco */
 .recuadroUC .input:focus {

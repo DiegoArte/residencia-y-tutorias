@@ -59,44 +59,29 @@ function cerrarErrorModal() {
     document.getElementById('errorModal').style.display = 'none';
 }
 
-
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function search() {
-    var searchTerm = document.getElementById('searchInput').value;
-    
-    // Hacer una solicitud AJAX para buscar en la base de datos
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var results = JSON.parse(xhr.responseText);
-
-            // Mostrar los resultados en la tabla
-            updateTable(results);
-        }
-    };
-    xhr.open('GET', 'buscar.php?searchTerm=' + searchTerm, true);
-    xhr.send();
-}
-
-function updateTable(results) {
     var searchTerm = document.getElementById('searchInput').value.toUpperCase();
     var table = document.querySelector('table');
     var rows = table.getElementsByTagName('tr');
+
     for (var i = 1; i < rows.length; i++) {
         var shouldDisplay = false;
         var cells = rows[i].getElementsByTagName('td');
+
         for (var j = 0; j < cells.length; j++) {
             var cellText = cells[j].textContent || cells[j].innerText;
+
             if (cellText.toUpperCase().indexOf(searchTerm) > -1) {
                 shouldDisplay = true;
                 break;
             }
         }
+
         rows[i].style.display = shouldDisplay ? '' : 'none';
     }
 }
-
 
 
 
@@ -128,7 +113,7 @@ function validarFormularioEspecial() {
     var nombreEstudiante = document.getElementById("NombredelEstudianteNormal").value;
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
-    var expresion = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]+$/;
+    //var expresion = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]+$/;
 
     if (numeroControl === "" || nombreAcademia === "" || nombreEstudiante === "") {
         Swal.fire({
@@ -169,13 +154,13 @@ function cerrarFormularioRegistroEspecial() {
 
 function validarFormularioRegistroEspecial() {
     // Obtén los valores de los campos
-    var NuevoNumeroControl = document.getElementById("NumerodeControlNormal").value;
-    var NuevoNombreCarrera = document.getElementById("AcademiaNormal").value;
-    var NuevoNombreAlumno = document.getElementById("NombredelEstudianteNormal").value;
+    var NuevoNumeroControl = document.getElementById("NuevoNumeroControlNormal").value;
+    var NuevoNombreCarrera = document.getElementById("NuevoNombreCarreraNormal").value;
+    var NuevoNombreAlumno = document.getElementById("NuevoNombreAlumnoNormal").value;
 
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
-    var expresion = /^[a-zA-Z0-9\s]+$/;
+    //var expresion = /^[a-zA-Z0-9\s]+$/;
 
     if (NuevoNumeroControl === "" ||NuevoNombreCarrera === ""  || NuevoNombreAlumno === "" ) {
         Swal.fire({

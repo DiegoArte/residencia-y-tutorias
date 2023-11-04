@@ -138,7 +138,7 @@ function validarFormulario() {
     var nombreDocente = document.getElementById("NombredelDocente").value;
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
-    var expresion = /^[a-zA-Z0-9\s]+$/;
+    //var expresion = /^[a-zA-Z0-9\s]+$/;
 
     if (numeroControl === "" || nombreAcademia === "" || nombreDocente === "") {
         Swal.fire({
@@ -187,7 +187,7 @@ function validarFormularioRegistro() {
 
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
-    var expresión = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ,.-]+$/;
+    //var expresión = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ,.-]+$/;
 
     if (NuevoNumeroControl === "" ||NuevoNombreCarrera === ""  || NuevoNombreDocente === "") {
         Swal.fire({
@@ -215,37 +215,23 @@ function validarFormularioRegistro() {
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function search() {
-    var searchTerm = document.getElementById('searchInput').value;
-    
-    // Hacer una solicitud AJAX para buscar en la base de datos
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var results = JSON.parse(xhr.responseText);
-
-            // Mostrar los resultados en la tabla
-            updateTable(results);
-        }
-    };
-    xhr.open('GET', 'buscar.php?searchTerm=' + searchTerm, true);
-    xhr.send();
-}
-
-function updateTable(results) {
     var searchTerm = document.getElementById('searchInput').value.toUpperCase();
     var table = document.querySelector('table');
     var rows = table.getElementsByTagName('tr');
+
     for (var i = 1; i < rows.length; i++) {
         var shouldDisplay = false;
         var cells = rows[i].getElementsByTagName('td');
+
         for (var j = 0; j < cells.length; j++) {
             var cellText = cells[j].textContent || cells[j].innerText;
+
             if (cellText.toUpperCase().indexOf(searchTerm) > -1) {
                 shouldDisplay = true;
                 break;
             }
         }
+
         rows[i].style.display = shouldDisplay ? '' : 'none';
     }
 }
-

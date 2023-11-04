@@ -15,20 +15,16 @@
     <link rel="icon" type="image/gif" href="css/plano.gif">
 </head>
 <body>
+    <header class="fixed w-100">
+        <div class="usuarioOp d-flex justify-content-end">
+            <img src="img/profile.png" alt="" >
+            <p>Usuario</p>
+            <a href="#">Cerrar sesión</a>
+        </div>
+    </header>
     <main>
         <div class="barraLateral fixed h-100">
-        </div>
-        <div class="barraLateral fixed h-100">  
-            <header class="fixed w-100">
-                <div class="usuarioOp d-flex justify-content-end">
-                    <img src="img/profile.png" alt="" />
-                    <p>Usuario</p>
-                    <a href="#">Cerrar sesión</a>
-                </div>
-            </header>
             <a href="#"></a>
-        </div>
-        <div class="barraLateral fixed h-100">
         </div>
 
         <div class="container" style="padding-top: 80px; padding-left: 50px;">
@@ -38,7 +34,7 @@
                     <div class="row mb-3">
                         <div class="col">
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="Actividad"></textarea>
+                                <textarea class="form-control" placeholder="Leave a comment here" name="Actividad" id="Actividad"></textarea>
                                 <label for="Actividad">Actividad del dia planeada</label>
                             </div>
                         </div>
@@ -47,12 +43,12 @@
                         <div class="col mb-3">
                             <div class="form-floating">
                                 <select class="form-select" name="acade" id="acade">
-                                    <option value="ISC">Ingenieria en sistemas computacionales</option>
-                                    <option value="IGE">Ingenieria en gestion Empresarial</option>
-                                    <option value="IA">Ingeniereia en administracion</option>
-                                    <option value="IEM">Ingenieria en electromecanica</option>
-                                    <option value="II">Ingenieria industrial</option>
-                                    <option value="IGE">Contador público</option>
+                                    <option value="Ingeniería en sistemas computacionales">Ingeniería en sistemas computacionales</option>
+                                    <option value="Ingeniería en gestión Empresarial">Ingeniería en gestión Empresarial</option>
+                                    <option value="Ingeniería en administración">Ingeniería en administración</option>
+                                    <option value="Ingeniería en electromecánica">Ingeniería en electromecánica</option>
+                                    <option value="Ingeniería industrial">Ingeniería industrial</option>
+                                    <option value="Contador público">Contador público</option>
                                 </select>
                                 <label for="acade">Selecciona la carrera</label>
                             </div>
@@ -69,7 +65,7 @@
                                     <option value="2">7</option>
                                     <option value="3">8</option>
                                 </select>
-                                <label for="semes">Selecciona el periodo semestral</label>
+                                <label for="semes">Selecciona el grupo</label>
                             </div>
                         </div>
                     </div>
@@ -85,12 +81,16 @@
             </form>
         </div>
             <hr>
+            
             <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $acade = $_POST["acade"];
                 $fecha = $_POST["fecha"];
+                $activi = $_POST["Actividad"];
                 $fechaObj = new DateTime($fecha);
                 $fechaFormateada = $fechaObj->format('d/m/Y');
+                echo "<input class='form-control' type='text' value='$acade' aria-label='Disabled input example' disabled readonly>";
+                echo "<input class='form-control' type='text' value='$activi' aria-label='Disabled input example' disabled readonly>";
                 echo "<table class='table table-bordered'>";
                 echo "<thead>";
                 echo "<tr>";
@@ -102,15 +102,15 @@
                 echo "<tbody>";
                 require_once "php/db.php";
                 $conexion=conectar();
-                $sql = "SELECT NumerodeControl, NombredelEstudiante FROM alumnos WHERE Academia='$acade'";
+                $sql = "SELECT NumeroDeControl, NombreDelEstudiante FROM alumnosnormales WHERE Academia='$acade'";
                 $resul = $conexion->query($sql);
 
                 if ($resul->num_rows > 0) {
                     while ($fila = $resul->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>" . $fila["NumerodeControl"] . "</td>";
-                        echo "<td>" . $fila["NombredelEstudiante"] . "</td>";
-                        echo "<td><input type='checkbox' name='asistencia[]' value='" . $fila["NumerodeControl"] . "'></td>";
+                        echo "<td>" . $fila["NumeroDeControl"] . "</td>";
+                        echo "<td>" . $fila["NombreDelEstudiante"] . "</td>";
+                        echo "<td><input type='checkbox' name='asistencia[]' value='1'" . $fila["NumeroDeControl"] . "'></td>";
                         echo "</tr>";
                     }
                 }

@@ -30,8 +30,9 @@
         <div class="barraLateral fixed h-100">
             <a href="#"></a>
             </div>
-            <section style="margin-top: 70px;">
-            <h2>
+            <section style="margin-top: 70px;
+            text-align: center;">
+            <h2 style="text-align: center;">
                 Ficha técnica parcial tutorial
             </h2>
         
@@ -40,7 +41,9 @@
 
         </section>
         <section>
-            <form action="" class="Tabla_contenido" method="post">
+            <form action="php/Full_FichaT.php" class="Tabla_contenido" method="post"><div>
+                <div class="row">
+                <div class="col-md-6">
                 <label for="">Periodo:</label><input type="text" name="Periodo" id="Periodo">
                 <br>
                 
@@ -52,26 +55,36 @@
                 <br>
                 <label for="">Plan de estudio</label><input type="text" name="PE" id="PE">
                 <br>
-                <label for="">Actividades de seguimiento realizadas:</label><input type="text" name="ASR" id="ASR">
+                <label for="">Actividades de seguimiento realizadas:</label><textarea type="text" name="ASR" id="ASR" class="G" height="5" width="80"></textarea>
+                    
                 <br>
-                <label for="">Deserción:</label><input type="text" name="Desercion" id="Desercion">
-                <br>
-                <label for="">Observaciones:</label><input type="text" name="Observasiones" id="Observasiones">
+            </div>
                 <br>
                 <br>
+                <div class="col-md-6">
+                    <label for="">Deserción:</label><textarea type="text" name="Desercion" id="Desercion" class="G" height="" width="80"></textarea>
+                        
+                <br>
+                <label for="">Observaciones:</label>
+                <textarea type="text" name="Observasiones" id="Observasiones" class="G" rows="" cols="80"></textarea>
+                    
+            
                 <h4>Tutor(A)</h4>
                 <br>
-                <label for="">Nombre</label><input type="text" name="" id="">
+                <label for="">Nombre</label><input type="text" name="NP" id="NP">
                 <br>
-                <label for=""></label><input type="text" name="" id="">
                 <br>
                 <label for="">Firma</label>
                 <br>
+                <input type="file" name="Firma" id="">
+                <br>
+                <br></div>
+            </div>
                 
                 
                 
                 
-            </form>
+            
         </section>
         
         <section>

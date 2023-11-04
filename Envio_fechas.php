@@ -10,9 +10,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" >
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/Envio_fecha.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        /* Estilo para el diálogo modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            width: 50%;
+            margin: 100px auto;
+            padding: 20px;
+            border: 1px solid #333;
+        }
+    </style>
     <title>Envío de fecha</title>
 </head>
 <body>
@@ -28,8 +49,9 @@
         <div class="barraLateral fixed h-100">
             <a href="#"></a>
             </div>
-            <section style="margin-top: 70px;
-                            width: 200%;
+            <section style="margin-top: 80px;
+                margin-left:50px;
+                            width: 95%;
                             align-items: center;">
         <?php
 // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
@@ -66,10 +88,10 @@ $conn->close();
 ?>
         </section>
         <section style="margin-top: 10px;
-                        margin-left: 10px;
-                        margin-right: 10px;
+                        margin-left: 50px;
+                        margin-right: 50px;
                         
-                        width: 200%;
+                        width: 95%;
     padding: 10px;
     padding-right : 10px;">
     
@@ -83,8 +105,14 @@ $conn->close();
             
         </section>
         
-        <section style="margin-top: 10px;
+        <section class="container" style="margin-top: 10px;
+                        margin: left 500px;
+                        align-items:center;
+                        width: 20%;
+                        justify-content: center;
             ">
+            <div class="row">
+                <div class="col-md-6">
         <button type="submit" onclick="mostrar()">
             <div class="svg-wrapper-1">
               <div class="svg-wrapper">
@@ -101,11 +129,87 @@ $conn->close();
 
                 }
             </script>
+            </div>
+            </div>
           </button>
-          </section>
           </form>
+          <br>
+          
+          
+          <div class="">
+            <button type="submit" onclick="mostrarModal()">Insertar</button>
+          <!--input type="submit" value="Nuevo" onclick="mostrarModal()"-->
+          
+          </div>
+          
+          
+          </section>
+          <div class="modal" id="myModal">
+        <div class="modal-content">
+            <span onclick="cerrarModal()" style="cursor: pointer; float: right;">Cerrar &times;</span>
+            <h2>Formulario</h2>
+            <form action="php/llenado_Archivo_EF.php" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario()">
+                <input type="text" name="Nombre" id="Nombre">
+                <input name="fichero" type="file" size="150" maxlength="150">
+                <br>
+                <br>
+                <button type="submit">Insertar</button>
+            </form>
+        </div>
+    </div>
+          
     </main>
     <script src="js/envia_FECH.js"></script>
+    <script>
+        function mostrarModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function cerrarModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function validarFormulario() {
+            var nombre = document.getElementById("Nombre").value;
+            var archivo = document.querySelector('input[type="file"]').files[0];
+
+            try {
+                if (nombre.trim() === "") {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Por favor, ingrese un nombre.',
+                        icon: 'error'
+                    });
+                    return false;
+                }
+
+                if (archivo) {
+                    var extension = archivo.name.split('.').pop().toLowerCase();
+                    if (extension !== "pdf" && extension !== "docx" && extension !== "xlsx") {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'El archivo debe ser de tipo PDF, Word o Excel.',
+                            icon: 'error'
+                        });
+                        return false;
+                    }
+                } else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Por favor, seleccione un archivo.',
+                        icon: 'error'
+                    });
+                    return false;
+                }
+            } catch (error) {
+                // Si hay un error al mostrar la alerta personalizada, muestra una alerta común.
+                alert('Ha ocurrido un error en la validación del formulario.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
     
 
     

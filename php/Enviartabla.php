@@ -25,8 +25,9 @@ function Enviados(){
                 $Archivo = $row["Archivo"];
                 $nombre = $row["Nombre"] ;
                 $T_A = $row["Tipo_de_archivo"] ;
-                $sql2 = "INSERT INTO ".$Tabla."(archivo, Nombre,Tipo_de_archivo)
-                VALUES('$Archivo','$nombre','$T_A')" ;
+                $rutak = $row["ruta"];
+                $sql2 = "INSERT INTO ".$Tabla."(archivo, Nombre,Tipo_de_archivo,ruta)
+                VALUES('$Archivo','$nombre','$T_A','$rutak')" ;
                 $resultado2 = mysqli_query($conn,$sql2);
 
                 
