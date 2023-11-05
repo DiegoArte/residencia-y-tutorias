@@ -14,9 +14,9 @@
 
  table {
     border-collapse: collapse;
-    width: 210%;
+    width: 80em;
     margin: 20px auto;
-    margin-left: 5%;
+    margin-left: 5em;
     margin-top: 40px;
     background-color: var(--color-fondo);
     border: 1px solid var(--color-borde);
@@ -31,19 +31,19 @@
 /* Estilo para las celdas de la tabla */
 table, th, td {
     border: 1px solid var(--color-borde);
-    padding: 10px;
+    padding: 7px;
     text-align: left;
     text-align: center;
 
 }
 .A{
-    width: 30%;
+    width: 10em;
 }
 .tipo{
-    width: 7%;
+    width: 7em;
 }
 .n{
-    width: 8%;
+    width: 5em;
 }
 
 
@@ -77,7 +77,7 @@ else{
     $sql = "SELECT * FROM  fecha_enviada";
     $resultado = mysqli_query($conn,$sql);
     if ($resultado->num_rows > 0){
-        echo "<table id='miTabla' >";
+        echo "<table id='table-responsive' >";
         echo "<tr>";
             echo "<th> Archivo </th>";
             echo "<th> Nombre </th>";
