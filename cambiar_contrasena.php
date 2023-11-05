@@ -100,10 +100,10 @@ $conexion->close();
         .modal-content {
             background-color: #1e3188;
             color: #000000;
-            width: 300px;
-            margin: 10% auto; /* Centrar verticalmente */
+            width: 400px;
+            margin: 18% auto; /* Centrar verticalmente */
             padding: 20px;
-            border-radius: 5px;
+            border-radius: 20px;
             font-family: 'Open Sans', sans-serif;
             
         }
@@ -164,11 +164,10 @@ $conexion->close();
             color: #000000;
             border-radius: 20px;
             width: 400px;
-            height: 50px;
+            left:545px;
+            margin: 2% auto; /* Centrar verticalmente */
+            padding: 20px;
             text-align: center;
-            top: 100px;
-            left:500px;
-
         }
        
 
@@ -213,64 +212,25 @@ $conexion->close();
 
 
         }
-        .beautiful-button {
-            position: absolute;
-           
-            display: inline-block;
-            background: linear-gradient(to bottom, #1e3188, #4F648B);
-            /*--color9: #4F648B;
-            --color10:#1e3188;*/
-            width: 200px;
-            height: 100px;
-            text-align: center;
-            top: 450px;
-            left:580px;
-            /* Gradient background */
-            color: #000000;
-            /* White text color */
-            font-family:'Open Sans', sans-serif;
-            /* Stylish and legible font */
-            font-weight: bold;
-            font-size: 18px;
-            /* Large font size */
-            border: none;
-            /* No border */
-            border-radius: 30px;
-            /* Rounded corners 
-            padding: 14px 28px;
-            Large padding */
-            cursor: pointer;
-            /* Cursor on hover */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            /* Subtle shadow */
-            animation: button-shimmer 2s infinite;
-            transition: all 0.3s ease-in-out;
-            /* Smooth transition */
-            }
-
-            /* Hover animation */
-        .beautiful-button:hover {
-            background: linear-gradient(to bottom, #2c2f63, #5b67b7);
-            animation: button-particles 1s ease-in-out infinite;
-            transform: translateY(-2px);
-            }
+       
         /* ... Estilos anteriores ... */
         
         .password-input {
-            background-color: #a5a5b0;
+            background-color: #f0f0f0;
             border: 3px solid black; /* Estilo de borde predeterminado */
         }
         
         .password-input.invalid {
-            background-color: #a5a5b0;
+            background-color: #f0f0f0;
             border: 2px solid red; /* Estilo de borde en caso de contraseña no válida */
         }
         
         .password-input.valid {
-            background-color: #a5a5b0;
-            border: 2px solid white; /* Estilo de borde en caso de contraseña válida */
+            background-color: #f0f0f0;
+            border: 2px solid blue; /* Estilo de borde en caso de contraseña válida */
         }
-        
+       
+
         /* ... Estilos posteriores ... */
         .mostrar-ocultar-contrasena {
             position:absolute;
@@ -291,8 +251,8 @@ $conexion->close();
             background-color: #f0f0f0;
             
             height: 30px; /* Alto deseado */
-
         }
+       
 
        
     </style>
@@ -321,21 +281,13 @@ $conexion->close();
     <div class="mensaje-error" style="visibility: <?php echo empty($contrasenaErr) ? 'hidden' : 'visible'; ?>">
     <?php echo $contrasenaErr; ?></div>
     <div class="spacer"></div>
-
-
-
-    <div class="pagina"style="width: 300px;">
-    <h2>Cambiar Contraseña</h2>
-    <label>Por cuestiones de seguridad, se exije a los usuarios cambiar su contraseña</label>
-    <!-- Botón para abrir el modal -->
     
-    </div>
-    <button class="beautiful-button" id="openModal">Cambiar Contraseña</button>
+    
     
     <!-- Modal -->
-    <div id="myModal" class="modal">
+    <div id="myModal" class="pagina">
         <div class="modal-content">
-            <span class="close" id="closeModal">&times;</span>
+            
             <h3>Cambiar Contraseña</h3>
 
             <!-- Agrega esto dentro del formulario HTML -->
@@ -349,6 +301,12 @@ $conexion->close();
                     <li id="special-character-requirement">Al menos un carácter especial</li>
                 </ul>
             </div>
+
+            <!-- Agrega esto dentro del formulario HTML -->
+
+
+
+   
 
             <form action="" method="POST">
 
@@ -398,36 +356,10 @@ $conexion->close();
                             }
                         }
                     }
-
-
-                    
-
-                    // JavaScript para mostrar y ocultar el modal
-                    var modal = document.getElementById("myModal");
-                    var btnOpen = document.getElementById("openModal");
-                    var btnClose = document.getElementById("closeModal");
-
-                    btnOpen.onclick = function() {
-                        modal.style.display = "block"; // Mostrar el modal
-                    }
-
-                    btnClose.onclick = function() {
-                        modal.style.display = "none"; // Ocultar el modal
-                    }
-
-                    window.onclick = function(event) {
-                        if (event.target === modal) {
-                            modal.style.display = "none"; // Cerrar el modal si se hace clic fuera de él
-                        }
-                    }
-                
-    
+                                
+                    // JavaScript para validar la contraseña en tiempo real
                     var nuevaContrasenaInput = document.getElementById("nuevaContrasena");
-                    var confirmarNuevaInput = document.getElementById("confirmarContrasena");
                     var passwordRequirements = document.getElementById("password-requirements");
-                    
-                     // JavaScript para validar la contraseña en tiempo real
-   
                     
                     nuevaContrasenaInput.addEventListener("input", function() {
                         var password = nuevaContrasenaInput.value;
@@ -438,11 +370,24 @@ $conexion->close();
                         var specialCharacterRequirement = document.getElementById("special-character-requirement");
                         
                         lengthRequirement.style.color = password.length >= 8 ? "white" : "red";
-                        uppercaseRequirement.style.color = /[A-Z]/.test(password) ? "white " : "red";
+                        uppercaseRequirement.style.color = /[A-Z]/.test(password) ? "white" : "red";
                         lowercaseRequirement.style.color = /[a-z]/.test(password) ? "white" : "red";
                         numberRequirement.style.color = /\d/.test(password) ? "white" : "red";
                         specialCharacterRequirement.style.color = /[^A-Za-z0-9]/.test(password) ? "white" : "red";
+                        
+                        // Aplica clases al campo de contraseña
+                        nuevaContrasenaInput.className = (
+                            (password.length >= 8 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /\d/.test(password) && /[^A-Za-z0-9]/.test(password))
+                            ? "password-input valid"
+                            : "password-input invalid"
+                        );
                     });
+
+
+                   
+
+                    var nuevaContrasenaInput = document.getElementById("nuevaContrasena");
+                    var confirmarNuevaInput = document.getElementById("confirmarContrasena");
 
                     nuevaContrasenaInput.addEventListener("input", function() {
                         var password = nuevaContrasenaInput.value;
@@ -470,6 +415,9 @@ $conexion->close();
                         // Aplica las clases CSS según la validación
                         confirmarNuevaInput.className = confirmationIsValid ? "password-input valid" : "password-input invalid";
                     });
+                                
+                                    
+                                    
                     <?php
                     if (!empty($contrasenaErr)) {
                         echo "var errorMessage = document.getElementById('error-message');";
