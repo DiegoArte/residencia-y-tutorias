@@ -16,7 +16,7 @@
     border-collapse: collapse;
     width: 80em;
     margin: 20px auto;
-    margin-left: 5em;
+    margin-left: 5%;
     margin-top: 40px;
     background-color: var(--color-fondo);
     border: 1px solid var(--color-borde);

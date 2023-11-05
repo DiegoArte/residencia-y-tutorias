@@ -31,7 +31,7 @@
 /* Estilo para las celdas de la tabla */
 table, th, td {
     border: 1px solid var(--color-borde);
-    padding: 10px;
+    padding: 7px;
     text-align: left;
     text-align: center;
 
