@@ -180,36 +180,15 @@ else{
             echo "<br>";
         }
             echo"</td>";
-            echo "<td class='t'>";
-            $sql3 = "SELECT * FROM `fecha_enviada` WHERE Nombre='$axu';";
-            $resultado3 = mysqli_query($conn,$sql3);
-           
-            while($row3 = $resultado3->fetch_array()){
-                ?>
-                
-        <form action="php/elininarEF.php" method="post">      
-        <input type="hidden" name="id" value="<?php echo $row3["id"]?>">
-        <input type="submit" value="Eliminar">
-        </form>
-        
-
-        
-        
-        
             
         
-        
-
-        
-        
-        <?php
             }
             echo"</td>";
 
 
             
             echo "</tr>";
-        }   
+           
 
         echo "</table>";
     }else {
