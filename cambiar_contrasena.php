@@ -356,12 +356,12 @@ $conexion->close();
                 <div class="group">
                     <label for="nuevaContrasena">Nueva Contraseña:</label>
                     <input required="" type="password" class="input" id="nuevaContrasena" name="nuevaContrasena">
-                    <img class="mostrar-ocultar-contrasena" src="img/ojoB.png" onclick="mostrarOcultarContrasena('nuevaContrasena')" alt="Mostrar / Ocultar Contraseña">
+                    <img class="mostrar-ocultar-contrasena" src="img/ojoBi.png" onclick="mostrarOcultarContrasena('nuevaContrasena')" alt="Mostrar / Ocultar Contraseña">
 
 
                     <label for="confirmarContrasena">Confirmar Contraseña:</label>
                     <input required="" type="password" class= "input" id="confirmarContrasena" name="confirmarContrasena">
-                    <img class="mostrar-ocultar-contrasena1" src="img/ojoB.png" onclick="mostrarOcultarContrasena1('confirmarContrasena')" alt="Mostrar / Ocultar Contraseña1">
+                    <img class="mostrar-ocultar-contrasena1" src="img/ojoBi.png" onclick="mostrarOcultarContrasena1('confirmarContrasena')" alt="Mostrar / Ocultar Contraseña1">
 
                 
                     <br>
@@ -377,10 +377,10 @@ $conexion->close();
                         if (input && imagen) {
                             if (input.type === "password") {
                                 input.type = "text"; // Mostrar la contraseña
-                                imagen.src = "img/ojoA.png"; // Cambiar la imagen a un ojo abierto
+                                imagen.src = "img/ojoAbi.png"; // Cambiar la imagen a un ojo abierto
                             } else {
                                 input.type = "password"; // Ocultar la contraseña
-                                imagen.src = "img/ojoB.png"; // Cambiar la imagen a un ojo cerrado
+                                imagen.src = "img/ojoBi.png"; // Cambiar la imagen a un ojo cerrado
                             }
                         }
                     }
@@ -391,10 +391,10 @@ $conexion->close();
                         if (input && imagen) {
                             if (input.type === "password") {
                                 input.type = "text"; // Mostrar la contraseña
-                                imagen.src = "img/ojoA.png"; // Cambiar la imagen a un ojo abierto
+                                imagen.src = "img/ojoAbi.png"; // Cambiar la imagen a un ojo abierto
                             } else {
                                 input.type = "password"; // Ocultar la contraseña
-                                imagen.src = "img/ojoB.png"; // Cambiar la imagen a un ojo cerrado
+                                imagen.src = "img/ojoBi.png"; // Cambiar la imagen a un ojo cerrado
                             }
                         }
                     }
