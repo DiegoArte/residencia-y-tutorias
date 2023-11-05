@@ -301,6 +301,10 @@ $conexion->close();
      <!-- RAYAS DE ARRIBA,IZ -->
     <header class="fixed w-100">
         <div class="usuarioOp d-flex justify-content-end">
+        <a href="login_prueba1.php" class="back-arrow rounded-pill d-flex justify-content-start">
+            <img src="img/back.svg" alt="" height="50">
+            <span class="regresar d-none text-white m-auto">Regresar</span>
+         </a>
             
         </div>
     </header>
