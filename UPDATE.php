@@ -12,28 +12,82 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id'];
     $tabla = $_POST['tabla'];
 
-    
+    // Crear una función para validar si un número de control ya existe en la tabla ALUMNOS NORMALES
+    function numeroControlExiste($conn, $numeroControl, $tabla) {
+        $sql = "SELECT * FROM $tabla WHERE NumeroDeControl = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $numeroControl);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows > 0;
+    }
+
+    // Crear una función para validar si un número de control ya existe en la tabla TODOS LOS DEMAS
+    function numeroControlExisteChido($conn, $numeroControl, $tabla) {
+        $sql = "SELECT * FROM $tabla WHERE NumerodeControl = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $numeroControl);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows > 0;
+    }
+
+    function nombreCarreraExiste($conn, $NombredeCarrera) {
+        $sql = "SELECT * FROM carrera WHERE NombredeCarrera = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $NombredeCarrera);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows > 0;
+    }
+
+    function ControlCarreraExiste($conn, $NuevoNumeroControlAcademia) {
+        $sql = "SELECT * FROM carrera WHERE NumerodeControl = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $NuevoNumeroControlAcademia);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows > 0;
+    }
 
     if ($tabla === 'carrera') {
-        $NumerodeControl = $_POST['NumerodeControl'];
-        $NombredeCarrera = $_POST['NombredeCarrera'];
-        $NumerodeSemestres = $_POST['NumerodeSemestres'];
+        $NumerodeControl = trim($_POST['NumerodeControl']);
+        $NombredeCarrera = trim($_POST['NombredeCarrera']);
+        $NumerodeSemestres = trim($_POST['NumerodeSemestres']);
 
-        $campos = [
-            'NumerodeControl' => $NumerodeControl,
-            'NombredeCarrera' => $NombredeCarrera,
-            'NumerodeSemestres' => $NumerodeSemestres
-        ];
+        if (numeroControlExisteChido($conn, $NumerodeControl, $tabla)) {
+            $resultado = "El número de control coincide con el del sistema.";
 
-        $resultado = actualizarTabla($conn, $tabla, $id, $campos);
+            if (nombreCarreraExiste($conn, $NombredeCarrera)) {
+                $resultado = "El nombre de la carrera existe en el sistema.";
+
+                $campos = [
+                    'NumerodeControl' => $NumerodeControl,
+                    'NombredeCarrera' => $NombredeCarrera,
+                    'NumerodeSemestres' => $NumerodeSemestres
+                ];
+        
+                $resultado = actualizarTabla($conn, $tabla, $id, $campos);
+
+            }else{
+                $resultado = "El nombre de la carrera no existe en el sistema.";
+            }
+            
+
+            
+        }else{
+            $resultado = "El número de control no coincide con el del sistema.";
+        }
+
+        
 
         // Lógica específica para la tabla carrera
     } elseif ($tabla === 'grupos') {
-        $NumerodeControl = $_POST['NumerodeControl'];
-        $NombredeCarrera = $_POST['NombredeCarrera'];
-        $Semestre = $_POST['Semestre'];
-        $Edificio = $_POST['Edificio'];
-        $Salon = $_POST['Salon'];
+        $NumerodeControl = trim($_POST['NumerodeControl']);
+        $NombredeCarrera = trim($_POST['NombredeCarrera']);
+        $Semestre = trim($_POST['Semestre']);
+        $Edificio = trim($_POST['Edificio']);
+        $Salon = trim($_POST['Salon']);
 
         $campos = [
             'NumerodeControl' => $NumerodeControl,
@@ -47,9 +101,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Lógica específica para la tabla grupo
 
     } elseif ($tabla === 'docentes') {
-        $NumerodeControl = $_POST['NumerodeControl'];
-        $Academia = $_POST['Academia'];
-        $NombredelDocente = $_POST['NombredelDocente'];
+        $NumerodeControl = trim($_POST['NumerodeControl']);
+        $Academia = trim($_POST['Academia']);
+        $NombredelDocente = trim($_POST['NombredelDocente']);
 
         $campos = [
             'NumerodeControl' => $NumerodeControl,
@@ -61,11 +115,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     } elseif ($tabla === 'materias') {
 
-        $NumerodeControlAcademia = $_POST['NumerodeControlAcademia'];
-        $NumerodeControl = $_POST['NumerodeControl'];
-        $NombredelaMateria = $_POST['NombredelaMateria'];
-        $NumerodeControlDocente = $_POST['NumerodeControlDocente'];
-        $Unidades = $_POST['Unidades'];
+        $NumerodeControlAcademia = trim($_POST['NumerodeControlAcademia']);
+        $NumerodeControl = trim($_POST['NumerodeControl']);
+        $NombredelaMateria = trim($_POST['NombredelaMateria']);
+        $NumerodeControlDocente = trim($_POST['NumerodeControlDocente']);
+        $Unidades = trim($_POST['Unidades']);
 
         $campos = [
             'NumerodeControlAcademia' => $NumerodeControlAcademia,
