@@ -95,12 +95,12 @@ $conn->close();
     padding: 10px;
     padding-right : 10px;">
     
-            <form action="php/Enviartabla.php" class="Tabla_contenido" method="post">
+            
                 <?php
                 include 'php/Mostrar_tabla.php';
                 Tabla();
                 ?>
-                
+                <form action="php/Enviartabla.php" class="Tabla_contenido" method="post">
                 
             
         </section>

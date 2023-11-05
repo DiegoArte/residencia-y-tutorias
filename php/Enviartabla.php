@@ -1,7 +1,7 @@
 <?php
 // Establecer la conexión a la base de datos
 function Enviados(){
-    include 'db.php';
+    include 'conexion.php';
     $conn = conecta();
     // Verificar la conexión
     $Tabla = "ya_enviados";

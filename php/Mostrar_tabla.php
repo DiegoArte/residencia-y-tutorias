@@ -14,7 +14,7 @@
 
  table {
     border-collapse: collapse;
-    width: 150%;
+    width: 100%;
     margin: 20px auto;
     margin-left: 2em;
     margin-top: 40px;
@@ -37,13 +37,16 @@ table, th, td {
 
 }
 .A{
-    width: 30%;
+    width: 40%;
 }
 .tipo{
-    width: 7%;
+    width: 10%;
 }
 .n{
-    width: 5%;
+    width: 7%;
+}
+.t{
+    width:4%;
 }
 
 
@@ -74,7 +77,7 @@ if ($conn->connect_error) {
     //die("Conexión fallida: " . $conn->connect_error);
 }
 else{
-    $sql = "SELECT * FROM  fecha_enviada";
+    $sql = "SELECT MIN(id) AS id, Archivo, Nombre, Tipo_de_archivo,ruta FROM fecha_enviada GROUP BY Nombre;";
     $resultado = mysqli_query($conn,$sql);
     if ($resultado->num_rows > 0){
         echo "<table id='table-responsive' >";
@@ -83,25 +86,69 @@ else{
             echo "<th> Nombre </th>";
             echo "<th> Tipo de archivo </th>";
             echo "</tr>";
+            
+
+
+
         while ($row = $resultado->fetch_array()){
+            $axu = $row["Nombre"];
+            $sql2 = "SELECT * FROM `fecha_enviada` WHERE Nombre='$axu';";
+            $resultado2 = mysqli_query($conn,$sql2);
+            //while($row2 = $resultado2->fetch_array()){}
             echo "<tr>";
-            echo "<td class = 'A'>" . $row["Archivo"] . "</td>";
-            echo "<td class = 'n'>" . $row["Nombre"] . "</td>";
+            echo "<td class = 'A'>"; 
+            while($row2 = $resultado2->fetch_array()){
+                echo "". $row2["Archivo"] . "";
+                echo "<br>";
+            }
+            
+            
+            echo "</td>";
+            echo "<td class = 'n'>" ;
+           
+                echo "". $row["Nombre"]. "";
+                echo "<br>";
+            
+           
+            echo "</td>";
             echo "<td class = 'tipo' >" ;
-            $extension  = pathinfo($row["Archivo"],PATHINFO_EXTENSION);
-            if($row["Tipo_de_archivo"] == 1){
-                echo '<a href=php/'.$row["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-pdf" ></i> '.$extension.'</a>';
+            
+            $axu = $row["Nombre"];
+            $sql3 = "SELECT * FROM `fecha_enviada` WHERE Nombre='$axu';";
+            $resultado3 = mysqli_query($conn,$sql3);
+            while($row3 = $resultado3->fetch_array()){
+                //echo "". $row2["Nombre"]. "";
+                $extension  = pathinfo($row3["Archivo"],PATHINFO_EXTENSION);
+            
+            if($row3["Tipo_de_archivo"] == 1){
+                echo '<a href=php/'.$row3["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-pdf" ></i> '.$extension.'</a>';
                 
             }
-            elseif($row["Tipo_de_archivo"] == 2){
-                echo '<a href=php/'.$row["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-word"></i> '.$extension.'</a>';
+            elseif($row3["Tipo_de_archivo"] == 2){
+                echo '<a href=php/'.$row3["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-word"></i> '.$extension.'</a>';
 
 
             }
-            elseif($row["Tipo_de_archivo"] == 3){
-                echo '<a href=php/'.$row["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-excel" ></i> '.$extension.'</a>';
+            elseif($row3["Tipo_de_archivo"] == 3){
+                echo '<a href=php/'.$row3["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-excel" ></i> '.$extension.'</a>';
             }
-            "</td>";
+            
+            echo "<br>";
+        }
+            echo"</td>";
+            echo "<td class='t'>";$sql3 = "SELECT * FROM `fecha_enviada` WHERE Nombre='$axu';";
+            $resultado3 = mysqli_query($conn,$sql3);
+            while($row3 = $resultado3->fetch_array()){
+            echo '<form action="php/elininarEF.php" method="post">';
+            
+
+        echo '<input type="hidden" name="id" value="' . $row3["id"] . '">';
+        echo '<input type="submit" value="Eliminar" >';
+        echo "</form>";
+            }
+            echo"</td>";
+
+
             
             echo "</tr>";
         }   
