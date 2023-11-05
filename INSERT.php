@@ -47,9 +47,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($tabla === 'carrera') {
-        $NuevoNumeroControlAcademia = $_POST['NuevoNumeroControlAcademia'];
-        $NuevoNombreCarrera = $_POST['NuevoNombreCarrera'];
-        $NuevoSemestres = $_POST['NuevoSemestres'];
+        $NuevoNumeroControlAcademia = trim($_POST['NuevoNumeroControlAcademia']);
+        $NuevoNombreCarrera = trim($_POST['NuevoNombreCarrera']);
+        $NuevoSemestres = trim($_POST['NuevoSemestres']);
 
             // Verificar si el número de control ya existe
         if (numeroControlExisteChido($conn, $NuevoNumeroControlAcademia, $tabla)) {
@@ -67,11 +67,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         // Lógica específica para la tabla carrera
     } elseif ($tabla === 'grupos') {
-        $NuevoNumeroControl = $_POST['NuevoNumeroControl'];
-        $NuevoNombreCarrera = $_POST['NuevoNombreCarrera'];
-        $NuevoSemestres = $_POST['NuevoSemestres'];
-        $NuevoEdificio = $_POST['NuevoEdificio'];
-        $NuevoSalon = $_POST['NuevoSalon'];
+        $NuevoNumeroControl = trim($_POST['NuevoNumeroControl']);
+        $NuevoNombreCarrera = trim($_POST['NuevoNombreCarrera']);
+        $NuevoSemestres = trim($_POST['NuevoSemestres']);
+        $NuevoEdificio = trim($_POST['NuevoEdificio']);
+        $NuevoSalon = trim($_POST['NuevoSalon']);
 
         // Verificar si el número de control ya existe
         if (numeroControlExisteChido($conn, $NuevoNumeroControl, $tabla)) {
@@ -95,9 +95,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Lógica específica para la tabla grupo
 
     } elseif ($tabla === 'docentes') {
-        $NuevoNumeroControl = $_POST['NuevoNumeroControl'];
-        $NuevoNombreCarrera = $_POST['NuevoNombreCarrera'];
-        $NuevoNombreDocente = $_POST['NuevoNombreDocente'];
+        $NuevoNumeroControl = trim($_POST['NuevoNumeroControl']);
+        $NuevoNombreCarrera = trim($_POST['NuevoNombreCarrera']);
+        $NuevoNombreDocente = trim($_POST['NuevoNombreDocente']);
 
         // Verificar si el número de control ya existe
         if (numeroControlExisteChido($conn, $NuevoNumeroControl, $tabla)) {
@@ -122,11 +122,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     } elseif ($tabla === 'materias') {
 
-        $NuevoNumeroControlAcademia = $_POST['NuevoNumeroControlAcademia'];
-        $NuevoNumeroControl = $_POST['NuevoNumeroControl'];
-        $NuevoNombreMateria = $_POST['NuevoNombreMateria'];
-        $NuevoNumeroControlDocente = $_POST['NuevoNumeroControlDocente'];
-        $NuevoUnidades = $_POST['NuevoUnidades'];
+        $NuevoNumeroControlAcademia = trim($_POST['NuevoNumeroControlAcademia']);
+        $NuevoNumeroControl = trim($_POST['NuevoNumeroControl']);
+        $NuevoNombreMateria = trim($_POST['NuevoNombreMateria']);
+        $NuevoNumeroControlDocente = trim($_POST['NuevoNumeroControlDocente']);
+        $NuevoUnidades = trim($_POST['NuevoUnidades']);
         
         // Verificar si el número de control ya existe
         if (numeroControlExisteChido($conn, $NuevoNumeroControl, $tabla)) {
@@ -151,10 +151,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     } elseif ($tabla === 'alumnos') {
 
-        $NuevoNumeroControl = $_POST['NuevoNumeroControl'];
-        $NuevoNombreCarrera = $_POST['NuevoNombreCarrera'];
-        $NuevoNombreAlumno = $_POST['NuevoNombreAlumno'];
-        $NuevoNombreAnteproyecto = $_POST['NuevoNombreAnteproyecto'];
+        $NuevoNumeroControl = trim($_POST['NuevoNumeroControl']);
+        $NuevoNombreCarrera = trim($_POST['NuevoNombreCarrera']);
+        $NuevoNombreAlumno = trim($_POST['NuevoNombreAlumno']);
+        $NuevoNombreAnteproyecto = trim($_POST['NuevoNombreAnteproyecto']);
 
 
         // Verificar si el número de control ya existe
