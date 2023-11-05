@@ -118,23 +118,23 @@ session_start();
                 <input type="hidden" name="tabla" value="grupos"> <!-- Campo oculto para el nombre de la tabla -->
                 <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraGrupo.php"> <!-- Campo oculto para el nombre del archivo -->
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNumeroControl">Nuevo Número de Control:</label>
+                    <label for="NuevoNumeroControl">Número de Control:</label>
                     <input type="text" name="NuevoNumeroControl" id="NuevoNumeroControl">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNombreCarrera">Nuevo Nombre de la Carrera:</label>
+                    <label for="NuevoNombreCarrera">Nombre de la Carrera:</label>
                     <input type="text" name="NuevoNombreCarrera" id="NuevoNombreCarrera">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoSemestres">Nuevo Semestres:</label>
+                    <label for="NuevoSemestres">Semestres:</label>
                     <input type="text" name="NuevoSemestres" id="NuevoSemestres">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoEdificio">Nuevo Edificio:</label>
+                    <label for="NuevoEdificio">Edificio:</label>
                     <input type="text" name="NuevoEdificio" id="NuevoEdificio">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoSalon">Nuevo Salón:</label>
+                    <label for="NuevoSalon">Salón:</label>
                     <input type="text" name="NuevoSalon" id="NuevoSalon">
                 </div>
                 <button type="submit" class="registro-guardar-btn guardar-btn">Guardar</button>

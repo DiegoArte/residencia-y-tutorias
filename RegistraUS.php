@@ -114,19 +114,19 @@ session_start();
                 <input type="hidden" name="tabla" value="alumnos"> <!-- Campo oculto para el nombre de la tabla -->
                 <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraUS.php"> <!-- Campo oculto para el nombre del archivo -->
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNumeroControl">Nuevo Número de Control:</label>
+                    <label for="NuevoNumeroControl">Número de Control:</label>
                     <input type="text" name="NuevoNumeroControl" id="NuevoNumeroControl">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNombreCarrera">Nuevo Nombre de la Carrera:</label>
+                    <label for="NuevoNombreCarrera">Nombre de la Carrera:</label>
                     <input type="text" name="NuevoNombreCarrera" id="NuevoNombreCarrera">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNombreAlumno">Nuevo Nombre de Alumno:</label>
+                    <label for="NuevoNombreAlumno">Nombre de Alumno:</label>
                     <input type="text" name="NuevoNombreAlumno" id="NuevoNombreAlumno">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNombreAnteproyecto">Nuevo Nombre de Anteproyecto:</label>
+                    <label for="NuevoNombreAnteproyecto">Nombre de Anteproyecto:</label>
                     <input type="text" name="NuevoNombreAnteproyecto" id="NuevoNombreAnteproyecto">
                 </div>
                 <button type="submit" class="registro-guardar-btn guardar-btn">Guardar</button>

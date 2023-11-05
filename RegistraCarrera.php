@@ -110,15 +110,15 @@ session_start();
                 <input type="hidden" name="tabla" value="carrera"> <!-- Campo oculto para el nombre de la tabla -->
                 <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraCarrera.php"> <!-- Campo oculto para el nombre del archivo -->
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNumeroControlAcademia">Nuevo Número de Control Academia:</label>
+                    <label for="NuevoNumeroControlAcademia">Número de Control Academia:</label>
                     <input type="text" name="NuevoNumeroControlAcademia" id="NuevoNumeroControlAcademia">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNombreCarrera">Nuevo Nombre de la Carrera:</label>
+                    <label for="NuevoNombreCarrera">Nombre de la Carrera:</label>
                     <input type="text" name="NuevoNombreCarrera" id="NuevoNombreCarrera">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoSemestres">Nuevo Semestres:</label>
+                    <label for="NuevoSemestres">Semestres:</label>
                     <input type="text" name="NuevoSemestres" id="NuevoSemestres">
                 </div>
                 <button type="submit" class="registro-guardar-btn guardar-btn">Guardar</button>
