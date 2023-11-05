@@ -14,9 +14,9 @@
 
  table {
     border-collapse: collapse;
-    width: 120em;
+    width: 150rem;
     margin: 20px auto;
-    margin-left: 1em;
+    margin-left: 2em;
     margin-top: 40px;
     background-color: var(--color-fondo);
     border: 1px solid var(--color-borde);
