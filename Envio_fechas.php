@@ -157,9 +157,60 @@ $conn->close();
             </form>
         </div>
     </div>
+    <div class="modal" id="myModal2">
+        <div class="modal-content">
+            <span onclick="cerrarModal2()" style="cursor: pointer; float: right;">Cerrar &times;</span>
+            <h2>Modificar formulario</h2>
+            <form action="php/modificarEF.php" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario2()">
+                <input type="text" name="Nombre2" id="Nombre2">
+                <input name="fichero2" type="file" size="150" maxlength="150">
+                <br>
+                <br>
+                <button type="submit">Modificar</button>
+            </form>
+        </div>
+    </div>
           
     </main>
     <script src="js/envia_FECH.js"></script>
+    <script>
+        function mostrarModal2() {
+            document.getElementById("myModal2").style.display = "block";
+        }
+
+        function cerrarModal2() {
+            document.getElementById("myModal2").style.display = "none";
+        }
+
+        function validarFormulario2() {
+            var nombre = document.getElementById("Nombre2").value;
+            var archivo = document.querySelector("fichero2").files[0];
+            
+
+            
+                if (nombre.trim() === "") {
+                    
+                    alert('Error, Por favor, ingrese un nombre.');
+                    return false;
+                }
+
+                if (archivo) {
+                    var extension = archivo.name.split('.').pop().toLowerCase();
+                    if (extension !== "pdf" && extension !== "docx" && extension !== "xlsx") {
+                        
+                        alert('Error, El archivo debe ser de tipo PDF, Word o Excel.');
+                        return false;
+                    }
+                } else {
+                    
+                    alert('Error, Por favor, seleccione un archivo.');
+                    return false;
+                }
+            
+
+            return true;
+        }
+    </script>
     <script>
         function mostrarModal() {
             document.getElementById("myModal").style.display = "block";

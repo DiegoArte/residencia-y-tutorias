@@ -37,7 +37,7 @@ table, th, td {
 
 }
 .A{
-    width: 40%;
+    width: 30%;
 }
 .tipo{
     width: 10%;
@@ -46,8 +46,52 @@ table, th, td {
     width: 7%;
 }
 .t{
-    width:4%;
+    width: 10%;
 }
+/* Estilo para enlace de eliminar (rojo) */
+.eliminar-enlace {
+    display: inline-block;
+    padding: 2px 3px;
+    background-color: #FF0000;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #FF0000;
+    border-radius: 5px;
+    margin-right: 2px; /* Agregar un espacio entre los enlaces */
+    margin-left: 2px;
+    margin-bottom: 1px;
+}
+
+/* Estilo para enlace de modificar (azul) */
+.modificar-enlace {
+    display: inline-block;
+    padding: 2px 3px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #0056b3;
+    border-radius: 5px;
+    margin-bottom: 1px;
+}
+
+
+.modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            width: 50%;
+            margin: 100px auto;
+            padding: 20px;
+            border: 1px solid #333;
+        }
 
 
 /* Estilo para los encabezados de columna */
@@ -136,15 +180,23 @@ else{
             echo "<br>";
         }
             echo"</td>";
-            echo "<td class='t'>";$sql3 = "SELECT * FROM `fecha_enviada` WHERE Nombre='$axu';";
+            echo "<td class='t'>";
+            $sql3 = "SELECT * FROM `fecha_enviada` WHERE Nombre='$axu';";
             $resultado3 = mysqli_query($conn,$sql3);
+           
             while($row3 = $resultado3->fetch_array()){
-            echo '<form action="php/elininarEF.php" method="post">';
-            
+                ?>
+                
+                    
+        <input type="hidden" name="id" value="<?php echo' . $row3["id"] . '?>">
+        <a href="php/elininarEF.php" class="eliminar-enlace"> Eliminar </a>
+        <a href="#" class="modificar-enlace" onclick="mostrarModal2()"> Modificar </a>
+        <br>
+        
 
-        echo '<input type="hidden" name="id" value="' . $row3["id"] . '">';
-        echo '<input type="submit" value="Eliminar" >';
-        echo "</form>";
+        
+        
+        <?php
             }
             echo"</td>";
 

@@ -15,7 +15,11 @@ text: 'Los datos se enviaron correctamente '}
 // Después de hacer clic en 'Aceptar' en la alerta, regresar a la página anterior
 window.history.back();
 });
+function mostrar(){
+    alert('Datos eliminados');
 
+}
+mostrar();
 </script>
 
 ";
