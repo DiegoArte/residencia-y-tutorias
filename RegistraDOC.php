@@ -118,16 +118,16 @@ session_start();
                 <input type="hidden" name="tabla" value="docentes"> <!-- Campo oculto para el nombre de la tabla -->
                 <input type="hidden" name="archivo_origen" id="archivo_origen" value="RegistraDOC.php"> <!-- Campo oculto para el nombre del archivo -->
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNombreCarrera">Nuevo Nombre de la Carrera:</label>
+                    <label for="NuevoNombreCarrera">Nombre de la Carrera:</label>
                     <input type="text" name="NuevoNombreCarrera" id="NuevoNombreCarrera">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNumeroControl">Nuevo Número de Control:</label>
+                    <label for="NuevoNumeroControl">Número de Control:</label>
                     <input type="text" name="NuevoNumeroControl" id="NuevoNumeroControl">
                 </div>
 
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNombreDocente">Nuevo Nombre de Docente:</label>
+                    <label for="NuevoNombreDocente">Nombre de Docente:</label>
                     <input type="text" name="NuevoNombreDocente" id="NuevoNombreDocente">
                 </div>
                 <button type="submit" class="registro-guardar-btn guardar-btn">Guardar</button>

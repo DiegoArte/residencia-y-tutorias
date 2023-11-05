@@ -14,9 +14,9 @@
 
  table {
     border-collapse: collapse;
-    width: 120em;
+    width: 80em;
     margin: 20px auto;
-    margin-left: 1em;
+    margin-left: 5em;
     margin-top: 40px;
     background-color: var(--color-fondo);
     border: 1px solid var(--color-borde);
@@ -31,19 +31,19 @@
 /* Estilo para las celdas de la tabla */
 table, th, td {
     border: 1px solid var(--color-borde);
-    padding: 5px;
+    padding: 7px;
     text-align: left;
     text-align: center;
 
 }
 .A{
-    width: 40em;
-}
-.tipo{
     width: 10em;
 }
-.n{
+.tipo{
     width: 7em;
+}
+.n{
+    width: 5em;
 }
 
 
@@ -74,10 +74,10 @@ if ($conn->connect_error) {
     //die("Conexión fallida: " . $conn->connect_error);
 }
 else{
-    $sql = "SELECT * FROM  fecha_enviada";
+    $sql = "SELECT * FROM  fecha_enviada3";
     $resultado = mysqli_query($conn,$sql);
     if ($resultado->num_rows > 0){
-        echo "<table id='table-responsive' >";
+        echo "<table id='miTabla' >";
         echo "<tr>";
             echo "<th> Archivo </th>";
             echo "<th> Nombre </th>";

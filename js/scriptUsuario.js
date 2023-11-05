@@ -89,7 +89,7 @@ function validarFormulario() {
     var nombreAnteproyecto = document.getElementById("NombredelAnteproyecto").value;
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
-    var expresion = /^[a-zA-Z0-9\s]+$/;
+    //var expresion = /^[a-zA-Z0-9\s]+$/;
 
     if (numeroControl === "" || nombreAcademia === "" || nombreEstudiante === "" || nombreAnteproyecto === "") {
         Swal.fire({
@@ -189,101 +189,3 @@ function search() {
 
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-function abrirFormularioEdicionEspecial(id, Academia, NumeroDeControl, NombreDelEstudiante) {
-    // Muestra el formulario modal
-    var modal = document.getElementById('editar-modal-especial');
-    modal.style.display = 'block';
-
-    // Llena los campos del formulario con los datos de la fila correspondiente
-    document.getElementById('editar-id').value = id;
-    document.getElementById('AcademiaNormal').value = Academia;
-    document.getElementById('NumerodeControlNormal').value = NumeroDeControl;
-    document.getElementById('NombredelEstudianteNormal').value = NombreDelEstudiante;
-}
-
-
-function cerrarFormularioEdicionEspecial() {
-    // Oculta el modal
-    var modal = document.getElementById("editar-modal-especial");
-    modal.style.display = "none";
-}
-
-function validarFormularioEspecial() {
-    // Obtén los valores de los campos
-    var numeroControl = document.getElementById("NumerodeControlNormal").value;
-    var nombreAcademia = document.getElementById("AcademiaNormal").value;
-    var nombreEstudiante = document.getElementById("NombredelEstudianteNormal").value;
-
-    // Expresión regular para validar que los campos no contengan caracteres especiales
-    //var expresion = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]+$/;
-
-    if (numeroControl === "" || nombreAcademia === "" || nombreEstudiante === "") {
-        Swal.fire({
-            title: 'Llena todos los campos',
-            text: 'Asegúrate de llenar todos los campos',
-            icon: 'error',
-            confirmButtonText: 'Cerrar',
-            confirmButtonColor: '#197B7A' 
-        });
-        return false;
-    } else if (!expresion.test(numeroControl) || !expresion.test(nombreAcademia) || !expresion.test(nombreEstudiante)) {
-        Swal.fire({
-            title: 'Campo(s) inválido(s)',
-            text: "Los campos no deben contener caracteres especiales",
-            icon: 'warning',
-            confirmButtonColor: '#3085d6',
-          })
-        return false;
-    }
-
-    // Si todo está bien, el formulario se envía
-    return true;
-}   
-
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-function abrirFormularioRegistroEspecial() {
-    // Muestra el formulario modal de registro
-    var modal = document.getElementById('registro-modal-especial');
-    modal.style.display = 'block';
-}
-
-function cerrarFormularioRegistroEspecial() {
-    // Oculta el formulario modal de registro
-    var modal = document.getElementById('registro-modal-especial');
-    modal.style.display = 'none';
-}
-
-function validarFormularioRegistroEspecial() {
-    // Obtén los valores de los campos
-    var NuevoNumeroControl = document.getElementById("NumerodeControlNormal").value;
-    var NuevoNombreCarrera = document.getElementById("AcademiaNormal").value;
-    var NuevoNombreAlumno = document.getElementById("NombredelEstudianteNormal").value;
-
-
-    // Expresión regular para validar que los campos no contengan caracteres especiales
-    //var expresión = /^[a-zA-Z0-9\s]+$/;
-
-    if (NuevoNumeroControl === "" ||NuevoNombreCarrera === ""  || NuevoNombreAlumno === "" ) {
-        Swal.fire({
-            title: 'Llena todos los campos',
-            text: 'Asegúrate de llenar todos los campos',
-            icon: 'error',
-            confirmButtonText: 'Cerrar',
-            confirmButtonColor: '#197B7A'
-        });
-        return false;
-    } else if (!expresión.test(NuevoNumeroControl) || !expresión.test(NuevoNombreCarrera) || !expresión.test(NuevoNombreAlumno)) {
-        Swal.fire({
-            title: 'Campo(s) inválido(s)',
-            text: "Los campos no deben contener caracteres especiales",
-            icon: 'warning',
-            confirmButtonColor: '#3085d6',
-        });
-        return false;
-    }
-
-    // Si todo está bien, el formulario se envía
-    return true;
-}
