@@ -14,9 +14,9 @@
 
  table {
     border-collapse: collapse;
-    width: 210%;
+    width: 80em;
     margin: 20px auto;
-    margin-left: 5%;
+    margin-left: 5em;
     margin-top: 40px;
     background-color: var(--color-fondo);
     border: 1px solid var(--color-borde);
@@ -37,13 +37,13 @@ table, th, td {
 
 }
 .A{
-    width: 30%;
+    width: 10em;
 }
 .tipo{
-    width: 7%;
+    width: 7em;
 }
 .n{
-    width: 8%;
+    width: 5em;
 }
 
 
