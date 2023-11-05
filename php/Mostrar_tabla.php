@@ -14,9 +14,9 @@
 
  table {
     border-collapse: collapse;
-    width: 80em;
+    width: 120em;
     margin: 20px auto;
-    margin-left: 5%;
+    margin-left: 1em;
     margin-top: 40px;
     background-color: var(--color-fondo);
     border: 1px solid var(--color-borde);
@@ -31,19 +31,19 @@
 /* Estilo para las celdas de la tabla */
 table, th, td {
     border: 1px solid var(--color-borde);
-    padding: 7px;
+    padding: 5px;
     text-align: left;
     text-align: center;
 
 }
 .A{
-    width: 10em;
+    width: 40em;
 }
 .tipo{
-    width: 7em;
+    width: 10em;
 }
 .n{
-    width: 5em;
+    width: 7em;
 }
 
 
