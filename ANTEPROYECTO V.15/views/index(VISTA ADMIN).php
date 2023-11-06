@@ -50,6 +50,8 @@
             <div class="col-sm-12">
                 <h2 class="text-center">Anteproyecto</h2>
 
+           
+                <button class="btn btn-primary enviar-otro" type="submit">Enviar</button>
 
                 <div class="container">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
