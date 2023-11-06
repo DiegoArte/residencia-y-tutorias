@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if($resultado['Presidente']==1) {
                     header("Location: asignar_Asesores.php");
                 } else{
-                    header("Location: Anteproyecto v.8/ADMIN/index.php");
+                    header("Location: ANTEPROYECTO v.15/views/index(VISTA ADMIN).php");
                 }
                 exit;
                 }
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $resultado = $conexion->query($sql);
                 $resultado=$resultado->fetch_assoc();
                 $_SESSION['nombre'] = $resultado['NombredelEstudiante'];
-                header("Location: Anteproyecto v.8/USER/index.php");
+                header("Location: ANTEPROYECTO v.15/views/index(VISTA ALUMNO).php");
                 exit;
             }
         }
