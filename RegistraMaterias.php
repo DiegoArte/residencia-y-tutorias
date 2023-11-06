@@ -118,23 +118,23 @@ session_start();
                 <input type="hidden" name="tabla" value="materias"> <!-- Campo oculto para el nombre de la tabla -->
                 <input type="hidden" name="archivo_origen" id="archivo_origen_registro" value="RegistraMaterias.php"> <!-- Campo oculto para el nombre del archivo -->
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNumeroControlAcademia">Nuevo Número de Control Academia:</label>
+                    <label for="NuevoNumeroControlAcademia">Número de Control Academia:</label>
                     <input type="text" name="NuevoNumeroControlAcademia" id="NuevoNumeroControlAcademia">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNumeroControl">Nuevo Número de Control:</label>
+                    <label for="NuevoNumeroControl">Número de Control:</label>
                     <input type="text" name="NuevoNumeroControl" id="NuevoNumeroControl">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNombreMateria">Nuevo Nombre de la Materia:</label>
+                    <label for="NuevoNombreMateria">Nombre de la Materia:</label>
                     <input type="text" name="NuevoNombreMateria" id="NuevoNombreMateria">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoNumeroControlDocente">Nuevo Número de Control Docente:</label>
+                    <label for="NuevoNumeroControlDocente">Número de Control Docente:</label>
                     <input type="text" name="NuevoNumeroControlDocente" id="NuevoNumeroControlDocente">
                 </div>
                 <div class="registro-form-group form-group">
-                    <label for="NuevoUnidades">Nuevo Unidades:</label>
+                    <label for="NuevoUnidades">Unidades:</label>
                     <input type="text" name="NuevoUnidades" id="NuevoUnidades">
                 </div>
                 <button type="submit" class="registro-guardar-btn guardar-btn">Registrar</button>

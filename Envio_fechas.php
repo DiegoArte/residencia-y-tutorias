@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" >
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/Envio_fecha.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -33,7 +34,7 @@
             border: 1px solid #333;
         }
     </style>
-    <title>Envío de fecha</title>
+    <title>Envío de fecha alumno tutor</title>
 </head>
 <body>
     <header class="fixed w-100">
@@ -94,12 +95,12 @@ $conn->close();
     padding: 10px;
     padding-right : 10px;">
     
-            <form action="php/Enviartabla.php" class="Tabla_contenido" method="post">
+            
                 <?php
                 include 'php/Mostrar_tabla.php';
                 Tabla();
                 ?>
-                
+                <form action="php/Enviartabla.php" class="Tabla_contenido" method="post">
                 
             
         </section>
@@ -107,7 +108,7 @@ $conn->close();
         <section class="container" style="margin-top: 10px;
                         margin: left 500px;
                         align-items:center;
-                        
+                        width: 20%;
                         justify-content: center;
             ">
             <div class="row">
@@ -132,8 +133,13 @@ $conn->close();
             </div>
           </button>
           </form>
-          <div class="col-md-6">
-          <input type="submit" value="Nuevo" onclick="mostrarModal()">
+          <br>
+          
+          
+          <div class="">
+            <button type="submit" onclick="mostrarModal()">Insertar</button>
+          <!--input type="submit" value="Nuevo" onclick="mostrarModal()"-->
+          
           </div>
           
           
@@ -151,9 +157,60 @@ $conn->close();
             </form>
         </div>
     </div>
+    
           
     </main>
     <script src="js/envia_FECH.js"></script>
+    <script>
+        function mostrarModal2() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function cerrarModal2() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function validarFormulario2() {
+            var nombre = document.getElementById("Nombre").value;
+            var archivo = document.querySelector('input[type="file"]').files[0];
+
+            try {
+                if (nombre.trim() === "") {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Por favor, ingrese un nombre.',
+                        icon: 'error'
+                    });
+                    return false;
+                }
+
+                if (archivo) {
+                    var extension = archivo.name.split('.').pop().toLowerCase();
+                    if (extension !== "pdf" && extension !== "docx" && extension !== "xlsx") {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'El archivo debe ser de tipo PDF, Word o Excel.',
+                            icon: 'error'
+                        });
+                        return false;
+                    }
+                } else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Por favor, seleccione un archivo.',
+                        icon: 'error'
+                    });
+                    return false;
+                }
+            } catch (error) {
+                // Si hay un error al mostrar la alerta personalizada, muestra una alerta común.
+                alert('Ha ocurrido un error en la validación del formulario.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
     <script>
         function mostrarModal() {
             document.getElementById("myModal").style.display = "block";
@@ -164,8 +221,44 @@ $conn->close();
         }
 
         function validarFormulario() {
-            // Aquí puedes agregar lógica de validación del formulario
-            return true; // Devuelve true si el formulario es válido
+            var nombre = document.getElementById("Nombre").value;
+            var archivo = document.querySelector('input[type="file"]').files[0];
+
+            try {
+                if (nombre.trim() === "") {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Por favor, ingrese un nombre.',
+                        icon: 'error'
+                    });
+                    return false;
+                }
+
+                if (archivo) {
+                    var extension = archivo.name.split('.').pop().toLowerCase();
+                    if (extension !== "pdf" && extension !== "docx" && extension !== "xlsx") {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'El archivo debe ser de tipo PDF, Word o Excel.',
+                            icon: 'error'
+                        });
+                        return false;
+                    }
+                } else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Por favor, seleccione un archivo.',
+                        icon: 'error'
+                    });
+                    return false;
+                }
+            } catch (error) {
+                // Si hay un error al mostrar la alerta personalizada, muestra una alerta común.
+                alert('Ha ocurrido un error en la validación del formulario.');
+                return false;
+            }
+
+            return true;
         }
     </script>
     

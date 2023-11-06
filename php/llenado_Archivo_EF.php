@@ -9,7 +9,7 @@ $archivo = $_FILES["fichero"]["name"];
 echo "<br>";
 
 //echo "<br>";
-$ruta = "upload/";
+$ruta = "upload/uno/";
 $t = $archivo;
 //echo "<br>";
 $extension = pathinfo($archivo, PATHINFO_EXTENSION);
