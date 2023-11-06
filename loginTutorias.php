@@ -33,22 +33,40 @@ $conexion=conectar();
             header("Location: asignar_Tutores.php");
             exit;
         } elseif ($_SESSION['tipo_usuario'] === 'docente') {
-            $sql = "SELECT NombredelDocente FROM docentes WHERE NumerodeControl = '$numControl'";
-            $resultado = $conexion->query($sql);
-            $resultado=$resultado->fetch_assoc();
-            $_SESSION['nombre'] = $resultado['NombredelDocente'];
-            header("Location: formatos.php");
-            exit;
+            if ($usuario === $contrasena) {
+                // Redirige al usuario a una página para cambiar la contraseña
+                header("Location: cambiar_contrasenaT.php");
+                exit;
+            }else {
+                $sql = "SELECT NombredelDocente FROM docentes WHERE NumerodeControl = '$numControl'";
+                $resultado = $conexion->query($sql);
+                $resultado=$resultado->fetch_assoc();
+                $_SESSION['nombre'] = $resultado['NombredelDocente'];
+                header("Location: formatos.php");
+                exit;
+            }
         } elseif ($_SESSION['tipo_usuario'] === 'alumno') {
-            $sql = "SELECT NombredelEstudiante FROM alumnos WHERE NumerodeControl = '$numControl'";
-            $resultado = $conexion->query($sql);
-            $resultado=$resultado->fetch_assoc();
-            $_SESSION['nombre'] = $resultado['NombredelDocente'];
-            header("Location: ");
-            exit;
+            if ($usuario === $contrasena) {
+                // Redirige al usuario a una página para cambiar la contraseña
+                header("Location: cambiar_contrasenaT.php");
+                exit;
+            }else {
+                $sql = "SELECT NombredelEstudiante FROM alumnos WHERE NumerodeControl = '$numControl'";
+                $resultado = $conexion->query($sql);
+                $resultado=$resultado->fetch_assoc();
+                $_SESSION['nombre'] = $resultado['NombredelDocente'];
+                header("Location: ");
+                exit;
+            }
         }elseif ($_SESSION['tipo_usuario'] === 'psicologa') {
+            if ($usuario === $contrasena) {
+                // Redirige al usuario a una página para cambiar la contraseña
+                header("Location: cambiar_contrasenaT.php");
+                exit;
+            }else {
             header("Location: VistaPsicologa1.php");
             exit;
+            }
         }
     } else {
         // Inicio de sesión fallido, muestra un mensaje de error

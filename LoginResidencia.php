@@ -22,30 +22,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['usuario'] = $numControl;
         $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
         $_SESSION['pagina'] = 'resdencia';
-    
         // Redirecciona a la página correspondiente según el tipo de usuario
         if ($_SESSION['tipo_usuario'] === 'Administrador') {
             $_SESSION['nombre'] = 'Administrador';
             header("Location: princi_Super_Admin.php");
             exit; // Termina el script después de la redirección
         } elseif ($_SESSION['tipo_usuario'] === 'docente') {
-            $sql = "SELECT NombredelDocente, Presidente FROM docentes WHERE NumerodeControl = '$numControl'";
-            $resultado = $conexion->query($sql);
-            $resultado=$resultado->fetch_assoc();
-            $_SESSION['nombre'] = $resultado['NombredelDocente'];
-            if($resultado['Presidente']==1) {
-                header("Location: asignar_Asesores.php");
-            } else{
-                header("Location: Anteproyecto v.8/ADMIN/index.php");
-            }
-            exit;
+            //Redirige al usuario a una página para cambiar la contraseña
+            if ($usuario === $contrasena) {
+                header("Location: cambiar_contrasenaR.php");
+                exit;
+            }else {
+                $sql = "SELECT NombredelDocente, Presidente FROM docentes WHERE NumerodeControl = '$numControl'";
+                $resultado = $conexion->query($sql);
+                $resultado=$resultado->fetch_assoc();
+                $_SESSION['nombre'] = $resultado['NombredelDocente'];
+                if($resultado['Presidente']==1) {
+                    header("Location: asignar_Asesores.php");
+                } else{
+                    header("Location: Anteproyecto v.8/ADMIN/index.php");
+                }
+                exit;
+                }
         } elseif ($_SESSION['tipo_usuario'] === 'alumno') {
-            $sql = "SELECT NombredelEstudiante FROM alumnos WHERE NumerodeControl = '$numControl'";
-            $resultado = $conexion->query($sql);
-            $resultado=$resultado->fetch_assoc();
-            $_SESSION['nombre'] = $resultado['NombredelEstudiante'];
-            header("Location: Anteproyecto v.8/USER/index.php");
-            exit;
+            if ($usuario=== $contrasena) {
+                // Redirige al usuario a una página para cambiar la contraseña
+                header("Location: cambiar_contrasenaR.php");
+                exit;
+            } else {
+                $sql = "SELECT NombredelEstudiante FROM alumnos WHERE NumerodeControl = '$numControl'";
+                $resultado = $conexion->query($sql);
+                $resultado=$resultado->fetch_assoc();
+                $_SESSION['nombre'] = $resultado['NombredelEstudiante'];
+                header("Location: Anteproyecto v.8/USER/index.php");
+                exit;
+            }
         }
     } else {
         // Inicio de sesión fallido, muestra un mensaje de error

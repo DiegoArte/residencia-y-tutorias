@@ -3,7 +3,7 @@ session_start();
 
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
-    header("Location: login_prueba1.php"); // Redirige al usuario al formulario de inicio de sesión si no ha iniciado sesión
+    header("Location: loginTutorias.php"); // Redirige al usuario al formulario de inicio de sesión si no ha iniciado sesión
     exit();
 }
 
