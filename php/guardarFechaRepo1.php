@@ -1,9 +1,9 @@
 <?php
 // Establece la conexión a tu base de datos (debes configurar esto)
 
-require 'php/db.php';
+require 'db.php';
 
-    $conexion=conectar();
+$conexion=conectar();
 
 // Obtiene las fechas desde el formulario
 $fechaInicio1 = $_POST['fechaInicio1'];

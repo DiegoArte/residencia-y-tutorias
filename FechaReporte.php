@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/estiloFechaRep.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">
     <title>Fechas</title>
 </head>
 <body>
@@ -22,8 +23,10 @@
     </header>
     <main>
         <div class="barraLateral fixed h-100">
-            <a href="#"></a>
-            <button><img src="img/inicio-ubicacion-alt.png" alt=""></button>
+        <a href="princi_Super_Admin.php" class="back-arrow rounded-pill d-flex justify-content-start">
+            <img src="img/back.svg" alt="" height="50">
+            <span class="regresar d-none text-white m-auto">Regresar</span>
+        </a>
         </div>
         <section style="margin-top: 70px;">
         <?php
@@ -72,10 +75,7 @@ $conn->close();
         <section>
         <?php
 // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
-require 'php/db.php';
-
 $conn=conectar();
-
 // Consulta SQL para obtener las fechas de la tabla fecharepo1
 $sql = "SELECT fechaini, fechafin FROM fecharepo2";
 $result = $conn->query($sql);
@@ -114,12 +114,9 @@ $conn->close();
         </section>
         
         <section>
-            <    <?php
-    // Establece la conexión a la base de datos (ajusta los valores según tu configuración)
-    require 'php/db.php';
+    <?php
 
 $conn=conectar();
-
     // Consulta SQL para obtener las fechas de la tabla fecharepo1
     $sql = "SELECT fechaini, fechafin FROM fecharepo3";
     $result = $conn->query($sql);

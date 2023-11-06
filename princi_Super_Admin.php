@@ -48,6 +48,7 @@ $carrera=$_GET['carrera']??"";
         if($_SESSION['pagina']=='resdencia'){
             ?>
                 <a href="RegistraUS.php" class="boton3">Registrar Alumno</a>
+                <a href="FechaReporte.php" class="boton1 boton4">Asignar fechas</a>
             <?php
         }
     ?>
