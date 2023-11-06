@@ -13,7 +13,7 @@ $conexion = conectar();
 
 // Inicializa las variables
 $nuevaContrasena = $confirmarContrasena = "";
-$contrasenaErr = "";
+
 
 // Manejar la solicitud de cambio de contraseña
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -26,7 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         !preg_match('/[^A-Za-z0-9]/', $nuevaContrasena) || // Al menos un carácter especial
         strlen($nuevaContrasena) < 8 // Al menos 8 caracteres
     ) {
-        $contrasenaErr = "Nueva contraseña no cumple con los requisitos.";
+       
+        echo '<div class="mensaje-error">
+                    <p>La nueva contraseña no cumple con los requisitos.</p>
+                </div>';
+                
     } else {
         
     // Verificar que la nueva contraseña no sea igual a la contraseña actual
@@ -39,21 +43,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
 
         if ($nuevaContrasena === $contrasenaActual) {
-            $contrasenaErr = "Nueva contraseña no puede ser igual a la contraseña actual. Por favor, elige una contraseña diferente.";
+         
+            echo '<div class="mensaje-error">
+                    <p>La nueva contraseña no puede ser igual a la contraseña actual.Porfavor, elige una contraseña diferente </p>
+                </div>';
+                
         } else {
             if ($nuevaContrasena === $confirmarContrasena) {
                 // Actualiza la contraseña en la base de datos
                 $sql = "UPDATE usuarios SET contrasena = '$nuevaContrasena' WHERE usuario = '$usuario'";
                 if ($conexion->query($sql) === TRUE) { 
                     echo '<div class="mensaje-error">
-                    <p>Contraseña actualizada con éxito</p>
+                    <p>Contraseña actualizada con éxito. <a class="enlace-exito" href="login_prueba1.php">Volver</a></p>
                 </div>';
+                
                 } else {
+
+                    echo '<div class="mensaje-error">
+                    <p>Error. No se pudo actualizar la contraseña  </p>
+                </div>';
                     
-                    $contrasenaErr = "Error. No se pudo actualizar la contraseña";
+                   
                 }
             } else {
-                $contrasenaErr = "Las contraseñas no coinciden. Por favor, asegúrate de que las contraseñas sean iguales en ambos campos.";
+                echo '<div class="mensaje-error">
+                <p>Las contraseñas no coinciden. Por favor, asegúrate de que las contraseñas sean iguales en ambos campos.</p>
+            </div>';
+                
             }
         }
     }
@@ -108,11 +124,29 @@ $conexion->close();
             font-size: 18px;
             
         }
+        .enlace-exito {
+            color:#2c2f63;  /* Cambia el color del texto del enlace a blanco */
+           
+            padding: 5px 10px; /* Añade relleno alrededor del enlace para hacerlo más grande */
+            
+            text-decoration: none; /* Quita el subrayado del enlace */
+            font-weight: bold; /* Hace que el texto del enlace sea más audaz */
+            transition: background-color 0.3s, color 0.3s; /* Agrega una transición suave al color de fondo y al color del texto al pasar el cursor sobre el enlace */
+        }
+
+        .enlace-exito:hover {
+            color: #fff; /* Cambia el color de fondo al pasar el cursor */
+           
+            animation: button-particles 1s ease-in-out infinite;
+            transform: translateY(-2px);
+           
+        }
+
 
         
         .modal-boton{
             display: inline-block;
-            background: linear-gradient(to bottom, #1252A6, #49C2F2);
+            background: linear-gradient(to bottom, #0D65D9, #57E3F2);
             width: 300px;
             height: 80px;
             text-align: center;
@@ -121,21 +155,25 @@ $conexion->close();
             font-weight: bold;
             font-size: 18px;
             border: 3px solid #082B59;
-            border-radius: 30px;
+            border-radius: 20px;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             animation: button-shimmer 2s infinite;
             transition: all 0.3s ease-in-out;
-           
+            white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+            
             }
 
 
             /* Hover animation */
         .modal-boton:hover {
-            background: linear-gradient(to bottom, #0D65D9, #57E3F2);
+            background: linear-gradient(to bottom, #49C2F2, white);
             animation: button-particles 1s ease-in-out infinite;
             transform: translateY(-2px);
             }
+
+
+
         /* ... Estilos anteriores ... */
 
 
@@ -262,11 +300,6 @@ $conexion->close();
      <!-- RAYAS DE ARRIBA,IZ -->
     <header class="fixed w-100">
         <div class="usuarioOp d-flex justify-content-end">
-        <a href="login_prueba1.php" class="back-arrow rounded-pill d-flex justify-content-start">
-            <img src="img/back.svg" alt="" height="50">
-            <span class="regresar d-none text-white m-auto">Regresar</span>
-         </a>
-            
         </div>
     </header>
 
@@ -325,8 +358,6 @@ $conexion->close();
                 
                     <br>
                     <br
-                    <span class="error"><?php echo $contrasenaErr; ?></span>
-                    <br>
                     
                 </div>
                 <script>
