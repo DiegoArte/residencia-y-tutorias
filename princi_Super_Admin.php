@@ -145,7 +145,7 @@ $conn=conectar();
                     }
                     
                     echo '<div class="button-cell">';
-                    echo '<a href="Anteproyecto v.8/ADMIN/index.php"><button class="custom-button" type="submit" name="button_id" value="' . $row["NombredeCarrera"] . '">' . $row["NombredeCarrera"] . '</button></a>';
+                    echo '<a href="ANTEPROYECTO v.15/views/index(VISTA ADMIN).php"><button class="custom-button" type="submit" name="button_id" value="' . $row["NombredeCarrera"] . '">' . $row["NombredeCarrera"] . '</button></a>';
                     echo '</div>';
                     
                     $counter++;
