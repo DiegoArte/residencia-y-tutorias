@@ -49,12 +49,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <p>Contraseña actualizada con éxito</p>
                 </div>';
                 } else {
-                    echo '<div class="mensaje-error">
-                    <p>Error al actualizar la contraseña</p>
-                </div>' . $conexion->error;
+                    
+                    $contrasenaErr = "Error. No se pudo actualizar la contraseña";
                 }
             } else {
-                $contrasenaErr = "Contraseñas no coinciden. Por favor, asegúrate de que las contraseñas sean iguales en ambos campos.";
+                $contrasenaErr = "Las contraseñas no coinciden. Por favor, asegúrate de que las contraseñas sean iguales en ambos campos.";
             }
         }
     }
@@ -98,52 +97,42 @@ $conexion->close();
         }
 
         .modal-content {
-            background-color: #1e3188;
+            background-color: #0D65D9;
             color: #000000;
-            width: 400px;
+            width: 500px;
+            right: 100px;
             margin: 18% auto; /* Centrar verticalmente */
             padding: 20px;
             border-radius: 20px;
             font-family: 'Open Sans', sans-serif;
+            font-size: 18px;
             
         }
 
         
         .modal-boton{
             display: inline-block;
-            background: linear-gradient(to bottom, #1e3188, #4F648B);
-            /*--color9: #4F648B;
-           
-            /*--color9: #4F648B;
-            --color10:#1e3188;*/
-            width: 100px;
+            background: linear-gradient(to bottom, #1252A6, #49C2F2);
+            width: 300px;
             height: 80px;
             text-align: center;
-            
-           
             color: #000000;
-           
             font-family: 'Open Sans', sans-serif;
             font-weight: bold;
             font-size: 18px;
-            /* Large font size */
-            border: none;
-            /* No border */
+            border: 3px solid #082B59;
             border-radius: 30px;
-            
             cursor: pointer;
-            /* Cursor on hover */
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            /* Subtle shadow */
             animation: button-shimmer 2s infinite;
             transition: all 0.3s ease-in-out;
-            /* Smooth transition */
+           
             }
 
 
             /* Hover animation */
         .modal-boton:hover {
-            background: linear-gradient(to bottom, #2c2f63, #5b67b7);
+            background: linear-gradient(to bottom, #0D65D9, #57E3F2);
             animation: button-particles 1s ease-in-out infinite;
             transform: translateY(-2px);
             }
@@ -160,28 +149,36 @@ $conexion->close();
            
         }
         .mensaje-error{
-            background-color: #1e3188;
+            background: linear-gradient(to bottom, #49C2F2, white);
             color: #000000;
             border-radius: 20px;
-            width: 400px;
-            left:545px;
+            width: 500px;
+            left:440px;
             margin: 2% auto; /* Centrar verticalmente */
             padding: 20px;
             text-align: center;
         }
        
 
-        h2{
-            font-size: 60px;
+        h3{
+            font-size: 30px;
             font-weight: bold;
             font-family: 'Open Sans', sans-serif;
+            color: #000000;
             text-align: center;
 
 
         }
+        
+        .req{
+            font-size: 18px;
+            font-weight: bold;
+          
+            font-family: 'Open Sans', sans-serif;
+
+        }
         label{
             font-size: 20px;
-            font-weight: bold;
           
             font-family: 'Open Sans', sans-serif;
 
@@ -227,31 +224,35 @@ $conexion->close();
         
         .password-input.valid {
             background-color: #f0f0f0;
-            border: 2px solid blue; /* Estilo de borde en caso de contraseña válida */
+            border: 2px solid #49C2F2; /* Estilo de borde en caso de contraseña válida */
         }
        
 
         /* ... Estilos posteriores ... */
         .mostrar-ocultar-contrasena {
             position:absolute;
-            background-color: #1e3188;
+            background-color: #0D65D9;
             --color: #a5a5b0;
-            width: 30px; /* Ancho deseado */
-            height: 30px; /* Alto deseado */
+            width: 50px; /* Ancho deseado */
+            height: 50px; /* Alto deseado */
         }
         .mostrar-ocultar-contrasena1 {
             position:absolute;
-            background-color: #1e3188;
+            background-color: #0D65D9;
             --color: #a5a5b0;
-            width: 30px; /* Ancho deseado */
-            height: 30px; /* Alto deseado */
+            width: 50px; /* Ancho deseado */
+            height: 50px; /* Alto deseado */
         }
 
         input{
-            background-color: #f0f0f0;
             
-            height: 30px; /* Alto deseado */
+            background: linear-gradient(to bottom, #49C2F2, white);
+            border: 3px solid #082B59;
+            height: 50px; /* Alto deseado */
+            width: 300px;
+            border-radius: 30px;
         }
+
        
 
        
@@ -292,7 +293,7 @@ $conexion->close();
 
             <!-- Agrega esto dentro del formulario HTML -->
             <div id="password-requirements">
-                <p>Requisitos de contraseña:</p>
+                <p class="req">Requisitos de contraseña:</p>
                 <ul>
                     <li id="length-requirement">Al menos 8 caracteres</li>
                     <li id="uppercase-requirement">Al menos una letra mayúscula</li>
@@ -417,14 +418,7 @@ $conexion->close();
                     });
                                 
                                     
-                                    
-                    <?php
-                    if (!empty($contrasenaErr)) {
-                        echo "var errorMessage = document.getElementById('error-message');";
-                        echo "errorMessage.innerHTML = '$contrasenaErr';";
-                        echo "errorMessage.style.display = 'block';";
-                    }
-                    ?>
+                                
 
                 </script>
                <button class="modal-boton" type="submit">Cambiar Contraseña</button>
