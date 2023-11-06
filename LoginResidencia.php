@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if($resultado['Presidente']==1) {
                     header("Location: asignar_Asesores.php");
                 } else{
-                    header("Location: ANTEPROYECTO v.15/views/index(VISTA ADMIN).php");
+                    header("Location: ANTEPROYECTO V.15/views/index(VISTA ADMIN).php");
                 }
                 exit;
                 }
