@@ -63,7 +63,6 @@
                                 <th>Archivo</th>
                                 <th>Descargar</th>
                                 <th>Ver PDF</th>
-                                <th>Eliminar</th>
                                 <th>Agregar un asesor</th>
                             </tr>
                         </thead>
@@ -106,39 +105,7 @@
                                         </a>
                                     </td>
 
-                                    <td>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#confirmDelete<?php echo $fila['idalumno']; ?>">
-                                            Eliminar
-                                        </button>
-                                    </td>
-
-                                    <!-- Modal for confirmation -->
-                                    <div class="modal fade" id="confirmDelete<?php echo $fila['idalumno']; ?>" tabindex="-1"
-                                        role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="confirmDeleteLabel">Confirmar Eliminación
-                                                    </h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    ¿Estás seguro de que deseas eliminar este registro?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Cancelar</button>
-                                                    <a href="eliminar.php?id=<?php echo $fila['idalumno']; ?>"
-                                                        class="btn btn-danger">Eliminar</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    
 
                                     <td>
                                         <form class="form-edit-asesor" data-id="<?php echo $fila['id']; ?>">
