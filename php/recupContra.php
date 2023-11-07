@@ -49,7 +49,7 @@
         }
 
         function regresar() {
-            window.location.href = 'LoginResidencia.php';
+            window.location.href = '../LoginResidencia.php';
         }
     </script>
 
