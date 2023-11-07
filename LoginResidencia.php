@@ -33,13 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: cambiar_contrasenaR.php");
                 exit;
             }else {
-                $sql = "SELECT NombredelDocente, Presidente FROM docentes WHERE NumerodeControl = '$numControl'";
+                $sql = "SELECT NombredelDocente, Presidente, Asesor FROM docentes WHERE NumerodeControl = '$numControl'";
                 $resultado = $conexion->query($sql);
                 $resultado=$resultado->fetch_assoc();
                 $_SESSION['nombre'] = $resultado['NombredelDocente'];
                 if($resultado['Presidente']==1) {
                     header("Location: asignar_Asesores.php");
-                } else{
+                } else if($resultado['Asesor']==1){
                     header("Location: ANTEPROYECTO V.15/views/index(VISTA ASESOR).php");
                 }
                 exit;
