@@ -79,7 +79,7 @@ if ($row3 = mysqli_fetch_assoc($resultado3)) {
 }
 
 // Cerrar la conexión a la base de datos
-
+$conn->close();
 // Mostrar los botones en el div "barraLateral" si corresponde
 ?>
 <div class="barraLateral fixed h-100">
