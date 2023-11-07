@@ -76,20 +76,29 @@ if ($row3 = mysqli_fetch_assoc($resultado3)) {
 }
 
 // Cerrar la conexión a la base de datos
-
+$conn->close();
 // Mostrar los botones en el div "barraLateral" si corresponde
 ?>
 <div class="barraLateral fixed h-100">
 <div style="padding-top: 80px;">
     <?php
     if ($mostrar_reporte1) {
-        echo '<button style="margin-bottom: 5px;">Reporte 1</button>';
+        ?>
+        <form action="Envio_fechas.php" method="post">
+        <?php
+        echo '<button style="margin-bottom: 5px;">Reporte 1</button> </form>';
     }
     if ($mostrar_reporte2) {
-        echo '<button style="margin-bottom: 5px;">Reporte 2</button>';
+        ?>
+        <form action="Envio_fechas2.php" method="post">
+        <?php
+        echo '<button style="margin-bottom: 5px;">Reporte 2</button></form>';
     }
     if ($mostrar_reporte3) {
-        echo '<button style="margin-bottom: 5px;">Reporte 3</button>';
+        ?>
+        <form action="Envio_fechas3.php" method="post">
+        <?php
+        echo '<button style="margin-bottom: 5px;">Reporte 3</button></form>';
     }
     ?>
 </div>
@@ -123,12 +132,14 @@ if ($row3 = mysqli_fetch_assoc($resultado3)) {
                                 <th>Descargar</th>
                                 <th>Ver PDF</th>
                                 <th>Eliminar</th>
+                                <th>Ver Revisión</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             require_once "../includes/db.php";
-                            $consulta = mysqli_query($conexion, "SELECT * FROM documento GROUP BY nombrealumno");
+                            $id=$_SESSION['usuario'];
+                            $consulta = mysqli_query($conexion, "SELECT * FROM documento WHERE idalumno='$id' GROUP BY nombrealumno");
 
                             while ($fila = mysqli_fetch_assoc($consulta)):
 
@@ -170,6 +181,14 @@ if ($row3 = mysqli_fetch_assoc($resultado3)) {
                                         <button class="btn btn-danger btn-eliminar" data-id="<?php echo $fila['idalumno']; ?>">
                                             Eliminar
                                         </button>
+                                    </td>
+                                    <td>
+                                        <?php
+                                            $asesor = mysqli_fetch_assoc(mysqli_query($conexion, "SELECT Asesor FROM asesorados WHERE Alumno='$id'"));
+                                        ?>
+                                        <a href="../../../comunicacionDocenteAlumno.php?id=<?php echo $asesor['Asesor']; ?>" class="btn btn-danger">
+                                            <i class="fas fa-message"></i> Ver revisión
+                                        </a>
                                     </td>
 
                                 </tr>
