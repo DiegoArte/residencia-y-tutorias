@@ -29,6 +29,7 @@
             <img src="profile.png" alt="">
             <?php
             session_start();
+            $id = $_SESSION['usuario'];
             $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
             echo '<p>' . $nombre . '</p>';
             ?>
@@ -62,12 +63,13 @@
                                 <th>Archivo</th>
                                 <th>Descargar</th>
                                 <th>Ver PDF</th>
+                                <th>Responder</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             require_once "../includes/db.php";
-                            $consulta = mysqli_query($conexion, "SELECT * FROM documento");
+                            $consulta = mysqli_query($conexion, "SELECT * FROM documento WHERE idalumno IN(SELECT Alumno FROM asesorados WHERE Asesor='$id')");
                             while ($fila = mysqli_fetch_assoc($consulta)):
                                 ?>
                                 <tr>
@@ -99,6 +101,11 @@
                                         <a href="../includes/files/<?php echo $fila['archivo']; ?>"
                                             class="btn btn-secondary" target="_blank">
                                             Ver PDF
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="../../../comunicacionDocenteAlumno.php?id=<?php echo $fila['idalumno']; ?>" class="btn btn-danger">
+                                            <i class="fas fa-message"></i> Responder
                                         </a>
                                     </td>
 
