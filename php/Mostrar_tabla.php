@@ -116,14 +116,16 @@ function Tabla(){
 include 'conexion.php';
 $conn = conecta();
 $login = $_POST["ses"];
-echo $login;
+
+//echo $login."<br>";
+
 // Verificar la conexión
 $tABLA_ = "fecha_enviada";
 if ($conn->connect_error) {
     //die("Conexión fallida: " . $conn->connect_error);
 }
 else{
-    $sql = "SELECT MIN(id) AS id, Archivo, Nombre, Tipo_de_archivo,ruta FROM fecha_enviada GROUP BY Nombre;";
+    $sql = "SELECT * FROM `fecha_enviada` WHERE `Nombre`='".$login."';";
     $resultado = mysqli_query($conn,$sql);
     if ($resultado->num_rows > 0){
         echo "<table id='table-responsive' >";
@@ -135,31 +137,25 @@ else{
             
 
 
-
+            echo "<td>";
         while ($row = $resultado->fetch_array()){
-            $axu = $row["Nombre"];
-            $sql2 = "SELECT * FROM `fecha_enviada` WHERE Nombre='$axu';";
-            $resultado2 = mysqli_query($conn,$sql2);
-            //while($row2 = $resultado2->fetch_array()){}
-            echo "<tr>";
-            echo "<td class = 'A'>"; 
-            while($row2 = $resultado2->fetch_array()){
-                echo "". $row2["Archivo"] . "";
-                echo "<br>";
-            }
+            $axu = $row["Archivo"];
+            echo $axu;
+            echo "<br>";
             
-            
+        }
             echo "</td>";
             echo "<td class = 'n'>" ;
-           
-                echo "". $row["Nombre"]. "";
-                echo "<br>";
-            
-           
+            $sql2 = "SELECT * FROM `alumnos` WHERE `NumerodeControl`='".$login."';";
+            $resultado2 = mysqli_query($conn,$sql2);
+
+            while ($row2 = $resultado2->fetch_array()){
+                echo "". $row2["NombredelEstudiante"]. "";
+            }
             echo "</td>";
             echo "<td class = 'tipo' >" ;
             
-            $axu = $row["Nombre"];
+            $axu = $login;
             $sql3 = "SELECT * FROM `fecha_enviada` WHERE Nombre='$axu';";
             $resultado3 = mysqli_query($conn,$sql3);
             while($row3 = $resultado3->fetch_array()){
@@ -193,17 +189,7 @@ else{
         <input type="hidden" name="id" value="<?php echo $row3["id"]?>">
         <input type="submit" value="Eliminar">
         </form>
-        
 
-        
-        
-        
-            
-        
-        
-
-        
-        
         <?php
             }
             echo"</td>";
@@ -211,7 +197,7 @@ else{
 
             
             echo "</tr>";
-        }   
+        
 
         echo "</table>";
     }else {
