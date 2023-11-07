@@ -71,6 +71,8 @@ include 'conexion.php';
 $conn = conecta();
 // Verificar la conexión
 $tABLA_ = "fecha_enviada";
+$login = $_POST["ses"];
+echo $login;
 if ($conn->connect_error) {
     //die("Conexión fallida: " . $conn->connect_error);
 }

@@ -16,7 +16,7 @@
     border-collapse: collapse;
     width: 100%;
     margin: 20px auto;
-    margin-left: 2em;
+    margin-left: 0em;
     margin-top: 40px;
     background-color: var(--color-fondo);
     border: 1px solid var(--color-borde);
@@ -115,6 +115,8 @@ tr:nth-child(odd) {
 function Tabla(){
 include 'conexion.php';
 $conn = conecta();
+$login = $_POST["ses"];
+echo $login;
 // Verificar la conexión
 $tABLA_ = "fecha_enviada";
 if ($conn->connect_error) {

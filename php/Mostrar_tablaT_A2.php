@@ -115,6 +115,8 @@ tr:nth-child(odd) {
 function Tabla(){
 include 'conexion.php';
 $conn = conecta();
+$login = $_POST["ses"];
+echo $login;
 // Verificar la conexión
 $tABLA_ = "fecha_enviada";
 if ($conn->connect_error) {

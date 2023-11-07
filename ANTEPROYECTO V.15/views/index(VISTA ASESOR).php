@@ -87,19 +87,22 @@ $conn->close();
     <?php
     if ($mostrar_reporte1) {
         ?>
-        <form action="Envio_fechasT_A.php/../../.." method="post">
+        <form action="../../Envio_fechasT_A.php" method="post">
+            <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
         <?php
         echo '<button style="margin-bottom: 5px;">Reporte 1</button> </form>';
     }
     if ($mostrar_reporte2) {
         ?>
-        <form action="Envio_fechasT_A2.php/../../.." method="post">
+        <form action="../../Envio_fechasT_A2.php" method="post">
+        <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
         <?php
         echo '<button style="margin-bottom: 5px;">Reporte 2</button> </form>';
     }
     if ($mostrar_reporte3) {
         ?>
-        <form action="Envio_fechasT_A3.php/../../.." method="post">
+        <form action="../../Envio_fechasT_A3.php" method="post">
+        <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
         <?php
         echo '<button style="margin-bottom: 5px;">Reporte 3</button> </form>';
     }

@@ -76,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estiloLogin.css">
     <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/recupContra.css">
     <script src="js/scriptLogin.js"></script>
     <title>Login</title>
 </head>
@@ -121,6 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
             <br>
             <a href="index.html" class="regresar">Regresar al menú de selección</a>
+            <a href="php/recupContra.php" id="mostrarVentana" class="recuperar">Olvidaste tu contraseña?</a>
         </div>
     </div>
 </body>
