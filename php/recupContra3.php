@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="css/recupContra.css">
+    <link rel="stylesheet" href="../css/recupContra.css">
     <style>
         .imagen {
             position: absolute;
@@ -28,7 +28,7 @@
             $contraseña = $_POST["contraseña"];
         }
 
-        require 'php/db.php';
+        require '../php/db.php';
         $conexion=conectar();
 
         $consulta = "UPDATE usuarios SET contrasena = '$contraseña' WHERE usuario = '$control'";
@@ -38,7 +38,7 @@
         $resultado = $conexion->query($consulta);
 
 
-        echo " <img src='img/si.jpg' alt='correo enviado' class='img1'><hr><br>
+        echo " <img src='../img/si.jpg' alt='correo enviado' class='img1'><hr><br>
         
         <label id='correoL'> La contraseña se ha actualizado con éxito. </label> <br>
         <label  id='correoL'> Vuelve a iniciar sesión con tu nueva contraseña. </label> <br><br>
@@ -60,7 +60,7 @@
         }
 
         function salir() {
-            window.location.href = 'LoginResidencia.php';
+            window.location.href = '../LoginResidencia.php';
         }
     </script>
 </body>

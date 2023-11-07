@@ -86,11 +86,18 @@
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $acade = $_POST["acade"];
                 $fecha = $_POST["fecha"];
-                $activi = $_POST["Actividad"];
+                $activi =$_POST["Actividad"];
                 $fechaObj = new DateTime($fecha);
                 $fechaFormateada = $fechaObj->format('d/m/Y');
-                echo "<input class='form-control' type='text' value='$acade' aria-label='Disabled input example' disabled readonly>";
-                echo "<input class='form-control' type='text' value='$activi' aria-label='Disabled input example' disabled readonly>";
+                
+                echo "<div class='form-floating'>";
+                echo "<input class='form-control' id='grup' type='text' value='$acade' aria-label='Disabled input example' disabled readonly>";
+                echo " <label for='grup'>Grupo</label>";
+                echo "</div>";
+                echo "<div class='form-floating'>";
+                echo "<textarea class='form-control' id='act' type='text'  aria-label='Disabled input example' disabled readonly>$activi</textarea>";
+                echo " <label for='act'>Actividad del dia planeada</label>";
+                echo "</div>";
                 echo "<table class='table table-bordered'>";
                 echo "<thead>";
                 echo "<tr>";
@@ -120,9 +127,10 @@
                 echo "</tbody>";
                 echo "</table>";
                 echo "<div class='col mb-3'>";
-                    echo "<button type='submit' class='btn btn-primary'>Guardar</button>";
+                    echo "<button class='btn btn-primary'>Guardar</button>";
                 echo "</div>";
             }
+            $conexion->close();
             ?>
 
         </div>
