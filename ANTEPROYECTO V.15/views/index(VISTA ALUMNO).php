@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anteproyecto</title>
+    <title>Anteproyecto (Vista Alumno)</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -107,7 +107,7 @@ $conn->close();
     <section style="margin-top: 70px;">
         <div class="container">
             <div class="col-sm-12">
-                <h2 class="text-center">Anteproyecto (Vista Alumno)</h2>
+                <h2 class="text-center">Anteproyecto </h2>
         
                 <div class="btn_agregar">
                     <button type="button" class="btn btn-success" data-toggle="modal"
