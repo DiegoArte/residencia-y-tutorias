@@ -200,30 +200,40 @@ $conn->close();
                 </div>
             </div>
             <script>
-$(document).ready(function() {
-    $(".btn-eliminar").click(function() {
-        var alumnoId = $(this).data('idalumno');
-        
-        if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
-            $.ajax({
-                type: "POST",
-                url: "eliminar.php", // Ruta al archivo PHP que maneja la eliminación
-                data: {
-                    idalumno: alumnoId
-                },
-                success: function(response) {
-                    if (response == "success") {
-                        // Recargar la página o realizar cualquier otra acción necesaria
-                        location.reload();
-                    } else {
-                        alert("Error al eliminar el registro.");
+        // Obtén todos los botones con la clase 'btn-eliminar'
+        const botonesEliminar = document.querySelectorAll(".btn-eliminar");
+
+        // Agrega un controlador de eventos clic a cada botón
+        botonesEliminar.forEach(function (boton) {
+            boton.addEventListener("click", function () {
+                // Obtiene el valor del atributo 'data-id' del botón
+                const idAlumno = boton.getAttribute("data-id");
+
+                // Envía una solicitud al servidor para eliminar el registro
+                fetch("eliminar_registro.php", {
+                    method: "POST",
+                    body: JSON.stringify({ id: idAlumno }),
+                    headers: {
+                        "Content-Type": "application/json"
                     }
-                }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Registro eliminado exitosamente
+                        // Puedes actualizar la interfaz o hacer lo que necesites
+                        console.log("Registro eliminado correctamente");
+                    } else {
+                        // Hubo un error al eliminar el registro
+                        console.error("Error al eliminar el registro");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error al realizar la solicitud: " + error);
+                });
             });
-        }
-    });
-});
-</script>
+        });
+    </script>
+            
 </body>
 
 

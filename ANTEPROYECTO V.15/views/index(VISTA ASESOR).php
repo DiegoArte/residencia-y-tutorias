@@ -162,7 +162,7 @@ $conn->close();
                                     <td>
                                         <a href="../includes/download.php?id=<?php echo $fila['idalumno']; ?>"
                                             class="btn btn-primary">
-                                            <i class="fas fa-download"></i> Download
+                                            <i class="fas fa-download"></i> Descargar
                                         </a>
                                     </td>
                                     <td>
