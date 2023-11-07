@@ -4,7 +4,9 @@
   background: linear-gradient(to bottom, #1e3188, #4F648B);
   /*--color9: #4F648B;
   --color10:#1e3188;*/
-  width: 1000px;
+  text-decoration: none; /* Quita el subrayado del enlace */
+  line-height: 90px; /* Centra el texto verticalmente */
+  width: 800px;
   height: 100px;
   text-align: center;
   top: 450px;
@@ -79,6 +81,8 @@
   text-align: center;
   top: 450px;
   left:370px;
+  text-decoration: none; /* Quita el subrayado del enlace */
+  line-height: 90px; /* Centra el texto verticalmente */
  
  /* Gradient background */
   color: white;
@@ -141,11 +145,14 @@
 
 .beautiful-button2 {
   position: relative;
-  display: inline-block;
+  display: inline-flex; /* Usar flexbox */
+  flex-direction: column; /* Mostrar el texto en columnas */
+  justify-content: center; /* Centrar verticalmente */
   background: linear-gradient(to bottom, #1e3188, #4F648B);
   width: 800px;
   height: 100px;
   text-align: center;
+  text-decoration: none; /* Quita el subrayado del enlace */
   top: 450px;
   left:490px;
   
@@ -208,13 +215,16 @@
 
 .beautiful-button3 {
   position: relative;
-  display: inline-block;
+  display: inline-flex; /* Usar flexbox */
+  flex-direction: column; /* Mostrar el texto en columnas */
+  justify-content: center; /* Centrar verticalmente */
   background: linear-gradient(to bottom, #1e3188, #4F648B);
   width: 800px;
   height: 100px;
   text-align: center;
   top: 300px;
   right:150px;
+  text-decoration: none; /* Quita el subrayado del enlace */
  /* Gradient background */
   color: white;
  /* White text color */
@@ -276,13 +286,16 @@
 
 .beautiful-button4 {
   position: relative;
-  display: inline-block;
+  display: inline-flex; /* Usar flexbox */
+  flex-direction: column; /* Mostrar el texto en columnas */
+  justify-content: center; /* Centrar verticalmente */
   background: linear-gradient(to bottom, #1e3188, #4F648B);
   width: 800px;
   height: 100px;
   text-align: center;
   top: 300px;
   right:30px;
+  text-decoration: none; /* Quita el subrayado del enlace */
  /* Gradient background */
   color: white;
  /* White text color */
@@ -344,13 +357,16 @@
 
 .beautiful-button5 {
   position: relative;
-  display: inline-block;
+  display: inline-flex; /* Usar flexbox */
+  flex-direction: column; /* Mostrar el texto en columnas */
+  justify-content: center; /* Centrar verticalmente */
   background: linear-gradient(to bottom, #1e3188, #4F648B);
   width: 800px;
   height: 100px;
   text-align: center;
   top: 300px;
   left:90px;
+  text-decoration: none; /* Quita el subrayado del enlace */
  /* Gradient background */
   color: white;
  /* White text color */
@@ -412,12 +428,15 @@
 
 .beautiful-button10 {
   position: relative;
-  display: inline-block;
+  display: inline-flex; /* Usar flexbox */
+  flex-direction: column; /* Mostrar el texto en columnas */
+  justify-content: center; /* Centrar verticalmente */
   background: linear-gradient(to bottom, #1e3188, #4F648B);
   width: 800px;
   height: 100px;
   text-align: center;
   top: 300px;
+  text-decoration: none; /* Quita el subrayado del enlace */
   right:350px;
  /* Gradient background */
   color: white;
@@ -478,13 +497,17 @@
 }
 .beautiful-button6 {
   position: relative;
-  display: inline-block;
+  display: inline-flex; /* Usar flexbox */
+  flex-direction: column; /* Mostrar el texto en columnas */
+  justify-content: center; /* Centrar verticalmente */
+
   background: linear-gradient(to bottom, #1e3188, #4F648B);
   width: 800px;
   height: 100px;
   text-align: center;
   top: 150px;
   right:550px;
+  text-decoration: none; /* Quita el subrayado del enlace */
  /* Gradient background */
   color: white;
  /* White text color */
@@ -553,6 +576,8 @@
   text-align: center;
   top: 150px;
   right:440px;
+  text-decoration: none; /* Quita el subrayado del enlace */
+  line-height: 90px; /* Centra el texto verticalmente */
  /* Gradient background */
   color: white;
  /* White text color */
@@ -614,13 +639,17 @@
 
 .beautiful-button8 {
   position: relative;
-  display: inline-block;
+  display: inline-flex; /* Usar flexbox */
+  flex-direction: column; /* Mostrar el texto en columnas */
+  justify-content: center; /* Centrar verticalmente */
   background: linear-gradient(to bottom, #1e3188, #4F648B);
   width: 800px;
   height: 100px;
   text-align: center;
   top: 150px;
   right:320px;
+  text-decoration: none; /* Quita el subrayado del enlace */
+ 
  /* Gradient background */
   color: white;
  /* White text color */
@@ -689,7 +718,8 @@
   text-align: center;
   top: 150px;
   right:220px;
-  
+  text-decoration: none; /* Quita el subrayado del enlace */
+  line-height: 90px; /* Centra el texto verticalmente */
  /* Gradient background */
   color: white;
  /* White text color */
