@@ -39,9 +39,65 @@
         </div>
     </header>
 
-    <div class="barraLateral fixed h-100">
-        <a href="#"></a>
-    </div>
+    <?php
+require_once '../../php/db.php';
+$conn = conectar();
+
+// Obtener la fecha actual
+$fecha_actual = date('Y-m-d');
+
+// Consultar las fechas de las tablas
+$consulta1 = "SELECT fechaini, fechafin FROM fecharepo1";
+$consulta2 = "SELECT fechaini, fechafin FROM fecharepo2";
+$consulta3 = "SELECT fechaini, fechafin FROM fecharepo3";
+
+$resultado1 = mysqli_query($conn, $consulta1);
+$resultado2 = mysqli_query($conn, $consulta2);
+$resultado3 = mysqli_query($conn, $consulta3);
+
+// Comprobar si la fecha actual está dentro del rango para cada botón
+$mostrar_reporte1 = false;
+$mostrar_reporte2 = false;
+$mostrar_reporte3 = false;
+
+if ($row1 = mysqli_fetch_assoc($resultado1)) {
+    if ($fecha_actual >= $row1['fechaini'] && $fecha_actual <= $row1['fechafin']) {
+        $mostrar_reporte1 = true;
+    }
+}
+
+if ($row2 = mysqli_fetch_assoc($resultado2)) {
+    if ($fecha_actual >= $row2['fechaini'] && $fecha_actual <= $row2['fechafin']) {
+        $mostrar_reporte2 = true;
+    }
+}
+
+if ($row3 = mysqli_fetch_assoc($resultado3)) {
+    if ($fecha_actual >= $row3['fechaini'] && $fecha_actual <= $row3['fechafin']) {
+        $mostrar_reporte3 = true;
+    }
+}
+
+// Cerrar la conexión a la base de datos
+
+// Mostrar los botones en el div "barraLateral" si corresponde
+?>
+<div class="barraLateral fixed h-100">
+<div style="padding-top: 80px;">
+    <?php
+    if ($mostrar_reporte1) {
+        echo '<button style="margin-bottom: 5px;">Reporte 1</button>';
+    }
+    if ($mostrar_reporte2) {
+        echo '<button style="margin-bottom: 5px;">Reporte 2</button>';
+    }
+    if ($mostrar_reporte3) {
+        echo '<button style="margin-bottom: 5px;">Reporte 3</button>';
+    }
+    ?>
+</div>
+</div>
+
     <section style="margin-top: 70px;">
 
 
