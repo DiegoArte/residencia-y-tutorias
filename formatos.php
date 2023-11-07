@@ -23,7 +23,7 @@
         <div class="usuarioOp d-flex justify-content-end">
             <img src="img/profile.png" alt="" >
             <p>Usuario</p>
-            <a href="#">Cerrar sesión</a>
+            <a href="loginTutorias.php">Cerrar sesión</a>
         </div>
     </header>
 
