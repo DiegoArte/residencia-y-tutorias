@@ -86,13 +86,22 @@ $conn->close();
 <div style="padding-top: 80px;">
     <?php
     if ($mostrar_reporte1) {
-        echo '<button style="margin-bottom: 5px;">Reporte 1</button>';
+        ?>
+        <form action="Envio_fechasT_A.php" method="post">
+        <?php
+        echo '<button style="margin-bottom: 5px;">Reporte 1</button> </form>';
     }
     if ($mostrar_reporte2) {
-        echo '<button style="margin-bottom: 5px;">Reporte 2</button>';
+        ?>
+        <form action="Envio_fechasT_A2.php" method="post">
+        <?php
+        echo '<button style="margin-bottom: 5px;">Reporte 2</button> </form>';
     }
     if ($mostrar_reporte3) {
-        echo '<button style="margin-bottom: 5px;">Reporte 3</button>';
+        ?>
+        <form action="Envio_fechasT_A3.php" method="post">
+        <?php
+        echo '<button style="margin-bottom: 5px;">Reporte 3</button> </form>';
     }
     ?>
 </div>
