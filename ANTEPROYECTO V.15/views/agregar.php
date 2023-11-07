@@ -57,7 +57,7 @@
 
 
                     <div class="col-12">
-                        <label for="yourPassword" class="form-label">Archivo (WORD & PDF)</label>
+                        <label for="yourPassword" class="form-label">Archivo (PDF)</label>
                         <input type="file" name="archivo" id="archivo" class="form-control">
 
                     </div>

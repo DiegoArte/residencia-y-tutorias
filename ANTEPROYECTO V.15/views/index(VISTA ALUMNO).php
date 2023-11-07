@@ -109,37 +109,11 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#confirmDelete<?php echo $fila['idalumno']; ?>">
+                                        <button class="btn btn-danger btn-eliminar" data-id="<?php echo $fila['idalumno']; ?>">
                                             Eliminar
                                         </button>
                                     </td>
 
-                                    <!-- Modal for confirmation -->
-                                    <div class="modal fade" id="confirmDelete<?php echo $fila['idalumno']; ?>" tabindex="-1"
-                                        role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="confirmDeleteLabel">Confirmar Eliminación
-                                                    </h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    ¿Estás seguro de que deseas eliminar este registro?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Cancelar</button>
-                                                    <a href="eliminar.php?id=<?php echo $fila['idalumno']; ?>"
-                                                        class="btn btn-danger">Eliminar</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </tr>
 
                             <?php endwhile; ?>
@@ -150,6 +124,38 @@
 
                 </div>
             </div>
+
+            <script>
+    // Escuchar el clic en los botones de eliminar
+    document.querySelectorAll('.btn-eliminar').forEach(function (button) {
+        button.addEventListener('click', function () {
+            const id = this.getAttribute('data-id');
+            if (confirm('¿Seguro que deseas eliminar este registro?')) {
+                // Realizar una solicitud al servidor para eliminar el registro
+                fetch('eliminar.php', {
+                    method: 'POST',
+                    body: JSON.stringify({ id: id }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Actualizar la tabla o realizar otras acciones necesarias
+                        // Puedes recargar la página o actualizar la tabla sin recargarla
+                        // Aquí puedes personalizar el comportamiento según tus necesidades
+                        location.reload(); // Esto recargará la página
+                    } else {
+                        console.error('Error al eliminar el registro.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error de red:', error);
+                });
+            }
+        });
+    });
+</script>
 
 </body>
 
