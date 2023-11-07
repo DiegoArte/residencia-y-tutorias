@@ -121,7 +121,7 @@ if ($conn->connect_error) {
     //die("Conexión fallida: " . $conn->connect_error);
 }
 else{
-    $sql = "SELECT MIN(id) AS id, Archivo, Nombre, Tipo_de_archivo,ruta FROM fecha_enviada GROUP BY Nombre;";
+    $sql = "SELECT MIN(id) AS id, Archivo, Nombre, Tipo_de_archivo,ruta FROM fecha_enviada3 GROUP BY Nombre;";
     $resultado = mysqli_query($conn,$sql);
     if ($resultado->num_rows > 0){
         echo "<table id='table-responsive' >";
@@ -137,7 +137,7 @@ else{
         while ($row = $resultado->fetch_array()){
             $axu = $row["Nombre"];
             $sqlaxu = "SELECT * FROM `fecha_enviada` WHERE ater='$axu';";
-            $sql2 = "SELECT * FROM `fecha_enviada` WHERE Nombre='$axu';";
+            $sql2 = "SELECT * FROM `fecha_enviada3` WHERE Nombre='$axu';";
             $resultado2 = mysqli_query($conn,$sql2);
             //while($row2 = $resultado2->fetch_array()){}
             echo "<tr>";
@@ -159,7 +159,7 @@ else{
             echo "<td class = 'tipo' >" ;
             
             $axu = $row["Nombre"];
-            $sql3 = "SELECT * FROM `fecha_enviada` WHERE Nombre='$axu';";
+            $sql3 = "SELECT * FROM `fecha_enviada3` WHERE Nombre='$axu';";
             $resultado3 = mysqli_query($conn,$sql3);
             while($row3 = $resultado3->fetch_array()){
                 //echo "". $row2["Nombre"]. "";

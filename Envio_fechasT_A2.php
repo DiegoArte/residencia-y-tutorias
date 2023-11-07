@@ -41,7 +41,7 @@ require 'php/db.php';
 $conn=conectar();
 
 // Consulta SQL para obtener las fechas de la tabla fecharepo1
-$sql = "SELECT fechaini, fechafin FROM fecharepo1";
+$sql = "SELECT fechaini, fechafin FROM fecharepo2";
 $result = $conn->query($sql);
 
 
@@ -53,7 +53,7 @@ if ($result->num_rows > 0) {
         $fechaFinal = $row["fechafin"];
         
         echo '<form action="" method="POST">';
-        echo '<h2>Reporte 1</h2>';
+        echo '<h2>Reporte 2</h2>';
         echo '<label>Fecha de inicio</label>';
         echo '<input type="date" name="fechaFinal1" value="' . $fechaInicio . '" readonly >';
         echo '<label>Fecha final</label>';
@@ -78,7 +78,7 @@ $conn->close();
     
             
                 <?php
-                include 'php/Mostrar_tablaT_A.php';
+                include 'php/Mostrar_tablaT_A2.php';
                 Tabla();
                 ?>
                 <form action="php/Enviartabla.php" class="Tabla_contenido" method="post">

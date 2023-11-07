@@ -10,22 +10,22 @@ $chats=Chat::find("(idinput='$id' and idaoutput='$idsec') or (idinput='$idsec' a
         <input type="text" name="idalumno" style="display: none" value="<?php echo $idsec; ?>">
         <input value="1" name="nombreProyecto" type="checkbox" id="01">
         <label for="01">Nombre del proyecto</label>
-        <textarea name="comnombreProyecto" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
+        <textarea name="comnombreProyecto" id="" cols="20" rows="2" placeholder="Escribe un comentario" ></textarea>
         <input value="1" name="empresa" type="checkbox" id="02">
         <label for="02">Empresa</label>
-        <textarea name="comempresa" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
+        <textarea name="comempresa" id="" cols="20" rows="2" placeholder="Escribe un comentario" ></textarea>
         <input value="1" name="objetivos" type="checkbox" id="03">
         <label for="03">Objetivos</label>
-        <textarea name="comobjetivos" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
+        <textarea name="comobjetivos" id="" cols="20" rows="2" placeholder="Escribe un comentario" ></textarea>
         <input value="1" name="justificacion" type="checkbox" id="04">
         <label for="04">Justificación</label>
-        <textarea name="comjustificacion" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
+        <textarea name="comjustificacion" id="" cols="20" rows="2" placeholder="Escribe un comentario" ></textarea>
         <input value="1" name="cronograma" type="checkbox" id="05">
         <label for="05">Cronograma de act.</label>
-        <textarea name="comcronograma" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
+        <textarea name="comcronograma" id="" cols="20" rows="2" placeholder="Escribe un comentario" ></textarea>
         <input value="1" name="descripcion" type="checkbox" id="06">
         <label for="06">Descripción de act.</label>
-        <textarea name="comdescripcion" id="" cols="20" rows="1" placeholder="Escribe un comentario" ></textarea>
+        <textarea name="comdescripcion" id="" cols="20" rows="2" placeholder="Escribe un comentario" ></textarea>
         <button id="enviarFormulario">
             <div class="svg-wrapper-1">
                 <div class="svg-wrapper">
