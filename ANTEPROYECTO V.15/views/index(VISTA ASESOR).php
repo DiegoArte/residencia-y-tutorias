@@ -38,11 +38,10 @@
         </div>
     </header>
 
-
- 
-    
+    <div class="barraLateral fixed h-100">
+        <a href="#"></a>
+    </div>
     <section style="margin-top: 70px;">
-
 
 
         <div class="container">
