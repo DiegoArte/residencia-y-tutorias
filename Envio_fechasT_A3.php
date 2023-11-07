@@ -78,7 +78,7 @@ $conn->close();
     
             
                 <?php
-                include 'php/Mostrar_tablaT_A.php';
+                include 'php/Mostrar_tablaT_A3.php';
                 Tabla();
                 ?>
                 <form action="php/Enviartabla.php" class="Tabla_contenido" method="post">
