@@ -34,7 +34,7 @@
             echo '<p>' . $nombre . '</p>';
             ?>
             <div class="dropdown-content">
-                <a href="../../../logout.php">Cerrar sesión</a>
+                <a href="../../logout.php">Cerrar sesión</a>
             </div>
         </div>
     </header>
