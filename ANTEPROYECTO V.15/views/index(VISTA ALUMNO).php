@@ -36,22 +36,20 @@
     </header>
 
 
-
+    <div class="barraLateral fixed h-100">
+        <a href="#"></a>
+    </div>
     <section style="margin-top: 70px;">
-
 
 
         <div class="container">
             <div class="col-sm-12">
                 <h2 class="text-center">Anteproyecto</h2>
-                <br>
-                <div class="text-center">
+        
+                <div class="btn_agregar">
                     <button type="button" class="btn btn-success" data-toggle="modal"
                         data-target="#agregar">Agregar</button>
                 </div>
-                <br>
-
-
 
                 <div class="container">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

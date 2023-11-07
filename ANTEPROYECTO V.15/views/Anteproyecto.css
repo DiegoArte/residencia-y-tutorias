@@ -14,8 +14,16 @@ body {
 
 .container{
     background-color: transparent; 
+}
 
-    
+
+.btn_agregar{
+    margin-bottom: 30px;
+}
+
+
+.btn_enviar{
+    margin-bottom: 30px;
 }
 
 a {
