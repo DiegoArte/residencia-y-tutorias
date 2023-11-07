@@ -104,11 +104,7 @@ $conn->close();
 </div>
 </div>
 
-
-
     <section style="margin-top: 70px;">
-
-
         <div class="container">
             <div class="col-sm-12">
                 <h2 class="text-center">Anteproyecto</h2>
@@ -122,7 +118,6 @@ $conn->close();
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-
                                 <th>Id Alumno</th>
                                 <th>Nombre</th>
                                 <th>Nombre del proyecto</th>
@@ -137,12 +132,14 @@ $conn->close();
                         </thead>
                         <tbody>
                             <?php
-                            require_once "../includes/db.php";
-                            $id=$_SESSION['usuario'];
+                           
+                           require_once "../../php/db.php";
+                            $conexion = conectar();
+
+                            $id = $_SESSION['usuario'];
                             $consulta = mysqli_query($conexion, "SELECT * FROM documento WHERE idalumno='$id' GROUP BY nombrealumno");
 
                             while ($fila = mysqli_fetch_assoc($consulta)):
-
 
                                 ?>
                                 <tr>

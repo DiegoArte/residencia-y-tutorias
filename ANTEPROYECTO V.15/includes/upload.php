@@ -31,7 +31,7 @@ if (isset($_FILES['archivo'])) {
             $resultado = mysqli_query($conexion, $sql);
             if ($resultado) {
                 echo "<script language='JavaScript'>
-                alert('Archivo Subido');
+                alert('Registro Guardado');
                 location.assign('../views/index(VISTA ALUMNO).php');
                 </script>";
             } else {
