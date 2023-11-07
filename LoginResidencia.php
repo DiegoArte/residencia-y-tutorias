@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
             <br>
             <a href="index.html" class="regresar">Regresar al menú de selección</a>
-            <a href="recupContra.php" id="mostrarVentana" class="recuperar">Olvidaste tu contraseña?</a>
+            <a href="php/recupContra.php" id="mostrarVentana" class="recuperar">Olvidaste tu contraseña?</a>
         </div>
     </div>
 </body>
