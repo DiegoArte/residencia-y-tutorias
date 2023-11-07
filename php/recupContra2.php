@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="css/recupContra.css">
+    <link rel="stylesheet" href="../css/recupContra.css">
     <style>
         .imagen {
             position: absolute;
@@ -39,11 +39,11 @@
         
         if ($num1 == $digito1 and $num2 == $digito2 and $num3 == $digito3 and $num4 == $digito4 and $num5 == $digito5){
             echo"
-            <img src='img/si.jpg' alt='correo enviado' class='img1'>
+            <img src='../img/si.jpg' alt='correo enviado' class='img1'>
             <p>El código de recuperación es correcto, puedes cambiar tu contraseña</p>
             <hr><br>
 
-            <form method='post' action='php/recupContra3.php' onsubmit='return validarContraseñas();'>
+            <form method='post' action='../php/recupContra3.php' onsubmit='return validarContraseñas();'>
                 <input type='hidden' name='variable2' value='$control'>
                 <label id='correoL'>Nueva contraseña</label><br>
                 <input required='' type='password' id='contra1' name='contraseña' class='campo'/><br><br>
@@ -54,16 +54,16 @@
             </form>
             <br><br><br>";
         }else {
-            echo " <img src='img/no.jpg' alt='correo enviado' class='img1'><hr><br>
+            echo " <img src='../img/no.jpg' alt='correo enviado' class='img1'><hr><br>
             
             <label id='error1'> El código de recuperación es incorrecto, por favor intente de nuevo. </label> <br><br>
             <label  id='error1'> Le mandaremos otro código de verificación a su correo electrónico. </label> <br><br><br>
-            <form method='post' action='php/recupContra1.php'>
+            <form method='post' action='../php/recupContra1.php'>
                 <input type='hidden' name='variab' value='$numAlea'>
                 <input type='hidden' name='correo' value='$dirCorreo'>
                 <button type'submit' id='siguiente' class='enviar1'>Siguiente</button>
             </form>
-            <button id='cerrarVentana2' class='cerrar' onclick='regresar()'>Cancelar</button>
+            <button id='' class='cerrar' onclick='regresar()'>Cancelar</button>
             <br><br><br>";
         }
         ?>
@@ -80,7 +80,7 @@
 
 
         function regresar() {
-            window.location.href = 'LoginResidencia.php';
+            window.location.href = '../LoginResidencia.php';
         }
 
 

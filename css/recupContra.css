@@ -39,6 +39,26 @@
     border-color: rgb(255, 0, 0);
 }
 
+.cerrar1{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: rgb(255, 78, 78);
+    font-size:15px;
+    border-radius: 15px;
+    padding: 10px;
+    border-color: transparent;
+    color:white;
+    cursor: pointer;
+    width: 130px;
+}
+
+.cerrar1:hover{
+    background-color: rgb(255, 49, 49);
+    border-color: rgb(255, 0, 0);
+}
+
 .enviar1{
     position: fixed;
     left: 10%;
@@ -94,6 +114,8 @@
 
 
 #error1{
+    display: block; /* Convertirlo en un bloque */
+    text-align: center; /* Centrar horizontalmente el texto dentro de la etiqueta */
     font-size: 20px;
 }
 

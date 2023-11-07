@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="css/recupContra.css">
+    <link rel="stylesheet" href="../css/recupContra.css">
     <style>
         .imagen {
             position: absolute;
@@ -30,7 +30,7 @@
             $numAlea = $_POST["variab"];
         }
 
-        require 'php/db.php';
+        require '../php/db.php';
         $conexion=conectar();
 
         $consulta = "SELECT NumerodeControl FROM alumnos WHERE correo = '$dirCorreo'";
@@ -64,11 +64,11 @@
         $conexion->close();
         
         use PHPMailer\PHPMailer\PHPMailer;
-        use PHPMailer\PHPMailer\SMTP;
-        use PHPMailer\PHPMailer\Exception;
+        use vendor\PHPMailer\PHPMailer\SMTP;
+        use vendor\PHPMailer\PHPMailer\Exception;
         if ($control != 0){
 
-            require 'vendor/autoload.php';
+            require '../vendor1/autoload.php';
 
             $mail = new PHPMailer(true);
             $mail->CharSet = 'UTF-8';
@@ -93,11 +93,11 @@
             $mail->send();
 
             echo"
-            <img src='img/enviado.jpg' alt='correo enviado' class='img1'>
+            <img src='../img/enviado.jpg' alt='correo enviado' class='img1'>
             <p>El código de recuperación se ha enviado a su cuenta de correo electrónico.</p>
             <hr><br>
 
-            <form  method='post' action='php/recupContra2.php'>
+            <form  method='post' action='../php/recupContra2.php'>
                 <label id='correoL'>Código de recuperación</label><br>
                 <input type='hidden' name='variable1' value='$numAlea'>
                 <input type='hidden' name='variable2' value='$control'>
@@ -107,18 +107,19 @@
                 <input required='' type='text' name='num3' id='codigo' class='campo'/>
                 <input required='' type='text' name='num4' id='codigo' class='campo'/>
                 <input required='' type='text' name='num5' id='codigo' class='campo'/><br><br><br>
-                <button id='cerrarVentana2' class='cerrar' onclick='regresar()'>Cancelar</button>
+                <button class='cerrar' onclick='regresa()'>Cancelar</button>
                 <button id='siguiente' class='enviar1'>Siguiente</button>
             </form>
             <br><br><br>";
         }else {
-            echo "<label id='error1'> La dirección de correo electrónico <br>
-             no se encuentra registrada actualmente. </label> <br><br>
+            echo "<img src='../img/no.jpg' alt='correo enviado' class='img1'><hr>
+            <label id='error1'> La dirección de correo electrónico <br>
+             no se encuentra registrada actualmente. </label> <br>
 
              <label  id='error1'> Asegurate de escribir correctamente <br>
              tu dirección de correo electrónico. </label> <br><br>
 
-            <button id='cerrarVentana2' class='cerrar' onclick='regresar()'>Cancelar</button>
+            <button id='cerrarVentana2' class='cerrar1' onclick='regresar()'>Regresar</button>
             <br><br><br>";
         }
     
@@ -149,7 +150,10 @@
 
 
         function regresar() {
-            window.location.href = 'LoginResidencia.php';
+            window.location.href = '../LoginResidencia.php';
+        }
+        function regresa() {
+            window.location.href = '../LoginResidencia.php';
         }
     </script>
 </body>
