@@ -29,18 +29,84 @@
             <img src="profile.png" alt="">
             <?php
             session_start();
+            $id = $_SESSION['usuario'];
             $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
             echo '<p>' . $nombre . '</p>';
             ?>
             <div class="dropdown-content">
-                <a href="../../../logout.php">Cerrar sesión</a>
+                <a href="../../logout.php">Cerrar sesión</a>
             </div>
         </div>
     </header>
 
-    <div class="barraLateral fixed h-100">
-        <a href="#"></a>
-    </div>
+    <?php
+require_once '../../php/db.php';
+$conn = conectar();
+
+// Obtener la fecha actual
+$fecha_actual = date('Y-m-d');
+
+// Consultar las fechas de las tablas
+$consulta1 = "SELECT fechaini, fechafin FROM fecharepo1";
+$consulta2 = "SELECT fechaini, fechafin FROM fecharepo2";
+$consulta3 = "SELECT fechaini, fechafin FROM fecharepo3";
+
+$resultado1 = mysqli_query($conn, $consulta1);
+$resultado2 = mysqli_query($conn, $consulta2);
+$resultado3 = mysqli_query($conn, $consulta3);
+
+// Comprobar si la fecha actual está dentro del rango para cada botón
+$mostrar_reporte1 = false;
+$mostrar_reporte2 = false;
+$mostrar_reporte3 = false;
+
+if ($row1 = mysqli_fetch_assoc($resultado1)) {
+    if ($fecha_actual >= $row1['fechaini'] && $fecha_actual <= $row1['fechafin']) {
+        $mostrar_reporte1 = true;
+    }
+}
+
+if ($row2 = mysqli_fetch_assoc($resultado2)) {
+    if ($fecha_actual >= $row2['fechaini'] && $fecha_actual <= $row2['fechafin']) {
+        $mostrar_reporte2 = true;
+    }
+}
+
+if ($row3 = mysqli_fetch_assoc($resultado3)) {
+    if ($fecha_actual >= $row3['fechaini'] && $fecha_actual <= $row3['fechafin']) {
+        $mostrar_reporte3 = true;
+    }
+}
+
+// Cerrar la conexión a la base de datos
+$conn->close();
+// Mostrar los botones en el div "barraLateral" si corresponde
+?>
+<div class="barraLateral fixed h-100">
+<div style="padding-top: 80px;">
+    <?php
+    if ($mostrar_reporte1) {
+        ?>
+        <form action="../../Envio_fechasT_A.php" method="post">
+        <?php
+        echo '<button style="margin-bottom: 5px;">Reporte 1</button> </form>';
+    }
+    if ($mostrar_reporte2) {
+        ?>
+        <form action="../../Envio_fechasT_A2.php" method="post">
+        <?php
+        echo '<button style="margin-bottom: 5px;">Reporte 2</button> </form>';
+    }
+    if ($mostrar_reporte3) {
+        ?>
+        <form action="../../Envio_fechasT_A3.php" method="post">
+        <?php
+        echo '<button style="margin-bottom: 5px;">Reporte 3</button> </form>';
+    }
+    ?>
+</div>
+</div>
+
     <section style="margin-top: 70px;">
 
 
@@ -62,12 +128,13 @@
                                 <th>Archivo</th>
                                 <th>Descargar</th>
                                 <th>Ver PDF</th>
+                                <th>Responder</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             require_once "../includes/db.php";
-                            $consulta = mysqli_query($conexion, "SELECT * FROM documento");
+                            $consulta = mysqli_query($conexion, "SELECT * FROM documento WHERE idalumno IN(SELECT Alumno FROM asesorados WHERE Asesor='$id')");
                             while ($fila = mysqli_fetch_assoc($consulta)):
                                 ?>
                                 <tr>
@@ -99,6 +166,11 @@
                                         <a href="../includes/files/<?php echo $fila['archivo']; ?>"
                                             class="btn btn-secondary" target="_blank">
                                             Ver PDF
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="../../../comunicacionDocenteAlumno.php?id=<?php echo $fila['idalumno']; ?>" class="btn btn-danger">
+                                            <i class="fas fa-message"></i> Responder
                                         </a>
                                     </td>
 

@@ -1,0 +1,140 @@
+.ventana-emergente {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 3px 3px 10px rgb(0, 0, 0);
+    border-radius: 20px;
+    width: 40%;
+    z-index: 1;
+}
+
+.recuperar{
+    color:white;
+    cursor: pointer;
+    padding-top: 30px;
+    text-align: center;
+    font-size: small;
+    text-decoration: underline;
+}
+
+.cerrar{
+    position: fixed;
+    right: 10%;
+    background-color: rgb(255, 78, 78);
+    font-size:15px;
+    border-radius: 15px;
+    padding: 10px;
+    border-color: transparent;
+    color:white;
+    cursor: pointer;
+    width: 130px;
+}
+
+.cerrar:hover{
+    background-color: rgb(255, 49, 49);
+    border-color: rgb(255, 0, 0);
+}
+
+.enviar1{
+    position: fixed;
+    left: 10%;
+    background-color: #5252fc;
+    font-size: 15px;
+    border-radius: 15px;
+    padding: 10px;
+    border-color: transparent;
+    color:white;
+    cursor: pointer;
+    width: 130px;
+}
+
+.enviar1:hover{
+    background-color: rgb(46, 50, 255);
+    border-color: rgb(0, 17, 255);
+}
+
+.img1{
+    width: 20%; /* Ancho de la imagen */
+    height: 20%; /* Alto de la imagen */
+    margin: 20px; /* Margen exterior */
+    position: relative; /* Posición relativa */
+    left: 33%; /* Desplazamiento horizontal */
+    top: 0px; /* Desplazamiento vertical */
+}
+
+#codigo{
+    text-align: center;
+    width: 5%;
+    padding: 5px;
+    border-radius: 10px;
+
+    position: relative;
+    left: 30%;
+}
+
+#correo1{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px;
+    width: 200px;
+    height: 25px;
+    padding: 5px;
+    text-align:center;
+}
+
+#correoL{
+    display: block; /* Convertirlo en un bloque */
+    text-align: center; /* Centrar horizontalmente el texto dentro de la etiqueta */
+}
+
+
+#error1{
+    font-size: 20px;
+}
+
+#contra1{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px;
+    width: 200px;
+    height: 25px;
+    padding: 5px;
+    text-align:center;
+}
+
+#contra2{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px;
+    width: 200px;
+    height: 25px;
+    padding: 5px;
+    text-align:center;
+}
+
+
+.enviar2{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #5252fc;
+    font-size: 15px;
+    border-radius: 15px;
+    padding: 10px;
+    border-color: transparent;
+    color:white;
+    cursor: pointer;
+    width: 130px;
+}
+
+.enviar2:hover{
+    background-color: rgb(46, 50, 255);
+    border-color: rgb(0, 17, 255);
+}

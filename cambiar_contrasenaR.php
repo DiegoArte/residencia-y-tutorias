@@ -54,7 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $sql = "UPDATE usuarios SET contrasena = '$nuevaContrasena' WHERE usuario = '$usuario'";
                 if ($conexion->query($sql) === TRUE) { 
                     echo '<div class="mensaje-error">
-                    <p>Contraseña actualizada con éxito. <a class="enlace-exito" href="login_prueba1.php">Volver</a></p>
+                    <p>Contraseña actualizada con éxito. <a class="enlace-exito" href="LoginResidencia.php">Regresar a login</a></p>
+
                 </div>';
                 
                 } else {
@@ -99,18 +100,6 @@ $conexion->close();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     
     <style>
-        /* Estilos para el modal */
-        .modal {
-            display: none; /* El modal está oculto por defecto */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
-            font-family: 'Open Sans', sans-serif;
-            
-        }
 
         .modal-content {
             background-color: #0D65D9;
@@ -144,33 +133,44 @@ $conexion->close();
 
 
         
-        .modal-boton{
-            display: inline-block;
-            background: linear-gradient(to bottom, #0D65D9, #57E3F2);
-            width: 300px;
-            height: 80px;
-            text-align: center;
-            color: #000000;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: bold;
-            font-size: 18px;
-            border: 3px solid #082B59;
-            border-radius: 20px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            animation: button-shimmer 2s infinite;
-            transition: all 0.3s ease-in-out;
-            white-space: nowrap; /* Evita que el texto se divida en varias líneas */
-            
-            }
+        .modal-boton {
+            font-size: 16px;
+            position: relative;
+            margin: auto;
+            padding: 1em 2.5em 1em 2.5em;
+            border: none;
+            background: #3498DB;
+            color: #FFF;
+            transition: all 0.1s linear;
+            box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
+            border-radius: 2em;
+        }
 
+        .modal-boton:active {
+            transform: scale(0.95);
+        }
 
-            /* Hover animation */
-        .modal-boton:hover {
-            background: linear-gradient(to bottom, #49C2F2, white);
-            animation: button-particles 1s ease-in-out infinite;
-            transform: translateY(-2px);
-            }
+        .modal-boton span {
+        color: #464646;
+        }
+
+        .modal-boton .border {
+            position: absolute;
+            border: 0.15em solid #fff;
+            transition: all 0.3s 0.08s linear;
+            top: 50%;
+            left: 50%;
+            width: 9em;
+            height: 3em;
+            transform: translate(-50%, -50%);
+        }
+
+        .modal-boton:hover .border {
+            display: block;
+            width: 9.9em;
+            height: 3.7em;
+        }
+
 
 
 
@@ -186,16 +186,21 @@ $conexion->close();
             font-family: 'Open Sans', sans-serif;
            
         }
-        .mensaje-error{
+        .mensaje-error {
             background: linear-gradient(to bottom, #49C2F2, white);
             color: #000000;
             border-radius: 20px;
             width: 500px;
-            left:440px;
-            margin: 2% auto; /* Centrar verticalmente */
-            padding: 20px;
+            margin: auto;
+            padding: 10px;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 10%;
+            left: 38%;
         }
+
        
 
         h3{
@@ -230,23 +235,24 @@ $conexion->close();
             background: #f0f0f0;
             font-family:'Open Sans', sans-serif;
             margin: 0;
-            padding: 1%; /* Cambio a porcentaje */
             font-size: 1rem; /* Cambio a unidades rem */
             text-align: center;
         }
 
-        .pagina{
+        .pagina {
+        background-color: #f0f0f0;
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 5px;
+        font-family: 'Open Sans', sans-serif;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
-            background-color: #f0f0f0;
-            width: 300px;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 5px;
-            font-family: 'Open Sans', sans-serif;
-            text-align: center;
-
-
-        }
        
         /* ... Estilos anteriores ... */
         
@@ -282,14 +288,32 @@ $conexion->close();
             height: 50px; /* Alto deseado */
         }
 
-        input{
-            
-            background: linear-gradient(to bottom, #49C2F2, white);
-            border: 3px solid #082B59;
-            height: 50px; /* Alto deseado */
+        /* ENTRADAS DE TEXTO DONDE VA LA CONTRASEÑA*/
+        input {
+            background: linear-gradient(to bottom, #49C2F2, #A3E7FD);
+            border: 2px solid #1E5C97;
+            height: 40px;
             width: 300px;
-            border-radius: 30px;
+            border-radius: 20px;
+            padding: 10px;
+            font-size: 16px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
         }
+
+        input:hover {
+            background: linear-gradient(to bottom, #45B8E8, #A3E7FD);
+            border: 2px solid #1E5C97;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        input:focus {
+            outline: none;
+            border: 2px solid #3498DB;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+
+
 
        
 
