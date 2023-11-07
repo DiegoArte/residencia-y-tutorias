@@ -28,7 +28,7 @@
             Recibirás un correo electrónico que te permitirá volver a conectarte.</p>
         <hr><br>
 
-        <form method="post" action="../php/recupContra1.php">
+        <form method="post" action="../php/recupContra11.php">
             <label id="correoL";>Su correo electronico </label><br>
             <input type='hidden' name='variab' value=10000>
             <input placeholder="@gmail.com" required="" type="email" id="correo1" name="correo"><br><br><br>
@@ -49,7 +49,7 @@
         }
 
         function regresar() {
-            window.location.href = '../LoginResidencia.php';
+            window.location.href = '../loginTutorias.php';
         }
     </script>
 
