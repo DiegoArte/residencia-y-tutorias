@@ -136,6 +136,7 @@ else{
 
         while ($row = $resultado->fetch_array()){
             $axu = $row["Nombre"];
+            $sqlaxu = "SELECT * FROM `fecha_enviada` WHERE ater='$axu';";
             $sql2 = "SELECT * FROM `fecha_enviada3` WHERE Nombre='$axu';";
             $resultado2 = mysqli_query($conn,$sql2);
             //while($row2 = $resultado2->fetch_array()){}
