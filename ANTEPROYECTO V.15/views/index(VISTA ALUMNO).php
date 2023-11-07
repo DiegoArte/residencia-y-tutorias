@@ -65,12 +65,14 @@
                                 <th>Descargar</th>
                                 <th>Ver PDF</th>
                                 <th>Eliminar</th>
+                                <th>Ver Revisión</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             require_once "../includes/db.php";
-                            $consulta = mysqli_query($conexion, "SELECT * FROM documento GROUP BY nombrealumno");
+                            $id=$_SESSION['usuario'];
+                            $consulta = mysqli_query($conexion, "SELECT * FROM documento WHERE idalumno='$id' GROUP BY nombrealumno");
 
                             while ($fila = mysqli_fetch_assoc($consulta)):
 
@@ -112,6 +114,14 @@
                                         <button class="btn btn-danger btn-eliminar" data-id="<?php echo $fila['idalumno']; ?>">
                                             Eliminar
                                         </button>
+                                    </td>
+                                    <td>
+                                        <?php
+                                            $asesor = mysqli_fetch_assoc(mysqli_query($conexion, "SELECT Asesor FROM asesorados WHERE Alumno='$id'"));
+                                        ?>
+                                        <a href="../../../comunicacionDocenteAlumno.php?id=<?php echo $asesor['Asesor']; ?>" class="btn btn-danger">
+                                            <i class="fas fa-message"></i> Ver revisión
+                                        </a>
                                     </td>
 
                                 </tr>
