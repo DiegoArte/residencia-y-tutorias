@@ -1,29 +1,29 @@
 <?php
-// Verificar si se recibió una solicitud POST con un ID válido
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
-    // Conectar a la base de datos (ajusta la configuración de conexión según tu caso)
+
+if (isset($_POST['idalumno'])) {
+    $idalumno = $_POST['idalumno'];
+
+
     require_once "../includes/db.php";
 
-    // Obtener el ID del registro a eliminar
-    $id = $_POST['id'];
+    // Verifica si el ID de alumno existe antes de eliminar
+    $sql = "SELECT * FROM documento WHERE idalumno = $idalumno";
+    $result = mysqli_query($conexion, $sql);
+    
+    if (mysqli_num_rows($result) > 0) {
+        // El ID de alumno existe, ahora puedes ejecutar la consulta de eliminación
+        $sql = "DELETE FROM documento WHERE idalumno = $idalumno";
 
-    // Realizar la consulta de eliminación en la base de datos
-    $sql = "DELETE FROM documento WHERE idalumno = ?"; // Ajusta la tabla y la columna según tu caso
-    $stmt = mysqli_prepare($conexion, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $id);
-
-    if (mysqli_stmt_execute($stmt)) {
-        // La eliminación fue exitosa
-        echo json_encode(['success' => true]);
+        if (mysqli_query($conexion, $sql)) {
+            echo "success";
+        } else {
+            echo "error: " . mysqli_error($conexion); // Muestra el mensaje de error específico
+        }
     } else {
-        // Hubo un error en la eliminación
-        echo json_encode(['error' => 'Error al eliminar el registro']);
+        echo "El ID de alumno no existe en la base de datos.";
     }
 
-    // Cierra la conexión a la base de datos
-    mysqli_stmt_close($stmt);
     mysqli_close($conexion);
-} else {
-    // La solicitud no es válida
-    echo json_encode(['error' => 'Solicitud no válida']);
 }
+
+    ?>

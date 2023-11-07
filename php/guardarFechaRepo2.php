@@ -12,6 +12,7 @@ $fechaFinal2 = $_POST['fechaFinal2'];
 $sql = "SELECT fechaini, fechafin FROM fecharepo1";
 $result = $conexion->query($sql);
 
+if($fechaFinal2>$fechaInicio2){
 if ($result->num_rows > 0) {
     // Recorre las fechas existentes
     while ($row = $result->fetch_assoc()) {
@@ -34,10 +35,13 @@ if ($result->num_rows > 0) {
             echo "<script>alert('Las fechas ingresadas son anteriores a las fechas del reporte 1. Por favor, ingrese fechas válidas.');history.go(-1);</script>";
         }
     }
+    
 } else {
     echo "<script>alert('No se encontraron fechas en reporte 1. Asegúrese de que haya fechas válidas antes de insertar en Reporte 2.');history.go(-1);</script>";
 }
-
+}else{
+    echo "<script>alert('La fecha de Fin es antes que la fecha de inicio');history.go(-1);</script>";
 // Cierra la conexión a la base de datos
+}
 $conexion->close();
 ?>
