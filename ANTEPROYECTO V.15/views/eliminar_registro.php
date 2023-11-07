@@ -1,32 +1,34 @@
 <?php
-// Conéctate a tu base de datos (ajusta los detalles de la conexión)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "tutorias_residencia";
+require_once '../../php/db.php';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = json_decode(file_get_contents('php://input'), true);
 
-// Verifica la conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
+    if (isset($data['id'])) {
+        $idAlumno = $data['id'];
+
+        $conexion = conectar();
+
+        $query = "DELETE FROM documento WHERE idalumno = ?";
+
+        if ($stmt = $conexion->prepare($query)) {
+            $stmt->bind_param("i", $idAlumno);
+
+            if ($stmt->execute()) {
+                // Éxito al eliminar el registro
+                echo json_encode(["message" => "Registro eliminado correctamente"]);
+            } else {
+                // Error al eliminar el registro
+                echo json_encode(["error" => "Error al eliminar el registro"]);
+            }
+
+            $stmt->close();
+        }
+
+        $conexion->close();
+    } else {
+        // No se proporcionó un ID válido
+        echo json_encode(["error" => "ID de alumno no válido"]);
+    }
 }
-
-// Obtiene el ID del alumno a eliminar desde la solicitud POST
-$data = json_decode(file_get_contents("php://input"));
-$idAlumno = $data->id;
-
-// Realiza la consulta para eliminar el registro
-$sql = "DELETE FROM documento WHERE idalumno = $idAlumno";
-
-if ($conn->query($sql) === TRUE) {
-    // Éxito al eliminar el registro
-    echo "Registro eliminado correctamente";
-} else {
-    // Error al eliminar el registro
-    echo "Error al eliminar el registro: " . $conn->error;
-}
-
-// Cierra la conexión a la base de datos
-$conn->close();
 ?>

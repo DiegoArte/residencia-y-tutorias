@@ -107,7 +107,7 @@ $conn->close();
     <section style="margin-top: 70px;">
         <div class="container">
             <div class="col-sm-12">
-                <h2 class="text-center">Anteproyecto</h2>
+                <h2 class="text-center">Anteproyecto (Vista Alumno)</h2>
         
                 <div class="btn_agregar">
                     <button type="button" class="btn btn-success" data-toggle="modal"
@@ -178,7 +178,6 @@ $conn->close();
                                     <button class="btn btn-danger btn-eliminar" data-id="<?php echo $fila['idalumno']; ?>">
                                         Eliminar
                                     </button>
-
                                     </td>
                                     <td>
                                         <?php
@@ -200,39 +199,40 @@ $conn->close();
                 </div>
             </div>
             <script>
-        // Obtén todos los botones con la clase 'btn-eliminar'
-        const botonesEliminar = document.querySelectorAll(".btn-eliminar");
+    // Obtén todos los botones con la clase 'btn-eliminar'
+    const botonesEliminar = document.querySelectorAll(".btn-eliminar");
 
-        // Agrega un controlador de eventos clic a cada botón
-        botonesEliminar.forEach(function (boton) {
-            boton.addEventListener("click", function () {
-                // Obtiene el valor del atributo 'data-id' del botón
-                const idAlumno = boton.getAttribute("data-id");
+    // Agrega un controlador de eventos clic a cada botón
+    botonesEliminar.forEach(function (boton) {
+        boton.addEventListener("click", function () {
+            // Obtiene el valor del atributo 'data-id' del botón
+            const idAlumno = boton.getAttribute("data-id");
 
-                // Envía una solicitud al servidor para eliminar el registro
-                fetch("eliminar_registro.php", {
-                    method: "POST",
-                    body: JSON.stringify({ id: idAlumno }),
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                .then(response => {
-                    if (response.ok) {
-                        // Registro eliminado exitosamente
-                        // Puedes actualizar la interfaz o hacer lo que necesites
-                        console.log("Registro eliminado correctamente");
-                    } else {
-                        // Hubo un error al eliminar el registro
-                        console.error("Error al eliminar el registro");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error al realizar la solicitud: " + error);
-                });
+            // Envía una solicitud al servidor para eliminar el registro
+            fetch("eliminar_registro.php", {
+                method: "POST",
+                body: JSON.stringify({ id: idAlumno }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Registro eliminado exitosamente
+                    // Puedes actualizar la interfaz o hacer lo que necesites
+                    console.log("Registro eliminado correctamente");
+                } else {
+                    // Hubo un error al eliminar el registro
+                    console.error("Error al eliminar el registro");
+                }
+            })
+            .catch(error => {
+                console.error("Error al realizar la solicitud: " + error);
             });
         });
-    </script>
+    });
+</script>
+
             
 </body>
 
