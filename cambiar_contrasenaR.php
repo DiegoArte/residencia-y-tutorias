@@ -54,7 +54,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $sql = "UPDATE usuarios SET contrasena = '$nuevaContrasena' WHERE usuario = '$usuario'";
                 if ($conexion->query($sql) === TRUE) { 
                     echo '<div class="mensaje-error">
+<<<<<<< HEAD
+                    <p>Contraseña actualizada con éxito. <a class="enlace-exito" href="LoginResidencia.php">Volver</a></p>
+=======
                     <p>Contraseña actualizada con éxito. <a class="enlace-exito" href="loginResidencia.php">Volver</a></p>
+>>>>>>> b3fab582910c38240e943c10cc3cbc01cd0dcb5d
                 </div>';
                 
                 } else {
