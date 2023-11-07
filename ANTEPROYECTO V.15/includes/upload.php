@@ -32,25 +32,25 @@ if (isset($_FILES['archivo'])) {
             if ($resultado) {
                 echo "<script language='JavaScript'>
                 alert('Archivo Subido');
-                location.assign('../views/index.php');
+                location.assign('../views/index(VISTA ALUMNO).php');
                 </script>";
             } else {
 
                 echo "<script language='JavaScript'>
                 alert('Error al subir el archivo: ');
-                location.assign('../views/index.php');
+                location.assign('../views/index(VISTA ALUMNO).php');
                 </script>";
             }
         } else {
             echo "<script language='JavaScript'>
             alert('Error al subir el archivo. ');
-            location.assign('../views/index.php');
+            location.assign('../views/index(VISTA ALUMNO).php');
             </script>";
         }
     } else {
         echo "<script language='JavaScript'>
         alert('Solo se permiten archivos PDF.');
-        location.assign('../views/index.php');
+        location.assign('../views/index(VISTA ALUMNO).php');
         </script>";
     }
 }

@@ -124,14 +124,11 @@
 
                 </div>
             </div>
-
             <script>
-    // Escuchar el clic en los botones de eliminar
     document.querySelectorAll('.btn-eliminar').forEach(function (button) {
         button.addEventListener('click', function () {
             const id = this.getAttribute('data-id');
             if (confirm('¿Seguro que deseas eliminar este registro?')) {
-                // Realizar una solicitud al servidor para eliminar el registro
                 fetch('eliminar.php', {
                     method: 'POST',
                     body: JSON.stringify({ id: id }),
@@ -141,10 +138,7 @@
                 })
                 .then(response => {
                     if (response.ok) {
-                        // Actualizar la tabla o realizar otras acciones necesarias
-                        // Puedes recargar la página o actualizar la tabla sin recargarla
-                        // Aquí puedes personalizar el comportamiento según tus necesidades
-                        location.reload(); // Esto recargará la página
+                        location.reload();
                     } else {
                         console.error('Error al eliminar el registro.');
                     }
@@ -156,6 +150,8 @@
         });
     });
 </script>
+
+
 
 </body>
 

@@ -1,6 +1,0 @@
-ID: 
-Nombre del Alumno: 
-Nombre del Proyecto: 
-Empresa: 
-Archivo: 
-
