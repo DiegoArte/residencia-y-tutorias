@@ -4,77 +4,71 @@
             <div class="modal-header bg-primary text-white">
                 <h3 class="modal-title" id="exampleModalLabel">Agregar registro</h3>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">
-                    <i class="fa fa-times" aria-hidden="true"></i></button>
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
             </div>
             <div class="modal-body">
-
                 <form action="../includes/upload.php" method="POST" enctype="multipart/form-data">
-                <?php
-                $consulta = mysqli_query($conexion, "SELECT * FROM alumnos WHERE NumerodeControl='$id'");
-                $alumno = mysqli_fetch_assoc($consulta)
-                ?>
-                    <div class="row">
+                    <?php
+                    $consulta = mysqli_query($conexion, "SELECT * FROM alumnos WHERE NumerodeControl='$id'");
+                    $alumno = mysqli_fetch_assoc($consulta);
+
+                    $consulta = mysqli_query($conexion, "SELECT Asesor FROM asesorados WHERE NumerodeControl='$id'");
+                    $asesor = mysqli_fetch_assoc($consulta);
+
+                  
+                    ?>
+                        <div class="row">
                         <div class="col-sm-6">
                             <div class="mb-3">
-                                <label for="idalummno" class="form-label">Id Alumno</label>
-                                <input type="text" id="idlaumno" name="idalumno" class="form-control" required readonly value="<?php echo $id ?>>
-
+                                <label for="idalumno" class="form-label">Id Alumno</label>
+                                <input type="text" id="idalumno" name="idalumno" class="form-control" required readonly value="<?php echo $id; ?>">
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="nombrealumno" class="form-label">Nombre alumno</label>
-                                <input type="text" id="nombrealumno" name="nombrealumno" class="form-control" required readonly value="<?php echo $alumno['NombredelEstudiante'] ?>>
-
+                                <input type="text" id="nombrealumno" name="nombrealumno" class="form-control" required readonly value="<?php echo $alumno['NombredelEstudiante']; ?>">
                             </div>
                         </div>
-
 
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="nombreproyecto" class="form-label">Nombre proyecto</label>
-                                <input type="text" id="nombreproyecto" name="nombreproyecto" class="form-control" required readonly value="<?php echo $alumno['NombredelAnteproyecto'] ?>>
+                                <input type="text" id="nombreproyecto" name="nombreproyecto" class="form-control" required readonly value="<?php echo $alumno['NombredelAnteproyecto']; ?>">
                             </div>
                         </div>
                     </div>
-
 
                     <div class="col-sm-6">
-                            <div class="mb-3">
-                                <label for="empresa" class="form-label">Empresa</label>
-                                <input type="text" id="empresa" name="empresa" class="form-control" required>
-
-                            </div>
-                        </div>
-
-
-                        <div class="col-sm-6">
-                            <div class="mb-3">
-                                <label for="asesor" class="form-label">Asesor</label>
-                                <input type="text" id="asesor" name="asesor" class="form-control" >
-                            </div>
+                        <div class="mb-3">
+                            <label for="empresa" class="form-label">Empresa</label>
+                            <input type="text" id="empresa" name="empresa" class="form-control" required>
                         </div>
                     </div>
 
-
-
-                    <div class="col-12">
-                        <label for="yourPassword" class="form-label">Archivo (PDF)</label>
-                        <input type="file" name="archivo" id="archivo" class="form-control">
-
+                    
+                    <div class="col-sm-6">
+                    <div class="mb-3">
+                        <label for="asesor" class="form-label">Asesor</label>
+                        <input type="text" id="asesor" name="asesor" class="form-control" required readonly value="<?php echo $asesor['Asesor']; ?>">
                     </div>
+                </div>
 
-                    <br>
+                <div class="col-12">
+                    <label for="yourPassword" class="form-label">Archivo (PDF)</label>
+                    <input type="file" name="archivo" id="archivo" class="form-control">
+                </div>
 
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" id="register" name="registrar">Guardar</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    </div>
+                <br>
 
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="register" name="registrar">Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+                </form>
             </div>
-
-            </form>
         </div>
     </div>
 </div>
