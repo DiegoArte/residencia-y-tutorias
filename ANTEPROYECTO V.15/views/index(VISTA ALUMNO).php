@@ -109,9 +109,10 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger btn-eliminar" data-id="<?php echo $fila['idalumno']; ?>">
-                                            Eliminar
-                                        </button>
+                                    <button class="btn btn-danger btn-eliminar" data-id="<?php echo $fila['idalumno']; ?>">
+                                        Eliminar
+                                    </button>
+
                                     </td>
 
                                 </tr>
@@ -125,34 +126,30 @@
                 </div>
             </div>
             <script>
-    document.querySelectorAll('.btn-eliminar').forEach(function (button) {
-        button.addEventListener('click', function () {
-            const id = this.getAttribute('data-id');
-            if (confirm('¿Seguro que deseas eliminar este registro?')) {
-                fetch('eliminar.php', {
-                    method: 'POST',
-                    body: JSON.stringify({ id: id }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => {
-                    if (response.ok) {
+$(document).ready(function() {
+    $(".btn-eliminar").click(function() {
+        var alumnoId = $(this).data('idalumno');
+        
+        if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
+            $.ajax({
+                type: "POST",
+                url: "eliminar.php", // Ruta al archivo PHP que maneja la eliminación
+                data: {
+                    idalumno: alumnoId
+                },
+                success: function(response) {
+                    if (response == "success") {
+                        // Recargar la página o realizar cualquier otra acción necesaria
                         location.reload();
                     } else {
-                        console.error('Error al eliminar el registro.');
+                        alert("Error al eliminar el registro.");
                     }
-                })
-                .catch(error => {
-                    console.error('Error de red:', error);
-                });
-            }
-        });
+                }
+            });
+        }
     });
+});
 </script>
-
-
-
 </body>
 
 
