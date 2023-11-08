@@ -28,6 +28,7 @@
             <?php
             session_start();
             $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+            $id = $_SESSION['usuario'];
             echo '<p>' . $nombre . '</p>';
             ?>
             <div class="dropdown-content">
@@ -131,16 +132,23 @@ $conn->close();
                                 <th>Descargar</th>
                                 <th>Ver PDF</th>
                                 <th>Eliminar</th>
-                                <th>Ver Revisión</th>
+                                <?php
+                                require_once "../../php/db.php";
+                                $conexion = conectar();
+                                        if(mysqli_query($conexion, "SELECT Alumno FROM asesorados WHERE Alumno='$id'")->num_rows>0){
+                                    ?>
+                                    <th>Ver Revisión</th>
+                                    <?php
+                                        }
+                                    ?>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                            
-                           require_once "../../php/db.php";
-                            $conexion = conectar();
+                           
 
-                            $id = $_SESSION['usuario'];
+                            
                             $consulta = mysqli_query($conexion, "SELECT * FROM documento WHERE idalumno='$id' GROUP BY nombrealumno");
 
                             while ($fila = mysqli_fetch_assoc($consulta)):
@@ -181,7 +189,7 @@ $conn->close();
                                     </button>
                                     </td>
                                     <?php
-                                        if(mysqli_query($conexion, "SELECT Alumno FROM asesorados WHERE Alumno='$id'")){
+                                        if(mysqli_query($conexion, "SELECT Alumno FROM asesorados WHERE Alumno='$id'")->num_rows>0){
                                     ?>
                                     <td>
                                         <?php
