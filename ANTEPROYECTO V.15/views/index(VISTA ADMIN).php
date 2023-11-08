@@ -45,7 +45,6 @@
     <section style="margin-top: 70px;">
 
 
-
         <div class="container">
             <div class="col-sm-12">
                 <h2 class="text-center">Anteproyecto</h2>
@@ -53,40 +52,37 @@
                 <?php
                 if (isset($_POST['enviar'])) {
                     require_once "../includes/db.php"; // Incluye el archivo de conexión a la base de datos
-
-                    // Recupera los datos del formulario (puedes establecer estos valores en tu código o recibirlos de otras fuentes)
-                    $idalumno = 'idalumno';
-                    $nombrealumno = 'nombrealumno';
+                
+                    // Recupera los datos del formulario
+                    $idalumno = $_POST['idalumno'];
+                    $nombrealumno = $_POST['nombrealumno'];
 
                     // Inserta los datos en la base de datos
                     $sql = "INSERT INTO asesorados (id, Alumno) 
-                            VALUES ('$idalumno', '$nombrealumno')";
+            VALUES ('$idalumno', '$nombrealumno')";
                     $resultado = mysqli_query($conexion, $sql);
 
                     if ($resultado) {
                         echo "<script language='JavaScript'>
-                            alert('Registro Guardado');
-                            window.location.href = '../../../asignar_Asesores.php'; // Cambia 'otra_pagina.php'
-                            </script>";
+            alert('Registro Guardado');
+            window.location.href = '../../../asignar_Asesores.php'; 
+            </script>";
                     } else {
                         echo "<script language='JavaScript'>
-                            alert('Error al guardar el registro: " . mysqli_error($conexion) . "');
-                            </script>";
+            alert('Error al guardar el registro: " . mysqli_error($conexion) . "');
+            </script>";
                     }
                 }
                 ?>
 
-                    <form method="post" action="">
-                        <!-- Los campos de entrada no se muestran al usuario -->
-                        <input type="hidden" name="idalumno" value="idalumno">
-                        <input type="hidden" name="nombrealumno" value="nombrealumno">
-                        
-                        <div class="btn_enviar">
-                            <button class="btn btn-primary enviar-otro" type="submit" name="enviar">Enviar</button>
-                        </div>
-                    </form>
+                <form method="post" action="">
+                    <input type="text" name="idalumno" placeholder="ID del alumno">
+                    <input type="text" name="nombrealumno" placeholder="Nombre del alumno">
 
-
+                    <div class="btn_enviar">
+                        <button class="btn btn-primary enviar-otro" type="submit" name="enviar">Enviar</button>
+                    </div>
+                </form>
 
                 <div class="container">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -103,7 +99,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
+                            <?php
                             require_once "../includes/db.php";
                             $consulta = mysqli_query($conexion, "SELECT * FROM documento");
 
@@ -112,24 +108,38 @@
                                     // Solo mostrar la fila si el campo 'archivo' no está vacío
                                     ?>
                                     <tr>
-                                        <td><?php echo $fila['idalumno']; ?></td>
-                                        <td><?php echo $fila['nombrealumno']; ?></td>
-                                        <td><?php echo $fila['nombreproyecto']; ?></td>
-                                        <td><?php echo $fila['empresa']; ?></td>
-                                        <td><?php echo $fila['asesor']; ?></td>
-                                        <td><?php echo $fila['archivo']; ?></td>
                                         <td>
-                                            <a href="../includes/download.php?id=<?php echo $fila['idalumno']; ?>" class="btn btn-primary">
+                                            <?php echo $fila['idalumno']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila['nombrealumno']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila['nombreproyecto']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila['empresa']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila['asesor']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila['archivo']; ?>
+                                        </td>
+                                        <td>
+                                            <a href="../includes/download.php?id=<?php echo $fila['idalumno']; ?>"
+                                                class="btn btn-primary">
                                                 <i class="fas fa-download"></i> Descargar
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="../includes/files/<?php echo $fila['archivo']; ?>" class="btn btn-secondary" target="_blank">
+                                            <a href="../includes/files/<?php echo $fila['archivo']; ?>"
+                                                class="btn btn-secondary" target="_blank">
                                                 Ver PDF
                                             </a>
                                         </td>
                                     </tr>
-                                <?php
+                                    <?php
                                 }
                             endwhile;
                             ?>
@@ -139,9 +149,9 @@
                 </div>
             </div>
             <script>
-  
-
-</body>
 
 
-</html>
+</body >
+
+
+</html >

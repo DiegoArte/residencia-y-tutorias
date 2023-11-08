@@ -49,6 +49,7 @@ require 'php/Alumnos.php';
 require 'php/Docentes.php';
 require 'php/Asesorados.php';
 
+
 // Mostrar el formulario de selección de nombre
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $result_alum = Alumnos::find("NumerodeControl NOT IN (SELECT Alumno FROM asesorados)");
