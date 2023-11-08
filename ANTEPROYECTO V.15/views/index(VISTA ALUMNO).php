@@ -195,7 +195,7 @@ $conn->close();
                                         <?php
                                             $asesor = mysqli_fetch_assoc(mysqli_query($conexion, "SELECT Asesor FROM asesorados WHERE Alumno='$id'"));
                                         ?>
-                                        <a href="../../../comunicacionDocenteAlumno.php?id=<?php echo $asesor['Asesor']; ?>" class="btn btn-danger">
+                                        <a href="../../comunicacionDocenteAlumno.php?id=<?php echo $asesor['Asesor']; ?>" class="btn btn-danger">
                                             <i class="fas fa-message"></i> Ver revisión
                                         </a>
                                     </td>

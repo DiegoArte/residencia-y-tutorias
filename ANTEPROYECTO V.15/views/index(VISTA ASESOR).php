@@ -169,7 +169,7 @@ $conn->close();
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="../../../comunicacionDocenteAlumno.php?id=<?php echo $fila['idalumno']; ?>" class="btn btn-danger">
+                                        <a href="../../comunicacionDocenteAlumno.php?id=<?php echo $fila['idalumno']; ?>" class="btn btn-danger">
                                             <i class="fas fa-message"></i> Responder
                                         </a>
                                     </td>
