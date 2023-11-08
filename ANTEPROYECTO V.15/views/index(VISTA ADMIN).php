@@ -91,31 +91,7 @@
                 require_once "../includes/db.php";
 
                 $carreras = array(); // Un arreglo para almacenar las carreras
-
-<<<<<<< HEAD
-                $query = "SELECT NombredeCarrera FROM carrera";
-=======
-                $query = "SELECT carrera FROM documento";
->>>>>>> 372474ca3d0cd5351b6c5f42f68d69dfdd883b69
-                $result = mysqli_query($conexion, $query);
-
-                if ($result) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-<<<<<<< HEAD
-                        $carreras[] = $row['NombredeCarrera'];
-=======
-                        $carreras[] = $row['carrera'];
->>>>>>> 372474ca3d0cd5351b6c5f42f68d69dfdd883b69
-                    }
-                }
                 ?>
-
-                <label for="carrera">Carrera:</label>
-<<<<<<< HEAD
-                    <select name="carrera" id="carrera">
-=======
-                    <select name="carrera" id="carreraSelect">
->>>>>>> 372474ca3d0cd5351b6c5f42f68d69dfdd883b69
                         <?php
                         foreach ($carreras as $carrera) {
                             echo '<option value="' . $carrera . '">' . $carrera . '</option>';
@@ -123,28 +99,14 @@
                         ?>
                     </select>
 
-<<<<<<< HEAD
-                    
-=======
-                    <script>
-                    document.getElementById('carreraSelect').onchange = function () {
-                        filtrarRegistros();
-                    };
-                    </script>
-
-
->>>>>>> 372474ca3d0cd5351b6c5f42f68d69dfdd883b69
-
                 <div class="container">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Id Alumno</th>
                                 <th>Nombre</th>
-                                <th>Carrera</th>
                                 <th>Nombre del proyecto</th>
                                 <th>Empresa</th>
-                                <th>Asesor</th>
                                 <th>Archivo</th>
                                 <th>Descargar</th>
                                 <th>Ver PDF</th>
@@ -166,18 +128,12 @@
                                         <td>
                                             <?php echo $fila['nombrealumno']; ?>
                                         </td>
-                                        <td>
-                                            <?php echo $fila['carrera']; ?>
-                                        </td>
                                         
                                         <td>
                                             <?php echo $fila['nombreproyecto']; ?>
                                         </td>
                                         <td>
                                             <?php echo $fila['empresa']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $fila['asesor']; ?>
                                         </td>
                                         <td>
                                             <?php echo $fila['archivo']; ?>
