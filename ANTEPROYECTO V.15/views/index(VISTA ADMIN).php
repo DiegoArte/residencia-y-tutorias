@@ -52,7 +52,8 @@
                 <?php
                 if (isset($_POST['enviar'])) {
                     require_once "../includes/db.php"; // Incluye el archivo de conexión a la base de datos
-                
+                    
+
                     // Recupera los datos del formulario
                     $idalumno = $_POST['idalumno'];
                     $nombrealumno = $_POST['nombrealumno'];
@@ -79,10 +80,38 @@
                     <input type="text" name="idalumno" placeholder="ID del alumno">
                     <input type="text" name="nombrealumno" placeholder="Nombre del alumno">
 
+                    
+
                     <div class="btn_enviar">
                         <button class="btn btn-primary enviar-otro" type="submit" name="enviar">Enviar</button>
                     </div>
                 </form>
+
+                <?php
+                require_once "../includes/db.php";
+
+                $carreras = array(); // Un arreglo para almacenar las carreras
+
+                $query = "SELECT NombredeCarrera FROM carrera";
+                $result = mysqli_query($conexion, $query);
+
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $carreras[] = $row['NombredeCarrera'];
+                    }
+                }
+                ?>
+
+                <label for="carrera">Carrera:</label>
+                    <select name="carrera" id="carrera">
+                        <?php
+                        foreach ($carreras as $carrera) {
+                            echo '<option value="' . $carrera . '">' . $carrera . '</option>';
+                        }
+                        ?>
+                    </select>
+
+                    
 
                 <div class="container">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

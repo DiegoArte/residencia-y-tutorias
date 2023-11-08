@@ -13,7 +13,7 @@
                     $consulta = mysqli_query($conexion, "SELECT * FROM alumnos WHERE NumerodeControl='$id'");
                     $alumno = mysqli_fetch_assoc($consulta);
 
-                    $consulta = mysqli_query($conexion, "SELECT NombreAsesor FROM asesorados WHERE id='$id'");
+                    $consulta = mysqli_query($conexion, "SELECT asesor FROM documento WHERE idalumno='$id'");
                     $asesor = mysqli_fetch_assoc($consulta);
 
                   
@@ -53,7 +53,7 @@
                     <div class="mb-3">
                         <label for="asesor" class="form-label">Asesor</label>
                         <input type="text" id="asesor" name="asesor" class="form-control" required readonly
-                            value="<?php echo empty($asesor) ? 'Asesor no asignado' : $asesor['NombreAsesor']; ?>">
+                            value="<?php echo empty($asesor) ? 'Asesor no asignado' : $asesor['asesor']; ?>">
                     </div>
                 </div>
 

@@ -161,7 +161,7 @@ $conn->close();
                                         <?php echo $fila['empresa']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $fila['asesor']; ?>
+                                        <?php echo $fila['Asesor']; ?>
                                     </td>
                                     <td>
                                         <?php echo $fila['archivo']; ?>
