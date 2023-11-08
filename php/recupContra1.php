@@ -63,10 +63,12 @@
         // Cerrar la conexión
         $conexion->close();
         
+        
         use PHPMailer\PHPMailer\PHPMailer;
         use vendor\PHPMailer\PHPMailer\SMTP;
         use vendor\PHPMailer\PHPMailer\Exception;
-        if ($control != 0){
+        if ($control != '0'){
+            echo"entró";
 
             require '../vendor1/autoload.php';
 
@@ -91,6 +93,7 @@
             $mail->Subject = 'Recuperación de contraseña';
             $mail->Body = "Hola, <br/>Tu código de recuperación es \"$numAlea\"";
             $mail->send();
+            
 
             echo"
             <img src='../img/enviado.jpg' alt='correo enviado' class='img1'>
