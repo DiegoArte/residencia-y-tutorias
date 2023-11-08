@@ -116,6 +116,7 @@ function Tabla(){
 include 'conexion.php';
 $conn = conecta();
 $login = $_POST["ses"];
+$_SESSION["ses"] = $login;
 
 //echo $login."<br>";
 

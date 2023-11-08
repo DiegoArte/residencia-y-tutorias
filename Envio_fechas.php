@@ -97,6 +97,8 @@ $conn->close();
     
             
                 <?php
+                $Log = $_POST["ses"];
+                //echo $Log;
                 include 'php/Mostrar_tabla.php';
                 Tabla();
                 ?>
@@ -149,11 +151,17 @@ $conn->close();
             <span onclick="cerrarModal()" style="cursor: pointer; float: right;">Cerrar &times;</span>
             <h2>Formulario</h2>
             <form action="php/llenado_Archivo_EF.php" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario()">
-                <input type="text" name="Nombre" id="Nombre">
+                <input type="hidden" name="">
+                <input type="hidden" name="Nombre" id="Nombre" value="<?php echo $Log;?>">
+                
+
+                
+
+                
                 <input name="fichero" type="file" size="150" maxlength="150">
                 <br>
                 <br>
-                <button type="submit">Insertar</button>
+                <button type="submit" >Insertar</button>
             </form>
         </div>
     </div>
