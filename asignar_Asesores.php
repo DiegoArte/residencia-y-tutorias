@@ -53,6 +53,7 @@ require 'php/Asesorados.php';
 // Mostrar el formulario de selección de nombre
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $result_alum = Alumnos::find("NumerodeControl NOT IN (SELECT Alumno FROM asesorados) AND NumerodeControl IN (SELECT idalumno FROM documento)");
+    
     $result_doc = Docentes::find("Asesor=1");
     ?>
 
@@ -83,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     "</form>
     <?php
     // Consulta SQL para obtener los datos de la tabla asesorados
-    $result_asesorados = Asesorados::all();
+    $result_asesorados = Asesorados::find("Carrera like 'ISC'");
     ?>
     <table>
         <thead>
