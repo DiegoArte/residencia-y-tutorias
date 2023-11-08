@@ -35,6 +35,13 @@
 
                         <div class="col-sm-6">
                             <div class="mb-3">
+                                <label for="carrera" class="form-label">Carrera</label>
+                                <input type="text" id="carrera" name="carrera" class="form-control" required readonly value="<?php echo $alumno['Academia']; ?>">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="mb-3">
                                 <label for="nombreproyecto" class="form-label">Nombre proyecto</label>
                                 <input type="text" id="nombreproyecto" name="nombreproyecto" class="form-control" required readonly value="<?php echo $alumno['NombredelAnteproyecto']; ?>">
                             </div>
