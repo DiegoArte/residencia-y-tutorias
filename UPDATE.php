@@ -149,7 +149,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $NumerodeControl = trim($_POST['NumerodeControl']);
         $Academia = trim($_POST['Academia']);
         $NombredelEstudiante = trim($_POST['NombredelEstudiante']);
-        $NombredelAnteproyecto = trim($_POST['NombredelAnteproyecto']);
+        $NombredelAnteproyecto = trim($_POST['NombredelAnteproyecto']); 
+        $NombreCorreo = trim($_POST['NombreCorreo']); 
     
         if (!nombreCarreraExiste($conn, $Academia)) {
             $resultado = "El nombre de la carrera no existe en el sistema.";
@@ -159,6 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'Academia' => $Academia,
                 'NombredelEstudiante' => $NombredelEstudiante,
                 'NombredelAnteproyecto' => $NombredelAnteproyecto,
+                'correo' => $NombreCorreo
             ];
         
             $resultado = actualizarTabla($conn, $tabla, $id, $campos);

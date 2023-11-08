@@ -61,7 +61,7 @@ function cerrarErrorModal() {
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-function abrirFormularioEdicion(id, Academia, NumerodeControl, NombredelEstudiante,NombredelAnteproyecto) {
+function abrirFormularioEdicion(id, Academia, NumerodeControl, NombredelEstudiante,NombredelAnteproyecto,correo) {
     // Muestra el formulario modal
     var modal = document.getElementById('editar-modal');
     modal.style.display = 'block';
@@ -72,6 +72,7 @@ function abrirFormularioEdicion(id, Academia, NumerodeControl, NombredelEstudian
     document.getElementById('NumerodeControl').value = NumerodeControl;
     document.getElementById('NombredelEstudiante').value = NombredelEstudiante;
     document.getElementById('NombredelAnteproyecto').value = NombredelAnteproyecto;
+    document.getElementById('NombreCorreo').value = correo;
 }
 
 
@@ -87,11 +88,15 @@ function validarFormulario() {
     var nombreAcademia = document.getElementById("Academia").value;
     var nombreEstudiante = document.getElementById("NombredelEstudiante").value;
     var nombreAnteproyecto = document.getElementById("NombredelAnteproyecto").value;
+    var nombrecorreo = document.getElementById("correo").value;
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
     //var expresion = /^[a-zA-Z0-9\s]+$/;
+    var expresionRegularCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if (numeroControl === "" || nombreAcademia === "" || nombreEstudiante === "" || nombreAnteproyecto === "") {
+
+
+    if (numeroControl === "" || nombreAcademia === "" || nombreEstudiante === "" || nombreAnteproyecto === ""|| nombrecorreo === "") {
         Swal.fire({
             title: 'Llena todos los campos',
             text: 'Asegúrate de llenar todos los campos',
@@ -100,7 +105,7 @@ function validarFormulario() {
             confirmButtonColor: '#197B7A' 
         });
         return false;
-    } else if (!expresion.test(numeroControl) || !expresion.test(nombreAcademia) || !expresion.test(nombreEstudiante) || !expresion.test(nombreAnteproyecto)) {
+    } else if (!expresion.test(numeroControl) || !expresion.test(nombreAcademia) || !expresion.test(nombreEstudiante) || !expresion.test(nombreAnteproyecto) || !expresion.test(nombrecorreo)) {
         Swal.fire({
             title: 'Campo(s) inválido(s)',
             text: "Los campos no deben contener caracteres especiales",
@@ -108,7 +113,20 @@ function validarFormulario() {
             confirmButtonColor: '#3085d6',
           })
         return false;
+    } 
+    
+    if (!expresionRegularCorreo.test(nombrecorreo)) {
+        console.log("Correo electrónico válido: " + correo);
+        Swal.fire({
+            title: 'Correo no válido',
+            text: "El correo no es válido, por favor modifícalo",
+            icon: 'warning',
+            confirmButtonColor: '#3085d6'
+        });
+        return false;
     }
+
+   
 
     // Si todo está bien, el formulario se envía
     return true;
