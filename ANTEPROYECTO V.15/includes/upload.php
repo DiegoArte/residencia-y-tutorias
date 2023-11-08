@@ -4,6 +4,7 @@ if (isset($_FILES['archivo'])) {
     extract($_POST);
     $idalumno = $_POST['idalumno'];
     $nombre = $_POST['nombrealumno'];
+    $carrera = $_POST['carrera'];
     $nombreproyecto = $_POST['nombreproyecto'];
     $empresa = $_POST['empresa'];
     $asesor = $_POST['asesor'];
@@ -23,8 +24,8 @@ if (isset($_FILES['archivo'])) {
             if (move_uploaded_file($_FILES["archivo"]["tmp_name"], $carpeta_destino . $nombre_archivo)) {
                 // Insertar la información del archivo en la base de datos
                 include "db.php";
-                $sql = "INSERT INTO documento (idalumno, nombrealumno, nombreproyecto, empresa, asesor, archivo) 
-                VALUES ( '$idalumno', '$nombrealumno', '$nombreproyecto', '$empresa', '$asesor', '$nombre_archivo')";
+                $sql = "INSERT INTO documento (idalumno, nombrealumno, carrera, nombreproyecto, empresa, asesor, archivo) 
+                VALUES ( '$idalumno', '$nombrealumno', '$carrera','$nombreproyecto', '$empresa', '$asesor', '$nombre_archivo')";
                 $resultado = mysqli_query($conexion, $sql);
                 if ($resultado) {
                     echo "<script language='JavaScript'>

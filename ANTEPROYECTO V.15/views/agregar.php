@@ -35,6 +35,13 @@
 
                         <div class="col-sm-6">
                             <div class="mb-3">
+                                <label for="carrera" class="form-label">Carrera</label>
+                                <input type="text" id="carrera" name="carrera" class="form-control" required readonly value="<?php echo $alumno['Academia']; ?>">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="mb-3">
                                 <label for="nombreproyecto" class="form-label">Nombre proyecto</label>
                                 <input type="text" id="nombreproyecto" name="nombreproyecto" class="form-control" required readonly value="<?php echo $alumno['NombredelAnteproyecto']; ?>">
                             </div>
@@ -48,6 +55,7 @@
                         </div>
                     </div>
 
+<<<<<<< HEAD
                     
                     <div class="col-sm-6">
                     <div class="mb-3">
@@ -57,6 +65,8 @@
                     </div>
                 </div>
 
+=======
+>>>>>>> 372474ca3d0cd5351b6c5f42f68d69dfdd883b69
 
                 <div class="col-12">
                     <label for="yourPassword" class="form-label">Archivo (PDF)</label>
