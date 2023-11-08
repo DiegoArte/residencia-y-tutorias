@@ -85,18 +85,21 @@ $conn->close();
     if ($mostrar_reporte1) {
         ?>
         <form action="../../Envio_fechas.php" method="post">
+        <input type="hidden" name="ses" id="ses" value="<?php echo $_SESSION['usuario'] ?>">
         <?php
         echo '<button style="margin-bottom: 5px;">Reporte 1</button> </form>';
     }
     if ($mostrar_reporte2) {
         ?>
         <form action="../../Envio_fechas2.php" method="post">
+        <input type="hidden" name="ses" id="ses" value="<?php echo $_SESSION['usuario'] ?>">
         <?php
         echo '<button style="margin-bottom: 5px;">Reporte 2</button></form>';
     }
     if ($mostrar_reporte3) {
         ?>
         <form action="../../Envio_fechas3.php" method="post">
+        <input type="hidden" name="ses" id="ses" value="<?php echo $_SESSION['usuario'] ?>">
         <?php
         echo '<button style="margin-bottom: 5px;">Reporte 3</button></form>';
     }

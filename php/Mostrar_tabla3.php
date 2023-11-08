@@ -71,42 +71,85 @@ $conn = conecta();
 // Verificar la conexión
 $tABLA_ = "fecha_enviada";
 $login = $_POST["ses"];
+$_SESSION["ses"] = $login;
 echo $login;
 if ($conn->connect_error) {
     //die("Conexión fallida: " . $conn->connect_error);
 }
 else{
-    $sql = "SELECT * FROM  fecha_enviada3";
+    $sql = "SELECT * FROM `fecha_enviada3` WHERE `Nombre`='".$login."';";
     $resultado = mysqli_query($conn,$sql);
     if ($resultado->num_rows > 0){
-        echo "<table id='miTabla' >";
+        echo "<table id='table-responsive' >";
         echo "<tr>";
             echo "<th> Archivo </th>";
             echo "<th> Nombre </th>";
             echo "<th> Tipo de archivo </th>";
             echo "</tr>";
+            
+
+
+            echo "<td>";
         while ($row = $resultado->fetch_array()){
-            echo "<tr>";
-            echo "<td class = 'A'>" . $row["Archivo"] . "</td>";
-            echo "<td class = 'n'>" . $row["Nombre"] . "</td>";
+            $axu = $row["Archivo"];
+            echo $axu;
+            echo "<br>";
+            
+        }
+            echo "</td>";
+            echo "<td class = 'n'>" ;
+            $sql2 = "SELECT * FROM `alumnos` WHERE `NumerodeControl`='".$login."';";
+            $resultado2 = mysqli_query($conn,$sql2);
+
+            while ($row2 = $resultado2->fetch_array()){
+                echo "". $row2["NombredelEstudiante"]. "";
+            }
+            echo "</td>";
             echo "<td class = 'tipo' >" ;
-            $extension  = pathinfo($row["Archivo"],PATHINFO_EXTENSION);
-            if($row["Tipo_de_archivo"] == 1){
-                echo '<a href=php/'.$row["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-pdf" ></i> '.$extension.'</a>';
+            
+            $axu = $login;
+            $sql3 = "SELECT * FROM `fecha_enviada3` WHERE Nombre='$axu';";
+            $resultado3 = mysqli_query($conn,$sql3);
+            while($row3 = $resultado3->fetch_array()){
+                //echo "". $row2["Nombre"]. "";
+                $extension  = pathinfo($row3["Archivo"],PATHINFO_EXTENSION);
+            
+            if($row3["Tipo_de_archivo"] == 1){
+                echo '<a href=php/'.$row3["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-pdf" ></i> '.$extension.'</a>';
                 
             }
-            elseif($row["Tipo_de_archivo"] == 2){
-                echo '<a href=php/'.$row["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-word"></i> '.$extension.'</a>';
+            elseif($row3["Tipo_de_archivo"] == 2){
+                echo '<a href=php/'.$row3["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-word"></i> '.$extension.'</a>';
 
 
             }
-            elseif($row["Tipo_de_archivo"] == 3){
-                echo '<a href=php/'.$row["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-excel" ></i> '.$extension.'</a>';
+            elseif($row3["Tipo_de_archivo"] == 3){
+                echo '<a href=php/'.$row3["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-excel" ></i> '.$extension.'</a>';
             }
-            "</td>";
+            
+            echo "<br>";
+        }
+            echo"</td>";
+            echo "<td class='t'>";
+            $sql3 = "SELECT * FROM `fecha_enviada` WHERE Nombre='$axu';";
+            $resultado3 = mysqli_query($conn,$sql3);
+           
+            while($row3 = $resultado3->fetch_array()){
+                ?>
+                
+        <form action="php/elininarEF.php" method="post">      
+        <input type="hidden" name="id" value="<?php echo $row3["id"]?>">
+        <input type="submit" value="Eliminar">
+        </form>
+
+        <?php
+            }
+            echo"</td>";
+
+
             
             echo "</tr>";
-        }   
+        
 
         echo "</table>";
     }else {

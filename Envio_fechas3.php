@@ -95,12 +95,13 @@ $conn->close();
     padding: 10px;
     padding-right : 10px;">
     
-            <form action="php/Enviartabla.php" class="Tabla_contenido" method="post">
+            
                 <?php
+                $Log = $_POST["ses"];
                 include 'php/Mostrar_tabla3.php';
                 Tabla();
                 ?>
-                
+                <form action="php/Enviartabla.php" class="Tabla_contenido" method="post">
                 
             
         </section>
@@ -149,7 +150,7 @@ $conn->close();
             <span onclick="cerrarModal()" style="cursor: pointer; float: right;">Cerrar &times;</span>
             <h2>Formulario</h2>
             <form action="php/llenado_Archivo_EF3.php" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario()">
-                <input type="text" name="Nombre" id="Nombre">
+                <input type="hidden" name="Nombre" id="Nombre" value="<?php echo $Log;?>">
                 <input name="fichero" type="file" size="150" maxlength="150">
                 <br>
                 <br>

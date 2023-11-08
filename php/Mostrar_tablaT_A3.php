@@ -123,7 +123,7 @@ if ($conn->connect_error) {
     //die("Conexión fallida: " . $conn->connect_error);
 }
 else{
-    $sql = "SELECT MIN(id) AS id, Archivo, Nombre, Tipo_de_archivo,ruta FROM fecha_enviada3 GROUP BY Nombre;";
+    $sql = "SELECT * FROM `asesorados` WHERE `Asesor`= '".$login."'";
     $resultado = mysqli_query($conn,$sql);
     if ($resultado->num_rows > 0){
         echo "<table id='table-responsive' >";
@@ -132,61 +132,56 @@ else{
             echo "<th> Nombre </th>";
             echo "<th> Tipo de archivo </th>";
             echo "</tr>";
-            
-
-
 
         while ($row = $resultado->fetch_array()){
-            $axu = $row["Nombre"];
-            $sqlaxu = "SELECT * FROM `fecha_enviada` WHERE ater='$axu';";
-            $sql2 = "SELECT * FROM `fecha_enviada3` WHERE Nombre='$axu';";
+            $sql2 = "SELECT * FROM `fecha_enviada3` WHERE `Nombre`='".$row["Alumno"]."'" ;
+            //echo $row["Alumno"];
             $resultado2 = mysqli_query($conn,$sql2);
-            //while($row2 = $resultado2->fetch_array()){}
-            echo "<tr>";
-            echo "<td class = 'A'>"; 
-            while($row2 = $resultado2->fetch_array()){
-                echo "". $row2["Archivo"] . "";
-                echo "<br>";
-            }
-            
-            
-            echo "</td>";
-            echo "<td class = 'n'>" ;
-           
-                echo "". $row["Nombre"]. "";
-                echo "<br>";
-            
-           
-            echo "</td>";
-            echo "<td class = 'tipo' >" ;
-            
-            $axu = $row["Nombre"];
-            $sql3 = "SELECT * FROM `fecha_enviada3` WHERE Nombre='$axu';";
-            $resultado3 = mysqli_query($conn,$sql3);
-            while($row3 = $resultado3->fetch_array()){
-                //echo "". $row2["Nombre"]. "";
-                $extension  = pathinfo($row3["Archivo"],PATHINFO_EXTENSION);
-            
-            if($row3["Tipo_de_archivo"] == 1){
-                echo '<a href=php/'.$row3["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-pdf" ></i> '.$extension.'</a>';
-                
-            }
-            elseif($row3["Tipo_de_archivo"] == 2){
-                echo '<a href=php/'.$row3["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-word"></i> '.$extension.'</a>';
+            //if ($resultado->num_rows > 0){
+                echo "<tr>";
+                echo"<td> ";
+                while($row2 = $resultado2->fetch_array()){
+                    
+                    echo $row2["Archivo"];
+                    echo"<br>";
+                    
 
-
-            }
-            elseif($row3["Tipo_de_archivo"] == 3){
-                echo '<a href=php/'.$row3["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-excel" ></i> '.$extension.'</a>';
-            }
-            
-            echo "<br>";
-        }
-            echo"</td>";
-            
+                }
+                echo"</td> ";
+                $sql3 = "SELECT * FROM `alumnos` WHERE `NumerodeControl` ='".$row["Alumno"]."'";
+                $resultado3 = mysqli_query($conn,$sql3);
+                echo"<td> ";
+                while($row3 = $resultado3->fetch_array()){
+                    echo $row3["NombredelEstudiante"];
+                }
+                echo"</td> ";
+                ///
+                $sql4 = "SELECT * FROM `fecha_enviada3` WHERE Nombre='".$row["Alumno"]."';";
+                $resultado4 = mysqli_query($conn,$sql4);
+                echo"<td> ";
+                while($row4 = $resultado4->fetch_array()){
+                    $extension  = pathinfo($row4["Archivo"],PATHINFO_EXTENSION);
+                    if($row4["Tipo_de_archivo"] == 1){
+                        echo '<a href=php/'.$row4["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-pdf" ></i> '.$extension.'</a>';
+                        
+                    }
+                    elseif($row4["Tipo_de_archivo"] == 2){
+                        echo '<a href=php/'.$row4["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-word"></i> '.$extension.'</a>';
         
+        
+                    }
+                    elseif($row4["Tipo_de_archivo"] == 3){
+                        echo '<a href=php/'.$row4["ruta"].' onclick="mostrarPDF();" target="pdf-iframe"><i class="fa-regular fa-file-excel" ></i> '.$extension.'</a>';
+                    }
+                    echo"<br>";
+                }
+                echo"</td> ";
+            
             }
-            echo"</td>";
+        
+        
+        //echo"<td> ";
+          //  echo"</td>";
 
 
             

@@ -99,6 +99,10 @@ session_start();
                     <label for="NombredelAnteproyecto">Nombre del Anteproyecto:</label>
                     <input type="text" name="NombredelAnteproyecto" id="NombredelAnteproyecto">
                 </div>
+                <div class="editar-form-group form-group">
+                    <label for="NombreCorreo">Correo:</label>
+                    <input type="text" name="NombreCorreo" id="NombreCorreo">
+                </div>
                 <button type="submit" class="editar-guardar-btn guardar-btn">Guardar</button>
             </form>
         </div>
@@ -128,6 +132,10 @@ session_start();
                 <div class="registro-form-group form-group">
                     <label for="NuevoNombreAnteproyecto">Nombre de Anteproyecto:</label>
                     <input type="text" name="NuevoNombreAnteproyecto" id="NuevoNombreAnteproyecto">
+                </div>
+                <div class="registro-form-group form-group">
+                    <label for="NuevoCorreo">Correo:</label>
+                    <input type="text" name="NuevoCorreo" id="NuevoCorreo">
                 </div>
                 <button type="submit" class="registro-guardar-btn guardar-btn">Guardar</button>
             </form>
@@ -191,12 +199,13 @@ session_start();
             $errorMsg = "";
 
             // Define un array de columnas que deben estar completas
-            $requiredColumns = array('A', 'B', 'C', 'D'); // Ejemplo: las columnas A, B, C y D son requeridas
+            $requiredColumns = array('A', 'B', 'C', 'D','E'); // Ejemplo: las columnas A, B, C y D son requeridas
 
             $nombreDeCarrerasVistos  = array();
             $numerosDeControlVistos = array();
             $nombreDeEstudianteVistos = array();
             $nombreDeAnteproyectoVistos = array();
+            $nombreDeCorreosVistos = array();
 
 
             $elementosDuplicados = false;
@@ -273,16 +282,18 @@ session_start();
                     $NumerodeControl = $objPHPExcel->getActiveSheet()->getCell('B' . $i)->getValue();
                     $NombredelEstudiante = $objPHPExcel->getActiveSheet()->getCell('C' . $i)->getValue();
                     $NombredelAnteproyecto = $objPHPExcel->getActiveSheet()->getCell('D' . $i)->getValue();
+                    $correo = $objPHPExcel->getActiveSheet()->getCell('E' . $i)->getValue();
 
                     $nombreDeCarrerasVistos[]   = $rowData[0];
                     $numerosDeControlVistos[] = $rowData[1];
                     $nombreDeEstudianteVistos[] =  $rowData[2];
                     $nombreDeAnteproyectoVistos[] = $rowData[3];
+                    $nombreDeCorreosVistos[] = $rowData[4];
                 
                     // Verificar si los datos no están vacíos antes de procesarlos
-                    if (!empty($Academia) && !empty($NumerodeControl) && !empty($NombredelEstudiante) && !empty($NombredelAnteproyecto)) {
+                    if (!empty($Academia) && !empty($NumerodeControl) && !empty($NombredelEstudiante) && !empty($NombredelAnteproyecto) && !empty($correo)) {
                         // Insertar los datos en la tabla "alumnos"
-                        $insertQueryAlumnos = "INSERT INTO alumnos (Academia, NumerodeControl, NombredelEstudiante, NombredelAnteproyecto) VALUES ('$rowData[0]', '$rowData[1]', '$rowData[2]', ' $rowData[3]')";
+                        $insertQueryAlumnos = "INSERT INTO alumnos (Academia, NumerodeControl, NombredelEstudiante, NombredelAnteproyecto, correo) VALUES ('$rowData[0]', '$rowData[1]', '$rowData[2]', ' $rowData[3]', ' $rowData[4]')";
                         
                         if ($mysqli->query($insertQueryAlumnos) ) {
                             // Insertar usuario de alumno en la tabla "usuarios"
@@ -332,7 +343,7 @@ session_start();
     function contieneCaracteresEspeciales($cadena) {
         // Esta función verifica si una cadena contiene caracteres especiales.
         // Puedes personalizarla según tus necesidades.
-        $caracteresEspeciales = array("#", "$", "@", "+", "%", "&");
+        $caracteresEspeciales = array("#", "$", "+", "%", "&");
         foreach ($caracteresEspeciales as $caracter) {
             if (strpos($cadena, $caracter) !== false) {
                 return true;
@@ -359,13 +370,14 @@ session_start();
     $result = $mysqli->query($selectQuery);
 
     if ($result) {
-        echo '<table border=2><tr><td>Academia</td><td>Numero de Control</td><td>Nombre del Estudiante</td><td>Nombre del Anteproyecto</td><td>Acción</td></tr>';
+        echo '<table border=2><tr><td>Academia</td><td>Número de control</td><td>Nombre del estudiante</td><td>Nombre del anteproyecto</td><td>Correo</td><td>Acción</td></tr>';
         while ($row = $result->fetch_assoc()) {
             echo '<tr id="fila-' . $row['id'] . '">';
             echo '<td>'. $row['Academia'].'</td>';
             echo '<td>'. $row['NumerodeControl'].'</td>';
             echo '<td>'. $row['NombredelEstudiante'].'</td>';
             echo '<td>'. $row['NombredelAnteproyecto'].'</td>';
+            echo '<td>'. $row['correo'].'</td>';
             echo '<td>
             <button class="btn" onclick="eliminarFila(' . $row['id'] . ')">
                 <svg viewBox="0 0 15 17.5" height="17.5" width="15" xmlns="http://www.w3.org/2000/svg" class="icon">
@@ -373,7 +385,7 @@ session_start();
                 </svg>
             </button>
 
-            <button class="btn" onclick="abrirFormularioEdicion(' . $row['id'] . ' , \' ' . $row['Academia'] . ' \', \' ' . $row['NumerodeControl'] . ' \', \' ' . $row['NombredelEstudiante'] . ' \', \' ' . $row['NombredelAnteproyecto'] . ' \')">
+            <button class="btn" onclick="abrirFormularioEdicion(' . $row['id'] . ' , \' ' . $row['Academia'] . ' \', \' ' . $row['NumerodeControl'] . ' \', \' ' . $row['NombredelEstudiante'] . ' \', \' ' . $row['NombredelAnteproyecto'] . ' \', \' ' . $row['correo'] . ' \')">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
                     <path d="M0 0h24v24H0z" fill="none"/>
                     <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
