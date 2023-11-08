@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <link rel="stylesheet" href="../../css/estilo01_botones.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="Anteproyecto.css">
 
@@ -90,21 +90,21 @@ $conn->close();
         <form action="../../Envio_fechasT_A.php" method="post">
             <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
         <?php
-        echo '<button style="margin-bottom: 5px;">Reporte 1</button> </form>';
+        echo '<button class="boton1">Reporte 1</button></form>';
     }
     if ($mostrar_reporte2) {
         ?>
         <form action="../../Envio_fechasT_A2.php" method="post">
         <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
         <?php
-        echo '<button style="margin-bottom: 5px;">Reporte 2</button> </form>';
+        echo '<button class="boton1"">Reporte 2</button></form>';
     }
     if ($mostrar_reporte3) {
         ?>
         <form action="../../Envio_fechasT_A3.php" method="post">
         <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
         <?php
-        echo '<button style="margin-bottom: 5px;">Reporte 3</button> </form>';
+        echo '<button class="boton1"">Reporte 3</button></form>';
     }
     ?>
 </div>

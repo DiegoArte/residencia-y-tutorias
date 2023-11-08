@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,15 +17,26 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/Envio_fecha.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">  
+    <link rel="stylesheet" href="css/normalize.css">  
     
     <title>Envío de fecha tutor o asesor</title>
 </head>
 <body>
     <header class="fixed w-100">
-        <div class="usuarioOp d-flex justify-content-end">
-            <img src="img/profile.png" alt="" >
-            <p>Usuario</p>
-            <a href="#">Cerrar sesión</a>
+        <a href="ANTEPROYECTO V.15/views/index(VISTA ASESOR).php" class="back-arrow rounded-pill d-flex justify-content-start">
+                <img src="img/back.svg" alt="" height="50">
+                <span class="regresar d-none text-white m-auto">Regresar</span>
+        </a>
+            <div class="usuarioOp d-flex justify-content-end">
+                <img src="img/profile.png" alt="">
+                <?php
+                $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+                echo '<p>' . $nombre . '</p>';
+                ?>
+                <div class="dropdown-content">
+                    <a href="logout.php">Cerrar sesión</a>
+            </div>
         </div>
     </header>
 
