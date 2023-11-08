@@ -12,6 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../css/estilo01_botones.css">
     <link rel="stylesheet" href="Anteproyecto.css">
 
     <script src="../js/jquery.min.js"></script>
@@ -30,7 +31,7 @@
             echo '<p>' . $nombre . '</p>';
             ?>
             <div class="dropdown-content">
-                <a href="../../../logout.php">Cerrar sesión</a>
+                <a href="../../logout.php">Cerrar sesión</a>
             </div>
         </div>
     </header>
@@ -87,21 +88,22 @@ $conn->close();
         <form action="../../Envio_fechas.php" method="post">
         <input type="hidden" name="ses" id="ses" value="<?php echo $_SESSION['usuario'] ?>">
         <?php
-        echo '<button style="margin-bottom: 5px;">Reporte 1</button> </form>';
+        echo '<button class="boton1">Reporte 1</button></form>';
+
     }
     if ($mostrar_reporte2) {
         ?>
         <form action="../../Envio_fechas2.php" method="post">
         <input type="hidden" name="ses" id="ses" value="<?php echo $_SESSION['usuario'] ?>">
         <?php
-        echo '<button style="margin-bottom: 5px;">Reporte 2</button></form>';
+        echo '<button class="boton1"">Reporte 2</button></form>';
     }
     if ($mostrar_reporte3) {
         ?>
         <form action="../../Envio_fechas3.php" method="post">
         <input type="hidden" name="ses" id="ses" value="<?php echo $_SESSION['usuario'] ?>">
         <?php
-        echo '<button style="margin-bottom: 5px;">Reporte 3</button></form>';
+        echo '<button class="boton1"">Reporte 3</button></form>';
     }
     ?>
 </div>
