@@ -151,12 +151,7 @@ $conn->close();
             <span onclick="cerrarModal()" style="cursor: pointer; float: right;">Cerrar &times;</span>
             <h2>Formulario</h2>
             <form action="php/llenado_Archivo_EF.php" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario()">
-                <input type="hidden" name="">
                 <input type="hidden" name="Nombre" id="Nombre" value="<?php echo $Log;?>">
-                
-
-                
-
                 
                 <input name="fichero" type="file" size="150" maxlength="150">
                 <br>
