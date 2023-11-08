@@ -112,7 +112,7 @@ function obtenerSeleccionados() {
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-function abrirFormularioEdicion(id, Academia, NumerodeControl, NombredelDocente) {
+function abrirFormularioEdicion(id, Academia, NumerodeControl, NombredelDocente, correo) {
     // Muestra el formulario modal
     var modal = document.getElementById('editar-modal');
     modal.style.display = 'block';
@@ -122,6 +122,7 @@ function abrirFormularioEdicion(id, Academia, NumerodeControl, NombredelDocente)
     document.getElementById('Academia').value = Academia;
     document.getElementById('NumerodeControl').value = NumerodeControl;
     document.getElementById('NombredelDocente').value = NombredelDocente;
+    document.getElementById('NombreCorreo').value = correo;
 }
 
 
@@ -136,11 +137,12 @@ function validarFormulario() {
     var numeroControl = document.getElementById("NumerodeControl").value;
     var nombreAcademia = document.getElementById("Academia").value;
     var nombreDocente = document.getElementById("NombredelDocente").value;
+    var nombrecorreo = document.getElementById("NombreCorreo").value;
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
     //var expresion = /^[a-zA-Z0-9\s]+$/;
 
-    if (numeroControl === "" || nombreAcademia === "" || nombreDocente === "") {
+    if (numeroControl === "" || nombreAcademia === "" || nombreDocente === ""|| nombrecorreo === "") {
         Swal.fire({
             title: 'Llena todos los campos',
             text: 'Asegúrate de llenar todos los campos',
@@ -149,7 +151,7 @@ function validarFormulario() {
             confirmButtonColor: '#197B7A' 
         });
         return false;
-    } else if (!expresion.test(numeroControl) || !expresion.test(nombreAcademia) || !expresion.test(nombreDocente)) {
+    } else if (!expresion.test(numeroControl) || !expresion.test(nombreAcademia) || !expresion.test(nombreDocente)|| !expresion.test(nombrecorreo)) {
         Swal.fire({
             title: 'Campo(s) inválido(s)',
             text: "Los campos no deben contener caracteres especiales",

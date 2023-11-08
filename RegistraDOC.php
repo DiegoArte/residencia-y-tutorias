@@ -101,6 +101,10 @@ session_start();
                     <label for="NombredelDocente">Nombre del Docente:</label>
                     <input type="text" name="NombredelDocente" id="NombredelDocente">
                 </div>
+                <div class="editar-form-group form-group">
+                    <label for="NombreCorreo">Correo:</label>
+                    <input type="text" name="NombreCorreo" id="NombreCorreo">
+                </div>
                 <button type="submit" class="editar-guardar-btn guardar-btn">Guardar</button>
             </form>
         </div>
@@ -129,6 +133,10 @@ session_start();
                 <div class="registro-form-group form-group">
                     <label for="NuevoNombreDocente">Nombre de Docente:</label>
                     <input type="text" name="NuevoNombreDocente" id="NuevoNombreDocente">
+                </div>
+                <div class="registro-form-group form-group">
+                    <label for="NuevoCorreo">Correo:</label>
+                    <input type="text" name="NuevoCorreo" id="NuevoCorreo">
                 </div>
                 <button type="submit" class="registro-guardar-btn guardar-btn">Guardar</button>
             </form>
@@ -232,12 +240,13 @@ session_start();
             $errorMsg = "";
 
             // Define un array de columnas que deben estar completas
-            $requiredColumns = array('A', 'B', 'C'); // Ejemplo: las columnas A, B y C son requeridas
+            $requiredColumns = array('A', 'B', 'C', 'D'); // Ejemplo: las columnas A, B y C son requeridas
 
             // Arrays para hacer un seguimiento de valores duplicados en cada columna
             $academiasVistas = array();
             $numerosDeControlVistos = array();
             $nombresDelDocenteVistos = array();
+            $nombresCorreoVistos = array();
 
             $elementosDuplicados = false;
 
@@ -310,13 +319,14 @@ session_start();
                     $academiasVistas[] = $rowData[0];
                     $numerosDeControlVistos[] = $rowData[1];
                     $nombresDelDocenteVistos[] = $rowData[2];
+                    $nombresCorreoVistos[] = $rowData[3];
 
                     // El resto de tu código de inserción
                     $Asesor = 0;
                     $Presidente = 0;
                     $Secretaria = 0;
-                    $insertQuery = "INSERT INTO docentes (Academia, NumerodeControl, NombredelDocente, Asesor, Presidente, Secretaria) 
-                                    VALUES ('$rowData[0]', '$rowData[1]', '$rowData[2]', '$Asesor', '$Presidente', '$Secretaria')";
+                    $insertQuery = "INSERT INTO docentes (Academia, NumerodeControl, NombredelDocente, Asesor, Presidente, Secretaria,correo) 
+                                    VALUES ('$rowData[0]', '$rowData[1]', '$rowData[2]', '$Asesor', '$Presidente', '$Secretaria', '$rowData[3]')";
 
                     if ($mysqli->query($insertQuery)) {
                         // Insertar usuario de docente en la tabla "usuarios"
@@ -359,7 +369,7 @@ session_start();
     function contieneCaracteresEspeciales($cadena) {
         // Esta función verifica si una cadena contiene caracteres especiales.
         // Puedes personalizarla según tus necesidades.
-        $caracteresEspeciales = array("#", "$", "@", "+", "%", "&");
+        $caracteresEspeciales = array("#", "$", "+", "%", "&");
         foreach ($caracteresEspeciales as $caracter) {
             if (strpos($cadena, $caracter) !== false) {
                 return true;
@@ -389,12 +399,13 @@ session_start();
                 $result = $mysqli->query($selectQuery);
         
                 if ($result) {
-                    echo '<table border=2><tr><td>Academia</td><td>Numero de Control</td><td>Nombre del Docente</td><td>Acción</td></tr>'; // Cambio de "Estudiante" a "Docente"
+                    echo '<table border=2><tr><td>Academia</td><td>Número de Control</td><td>Nombre del Docente</td><td>Correo</td><td>Acción</td></tr>'; // Cambio de "Estudiante" a "Docente"
                     while ($row = $result->fetch_assoc()) {
                         echo '<tr id="fila-' . $row['id'] . '">';
                         echo '<td>'. $row['Academia'].'</td>';
                         echo '<td>'. $row['NumerodeControl'].'</td>';
                         echo '<td>'. $row['NombredelDocente'].'</td>';
+                        echo '<td>'. $row['correo'].'</td>';
                 
                         // Botón para eliminar la fila
                         echo '<td><button class="btn" onclick="eliminarFilaDOC(' . $row['id'] . ')">
@@ -429,12 +440,13 @@ session_start();
                 $result = $mysqli->query($selectQuery);
         
                 if ($result) {
-                    echo '<table border=2><tr><td>Academia</td><td>Numero de Control</td><td>Nombre del Docente</td><td>Asesor</td><td>Presidente</td><td>Secretaria</td><td>Acción</td></tr>'; // Cambio de "Estudiante" a "Docente"
+                    echo '<table border=2><tr><td>Academia</td><td>Número de Control</td><td>Nombre del Docente</td><td>Correo</td><td>Asesor</td><td>Presidente</td><td>Secretaria</td><td>Acción</td></tr>'; // Cambio de "Estudiante" a "Docente"
                     while ($row = $result->fetch_assoc()) {
                         echo '<tr id="fila-' . $row['id'] . '">';
                         echo '<td>'. $row['Academia'].'</td>';
                         echo '<td>'. $row['NumerodeControl'].'</td>';
                         echo '<td>'. $row['NombredelDocente'].'</td>';
+                        echo '<td>'. $row['correo'].'</td>';
                     
                         // Casilla de verificación para Asesor
                         echo '<td><input type="checkbox" id="asesor-' . $row['id'] . '" name="asesor[]" value="' . $row['id'] . '"';
@@ -464,7 +476,7 @@ session_start();
                             </svg>
                         </button>
                         
-                        <button class="btn" onclick="abrirFormularioEdicion(' . $row['id'] . ' , \' ' . $row['Academia'] . ' \', \' ' . $row['NumerodeControl'] . ' \', \' ' . $row['NombredelDocente'] . ' \')">
+                        <button class="btn" onclick="abrirFormularioEdicion(' . $row['id'] . ' , \' ' . $row['Academia'] . ' \', \' ' . $row['NumerodeControl'] . ' \', \' ' . $row['NombredelDocente'] . ' \', \' ' . $row['correo'] . ' \')">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
                                 <path d="M0 0h24v24H0z" fill="none"/>
                                 <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>

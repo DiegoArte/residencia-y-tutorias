@@ -50,6 +50,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         return $result->num_rows > 0;
     }
 
+    // Función para validar un correo electrónico
+    function validarCorreoElectronico($correo) {
+        // Filtra y limpia el correo
+        $correo = filter_var($correo, FILTER_SANITIZE_EMAIL);
+
+        // Verifica si el correo tiene una estructura válida
+        if (filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+            return true; // Es un correo válido
+        } else {
+            return false; // No es un correo válido
+        }
+    }
+
     if ($tabla === 'carrera') {
         $NumerodeControl = trim($_POST['NumerodeControl']);
         $NombredeCarrera = trim($_POST['NombredeCarrera']);
@@ -97,20 +110,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $NumerodeControl = trim($_POST['NumerodeControl']);
         $Academia = trim($_POST['Academia']);
         $NombredelDocente = trim($_POST['NombredelDocente']);
-
+        $NombreCorreo = trim($_POST['NombreCorreo']);
+    
         if (!nombreCarreraExiste($conn, $Academia)) {
             $resultado = "El nombre de la carrera no existe en el sistema.";
-        }else{
-            $campos = [
-                'NumerodeControl' => $NumerodeControl,
-                'Academia' => $Academia,
-                'NombredelDocente' => $NombredelDocente
-            ];
+        } else {
+            if (validarCorreoElectronico($NombreCorreo)) {
+                $campos = [
+                    'NumerodeControl' => $NumerodeControl,
+                    'Academia' => $Academia,
+                    'NombredelDocente' => $NombredelDocente,
+                    'correo' => $NombreCorreo
+                ];
     
-            $resultado = actualizarTabla($conn, $tabla, $id, $campos);  
+                $resultado = actualizarTabla($conn, $tabla, $id, $campos);
+            } else {
+                $resultado = "El correo electrónico no es válido.";
+            }
         }
-
-
 
     } elseif ($tabla === 'materias') {
 
