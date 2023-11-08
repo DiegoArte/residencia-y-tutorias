@@ -98,6 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $NuevoNumeroControl = trim($_POST['NuevoNumeroControl']);
         $NuevoNombreCarrera = trim($_POST['NuevoNombreCarrera']);
         $NuevoNombreDocente = trim($_POST['NuevoNombreDocente']);
+        $NuevoCorreo = trim($_POST['NuevoCorreo']);
+
 
         // Verificar si el número de control ya existe
         if (numeroControlExisteChido($conn, $NuevoNumeroControl, $tabla)) {
@@ -113,7 +115,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     'NombredelDocente' => $NuevoNombreDocente,
                     'Asesor'=>0,
                     'Presidente'=>0,
-                    'Secretaria'=>0
+                    'Secretaria'=>0,
+                    'correo' => $NuevoCorreo
+
                 );
 
                 $resultado = agregarRegistro($conn, $tabla, $campos);
@@ -155,6 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $NuevoNombreCarrera = trim($_POST['NuevoNombreCarrera']);
         $NuevoNombreAlumno = trim($_POST['NuevoNombreAlumno']);
         $NuevoNombreAnteproyecto = trim($_POST['NuevoNombreAnteproyecto']);
+        $NuevoCorreo = trim($_POST['NuevoCorreo']);
 
 
         // Verificar si el número de control ya existe
@@ -170,6 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     'Academia' => $NuevoNombreCarrera,
                     'NombredelEstudiante' => $NuevoNombreAlumno,
                     'NombredelAnteproyecto' => $NuevoNombreAnteproyecto,
+                    'correo' => $NuevoCorreo,
                 );
                 
                 $resultado = agregarRegistro($conn, $tabla, $campos);

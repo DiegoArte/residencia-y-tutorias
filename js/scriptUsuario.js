@@ -88,7 +88,7 @@ function validarFormulario() {
     var nombreAcademia = document.getElementById("Academia").value;
     var nombreEstudiante = document.getElementById("NombredelEstudiante").value;
     var nombreAnteproyecto = document.getElementById("NombredelAnteproyecto").value;
-    var nombrecorreo = document.getElementById("correo").value;
+    var nombrecorreo = document.getElementById("NombreCorreo").value;
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
     //var expresion = /^[a-zA-Z0-9\s]+$/;
