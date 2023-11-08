@@ -45,14 +45,44 @@
     <section style="margin-top: 70px;">
 
 
-
         <div class="container">
             <div class="col-sm-12">
                 <h2 class="text-center">Anteproyecto</h2>
 
-                <div class = "btn_enviar">
-                <button class="btn btn-primary enviar-otro" type="submit">Enviar</button>
-</div>
+                <?php
+                if (isset($_POST['enviar'])) {
+                    require_once "../includes/db.php"; // Incluye el archivo de conexión a la base de datos
+                
+                    // Recupera los datos del formulario
+                    $idalumno = $_POST['idalumno'];
+                    $nombrealumno = $_POST['nombrealumno'];
+
+                    // Inserta los datos en la base de datos
+                    $sql = "INSERT INTO asesorados (id, Alumno) 
+            VALUES ('$idalumno', '$nombrealumno')";
+                    $resultado = mysqli_query($conexion, $sql);
+
+                    if ($resultado) {
+                        echo "<script language='JavaScript'>
+            alert('Registro Guardado');
+            window.location.href = '../../../asignar_Asesores.php'; 
+            </script>";
+                    } else {
+                        echo "<script language='JavaScript'>
+            alert('Error al guardar el registro: " . mysqli_error($conexion) . "');
+            </script>";
+                    }
+                }
+                ?>
+
+                <form method="post" action="">
+                    <input type="text" name="idalumno" placeholder="ID del alumno">
+                    <input type="text" name="nombrealumno" placeholder="Nombre del alumno">
+
+                    <div class="btn_enviar">
+                        <button class="btn btn-primary enviar-otro" type="submit" name="enviar">Enviar</button>
+                    </div>
+                </form>
 
                 <div class="container">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -66,100 +96,62 @@
                                 <th>Archivo</th>
                                 <th>Descargar</th>
                                 <th>Ver PDF</th>
-                                <th>Agregar un asesor</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             require_once "../includes/db.php";
                             $consulta = mysqli_query($conexion, "SELECT * FROM documento");
+
                             while ($fila = mysqli_fetch_assoc($consulta)):
-                                ?>
-                                <tr>
-
-                                    <td>
-                                        <?php echo $fila['idalumno']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $fila['nombrealumno']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $fila['nombreproyecto']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $fila['empresa']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $fila['asesor']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $fila['archivo']; ?>
-                                    </td>
-                                    <td>
-                                        <a href="../includes/download.php?id=<?php echo $fila['idalumno']; ?>"
-                                            class="btn btn-primary">
-                                            <i class="fas fa-download"></i> Download
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="../includes/files/<?php echo $fila['archivo']; ?>"
-                                            class="btn btn-secondary" target="_blank">
-                                            Ver PDF
-                                        </a>
-                                    </td>
-
-                                    
-
-                                    <td>
-                                        <form class="form-edit-asesor" data-id="<?php echo $fila['id']; ?>">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="nuevo-asesor"
-                                                    value="<?php echo $fila['asesor']; ?>">
-                                            </div>
-                                            <button class="btn btn-primary guardar-asesor" type="button">
-                                                Guardar Cambios
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            <?php endwhile; ?>
+                                if (!empty($fila['archivo'])) {
+                                    // Solo mostrar la fila si el campo 'archivo' no está vacío
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?php echo $fila['idalumno']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila['nombrealumno']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila['nombreproyecto']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila['empresa']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila['asesor']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila['archivo']; ?>
+                                        </td>
+                                        <td>
+                                            <a href="../includes/download.php?id=<?php echo $fila['idalumno']; ?>"
+                                                class="btn btn-primary">
+                                                <i class="fas fa-download"></i> Descargar
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="../includes/files/<?php echo $fila['archivo']; ?>"
+                                                class="btn btn-secondary" target="_blank">
+                                                Ver PDF
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                            endwhile;
+                            ?>
                         </tbody>
                     </table>
 
                 </div>
             </div>
-
-
             <script>
-                $(document).ready(function () {
-                    $(".guardar-asesor").click(function () {
-                        var button = $(this);
-                        var input = button.closest('.form-edit-asesor').find('input[name="nuevo-asesor"]');
-                        var idProyecto = button.closest('.form-edit-asesor').data('id');
-                        var nuevoAsesor = input.val();
-
-                        // Realiza la solicitud AJAX para actualizar el asesor
-                        $.ajax({
-                            type: 'POST',
-                            url: '../includes/asesor.php', // El archivo PHP que maneja la actualización
-                            data: {
-                                id: idProyecto,
-                                asesor: nuevoAsesor
-                            },
-                            success: function (response) {
-                                // Maneja la respuesta del servidor (puedes mostrar un mensaje de éxito)
-                                if (response === "success") {
-                                    // Oculta el input y el botón
-                                    button.hide();
-                                    input.prop('disabled', true);
-                                }
-                            }
-                        });
-                    });
-                });
-            </script>
-
-</body>
 
 
-</html>
+</body >
+
+
+</html >
