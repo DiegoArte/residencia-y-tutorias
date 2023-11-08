@@ -126,9 +126,7 @@ $conn->close();
                                 <th>Id Alumno</th>
                                 <th>Nombre</th>
                                 <th>Nombre del proyecto</th>
-                                <th>Carrera</th>
                                 <th>Empresa</th>
-                                <th>Asesor</th>
                                 <th>Archivo</th>
                                 <th>Descargar</th>
                                 <th>Ver PDF</th>
@@ -148,18 +146,12 @@ $conn->close();
                                     <td>
                                         <?php echo $fila['nombrealumno']; ?>
                                     </td>
-                                    <td>
-                                        <?php echo $fila['carrera']; ?>
-                                    </td>
                                     
                                     <td>
                                         <?php echo $fila['nombreproyecto']; ?>
                                     </td>
                                     <td>
                                         <?php echo $fila['empresa']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $fila['asesor']; ?>
                                     </td>
                                     <td>
                                         <?php echo $fila['archivo']; ?>
