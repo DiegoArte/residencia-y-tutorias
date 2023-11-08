@@ -1,9 +1,10 @@
 <?php
 
 $revision=Revision::find("idalumno='$id'");
-$revision=$revision[0];
-$chats=Chat::find("idinput='$id' or idaoutput='$id'");
 
+$chats=Chat::find("idinput='$id' or idaoutput='$id'");
+if(sizeof($revision)>0){
+    $revision=$revision[0];
 ?>
 
 <div class="col">
@@ -29,3 +30,6 @@ $chats=Chat::find("idinput='$id' or idaoutput='$id'");
     </form>
 </div>
 
+<?php
+}
+?>

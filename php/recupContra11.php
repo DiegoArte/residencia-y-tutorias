@@ -66,7 +66,7 @@
         use PHPMailer\PHPMailer\PHPMailer;
         use vendor\PHPMailer\PHPMailer\SMTP;
         use vendor\PHPMailer\PHPMailer\Exception;
-        if ($control != 0){
+        if ($control != '0'){
 
             require '../vendor1/autoload.php';
 

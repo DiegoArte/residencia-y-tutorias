@@ -32,7 +32,11 @@
                                 <input type="text" id="nombrealumno" name="nombrealumno" class="form-control" required readonly value="<?php echo $alumno['NombredelEstudiante']; ?>">
                             </div>
                         </div>
+<<<<<<< HEAD
 
+=======
+                        
+>>>>>>> 02327961d5b0b74e4d8a69d7c01485107b355011
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="nombreproyecto" class="form-label">Nombre proyecto</label>
