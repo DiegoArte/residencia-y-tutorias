@@ -92,18 +92,18 @@
 
                 $carreras = array(); // Un arreglo para almacenar las carreras
 
-                $query = "SELECT NombredeCarrera FROM carrera";
+                $query = "SELECT carrera FROM documento";
                 $result = mysqli_query($conexion, $query);
 
                 if ($result) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $carreras[] = $row['NombredeCarrera'];
+                        $carreras[] = $row['carrera'];
                     }
                 }
                 ?>
 
                 <label for="carrera">Carrera:</label>
-                    <select name="carrera" id="carrera">
+                    <select name="carrera" id="carreraSelect">
                         <?php
                         foreach ($carreras as $carrera) {
                             echo '<option value="' . $carrera . '">' . $carrera . '</option>';
@@ -111,7 +111,13 @@
                         ?>
                     </select>
 
-                    
+                    <script>
+                    document.getElementById('carreraSelect').onchange = function () {
+                        filtrarRegistros();
+                    };
+                    </script>
+
+
 
                 <div class="container">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -183,7 +189,20 @@
                 </div>
             </div>
             <script>
+function filtrarRegistros() {
+    var selectedCarrera = document.getElementById('carreraSelect').value;
+    var tableRows = document.querySelectorAll('#dataTable tbody tr');
 
+    for (var i = 0; i < tableRows.length; i++) {
+        var carreraCell = tableRows[i].querySelector('td:nth-child(3)'); // La tercera columna contiene la carrera
+        if (selectedCarrera === 'Todas' || carreraCell.textContent === selectedCarrera) {
+            tableRows[i].style.display = 'table-row'; // Muestra la fila
+        } else {
+            tableRows[i].style.display = 'none'; // Oculta la fila
+        }
+    }
+}
+</script>
 
 </body >
 

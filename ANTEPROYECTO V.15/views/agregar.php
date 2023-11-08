@@ -55,15 +55,6 @@
                         </div>
                     </div>
 
-                    
-                    <div class="col-sm-6">
-                    <div class="mb-3">
-                        <label for="asesor" class="form-label">Asesor</label>
-                        <input type="text" id="asesor" name="asesor" class="form-control" required readonly
-                            value="<?php echo empty($asesor) ? 'Asesor no asignado' : $asesor['asesor']; ?>">
-                    </div>
-                </div>
-
 
                 <div class="col-12">
                     <label for="yourPassword" class="form-label">Archivo (PDF)</label>
