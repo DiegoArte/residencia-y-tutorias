@@ -180,6 +180,9 @@ $conn->close();
                                         Eliminar
                                     </button>
                                     </td>
+                                    <?php
+                                        if(mysqli_query($conexion, "SELECT Alumno FROM asesorados WHERE Alumno='$id'")){
+                                    ?>
                                     <td>
                                         <?php
                                             $asesor = mysqli_fetch_assoc(mysqli_query($conexion, "SELECT Asesor FROM asesorados WHERE Alumno='$id'"));
@@ -188,6 +191,9 @@ $conn->close();
                                             <i class="fas fa-message"></i> Ver revisión
                                         </a>
                                     </td>
+                                    <?php
+                                        }
+                                    ?>
 
                                 </tr>
 
