@@ -27,6 +27,7 @@
         input[type="text"],
         input[type="date"],
         input[type="number"],
+        select,
         textarea {
             width: 100%;
             padding: 10px;
@@ -59,36 +60,44 @@
     <form id="form"> <!-- Inicio del formulario -->
         <h2>Canalización</h2><hr><br>
         <label for="nombreCompleto">Nombre Completo del Estudiante:</label>
-        <input type="text" id="nombre" name="nombre" required><br>
+        <input type="text" id="nombre" name="nombre" required value="Mario Alberto Gonzáles"><br>
 
         <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" name="fecha" required><br>
+        <input type="date" id="fecha" name="fecha" required value="2023-11-17"><br>
 
         <label for="numeroControl">Número de Control:</label>
-        <input type="text" id="numeroControl" name="numeroControl" required><br>
+        <input type="text" id="numeroControl" name="numeroControl" required value="control"><br>
 
-        <!--<label for="semestre">Semestre:</label>
-        <input type="text" id="semestre" name="semestre" required><br>
+        <label for="semestre">Semestre:</label>
+        <input type="text" id="semestre" name="semestre" required value="II"><br>
 
         <label for="edad">Edad:</label>
-        <input type="number" id="edad" name="edad" required><br>
+        <input type="number" id="edad" name="edad" required value="13"><br>
 
         <label for="nombreTutor">Nombre del Tutor(a):</label>
-        <input type="text" id="nombreTutor" name="nombreTutor" required><br>
+        <input type="text" id="nombreTutor" name="nombreTutor" required value="Mario Alberto Gonzáles"><br>
 
-        <label for="planEstudio">Plan de Estudio:</label>
-        <input type="text" id="planEstudio" name="planEstudio" required><br>
+        <label for="estudio" class="form-label">Plan de estudio</label>
+        <select class="form-select" id="estudio" required>
+            <option value="0">Seleccione</option> 
+            <option value="Ingeniería Industrial">Ingeniería Industrial</option>
+            <option value="Ingeniería en Sistemas Computacionales">Ingeniería en Sistemas Computacionales</option>
+            <option value="Ingeniería en Electromecánica">Ingeniería en Electromecánica</option>
+            <option value="Ingeniería en Gestión Empresarial">Ingeniería en Gestión Empresarial</option>
+            <option value="Contador Público">Contador Público</option>
+            <option value="Ingeniería en Administración">Ingeniería en Administración</option>
+        </select>
 
         <label for="problematica">Problemática Identificada:</label>
         <textarea id="problematica" name="problematica" rows="4" required></textarea><br>
 
         <label for="servicioSolicitado">Servicio Solicitado:</label>
-        <input type="text" id="servicioSolicitado" name="servicioSolicitado" required><br>
+        <input type="text" id="servicioSolicitado" name="servicioSolicitado" required value="servicio solicitado"><br>
 
         <label for="observaciones">Observaciones:</label>
         <textarea id="observaciones" name="observaciones" rows="4" required></textarea><br>
 
-        <label for="nombreCoordinador">Nombre y Firma del Coordinador(a) de Tutorías:</label>
+        <!--<label for="nombreCoordinador">Nombre y Firma del Coordinador(a) de Tutorías:</label>
         <input type="text" id="nombreCoordinador" name="nombreCoordinador" required><br>
 
         <label for="nombreTutorFirma">Nombre y Firma del Tutor(a):</label>
@@ -101,5 +110,24 @@
         <button type="submit" class="boton">Generar PDF</button>
 
     </form> <!-- Cierre del formulario -->
+
+
+    <script>
+        // Función para establecer un valor por defecto en la textarea
+        window.onload = function() {
+            // Obtener la textarea por su id
+            var textarea = document.getElementById('problematica');
+            
+            // Establecer un valor por defecto
+            textarea.value = 'Este código utiliza las mismas técnicas de carga de imagen asincrónica, pero hemos eliminado el contenido del formulario para simplificar. Si esto sigue sin funcionar, es posible que haya algún problema con el entorno local. En este caso, podrías probar ejecutar el código en otro navegador o verificar si hay alguna configuración de seguridad que esté bloqueando la carga de imágenes.';
+
+            
+            // Obtener la textarea por su id
+            var textarea = document.getElementById('observaciones');
+            
+            // Establecer un valor por defecto
+            textarea.value = 'Este código utiliza las mismas técnicas de carga de imagen asincrónica, pero hemos eliminado el contenido del formulario para simplificar. Si esto sigue sin funcionar, es posible que haya algún problema con el entorno local. En este caso, podrías probar ejecutar el código en otro navegador o verificar si hay alguna configuración de seguridad que esté bloqueando la carga de imágenes.';
+        };
+    </script>
 </body>
 </html> 
