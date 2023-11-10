@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Formato Hoja de Canalización</title>
+    
+    <style>
+        body {
+            background-color: white;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        form {
+            width: 60%;
+            margin: 0 auto;
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid gray;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+    <script src="jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    <script src="canal.js"></script>
+
+</head>
+<body>
+    <form id="form"> <!-- Inicio del formulario -->
+        <h2>Canalización</h2><hr><br>
+        <label for="nombreCompleto">Nombre Completo del Estudiante:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required><br>
+
+        <label for="numeroControl">Número de Control:</label>
+        <input type="text" id="numeroControl" name="numeroControl" required><br>
+
+        <!--<label for="semestre">Semestre:</label>
+        <input type="text" id="semestre" name="semestre" required><br>
+
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" required><br>
+
+        <label for="nombreTutor">Nombre del Tutor(a):</label>
+        <input type="text" id="nombreTutor" name="nombreTutor" required><br>
+
+        <label for="planEstudio">Plan de Estudio:</label>
+        <input type="text" id="planEstudio" name="planEstudio" required><br>
+
+        <label for="problematica">Problemática Identificada:</label>
+        <textarea id="problematica" name="problematica" rows="4" required></textarea><br>
+
+        <label for="servicioSolicitado">Servicio Solicitado:</label>
+        <input type="text" id="servicioSolicitado" name="servicioSolicitado" required><br>
+
+        <label for="observaciones">Observaciones:</label>
+        <textarea id="observaciones" name="observaciones" rows="4" required></textarea><br>
+
+        <label for="nombreCoordinador">Nombre y Firma del Coordinador(a) de Tutorías:</label>
+        <input type="text" id="nombreCoordinador" name="nombreCoordinador" required><br>
+
+        <label for="nombreTutorFirma">Nombre y Firma del Tutor(a):</label>
+        <input type="text" id="nombreTutorFirma" name="nombreTutorFirma" required><br>
+
+        <label for="nombreCargoReceptor">Nombre, Firma y Cargo de Quien Recibe Canalización:</label>
+        <input type="text" id="nombreCargoReceptor" name="nombreCargoReceptor" required><br><br>-->
+
+        <br><br>
+        <button type="submit" class="boton">Generar PDF</button>
+
+    </form> <!-- Cierre del formulario -->
+</body>
+</html> 
