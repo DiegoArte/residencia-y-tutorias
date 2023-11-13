@@ -1,7 +1,19 @@
 <?php
     require_once '../phpoffice/vendor/autoload.php';
+    use \ConvertApi\ConvertApi;
 
     $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('../Formatos/Informe_resultados.docx');
+
+    ConvertApi::setApiSecret('tu_clave_de_API');
+
+    // Ruta al archivo Word
+    $inputFilePath = 'archivos/FichaTecnica.docx';
+
+    // Configurar opciones, incluyendo el tiempo de espera
+    $options = [
+        'timeout' => 30000, // Establecer el tiempo de espera en milisegundos (por ejemplo, 10000 milisegundos = 10 segundos)
+    ];
+
 
     $Tutor=$_POST["Tutor"];
     $jefAca=$_POST["jefAca"];
@@ -33,8 +45,30 @@
     $templateProcessor-> setValue('Num_Repro',$numRepro);
     $templateProcessor-> setValue('Info_Comple',$infCom);
 
-    $templateProcessor->saveAs('Informe de Resultados '.date('d-m-y').'.docx');
+    $templateProcessor->saveAs('InformedeResultados.docx');
   
+    $outputDir = 'archivos/';
+    
+    
+// Configurar la clave de API
+ConvertApi::setApiSecret('eK14Lc7mJ5IuOzlA');
+
+// Ruta al archivo Word
+$inputFilePath = 'InformedeResultados.docx';
+
+// Realizar la conversión
+$result = ConvertApi::convert('pdf', ['File' => $inputFilePath], 'doc');
+
+// Ruta al directorio para guardar los archivos resultantes
+
+
+// Guardar los archivos resultantes
+$result->saveFiles($outputDir);
+
+
+
+$pdfFilePath = $outputDir. "FichaTecnica.pdf";
+
     header("Content-Disposition: attachment; filename=Informe de Resultados " . date('d-m-y') . ".docx; charset=iso-8859-1");
     echo file_get_contents('Informe de Resultados '.date('d-m-y').'.docx');
 
