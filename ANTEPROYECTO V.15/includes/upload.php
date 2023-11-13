@@ -4,10 +4,8 @@ if (isset($_FILES['archivo'])) {
     extract($_POST);
     $idalumno = $_POST['idalumno'];
     $nombre = $_POST['nombrealumno'];
-    $carrera = $_POST['carrera'];
     $nombreproyecto = $_POST['nombreproyecto'];
     $empresa = $_POST['empresa'];
-    $asesor = $_POST['asesor'];
     
     // Verificar si se ha cargado un archivo
     if (!empty($_FILES["archivo"]["name"])) {
