@@ -130,9 +130,6 @@ $conexion->close();
             transform: translateY(-2px);
            
         }
-
-
-        
         .modal-boton {
             font-size: 16px;
             position: relative;
@@ -170,11 +167,6 @@ $conexion->close();
             width: 9.9em;
             height: 3.7em;
         }
-
-
-
-
-        /* ... Estilos anteriores ... */
 
 
         .close {

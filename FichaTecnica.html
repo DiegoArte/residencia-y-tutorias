@@ -41,7 +41,7 @@
 
         </section>
         <section>
-            <form action="php/Full_FichaT.php" class="Tabla_contenido" method="post"><div>
+            <form action="php/Full_FichaT.php" class="Tabla_contenido" method="post" enctype="multipart/form-data"><div>
                 <div class="row">
                 <div class="col-md-6">
                 <label for="">Periodo:</label><input type="text" name="Periodo" id="Periodo">
@@ -76,7 +76,8 @@
                 <br>
                 <label for="">Firma</label>
                 <br>
-                <input type="file" name="Firma" id="">
+                <input type="file" name="Firma" id="" >
+                
                 <br>
                 <br></div>
             </div>
@@ -88,7 +89,7 @@
         </section>
         
         <section>
-        <button type="submit" onclick="mostrar()" >
+        <button type="submit" onclick="" >
             <div class="svg-wrapper-1">
               <div class="svg-wrapper">
                 <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -123,6 +124,12 @@
           </form>
     </main>
     <script src="js/envia_FECH.js"></script>
+    <style>
+        #imagenPrevisualizacion img {
+            max-height: 200px; /* Establece la altura máxima de la imagen */
+            width: auto; /* Hace que el ancho se ajuste automáticamente para mantener la proporción */
+        }
+    </style>
     
 
     

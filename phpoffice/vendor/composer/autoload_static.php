@@ -28,6 +28,16 @@ class ComposerStaticInit175f515b2811e085f3258b59792b25af
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'C' => 
+        array (
+            'ConvertApi\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/convertapi/convertapi-php/lib',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -37,6 +47,7 @@ class ComposerStaticInit175f515b2811e085f3258b59792b25af
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit175f515b2811e085f3258b59792b25af::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit175f515b2811e085f3258b59792b25af::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit175f515b2811e085f3258b59792b25af::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit175f515b2811e085f3258b59792b25af::$classMap;
 
         }, null, ClassLoader::class);

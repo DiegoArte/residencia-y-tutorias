@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    $carrera=$_GET['carrera']??"";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,27 +22,30 @@
 </head>
 <body>
 
-    <!-- RAYAS DE ARRIBA,IZ -->
-    <header class="fixed w-100">
-        <div class="usuarioOp d-flex justify-content-end">
-            <img src="img/profile.png" alt="" >
-            <p>Usuario</p>
-            <a href="loginTutorias.php">Cerrar sesión</a>
-        </div>
-    </header>
-
+   
     <main class="d-flex">
         <div class="barraLateral fixed h-100">
             <a href="#"></a>
         </div>
-        <div class="tasks d-flex">
+    </main>
+
+    <header class="fixed w-100">
+    <div class="usuarioOp d-flex justify-content-end">
+        <img src="img/profile.png" alt="" >
+        <?php
+                $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+                echo '<p>' . $nombre . '</p>';
+                ?>
+                <div class="dropdown-content">
+                    <a href="logout.php">Cerrar sesión</a>
         </div>
+    </header>
         
         <a href="hoja de vida/hv2.html"class="beautiful-button">Hoja de vida</a>
 
         <a class="beautiful-button1">Plan de acción</a>
 
-        <a class="beautiful-button2">Evaluación al docente</a>
+        <!--<a class="beautiful-button2">Retícula</a>-->
 
 
         <a class="beautiful-button3">
@@ -63,7 +70,7 @@
 
 
         <a class="beautiful-button9">
-        Retícula</a>
+        Evaluacion al docente</a>
 
         <a class="beautiful-button10">
         Lista de asistencia</a>
