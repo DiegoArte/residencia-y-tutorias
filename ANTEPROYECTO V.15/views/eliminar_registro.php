@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $conexion = conectar();
 
-        $query = "DELETE FROM documento WHERE idalumno = ?";
+        $query = "DELETE FROM documento WHERE idalumno = '$idAlumno'";
 
         if ($stmt = $conexion->prepare($query)) {
             $stmt->bind_param("i", $idAlumno);
