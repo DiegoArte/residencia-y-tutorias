@@ -30,13 +30,22 @@ window.addEventListener('load', async () => {
         let servicioSolicitado = document.getElementById('servicioSolicitado').value;
         let observaciones = document.getElementById('observaciones').value;
         let plan = document.getElementById('estudio').value;
+        // Obtener el archivo de imagen
+        const imagenInput = document.getElementById('imagen1');
+        const imagenFile = imagenInput.files[0];
 
-        generatePDF(nombre, fecha, control, semestre, edad, tutor, plan, problematica, servicioSolicitado, observaciones);
+        const imagenInput1 = document.getElementById('imagen2');
+        const imagenFile1 = imagenInput1.files[0];
+
+        const imagenInput2 = document.getElementById('imagen3');
+        const imagenFile2 = imagenInput2.files[0];
+
+        generatePDF(nombre, fecha, control, semestre, edad, tutor, plan, problematica, servicioSolicitado, observaciones, imagenFile, imagenFile1, imagenFile2);
 
     });
 });
 
-async function generatePDF(nombre, fecha, control, semestre, edad, tutor, plan, problematica, servicioSolicitado, observaciones)
+async function generatePDF(nombre, fecha, control, semestre, edad, tutor, plan, problematica, servicioSolicitado, observaciones, imagenFile, imagenFile1, imagenFile2)
     {
     const image = await loadImage("formato.jpg");
 
@@ -50,24 +59,37 @@ async function generatePDF(nombre, fecha, control, semestre, edad, tutor, plan, 
     pdf.addImage(image, 'PNG', 0, 0, 1200, 1600); // Ajusta el ancho y alto
 
     pdf.setFontSize(17);
-    pdf.text(nombre, 280, 313); //x,y
-    pdf.text(fecha, 220, 362);
+    pdf.text(nombre, 300, 313); //x,y
+    pdf.text(fecha, 190, 362);
     pdf.text(control, 515, 362);
-    pdf.text(semestre, 200, 460);
-    pdf.text(edad, 360, 460);
-    pdf.text(tutor, 670, 410);
+    pdf.text(semestre, 210, 460);
+    pdf.text(edad, 375, 460);
+    pdf.text(tutor, 675, 410);
     pdf.text(plan, 625, 510);
-    //pdf.text(problematica, 100, 612);
     pdf.text(servicioSolicitado, 100, 820);
-    //pdf.text(observaciones, 100, 985);//120
 
+    // Agregar la imagen al PDF si se proporcionó una
+    if (imagenFile) {
+        const imagenBase64 = await convertImageToBase64(imagenFile);
+        pdf.addImage(imagenBase64, 'JPEG', 150, 1190, 200, 60);
+    }
+
+    if (imagenFile1) {
+        const imagenBase64 = await convertImageToBase64(imagenFile1);
+        pdf.addImage(imagenBase64, 'JPEG', 450, 1190, 200, 60);
+    }
+
+    if (imagenFile2) {
+        const imagenBase64 = await convertImageToBase64(imagenFile2);
+        pdf.addImage(imagenBase64, 'JPEG', 800, 1190, 200, 60);
+    }
 
 
     // Dividir la variable problematica por palabras y justificar
     var lineas = divideYJustifica(problematica, 55, pdf);
 
     // Agregar las palabras justificadas al PDF
-    var y = 612; // Iniciar posición en y después de los datos anteriores
+    var y = 617; // Iniciar posición en y después de los datos anteriores
     lineas.forEach(function (linea) {
         pdf.text(linea, 100, y);
         y += 20; // Espaciado entre líneas
@@ -77,7 +99,7 @@ async function generatePDF(nombre, fecha, control, semestre, edad, tutor, plan, 
     var lineas = divideYJustifica(observaciones, 55, pdf);
 
     // Agregar las palabras justificadas al PDF
-    var y = 985; // Iniciar posición en y después de los datos anteriores
+    var y = 992; // Iniciar posición en y después de los datos anteriores
     lineas.forEach(function (linea) {
         pdf.text(linea, 100, y);
         y += 20; // Espaciado entre líneas
@@ -110,4 +132,15 @@ function divideYJustifica(cadena, longitudMaxima, pdf) {
     }
 
     return lineas;
+}
+
+
+// Función para convertir la imagen a formato base64
+function convertImageToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
 }
