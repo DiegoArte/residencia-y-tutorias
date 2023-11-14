@@ -62,7 +62,7 @@
         <a class="beautiful-button6">
         Informe parcial</a>
 
-        <a class="beautiful-button7">
+        <a class="beautiful-button7" href="FichaTecnica.html">
         Ficha técnica</a>
 
         <a class="beautiful-button8">
