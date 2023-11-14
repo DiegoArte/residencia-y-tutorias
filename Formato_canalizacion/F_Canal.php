@@ -98,11 +98,12 @@ $carrera=$_GET['carrera']??"";
     <div class="usuarioOp d-flex justify-content-end">
         <img src="../img/profile.png" alt="" >
         <?php
+        echo "Usuario";
         $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
         echo '<p>' . $nombre . '</p>';
         ?>
         <div class="dropdown-content">
-        <a href="logout.php">Cerrar sesión</a>
+        <a href="../logout.php">Cerrar sesión</a>
         </div>
     </header>
     <br><br><br><br>
