@@ -4,7 +4,6 @@ $carrera=$_GET['carrera']??"";
 ?>
 
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>

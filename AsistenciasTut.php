@@ -129,8 +129,9 @@
                 echo "<div class='col mb-3'>";
                     echo "<button class='btn btn-primary'>Guardar</button>";
                 echo "</div>";
-            }
             $conexion->close();
+            }
+            
             ?>
 
         </div>
