@@ -111,22 +111,22 @@ $carrera=$_GET['carrera']??"";
     <form id="form"> <!-- Inicio del formulario -->
         <h3>Formato de Canalización</h3><hr><br>
         <label for="nombreCompleto">Nombre Completo del Estudiante:</label>
-        <input type="text" id="nombre" name="nombre" required value="Mario Alberto Gonzáles"><br>
+        <input type="text" id="nombre" name="nombre" required><br>
 
         <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" name="fecha" required value="2023-11-17"><br>
+        <input type="date" id="fecha" name="fecha" required><br>
 
         <label for="numeroControl">Número de Control:</label>
-        <input type="text" id="numeroControl" name="numeroControl" required value="Z21043651"><br>
+        <input type="text" id="numeroControl" name="numeroControl" required><br>
 
         <label for="semestre">Semestre:</label>
-        <input type="text" id="semestre" name="semestre" required value="V"><br>
+        <input type="text" id="semestre" name="semestre" required><br>
 
         <label for="edad">Edad:</label>
-        <input type="number" id="edad" name="edad" required value="23"><br>
+        <input type="number" id="edad" name="edad" required><br>
 
         <label for="nombreTutor">Nombre del Tutor(a):</label>
-        <input type="text" id="nombreTutor" name="nombreTutor" required value="Mario Alberto Gonzáles"><br>
+        <input type="text" id="nombreTutor" name="nombreTutor" required><br>
 
         <label for="estudio" class="form-label">Plan de estudio</label>
         <select class="form-select" id="estudio" required>
@@ -163,23 +163,5 @@ $carrera=$_GET['carrera']??"";
 
     </form> <!-- Cierre del formulario -->
 
-
-    <script>
-        // Función para establecer un valor por defecto en la textarea
-        window.onload = function() {
-            // Obtener la textarea por su id
-            var textarea = document.getElementById('problematica');
-            
-            // Establecer un valor por defecto
-            textarea.value = 'Este código utiliza las mismas técnicas de carga de imagen asincrónica, pero hemos eliminado el contenido del formulario para simplificar. Si esto sigue sin funcionar, es posible que haya algún problema con el entorno local. En este caso, podrías probar ejecutar el código en otro navegador o verificar si hay alguna configuración de seguridad que esté bloqueando la carga de imágenes.';
-
-
-            // Obtener la textarea por su id
-            var textarea = document.getElementById('observaciones');
-            
-            // Establecer un valor por defecto
-            textarea.value = 'Este código utiliza las mismas técnicas de carga de imagen asincrónica, pero hemos eliminado el contenido del formulario para simplificar. Si esto sigue sin funcionar, es posible que haya algún problema con el entorno local. En este caso, podrías probar ejecutar el código en otro navegador o verificar si hay alguna configuración de seguridad.';
-        };
-    </script>
 </body>
 </html> 
