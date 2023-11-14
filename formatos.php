@@ -41,7 +41,7 @@
         </div>
     </header>
         
-        <a href="hoja de vida/hv2.html"class="beautiful-button">Hoja de vida</a>
+        <a href="hoja de vida/hv2.php"class="beautiful-button">Hoja de vida</a>
 
         <a class="beautiful-button1">Plan de acción</a>
 
