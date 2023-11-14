@@ -98,7 +98,6 @@ $carrera=$_GET['carrera']??"";
     <div class="usuarioOp d-flex justify-content-end">
         <img src="../img/profile.png" alt="" >
         <?php
-        echo "Usuario";
         $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
         echo '<p>' . $nombre . '</p>';
         ?>
