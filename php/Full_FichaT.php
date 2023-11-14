@@ -7,15 +7,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 $temlateProcesor = new \PhpOffice\PhpWord\TemplateProcessor('../Formatos/FichaTec.docx');
 
-ConvertApi::setApiSecret('tu_clave_de_API');
 
-// Ruta al archivo Word
-$inputFilePath = 'archivos/FichaTecnica.docx';
-
-// Configurar opciones, incluyendo el tiempo de espera
-$options = [
-    'timeout' => 30000, // Establecer el tiempo de espera en milisegundos (por ejemplo, 10000 milisegundos = 10 segundos)
-];
 
 
 $outputDir = 'archivos/';
@@ -140,3 +132,5 @@ unlink($upload)
         }
     });})
 </script>
+
+<?php
