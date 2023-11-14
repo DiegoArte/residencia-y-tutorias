@@ -14,11 +14,17 @@
     <link rel="stylesheet" href="css/FichaTEc.css">
     <link rel="stylesheet" href="js/app.js">
     <script type="text/javascript" src="R-ITSZaS-8.5-20Formato Ficha Técnica/jspdf.min.js"></script>
+    <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">  
+    <link rel="stylesheet" href="css/normalize.css">  
     <title>Ficha técnica</title>
 </head>
 <body>
     <br>
     <header class="fixed w-100">
+        <a href="formatos.php" class="back-arrow rounded-pill d-flex justify-content-start">
+            <img src="img/back.svg" alt="" height="50">
+            <span class="regresar d-none text-white m-auto">Regresar</span>
+    </a>
         <div class="usuarioOp d-flex justify-content-end">
             <img src="img/profile.png" alt="" >
             <p>Usuario</p>
@@ -44,39 +50,39 @@
             <form action="php/Full_FichaT.php" class="Tabla_contenido" method="post" enctype="multipart/form-data"><div>
                 <div class="row">
                 <div class="col-md-6">
-                <label for="">Periodo:</label><input type="text" name="Periodo" id="Periodo">
+                <label for="">Periodo:</label><input type="text" name="Periodo" id="Periodo" required>
                 <br>
                 
-                <label for="">Fecha:</label><input type="date" name="Fecha" id="Fecha">
+                <label for="">Fecha:</label><input type="date" name="Fecha" id="Fecha" required>
                 <br>
-                <label for="">Nombre del estudiante:</label><input type="text" name="NE" id="NE">
+                <label for="">Nombre del estudiante:</label><input type="text" name="NE" id="NE" required>
                 <br>
-                <label for="">Semestre:</label><input type="text" name="Semestre" id="Semestre">
+                <label for="">Semestre:</label><input type="text" name="Semestre" id="Semestre" required>
                 <br>
-                <label for="">Plan de estudio</label><input type="text" name="PE" id="PE">
+                <label for="">Plan de estudio</label><input type="text" name="PE" id="PE" required>
                 <br>
-                <label for="">Actividades de seguimiento realizadas:</label><textarea type="text" name="ASR" id="ASR" class="G" height="5" width="80"></textarea>
+                <label for="">Actividades de seguimiento realizadas:</label><textarea type="text" name="ASR" id="ASR" class="G" height="5" width="80" required></textarea>
                     
                 <br>
             </div>
                 <br>
                 <br>
                 <div class="col-md-6">
-                    <label for="">Deserción:</label><textarea type="text" name="Desercion" id="Desercion" class="G" height="" width="80"></textarea>
+                    <label for="">Deserción:</label><textarea type="text" name="Desercion" id="Desercion" class="G" height="" width="80" required></textarea>
                         
                 <br>
                 <label for="">Observaciones:</label>
-                <textarea type="text" name="Observasiones" id="Observasiones" class="G" rows="" cols="80"></textarea>
+                <textarea type="text" name="Observasiones" id="Observasiones" class="G" rows="" cols="80" required></textarea>
                     
             
                 <h4>Tutor(A)</h4>
                 <br>
-                <label for="">Nombre</label><input type="text" name="NP" id="NP">
+                <label for="">Nombre</label><input type="text" name="NP" id="NP" required>
                 <br>
                 <br>
                 <label for="">Firma</label>
                 <br>
-                <input type="file" name="Firma" id="" >
+                <input type="file" name="Firma" id=""  required onchange="validarArchivo()">
                 
                 <br>
                 <br></div>
@@ -111,11 +117,24 @@
             </script>
  
             
-            <script type="text/javascript">
-                function genPDF(){
-                    var doc = new jsPDF();
-                    doc.text(20,20,"Este es un pdf")
-                    doc.save('midocumento.pdf')
+            <script>
+                function validarArchivo() {
+                    var input = document.getElementById('Firma');
+                    var archivo = input.files[0];
+            
+                    if (archivo) {
+                        var tipoArchivo = archivo.type;
+                        var extension = tipoArchivo.split('/')[1].toLowerCase();
+            
+                        // Lista de extensiones permitidas (puedes ajustarla según tus necesidades)
+                        var extensionesPermitidas = ['jpeg', 'jpg', 'png', 'gif'];
+            
+                        if (extensionesPermitidas.indexOf(extension) === -1) {
+                            // Mostrar mensaje de error
+                            input.value = ''; // Limpiar el valor del campo de archivo
+                            alert('Solo se permiten archivos de imagen (jpeg, jpg, png, gif)');
+                        }
+                    }
                 }
             </script>
 
@@ -130,6 +149,9 @@
             width: auto; /* Hace que el ancho se ajuste automáticamente para mantener la proporción */
         }
     </style>
+    
+
+    
     
 
     

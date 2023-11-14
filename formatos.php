@@ -37,11 +37,11 @@
                 echo '<p>' . $nombre . '</p>';
                 ?>
                 <div class="dropdown-content">
-                    <a href="logout.php">Cerrar sesión</a>
+                    <a href="/loginTutorias.php">Cerrar sesión</a>
         </div>
     </header>
         
-        <a href="hoja de vida/hv2.html"class="beautiful-button">Hoja de vida</a>
+        <a href="hoja de vida/hv2.php"class="beautiful-button">Hoja de vida</a>
 
         <a class="beautiful-button1">Plan de acción</a>
 
@@ -62,7 +62,7 @@
         <a class="beautiful-button6">
         Informe parcial</a>
 
-        <a class="beautiful-button7">
+        <a class="beautiful-button7" href="FichaTecnica.html">
         Ficha técnica</a>
 
         <a class="beautiful-button8">
