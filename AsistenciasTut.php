@@ -1,3 +1,9 @@
+<?php
+session_start();
+$carrera=$_GET['carrera']??"";
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,11 +21,15 @@
     <link rel="icon" type="image/gif" href="css/plano.gif">
 </head>
 <body>
-    <header class="fixed w-100">
+<header class="fixed w-100">
         <div class="usuarioOp d-flex justify-content-end">
-            <img src="img/profile.png" alt="" >
-            <p>Usuario</p>
-            <a href="#">Cerrar sesión</a>
+        <img src="img/profile.png" alt="" >
+            <?php
+            $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+            echo '<p>' . $nombre . '</p>';
+            ?>
+            <div class="dropdown-content">
+                <a href="logout.php">Cerrar sesión</a>
         </div>
     </header>
     <main>
