@@ -95,6 +95,10 @@ $carrera=$_GET['carrera']??"";
     </main>
     
     <header class="fixed w-100">
+    <a href="../formatos.php" class="back-arrow rounded-pill d-flex justify-content-start">
+    <img src="../img/back.svg" alt="" height="50">
+    <span class="regresar d-none text-white m-auto">Regresar</span>
+    </a>
     <div class="usuarioOp d-flex justify-content-end">
         <img src="../img/profile.png" alt="" >
         <?php
@@ -102,7 +106,7 @@ $carrera=$_GET['carrera']??"";
         echo '<p>' . $nombre . '</p>';
         ?>
         <div class="dropdown-content">
-        <a href="logout.php">Cerrar sesión</a>
+        <a href="../logout.php">Cerrar sesión</a>
         </div>
     </header>
     <br><br><br><br>

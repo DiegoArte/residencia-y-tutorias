@@ -40,7 +40,7 @@
                     <a href="/loginTutorias.php">Cerrar sesión</a>
         </div>
     </header>
-        <a class="beautiful-button7">Ficha técnica</a>
+        <a class="beautiful-button7" href="FichaTecnica.html">Ficha técnica</a>
         <a class="beautiful-button8">Diagnóstico original</a>
         <a class="beautiful-button9">Evaluacion al docente</a>
         <a class="beautiful-button10">Lista de asistencia</a>
@@ -51,6 +51,7 @@
         <a href="hoja de vida/hv2.php"class="beautiful-button">Hoja de vida</a>
         <a class="beautiful-button1">Plan de acción</a>
         <!--<a class="beautiful-button2">Retícula</a>-->
+
     </main>
 </body>
 </html>
