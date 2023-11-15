@@ -76,14 +76,14 @@ function enteroARomano($numero) {
         <div class="tasks">
             <?php
             $numero_control=$_SESSION['usuario'];
-            $materias=Materias::find("NumerodeControlDocente='$numero_control'");
+            $materias=Materias::find("NumerodeControl IN(SELECT materia from `materias-grupos` WHERE grupo IN(SELECT Grupo from tabla_tutorados WHERE Tutor='$numero_control'))");
             foreach($materias as $materia) { 
             ?>
             <form action="">
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="2">Asignatura</th>
+                            <th><?php echo $materia->NombredelaMateria ?></th>
                             <?php
                             for($i=1; $i<=$materia->Unidades; $i++){
                                 $unidad=enteroARomano($i);
@@ -134,7 +134,7 @@ function enteroARomano($numero) {
                             <?php
                             for($i=1; $i<=7; $i++){
                                 ?>
-                                <td>
+                                <td colspan="2">
                                     <input type="text">
                                 </td>
                                 <?php
@@ -142,18 +142,18 @@ function enteroARomano($numero) {
                             ?>
                         </tr>
                         <tr>
-                            <th colspan="8">Listado de estudiantes reprobados en el período</th>
+                            <th colspan="14">Listado de estudiantes reprobados en el período</th>
                         </tr>
                         <tr>
                             <th>No.</th>
-                            <th colspan="2">Número de control</th>
-                            <th colspan="4">Nombre completo del estudiante</th>
+                            <th colspan="4">Número de control</th>
+                            <th colspan="8">Nombre completo del estudiante</th>
                             <th>Unidad(es)</th>
                         </tr>
                         
                     </tbody>
                 </table>
-                <button>
+                <button class="agregar">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
