@@ -1,5 +1,6 @@
 <?php
 session_start();
+$carrera=$_GET['carrera']??"";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +21,79 @@ session_start();
 
 </head>
 <body>
+    
+    <?php
+    require '../php/db.php';
+    $mysqli = conectar();
+
+    // Obtener el nombre del tutor de la sesión
+    $nombreTutor = $_SESSION['nombre'];
+
+        // Realizar la consulta a la tabla carrera para obtener los nombres de las carreras
+        $consulta = "SELECT NombredeCarrera FROM carrera";
+        $resultados = $mysqli->query($consulta);
+    
+        // Verificar si hay resultados
+        if ($resultados) {
+            // Inicializar una variable para almacenar las opciones del menú desplegable
+            $opciones = '';
+    
+            // Recorrer los resultados y construir las opciones del menú desplegable
+            while ($fila = $resultados->fetch_assoc()) {
+                $nombreCarrera = $fila['NombredeCarrera'];
+                $opciones .= "<option value='$nombreCarrera'>$nombreCarrera</option>";
+            }
+    
+            // Liberar los resultados
+            $resultados->free();
+        } else {
+            // Manejar el caso en que la consulta no sea exitosa
+            echo "Error al ejecutar la consulta: " . $mysqli->error;
+        }
+    
+
+    // Consultar el número de control del docente en la tabla docentes
+    $consultaDocente = "SELECT NumerodeControl FROM docentes WHERE NombredelDocente = '$nombreTutor'";
+    $resultadoDocente = $mysqli->query($consultaDocente);
+
+    if ($resultadoDocente && $resultadoDocente->num_rows > 0) {
+        $filaDocente = $resultadoDocente->fetch_assoc();
+        $numeroControlDocente = $filaDocente['NumerodeControl'];
+
+        // Consultar si el número de control del docente existe en la tabla_tutorados
+        $consultaTutorados = "SELECT Grupo FROM tabla_tutorados WHERE Tutor = '$numeroControlDocente'";
+        $resultadoTutorados = $mysqli->query($consultaTutorados);
+
+        if ($resultadoTutorados && $resultadoTutorados->num_rows > 0) {
+            $filaTutorados = $resultadoTutorados->fetch_assoc();
+            $numeroControlGrupo = $filaTutorados['Grupo'];
+
+            // Consultar información de alumnosnormales y grupos
+            $consultaAlumnos = "SELECT NombreDelEstudiante, Academia FROM alumnosnormales WHERE Numerocontrolgrupo = '$numeroControlGrupo'";
+            $resultadoAlumnos = $mysqli->query($consultaAlumnos);
+
+            $consultaGrupos = "SELECT Semestre FROM grupos WHERE NumerodeControl = '$numeroControlGrupo'";
+            $resultadoGrupos = $mysqli->query($consultaGrupos);
+
+            if ($resultadoAlumnos && $resultadoGrupos) {
+                // Obtener el semestre
+                $filaGrupos = $resultadoGrupos->fetch_assoc();
+                $semestre = $filaGrupos['Semestre'];
+
+            } else {
+                echo "Error al obtener información de alumnos o grupos: " . $mysqli->error;
+            }
+        } else {
+            echo "No se le ha asignado a ningún grupo.";
+        }
+    } else {
+        echo "Error al obtener el número de control del docente: " . $mysqli->error;
+    }
+
+// Cerrar la conexión
+$mysqli->close();
+
+    ?>
     <main class="d-flex">
         <div class="barraLateral fixed h-100">
             <a href="#"></a>
@@ -50,15 +124,30 @@ session_start();
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="nombre" class="form-label">Nombre:</label>
-                            <input type="text" name="nombre" id="nombre" class="form-control" required>
+                            <select class="form-select" name="nombre" id="nombre" required>
+                                <?php
+                                while ($filaAlumnos = $resultadoAlumnos->fetch_assoc()) {
+                                    echo '<option value="' . $filaAlumnos['NombreDelEstudiante'] . '">' . $filaAlumnos['NombreDelEstudiante'] . '</option>';
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="plan" class="form-label">Plan de Estudios:</label>
-                            <input type="text" name="plan" id="plan" class="form-control" >
+                            <label for="plan" class="form-label">Plan de estudio:</label>
+                            <?php
+                            // Resetear el puntero del resultado
+                            mysqli_data_seek($resultadoAlumnos, 0);
+
+                            // Obtener la Academia del primer estudiante (puedes ajustar esto según tus necesidades)
+                            $filaAlumnos = $resultadoAlumnos->fetch_assoc();
+                            $academia = $filaAlumnos['Academia'];
+                            echo '<input type="text" name="plan" id="plan" class="form-control" value="' . $academia . '" required>';
+                            ?>
                         </div>
+
                         <div class="col-md-6">
                             <label for="semestre" class="form_label">Semestre:</label>
-                            <input type="text" name="semestre" id="semestre" class="form-control" >
+                            <input type="text" name="semestre" id="semestre" class="form-control" value="<?php echo $semestre; ?>" required>
                         </div>
                         <div class="col-md-6">
                             <label for="fecha_nacimiento" class="form_label">Fecha de Nacimiento:</label>
@@ -862,8 +951,9 @@ session_start();
                         </div>
                         
                         <div class="input_container">
-                        <label for="nombre_tutor" class="form_label">NOMBRE DEL TUTOR DE ATENCIÓN INDIVIDUAL:</label>
-                        <input type="text" name="nombre_tutor" id="nombre_tutor" class="form-control" required>
+                            <label for="nombre_tutor" class="form_label">NOMBRE DEL TUTOR DE ATENCIÓN INDIVIDUAL:</label>
+                            <input type="text" name="nombre_tutor" id="nombre_tutor" class="form-control" required
+                                value="<?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : ''; ?>">
                         </div>
                         
                         <div class="input_container">
