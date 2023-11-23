@@ -118,7 +118,7 @@ $conn->close();
                 $Log = $nombre;
                 //echo $Log;
                 include 'php/Mostrar_tablaTutorias.php';
-                Tabla($tipo2);
+                Tabla($tipo2,$nombre);
                 ?>
                 <form action="php/Enviartabla.php" class="Tabla_contenido" method="post">
                 
