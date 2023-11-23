@@ -1,6 +1,6 @@
 <?php
-require_once "php/db.php";
-$conexion=conecta();
+require_once "db.php";
+$conexion=conectar();
 // Recibir datos enviados desde JavaScript
 $data = json_decode(file_get_contents('php://input'), true);
 
@@ -9,19 +9,24 @@ $actividad = $data['actividad'];
 $fecha = $data['fecha'];
 $grupo = $data['grupo'];
 
-$query="INSERT INTO asisactivi (Actividad, Grupo, Fecha) VALUES ('$actividad', '$fecha', '$grupo')";
+$query="INSERT INTO asisactivi (Actividad, Grupo, Fecha) VALUES ('$actividad', '$grupo', '$fecha')";
 mysqli_query($conexion,$query);
 
-// Procesar e insertar datos en la base de datos (ajustar la lógica según tu estructura de base de datos)
-foreach ($data['asistencia'] as $row) {
-    $numeroControl = $row['numeroControl'];
-    $nombreEstudiante = $row['nombreEstudiante'];
-    $asistencia = $row['asistencia'];
+if (isset($data['asistencias']) && is_array($data['asistencias'])) {
+    $asistencias = $data['asistencias'];
+    foreach ($asistencias as $asistencia) {
+        $numeroControl = $asistencia['numeroControl'];
+        $nombreEstudiante = $asistencia['nombreEstudiante'];
+        $asistio = $asistencia['asistencia'];
 
-    // Realizar la inserción en la base de datos usando la conexión a tu base de datos
-    $sql="INSERT INTO asistut ( NumeroControl, Nombre, Fecha, carrera, Asistio) VALUES ('$numeroControl', '$nombreEstudiante', '$fecha', '$grupo', '$asistencia')";
-    mysqli_query($conexion,$sql);
+        $sql = "INSERT INTO asistut (NumeroControl, Nombre, Fecha, carrera, Asistio) VALUES ('$numeroControl', '$nombreEstudiante', '$fecha', '$grupo', '$asistio')";
+        mysqli_query($conexion, $sql);
+    }
+} else {
+    // Si 'asistencias' no está definido o no es un array
+    echo "Error: Datos de asistencias no recibidos correctamente.";
 }
+
 $conexion->close();
 
 echo"listo";
