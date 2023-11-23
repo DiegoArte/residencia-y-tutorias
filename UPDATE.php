@@ -187,11 +187,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $NumerodeControlNormal = trim($_POST['NumerodeControlNormal']);
         $AcademiaNormal = trim($_POST['AcademiaNormal']);
         $NombredelEstudianteNormal = trim($_POST['NombredelEstudianteNormal']);
+        $ControlGrupodelEstudianteNormal = trim($_POST['ControlGrupodelEstudianteNormal']);
         
         $campos = [
             'NumeroDeControl' => $NumerodeControlNormal,
             'Academia' => $AcademiaNormal,
             'NombreDelEstudiante' => $NombredelEstudianteNormal,
+            'Numerocontrolgrupo' => $ControlGrupodelEstudianteNormal
         ];
         
         $resultado = actualizarTabla($conn, $tabla, $id, $campos);

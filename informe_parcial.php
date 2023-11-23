@@ -76,10 +76,12 @@ function enteroARomano($numero) {
         <div class="tasks">
             <?php
             $numero_control=$_SESSION['usuario'];
+            $grupo=mysqli_fetch_assoc(mysqli_query($db, "SELECT Grupo FROM tabla_tutorados WHERE Tutor='$numero_control'"));
             $materias=Materias::find("NumerodeControl IN(SELECT materia from `materias-grupos` WHERE grupo IN(SELECT Grupo from tabla_tutorados WHERE Tutor='$numero_control'))");
             foreach($materias as $materia) { 
             ?>
             <form action="">
+                <input type="hidden" name="asignatura" value="<?php echo $materia->NumerodeControl ?>">
                 <table>
                     <thead>
                         <tr>
@@ -112,17 +114,18 @@ function enteroARomano($numero) {
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="<?php echo "tabla".$materia->NumerodeControl; ?>">
                         <tr>
                             <td>Datos</td>
                             <?php
                             for($i=1; $i<=6; $i++){
+                                $unidad=enteroARomano($i);
                                 ?>
-                                <td colspan=".5">
-                                    <input type="text">
+                                <td>
+                                    <input type="text" name="<?php echo "numReprobados".$unidad ?>">
                                 </td>
-                                <td colspan=".5"> 
-                                    <input type="text">
+                                <td> 
+                                    <input type="text" name="<?php echo "porReprobados".$unidad ?>">
                                 </td>
                                 <?php
                             } 
@@ -132,14 +135,18 @@ function enteroARomano($numero) {
                         <tr>
                             <td>Promedio aprobados</td>
                             <?php
-                            for($i=1; $i<=7; $i++){
+                            for($i=1; $i<=6; $i++){
+                                $unidad=enteroARomano($i);
                                 ?>
                                 <td colspan="2">
-                                    <input type="text">
+                                    <input type="text" name="<?php echo "aprobados".$unidad ?>">
                                 </td>
                                 <?php
                             } 
                             ?>
+                            <td colspan="2">
+                                <input type="text" name="estudiantes">
+                            </td>
                         </tr>
                         <tr>
                             <th colspan="14">Listado de estudiantes reprobados en el período</th>
@@ -153,19 +160,22 @@ function enteroARomano($numero) {
                         
                     </tbody>
                 </table>
-                <button class="agregar">
+                <input type="hidden" name="grupo" value="<?php echo $grupo['Grupo']; ?>">
+                <input type="submit" value="Enviar">
+                <button class="agregar" onclick="agregarColumna('<?php echo "tabla".$materia->NumerodeControl; ?>', event)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                     </svg>
                 </button>
+                
             </form>
             <?php
-            
             }
             ?>
         </div>
     </main>
+    <script src="js/informe_parcial.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
