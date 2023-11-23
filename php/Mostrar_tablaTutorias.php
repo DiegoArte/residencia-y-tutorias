@@ -109,6 +109,13 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
     background-color: var(--color-fila2);
 }
+.elimina{
+    margin: none;
+    background: none;
+}
+.fa-trash{
+    color: red;
+}
 </style>
 <?php
 // Establecer la conexión a la base de datos
@@ -200,9 +207,10 @@ else{
             while($row3 = $resultado3->fetch_array()){
                 ?>
                 
-        <form action="php/elininarEF.php" method="post">      
+        <form action="php/elininarEFTutores.php" method="post">      
         <input type="hidden" name="id" value="<?php echo $row3["id"]?>">
-        <input type="submit" value="Eliminar">
+        <button type="submit" class="elimina"><i class="fa-solid fa-trash"></i></button>
+        
         </form>
 
         <?php
