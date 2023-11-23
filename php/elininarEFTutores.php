@@ -1,0 +1,22 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<?php
+include "conexion.php";
+$cone = conecta();
+$id=$_POST["id"];
+echo $id;
+$sql = "DELETE FROM `fecha_enviada_tutorias` WHERE id=".$id."";
+$que = mysqli_query($cone,$sql);
+
+echo "
+function mostrar(){
+    alert('Datos eliminados');
+    '<script>window.history.back();</script>';
+
+}
+mostrar();
+</script>
+
+";
+
+
+?>

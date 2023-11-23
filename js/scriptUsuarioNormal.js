@@ -87,7 +87,7 @@ function search() {
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-function abrirFormularioEdicionEspecial(id, Academia, NumeroDeControl, NombreDelEstudiante) {
+function abrirFormularioEdicionEspecial(id, Academia, NumeroDeControl, NombreDelEstudiante, Numerocontrolgrupo) {
     // Muestra el formulario modal
     var modal = document.getElementById('editar-modal-especial');
     modal.style.display = 'block';
@@ -97,6 +97,7 @@ function abrirFormularioEdicionEspecial(id, Academia, NumeroDeControl, NombreDel
     document.getElementById('AcademiaNormal').value = Academia;
     document.getElementById('NumerodeControlNormal').value = NumeroDeControl;
     document.getElementById('NombredelEstudianteNormal').value = NombreDelEstudiante;
+    document.getElementById('ControlGrupodelEstudianteNormal').value = Numerocontrolgrupo;
 }
 
 
@@ -111,11 +112,12 @@ function validarFormularioEspecial() {
     var numeroControl = document.getElementById("NumerodeControlNormal").value;
     var nombreAcademia = document.getElementById("AcademiaNormal").value;
     var nombreEstudiante = document.getElementById("NombredelEstudianteNormal").value;
+    var controlGrupoEstudiante = document.getElementById("ControlGrupodelEstudianteNormal").value;
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
     //var expresion = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]+$/;
 
-    if (numeroControl === "" || nombreAcademia === "" || nombreEstudiante === "") {
+    if (numeroControl === "" || nombreAcademia === "" || nombreEstudiante === "" || controlGrupoEstudiante === "") {
         Swal.fire({
             title: 'Llena todos los campos',
             text: 'Asegúrate de llenar todos los campos',
@@ -124,7 +126,7 @@ function validarFormularioEspecial() {
             confirmButtonColor: '#197B7A' 
         });
         return false;
-    } else if (!expresion.test(numeroControl) || !expresion.test(nombreAcademia) || !expresion.test(nombreEstudiante)) {
+    } else if (!expresion.test(numeroControl) || !expresion.test(nombreAcademia) || !expresion.test(nombreEstudiante) || !expresion.test(controlGrupoEstudiante)) {
         Swal.fire({
             title: 'Campo(s) inválido(s)',
             text: "Los campos no deben contener caracteres especiales",
@@ -157,12 +159,13 @@ function validarFormularioRegistroEspecial() {
     var NuevoNumeroControl = document.getElementById("NuevoNumeroControlNormal").value;
     var NuevoNombreCarrera = document.getElementById("NuevoNombreCarreraNormal").value;
     var NuevoNombreAlumno = document.getElementById("NuevoNombreAlumnoNormal").value;
+    var NuevoNumeroGrupo = document.getElementById("NuevoControlGrupodelEstudianteNormal").value;
 
 
     // Expresión regular para validar que los campos no contengan caracteres especiales
     //var expresion = /^[a-zA-Z0-9\s]+$/;
 
-    if (NuevoNumeroControl === "" ||NuevoNombreCarrera === ""  || NuevoNombreAlumno === "" ) {
+    if (NuevoNumeroControl === "" ||NuevoNombreCarrera === ""  || NuevoNombreAlumno === "" || NuevoNumeroGrupo === "" ) {
         Swal.fire({
             title: 'Llena todos los campos',
             text: 'Asegúrate de llenar todos los campos',
@@ -171,7 +174,7 @@ function validarFormularioRegistroEspecial() {
             confirmButtonColor: '#197B7A'
         });
         return false;
-    } else if (!expresión.test(NuevoNumeroControl) || !expresión.test(NuevoNombreCarrera) || !expresión.test(NuevoNombreAlumno)) {
+    } else if (!expresión.test(NuevoNumeroControl) || !expresión.test(NuevoNombreCarrera) || !expresión.test(NuevoNombreAlumno) || !expresión.test(NuevoNumeroGrupo)) {
         Swal.fire({
             title: 'Campo(s) inválido(s)',
             text: "Los campos no deben contener caracteres especiales",

@@ -109,6 +109,13 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
     background-color: var(--color-fila2);
 }
+.elimina{
+    margin: none;
+    background: none;
+}
+.fa-trash{
+    color: red;
+}
 </style>
 <?php
 // Establecer la conexión a la base de datos

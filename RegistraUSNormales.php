@@ -99,6 +99,10 @@ session_start();
                     <label for="NombredelEstudianteNormal">Nombre del Estudiante:</label>
                     <input type="text" name="NombredelEstudianteNormal" id="NombredelEstudianteNormal">
                 </div>
+                <div class="editar-form-group form-group">
+                    <label for="ControlGrupodelEstudianteNormal">Numero de control grupo:</label>
+                    <input type="text" name="ControlGrupodelEstudianteNormal" id="ControlGrupodelEstudianteNormal">
+                </div>
                 <button type="submit" class="editar-guardar-btn guardar-btn">GuardarR</button>
             </form>
         </div>
@@ -124,6 +128,10 @@ session_start();
                 <div class="registro-form-group form-group">
                     <label for="NuevoNombreAlumnoNormal">Nuevo Nombre de Alumno:</label>
                     <input type="text" name="NuevoNombreAlumnoNormal" id="NuevoNombreAlumnoNormal">
+                </div>
+                <div class="editar-form-group form-group">
+                    <label for="NuevoControlGrupodelEstudianteNormal">Numero de control grupo:</label>
+                    <input type="text" name="NuevoControlGrupodelEstudianteNormal" id="NuevoControlGrupodelEstudianteNormal">
                 </div>
                 <button type="submit" class="registro-guardar-btn guardar-btn">Guardar</button>
             </form>
@@ -179,11 +187,12 @@ session_start();
             $errorMsg = "";
 
             // Define un array de columnas que deben estar completas
-            $requiredColumns = array('A', 'B', 'C'); // Ejemplo: las columnas A, B, C y D son requeridas
+            $requiredColumns = array('A', 'B', 'C', 'D'); // Ejemplo: las columnas A, B, C y D son requeridas
 
             $nombreDeCarrerasVistos  = array();
             $numerosDeControlVistos = array();
             $nombreDeEstudianteVistos = array();
+            $controlDeGrupoVistos = array();    
 
             $elementosDuplicados = false;
 
@@ -258,15 +267,17 @@ session_start();
                     $Academia = $objPHPExcel->getActiveSheet()->getCell('A' . $i)->getValue();
                     $NumeroDeControl = $objPHPExcel->getActiveSheet()->getCell('B' . $i)->getValue();
                     $NombreDelEstudiante = $objPHPExcel->getActiveSheet()->getCell('C' . $i)->getValue();
+                    $Numerocontrolgrupo= $objPHPExcel->getActiveSheet()->getCell('D' . $i)->getValue();
 
                     $nombreDeCarrerasVistos[]   = $rowData[0];
                     $numerosDeControlVistos[] = $rowData[1];
                     $nombreDeEstudianteVistos[] =  $rowData[2];
+                    $controlDeGrupoVistos[] =  $rowData[3];
                 
                     // Verificar si los datos no están vacíos antes de procesarlos
-                    if (!empty($Academia) && !empty($NumeroDeControl) && !empty($NombreDelEstudiante)) {
+                    if (!empty($Academia) && !empty($NumeroDeControl) && !empty($NombreDelEstudiante) && !empty($Numerocontrolgrupo)) {
                         // Insertar los datos en la tabla "alumnosNormales"
-                        $insertQueryAlumnosNormales = "INSERT INTO alumnosnormales (Academia, NumeroDeControl, NombreDelEstudiante) VALUES ('$rowData[0]', '$rowData[1]', '$rowData[2]')";
+                        $insertQueryAlumnosNormales = "INSERT INTO alumnosnormales (Academia, NumeroDeControl, NombreDelEstudiante, Numerocontrolgrupo) VALUES ('$rowData[0]', '$rowData[1]', '$rowData[2]', '$rowData[3]')";
                         
                         if ($mysqli->query($insertQueryAlumnosNormales) ) {
                             // Insertar usuario de alumno en la tabla "usuarios"
@@ -343,12 +354,13 @@ session_start();
     $result = $mysqli->query($selectQuery);
 
     if ($result) {
-        echo '<table border=2><tr><td>Academia</td><td>Numero de Control</td><td>Nombre del Estudiante</td><td>Acción</td></tr>';
+        echo '<table border=2><tr><td>Academia</td><td>Numero de Control</td><td>Nombre del Estudiante</td><td>Grupo</td><td>Acción</td></tr>';
         while ($row = $result->fetch_assoc()) {
             echo '<tr id="fila-' . $row['id'] . '">';
             echo '<td>'. $row['Academia'].'</td>';
             echo '<td>'. $row['NumeroDeControl'].'</td>';
             echo '<td>'. $row['NombreDelEstudiante'].'</td>';
+            echo '<td>'. $row['Numerocontrolgrupo'].'</td>';
             echo '<td>
             <button class="btn" onclick="eliminarFilaNormal(' . $row['id'] . ')">
                 <svg viewBox="0 0 15 17.5" height="17.5" width="15" xmlns="http://www.w3.org/2000/svg" class="icon">
@@ -356,7 +368,7 @@ session_start();
                 </svg>
             </button>
 
-            <button class="btn" onclick="abrirFormularioEdicionEspecial(' . $row['id'] . ' , \' ' . $row['Academia'] . ' \', \' ' . $row['NumeroDeControl'] . ' \', \' ' . $row['NombreDelEstudiante'] . ' \')">
+            <button class="btn" onclick="abrirFormularioEdicionEspecial(' . $row['id'] . ' , \' ' . $row['Academia'] . ' \', \' ' . $row['NumeroDeControl'] . ' \', \' ' . $row['NombreDelEstudiante'] . ' \', \' ' . $row['Numerocontrolgrupo'] . ' \')">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
                     <path d="M0 0h24v24H0z" fill="none"/>
                     <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>

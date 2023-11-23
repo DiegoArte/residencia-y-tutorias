@@ -187,6 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $NuevoNumeroControlNormal = trim($_POST['NuevoNumeroControlNormal']);
         $NuevoNombreCarreraNormal = trim($_POST['NuevoNombreCarreraNormal']);
         $NuevoNombreAlumnoNormal = trim($_POST['NuevoNombreAlumnoNormal']);
+        $NuevoControlGrupodelEstudianteNormal = trim($_POST['NuevoControlGrupodelEstudianteNormal']);
         
     // Verificar si el número de control ya existe
     if (numeroControlExiste($conn, $NuevoNumeroControlNormal, $tabla)) {
@@ -202,6 +203,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'NumeroDeControl' => $NuevoNumeroControlNormal,
                 'Academia' => $NuevoNombreCarreraNormal,
                 'NombreDelEstudiante' => $NuevoNombreAlumnoNormal,
+                'Numerocontrolgrupo' => $NuevoControlGrupodelEstudianteNormal
             );
 
             $resultado = agregarRegistro($conn, $tabla, $campos);
