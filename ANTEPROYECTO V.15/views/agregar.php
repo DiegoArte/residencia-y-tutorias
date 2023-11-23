@@ -44,35 +44,27 @@
                         </div>
                     </div>
 
-
                     <div class="col-sm-6">
-                    <div class="mb-3">
-                        <label for="empresa" class="form-label">Empresa</label>
-                        <select id="empresa" name="empresa" class="form-control"S>
-                            <option value="">Selecciona una empresa</option>
-                            <?php
-                            // Conexión a la base de datos
-                            $conexion = mysqli_connect("localhost", "root", "", "tutorias_residencia");
-
-                            // Verificación de la conexión
-                            if (mysqli_connect_errno()) {
-                                die("Error de conexión a la base de datos: " . mysqli_connect_error());
-                            }
-
-                            // Consulta para obtener las empresas
-                            $consulta_empresas = mysqli_query($conexion, "SELECT DISTINCT empresa FROM documento");
-
-                            // Iterar sobre las empresas y mostrarlas como opciones en el select
-                            while ($row = mysqli_fetch_assoc($consulta_empresas)) {
-                                echo '<option value="' . $row['empresa'] . '">' . $row['empresa'] . '</option>';
-                            }
-
-                            // Cerrar la conexión a la base de datos
-                            mysqli_close($conexion);
-                            ?>
-                        </select>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" id="guardarEmpresa" name="guardarEmpresa" class="form-check-input" onclick="habilitarEmpresa()">
+                        <label for="guardarEmpresa" class="form-check-label">Guardar información de la empresa</label>
                     </div>
                 </div>
+
+                <script>
+                    function habilitarEmpresa() {
+                        var empresaInput = document.getElementById('empresa');
+                        var checkbox = document.getElementById('guardarEmpresa');
+
+                        if (checkbox.checked) {
+                            empresaInput.removeAttribute('readonly');
+                        } else {
+                            empresaInput.setAttribute('readonly', 'readonly');
+                            empresaInput.value = '';
+                        }
+                    }
+                </script>
+
 
                 <div class="col-12">
                     <label for="yourPassword" class="form-label">Archivo (PDF)</label>
