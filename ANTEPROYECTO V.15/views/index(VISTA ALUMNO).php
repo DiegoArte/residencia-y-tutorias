@@ -86,25 +86,25 @@ $conn->close();
     <?php
     if ($mostrar_reporte1) {
         ?>
-        <form action="../../Envio_fechas.php" method="post">
+        <form style="padding-bottom: 70px;" action="../../Envio_fechas.php" method="post">
         <input type="hidden" name="ses" id="ses" value="<?php echo $_SESSION['usuario'] ?>">
         <?php
-        echo '<button class="boton1">Reporte 1</button></form>';
+        echo '<button class="botonFec" >Reporte 1</button></form>';
 
     }
     if ($mostrar_reporte2) {
         ?>
-        <form action="../../Envio_fechas2.php" method="post">
+        <form style="padding-bottom: 70px;" action="../../Envio_fechas2.php" method="post">
         <input type="hidden" name="ses" id="ses" value="<?php echo $_SESSION['usuario'] ?>">
         <?php
-        echo '<button class="boton1"">Reporte 2</button></form>';
+        echo '<button class="botonFec" >Reporte 2</button></form>';
     }
     if ($mostrar_reporte3) {
         ?>
-        <form action="../../Envio_fechas3.php" method="post">
+        <form style="padding-bottom: 70px;" action="../../Envio_fechas3.php" method="post">
         <input type="hidden" name="ses" id="ses" value="<?php echo $_SESSION['usuario'] ?>">
         <?php
-        echo '<button class="boton1"">Reporte 3</button></form>';
+        echo '<button class="botonFec">Reporte 3</button></form>';
     }
     ?>
 </div>

@@ -57,6 +57,8 @@ $carrera=$_GET['carrera']??"";
             <a href="RegistraUSNormales.php" class="boton3">Registrar Alumno</a>
             <a href="RegistraGrupo.php" class="boton1 boton4">Registrar Grupo</a>
             <a href="RegistraMaterias.php" class="boton1 boton5">Registrar Materia</a>
+            <a href="FechaReporteTut.php" class="boton1 boton6">Asignar Fechas</a>
+
             <?php
         }
     ?>
