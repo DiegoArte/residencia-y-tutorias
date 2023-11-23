@@ -1,4 +1,8 @@
-
+<?php
+    session_start();
+    $carrera=$_GET['carrera']??"";
+    echo $carrera;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,10 +32,14 @@
             <img src="img/back.svg" alt="" height="50">
             <span class="regresar d-none text-white m-auto">Regresar</span>
     </a>
-        <div class="usuarioOp d-flex justify-content-end">
-            <img src="img/profile.png" alt="" >
-            <p>Usuario</p>
-            <a href="#">Cerrar sesión</a>
+    <div class="usuarioOp d-flex justify-content-end">
+        <img src="img/profile.png" alt="" >
+        <?php
+                $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+                echo '<p>' . $nombre . '</p>';
+                ?>
+                <div class="dropdown-content">
+                    <a href="/loginTutorias.php">Cerrar sesión</a>
         </div>
     </header>
 
@@ -80,7 +88,7 @@
             
                 <h4>Tutor(A)</h4>
                 <br>
-                <label for="">Nombre</label><input type="text" name="NP" id="NP" readonly value="<?php ?>">
+                <label for="">Nombre</label><input type="text" name="NP" id="NP" readonly value="<?php echo $nombre?>">
                 <br>
                 <br>
                 <label for="">Firma</label>

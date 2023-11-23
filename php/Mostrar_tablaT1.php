@@ -112,18 +112,22 @@ tr:nth-child(odd) {
 .elimina{
     margin: none;
     background: none;
+    padding: none;
+    font-size: 11px;
 }
 .fa-trash{
     color: red;
 }
 </style>
 <?php
-
 // Establecer la conexión a la base de datos
-function Tabla($tipo2){
+
+$nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+                echo '<p>' . $nombre . '</p>';
+function Tabla($nombre){
 include 'conexion.php';
 $conn = conecta();
-$login = 
+$login = $nombre;
 $_SESSION["ses"] = $login;
 
 //echo $login."<br>";
@@ -134,16 +138,14 @@ if ($conn->connect_error) {
     //die("Conexión fallida: " . $conn->connect_error);
 }
 else{
-    $sql = "SELECT * FROM `fecha_enviada_tutorias` WHERE `Nombre`='".$login."' and `Tipo`='".$tipo2."';";
+    $sql = "SELECT * FROM `fecha_enviada` WHERE `Nombre`='".$login."';";
     $resultado = mysqli_query($conn,$sql);
     if ($resultado->num_rows > 0){
         echo "<table id='table-responsive' >";
         echo "<tr>";
             echo "<th> Archivo </th>";
             echo "<th> Nombre </th>";
-            echo "<th> Carrera </th>";
             echo "<th> Tipo de archivo </th>";
-           
             echo "</tr>";
             
 
@@ -157,29 +159,17 @@ else{
         }
             echo "</td>";
             echo "<td class = 'n'>" ;
-            $sql2 = "SELECT * FROM `docentes` WHERE `NumerodeControl`='".$login."';";
+            $sql2 = "SELECT * FROM `alumnos` WHERE `NumerodeControl`='".$login."';";
             $resultado2 = mysqli_query($conn,$sql2);
 
             while ($row2 = $resultado2->fetch_array()){
-                echo "". $row2["NombredelDocente"]. "";
+                echo "". $row2["NombredelEstudiante"]. "";
             }
-
-            echo "<td class = 'n'>" ;
-            $sql2 = "SELECT * FROM `docentes` WHERE `NumerodeControl`='".$login."';";
-            $resultado2 = mysqli_query($conn,$sql2);
-
-            while ($row2 = $resultado2->fetch_array()){
-                echo "". $row2["Academia"]. "";
-            }
-
-
-
-
             echo "</td>";
             echo "<td class = 'tipo' >" ;
             
             $axu = $login;
-            $sql3 = "SELECT * FROM `fecha_enviada_tutorias` WHERE Nombre='$axu';";
+            $sql3 = "SELECT * FROM `fecha_enviada` WHERE Nombre='$axu';";
             $resultado3 = mysqli_query($conn,$sql3);
             while($row3 = $resultado3->fetch_array()){
                 //echo "". $row2["Nombre"]. "";
@@ -202,16 +192,15 @@ else{
         }
             echo"</td>";
             echo "<td class='t'>";
-            $sql3 = "SELECT * FROM `fecha_enviada_tutorias` WHERE Nombre='$axu';";
+            $sql3 = "SELECT * FROM `fecha_enviada` WHERE Nombre='$axu';";
             $resultado3 = mysqli_query($conn,$sql3);
            
             while($row3 = $resultado3->fetch_array()){
                 ?>
                 
-        <form action="php/elininarEFTutores.php" method="post">      
+        <form action="php/elininarEF.php" method="post">      
         <input type="hidden" name="id" value="<?php echo $row3["id"]?>">
         <button type="submit" class="elimina"><i class="fa-solid fa-trash"></i></button>
-        
         </form>
 
         <?php
