@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,10 +53,10 @@
             <form action="php/Full_FichaT.php" class="Tabla_contenido" method="post" enctype="multipart/form-data"><div>
                 <div class="row">
                 <div class="col-md-6">
-                <label for="">Periodo:</label><input type="text" name="Periodo" id="Periodo" required>
+                <label for="">Periodo:</label><input type="text" name="Periodo" id="Periodo" readonly>
                 <br>
                 
-                <label for="">Fecha:</label><input type="date" name="Fecha" id="Fecha" required>
+                <label for="">Fecha:</label><input type="date" name="Fecha" id="Fecha" readonly>
                 <br>
                 <label for="">Nombre del estudiante:</label><input type="text" name="NE" id="NE" required>
                 <br>
@@ -79,7 +80,7 @@
             
                 <h4>Tutor(A)</h4>
                 <br>
-                <label for="">Nombre</label><input type="text" name="NP" id="NP" required>
+                <label for="">Nombre</label><input type="text" name="NP" id="NP" readonly value="<?php ?>">
                 <br>
                 <br>
                 <label for="">Firma</label>
@@ -138,6 +139,30 @@
                         }
                     }
                 }
+            </script>
+            <script>
+                // Obtener la fecha actual
+                const fechaActual = new Date();
+
+                // Obtener el mes actual (1-12)
+                const mesActual = fechaActual.getMonth() + 1;
+
+                // Establecer el valor del campo según el rango de meses
+                if (mesActual >= 1 && mesActual <= 6) {
+                document.getElementById("Periodo").value = "Enero-Junio";
+                } else {
+                document.getElementById("Periodo").value = "Agosto-Diciembre";
+                }
+
+                // Deshabilitar el campo solo si no estamos en los meses de agosto a diciembre
+                if (mesActual < 8 || mesActual > 12) {
+                document.getElementById("Periodo").disabled = true;
+                }
+                const fechaActual2 = new Date().toISOString().split('T')[0];
+
+                // Establecer la fecha actual como valor por defecto
+                document.getElementById("Fecha").value = fechaActual2;
+
             </script>
 
           </button>

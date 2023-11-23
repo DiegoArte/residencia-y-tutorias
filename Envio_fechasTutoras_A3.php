@@ -60,7 +60,7 @@ require 'php/db.php';
 $conn=conectar();
 
 // Consulta SQL para obtener las fechas de la tabla fecharepo1
-$sql = "SELECT fechaini, fechafin FROM fecharepo1";
+$sql = "SELECT fechaini, fechafin FROM fecharepotu3";
 $result = $conn->query($sql);
 
 
@@ -97,7 +97,7 @@ $conn->close();
     
             
                 <?php
-                $tipo2 ="1";
+                $tipo2 ="3";
                 $Log = $_POST["ses"];
                 //echo $Log;
                 include 'php/Mostrar_tablaTutorias.php';
