@@ -121,11 +121,13 @@ tr:nth-child(odd) {
 </style>
 <?php
 // Establecer la conexión a la base de datos
-function Tabla(){
+function Tabla($nombre2){
+    
+    
 include 'conexion.php';
 $conn = conecta();
-$login = $_POST["ses"];
-$_SESSION["ses"] = $login;
+$login = $nombre2;
+//$_SESSION["ses"] = $login;
 
 //echo $login."<br>";
 
@@ -157,6 +159,7 @@ else{
             echo "</td>";
             echo "<td class = 'n'>" ;
             $sql2 = "SELECT * FROM `alumnos` WHERE `NumerodeControl`='".$login."';";
+            echo $login;
             $resultado2 = mysqli_query($conn,$sql2);
 
             while ($row2 = $resultado2->fetch_array()){
