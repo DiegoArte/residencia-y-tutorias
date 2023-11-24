@@ -112,6 +112,7 @@ tr:nth-child(odd) {
 .elimina{
     margin: none;
     background: none;
+    padding: none;
 }
 .fa-trash{
     color: red;

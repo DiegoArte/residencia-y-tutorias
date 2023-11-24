@@ -5,7 +5,7 @@ $chats=Chat::find("(idinput='$id' and idaoutput='$idsec') or (idinput='$idsec' a
 ?>
 
 <div class="col">
-    <form class="checklist" method="POST" action="">
+    <form class="checklist cajaRevision" method="POST" action="">
         <input type="text" name="iddocente" style="display: none" value="<?php echo $id; ?>">
         <input type="text" name="idalumno" style="display: none" value="<?php echo $idsec; ?>">
         <input value="1" name="nombreProyecto" type="checkbox" id="01">

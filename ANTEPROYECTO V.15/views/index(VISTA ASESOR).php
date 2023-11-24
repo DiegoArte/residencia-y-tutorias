@@ -106,7 +106,11 @@ $conn->close();
         <?php
         echo '<button class="botonFec"">Reporte 3</button></form>';
     }
+    if($_SESSION['presidente']==true) {
+        echo '<a href="../../asignar_Asesores.php" class="botonFec"">Asignar asesores</a>';
+    }
     ?>
+    
 </div>
 </div>
 

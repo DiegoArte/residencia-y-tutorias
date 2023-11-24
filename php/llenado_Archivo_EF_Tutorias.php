@@ -5,6 +5,8 @@ $connect = conecta();
 $Nombre = $_POST["Nombre"];
 $archivo = $_FILES["fichero"]["name"];
 $tipoFrecha = $_POST["Fecha1"];
+echo $tipoFrecha;
+
 //$archivo2 = $_FILES['fichero']['name'];
 //echo $Nombre;
 echo "<br>";
@@ -15,7 +17,7 @@ echo "<br>";*/
 /*echo $_FILES['fichero']["name"][0];
 echo "<br>";
 echo $_FILES['fichero']["name"][1];*/
-$ruta = "upload/uno/";
+$ruta = "upload2/uno/";
 foreach ($_FILES['fichero']['name'] as $key => $value){
     $extension = pathinfo($_FILES['fichero']['name'][$key], PATHINFO_EXTENSION);
     $nombrefinal = "";
@@ -35,14 +37,13 @@ foreach ($_FILES['fichero']['name'] as $key => $value){
             elseif($extension === "xls" || $extension=="xlsx"){
                 $Tipo_dearch =3 ;
             }
-            $query = "INSERT INTO `fecha_enviada_tutorias` (`id`, `Archivo`, `Nombre`, `Tipo_de_archivo`,`ruta`,`Tipo`)
-           VALUES (NULL,'".$nombrefinal2."','".$Nombre."', '".$Tipo_dearch."', '".$upload."','".$tipoFrecha."');";
-//VALUES ('$archivo','$Nombre','$Tipo_dearch')"; 
-//echo $query;
+            $query = "INSERT INTO `fecha_enviada_tutorias`(`id`, `Archivo`, `Nombre`, `Tipo_de_archivo`, `ruta`, `tipo`) 
+          VALUES (NULL,'$nombrefinal2','$Nombre', '$Tipo_dearch', '$upload','$tipoFrecha')";
+          echo $query;
 
-//echo "<br>";
 
-$a = mysqli_query($connect,$query);}
+$result = mysqli_query($connect, $query);
+}
 else{
     echo "<script>
 Swal.fire({

@@ -23,3 +23,15 @@ chatInput.addEventListener("keydown", (e) => {
     }
 });
 sendChatBtn.addEventListener("click", handleChat);
+
+
+const uno=document.getElementById('01');
+const dos=document.getElementById('02');
+const tres=document.getElementById('03');
+const cuatro=document.getElementById('04');
+const cinco=document.getElementById('05');
+const seis=document.getElementById('06');
+
+if(uno.checked && dos.checked && tres.checked && cuatro.checked && cinco.checked && seis.checked) {
+    
+}

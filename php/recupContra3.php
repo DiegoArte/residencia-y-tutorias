@@ -16,6 +16,12 @@
             background-image: url('img/Logo-TecNM.png'); /* Ruta a tu imagen */
             background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
         }
+                p{
+            font-size: 20px;
+        }
+        label{
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>

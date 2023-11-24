@@ -72,21 +72,21 @@ $conn->close();
     <?php
     if ($mostrar_reporte1) {
         ?>
-        <form style="padding-bottom: 70px;" action="../../Envio_fechasT_A.php" method="post">
+        <form style="padding-bottom: 70px;" action="Envio_fechasTutoras_A1.php" method="post">
             <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
         <?php
         echo '<button class="botonFec">Reporte 1</button></form>';
     }
     if ($mostrar_reporte2) {
         ?>
-        <form style="padding-bottom: 70px;" action="../../Envio_fechasT_A2.php" method="post">
+        <form style="padding-bottom: 70px;" action="Envio_fechasTutoras_A2.php" method="post">
         <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
         <?php
         echo '<button class="botonFec"">Reporte 2</button></form>';
     }
     if ($mostrar_reporte3) {
         ?>
-        <form style="padding-bottom: 70px;" action="../../Envio_fechasT_A3.php" method="post">
+        <form style="padding-bottom: 70px;" action="Envio_fechasTutoras_A3.php" method="post">
         <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
         <?php
         echo '<button class="botonFec"">Reporte 3</button></form>';
@@ -107,13 +107,13 @@ $conn->close();
                     <a href="/loginTutorias.php">Cerrar sesión</a>
         </div>
     </header>
-        <a class="beautiful-button7" href="FichaTecnica.html">Ficha técnica</a>
+        <a class="beautiful-button7" href="FichaTecnica.php">Ficha técnica</a>
         <a href="Formato_canalizacion/FormatoEncuestaIni.php" class="beautiful-button8">Diagnóstico original</a>
         <a class="beautiful-button9">Evaluacion al docente</a>
         <a class="beautiful-button10">Lista de asistencia</a>
         <a  class="beautiful-button3">Informe de resultados</a>
         <a href="Formato_canalizacion/F_Canal.php" class="beautiful-button4">Formato de canalización</a>
-        <a class="beautiful-button5">Evaluación al alumno</a>
+        <a class="beautiful-button5" href="pagEvaAl.html">Evaluación al alumno</a>
         <a class="beautiful-button6">Informe parcial</a>        
         <a href="hoja de vida/hv2.php"class="beautiful-button">Hoja de vida</a>
         <a class="beautiful-button1">Plan de acción</a>

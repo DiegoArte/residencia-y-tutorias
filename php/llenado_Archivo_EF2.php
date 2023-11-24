@@ -14,7 +14,7 @@ echo "<br>";*/
 /*echo $_FILES['fichero']["name"][0];
 echo "<br>";
 echo $_FILES['fichero']["name"][1];*/
-$ruta = "upload/uno/";
+$ruta = "upload/dos/";
 foreach ($_FILES['fichero']['name'] as $key => $value){
     $extension = pathinfo($_FILES['fichero']['name'][$key], PATHINFO_EXTENSION);
     $nombrefinal = "";
