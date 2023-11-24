@@ -29,8 +29,8 @@ session_start();
 <body>
 
 <?php
-require_once 'php/db.php';
-$conn = conectar();
+require 'php/app.php';
+$conn = $db;
 
 // Obtener la fecha actual
 $fecha_actual = date('Y-m-d');
@@ -68,7 +68,7 @@ if ($row3 = mysqli_fetch_assoc($resultado3)) {
 }
 
 // Cerrar la conexión a la base de datos
-$conn->close();
+
 // Mostrar los botones en el div "barraLateral" si corresponde
 ?>
 <div class="barraLateral fixed h-100">
@@ -113,7 +113,7 @@ $conn->close();
 
 
 <?php
-require 'php/app.php';
+
 require 'php/Grupos.php';
 require 'php/Docentes.php';
 require 'php/Tutorados.php';
