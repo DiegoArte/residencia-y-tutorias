@@ -11,12 +11,14 @@ echo "
 function mostrar(){
     alert('Datos eliminados');
     '<script>window.history.back();</script>';
+    
 
 }
 mostrar();
 </script>
 
 ";
+header("Location: ../Envio_fechas.php");
 
 
 ?>

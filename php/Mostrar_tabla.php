@@ -121,11 +121,13 @@ tr:nth-child(odd) {
 </style>
 <?php
 // Establecer la conexión a la base de datos
-function Tabla(){
+function Tabla($nombre){
+    
+    
 include 'conexion.php';
 $conn = conecta();
-$login = $_POST["ses"];
-$_SESSION["ses"] = $login;
+$login = $nombre;
+//$_SESSION["ses"] = $login;
 
 //echo $login."<br>";
 
