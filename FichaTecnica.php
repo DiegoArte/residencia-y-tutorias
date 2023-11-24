@@ -26,6 +26,78 @@
     <title>Ficha técnica</title>
 </head>
 <body>
+<?php
+    require 'php/db.php';
+    $mysqli = conectar();
+
+    // Obtener el nombre del tutor de la sesión
+    $nombreTutor = $_SESSION['nombre'];
+
+        // Realizar la consulta a la tabla carrera para obtener los nombres de las carreras
+        $consulta = "SELECT NombredeCarrera FROM carrera";
+        $resultados = $mysqli->query($consulta);
+    
+        // Verificar si hay resultados
+        if ($resultados) {
+            // Inicializar una variable para almacenar las opciones del menú desplegable
+            $opciones = '';
+    
+            // Recorrer los resultados y construir las opciones del menú desplegable
+            while ($fila = $resultados->fetch_assoc()) {
+                $nombreCarrera = $fila['NombredeCarrera'];
+                $opciones .= "<option value='$nombreCarrera'>$nombreCarrera</option>";
+            }
+    
+            // Liberar los resultados
+            $resultados->free();
+        } else {
+            // Manejar el caso en que la consulta no sea exitosa
+            echo "Error al ejecutar la consulta: " . $mysqli->error;
+        }
+    
+
+    // Consultar el número de control del docente en la tabla docentes
+    $consultaDocente = "SELECT NumerodeControl FROM docentes WHERE NombredelDocente = '$nombreTutor'";
+    $resultadoDocente = $mysqli->query($consultaDocente);
+
+    if ($resultadoDocente && $resultadoDocente->num_rows > 0) {
+        $filaDocente = $resultadoDocente->fetch_assoc();
+        $numeroControlDocente = $filaDocente['NumerodeControl'];
+
+        // Consultar si el número de control del docente existe en la tabla_tutorados
+        $consultaTutorados = "SELECT Grupo FROM tabla_tutorados WHERE Tutor = '$numeroControlDocente'";
+        $resultadoTutorados = $mysqli->query($consultaTutorados);
+
+        if ($resultadoTutorados && $resultadoTutorados->num_rows > 0) {
+            $filaTutorados = $resultadoTutorados->fetch_assoc();
+            $numeroControlGrupo = $filaTutorados['Grupo'];
+
+            // Consultar información de alumnosnormales y grupos
+            $consultaAlumnos = "SELECT NombreDelEstudiante, Academia FROM alumnosnormales WHERE Numerocontrolgrupo = '$numeroControlGrupo'";
+            $resultadoAlumnos = $mysqli->query($consultaAlumnos);
+
+            $consultaGrupos = "SELECT Semestre FROM grupos WHERE NumerodeControl = '$numeroControlGrupo'";
+            $resultadoGrupos = $mysqli->query($consultaGrupos);
+
+            if ($resultadoAlumnos && $resultadoGrupos) {
+                // Obtener el semestre
+                $filaGrupos = $resultadoGrupos->fetch_assoc();
+                $semestre = $filaGrupos['Semestre'];
+
+            } else {
+                echo "Error al obtener información de alumnos o grupos: " . $mysqli->error;
+            }
+        } else {
+            echo "No se le ha asignado a ningún grupo.";
+        }
+    } else {
+        echo "Error al obtener el número de control del docente: " . $mysqli->error;
+    }
+
+// Cerrar la conexión
+$mysqli->close();
+
+    ?>
     <br>
     <header class="fixed w-100">
         <a href="formatos.php" class="back-arrow rounded-pill d-flex justify-content-start">
@@ -66,11 +138,28 @@
                 
                 <label for="">Fecha:</label><input type="date" name="Fecha" id="Fecha" readonly>
                 <br>
-                <label for="">Nombre del estudiante:</label><input type="text" name="NE" id="NE" required>
+                <label for="">Nombre del estudiante:</label>
+                <select class="form-select" name="nombre" id="nombre" required>
+                                <?php
+                                while ($filaAlumnos = $resultadoAlumnos->fetch_assoc()) {
+                                    echo '<option value="' . $filaAlumnos['NombreDelEstudiante'] . '">' . $filaAlumnos['NombreDelEstudiante'] . '</option>';
+                                }
+                                ?>
+                            </select>
                 <br>
-                <label for="">Semestre:</label><input type="text" name="Semestre" id="Semestre" required>
+                <label for="">Semestre:</label><input type="text" name="Semestre" id="Semestre" required value="<?php echo $semestre; ?>">
                 <br>
-                <label for="">Plan de estudio</label><input type="text" name="PE" id="PE" required>
+                <label for="">Plan de estudio</label>
+                <?php
+                            // Resetear el puntero del resultado
+                            mysqli_data_seek($resultadoAlumnos, 0);
+
+                            // Obtener la Academia del primer estudiante (puedes ajustar esto según tus necesidades)
+                            $filaAlumnos = $resultadoAlumnos->fetch_assoc();
+                            $academia = $filaAlumnos['Academia'];
+                            echo '<input type="text" name="PE" id="PE" class="form-control" value="' . $academia . '" required>';
+                            ?>
+                
                 <br>
                 <label for="">Actividades de seguimiento realizadas:</label><textarea type="text" name="ASR" id="ASR" class="G" height="5" width="80" required></textarea>
                     
