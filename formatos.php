@@ -113,7 +113,7 @@ $conn->close();
         <a class="beautiful-button10">Lista de asistencia</a>
         <a  class="beautiful-button3">Informe de resultados</a>
         <a href="Formato_canalizacion/F_Canal.php" class="beautiful-button4">Formato de canalización</a>
-        <a class="beautiful-button5">Evaluación al alumno</a>
+        <a class="beautiful-button5" href="pagEvaAl.html">Evaluación al alumno</a>
         <a class="beautiful-button6">Informe parcial</a>        
         <a href="hoja de vida/hv2.php"class="beautiful-button">Hoja de vida</a>
         <a class="beautiful-button1">Plan de acción</a>
