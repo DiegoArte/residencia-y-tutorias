@@ -86,7 +86,7 @@ $conn->close();
     }
     if ($mostrar_reporte3) {
         ?>
-        <form style="padding-bottom: 70px;" action="Envio_fechasTutoras_A3.phpp" method="post">
+        <form style="padding-bottom: 70px;" action="Envio_fechasTutoras_A3.php" method="post">
         <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
         <?php
         echo '<button class="botonFec"">Reporte 3</button></form>';

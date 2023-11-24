@@ -160,12 +160,10 @@ else{
             $sql2 = "SELECT * FROM `docentes` WHERE `NumerodeControl`='".$login."';";
             $resultado2 = mysqli_query($conn,$sql2);
 
-            while ($row2 = $resultado2->fetch_array()){
-                echo "". $row2["NombredelDocente"]. "";
-            }
+            echo $nombre;
 
             echo "<td class = 'n'>" ;
-            $sql2 = "SELECT * FROM `docentes` WHERE `NumerodeControl`='".$login."';";
+            $sql2 = "SELECT * FROM `docentes` WHERE `NombredelDocente`='".$login."';";
             $resultado2 = mysqli_query($conn,$sql2);
 
             while ($row2 = $resultado2->fetch_array()){
