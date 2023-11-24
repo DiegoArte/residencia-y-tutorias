@@ -112,16 +112,131 @@ $carrera=$_GET['carrera']??"";
     <br><br><br><br>
 
 
+
+    <?php
+    require '../php/db.php';
+    $mysqli = conectar();
+
+    // Obtener el nombre del tutor de la sesión
+    $nombreTutor = $_SESSION['nombre'];
+
+        // Realizar la consulta a la tabla carrera para obtener los nombres de las carreras
+        $consulta = "SELECT NombredeCarrera FROM carrera";
+        $resultados = $mysqli->query($consulta);
+    
+        // Verificar si hay resultados
+        if ($resultados) {
+            // Inicializar una variable para almacenar las opciones del menú desplegable
+            $opciones = '';
+    
+            // Recorrer los resultados y construir las opciones del menú desplegable
+            while ($fila = $resultados->fetch_assoc()) {
+                $nombreCarrera = $fila['NombredeCarrera'];
+                $opciones .= "<option value='$nombreCarrera'>$nombreCarrera</option>";
+            }
+    
+            // Liberar los resultados
+            $resultados->free();
+        } else {
+            // Manejar el caso en que la consulta no sea exitosa
+            echo "Error al ejecutar la consulta: " . $mysqli->error;
+        }
+    
+
+    // Consultar el número de control del docente en la tabla docentes
+    $consultaDocente = "SELECT NumerodeControl FROM docentes WHERE NombredelDocente = '$nombreTutor'";
+    $resultadoDocente = $mysqli->query($consultaDocente);
+
+    if ($resultadoDocente && $resultadoDocente->num_rows > 0) {
+        $filaDocente = $resultadoDocente->fetch_assoc();
+        $numeroControlDocente = $filaDocente['NumerodeControl'];
+
+        // Consultar si el número de control del docente existe en la tabla_tutorados
+        $consultaTutorados = "SELECT Grupo FROM tabla_tutorados WHERE Tutor = '$numeroControlDocente'";
+        $resultadoTutorados = $mysqli->query($consultaTutorados);
+
+        if ($resultadoTutorados && $resultadoTutorados->num_rows > 0) {
+            $filaTutorados = $resultadoTutorados->fetch_assoc();
+            $numeroControlGrupo = $filaTutorados['Grupo'];
+
+            // Consultar información de alumnosnormales y grupos
+            $consultaAlumnos = "SELECT NombreDelEstudiante, Academia, NumeroDeControl FROM alumnosnormales WHERE Numerocontrolgrupo = '$numeroControlGrupo'";
+            $resultadoAlumnos = $mysqli->query($consultaAlumnos);
+
+            //echo '<script>';
+            //echo 'var resultadoAlumnos = ' . json_encode($resultadoAlumnos) . ';';
+            //echo '</script>';
+
+            $consultaGrupos = "SELECT Semestre FROM grupos WHERE NumerodeControl = '$numeroControlGrupo'";
+            $resultadoGrupos = $mysqli->query($consultaGrupos);
+
+            if ($resultadoAlumnos && $resultadoGrupos) {
+                // Obtener el semestre
+                $filaGrupos = $resultadoGrupos->fetch_assoc();
+                $semestre = $filaGrupos['Semestre'];
+
+            } else {
+                echo "Error al obtener información de alumnos o grupos: " . $mysqli->error;
+            }
+        } else {
+            echo "No se le ha asignado a ningún grupo.";
+        }
+    } else {
+        echo "Error al obtener el número de control del docente: " . $mysqli->error;
+    }
+
+    // Cerrar la conexión
+    $mysqli->close();
+
+    ?>
+
+
     <form id="form"> <!-- Inicio del formulario -->
         <h3>Formato de Canalización</h3><hr><br>
         <label for="nombreCompleto">Nombre Completo del Estudiante:</label>
-        <input type="text" id="nombre" name="nombre" required><br>
+        <!--<input type="text" id="nombre" name="nombre" required><br>-->
+        <select name="nombre" id="nombre" onchange="guardarValorSeleccionado()" required>
+            <option value="0">Seleccione</option>
+            <?php
+            // Inicializar un arreglo para almacenar los resultados
+            $alumnosArray = array();
+
+            while ($filaAlumnos = $resultadoAlumnos->fetch_assoc()) {
+                echo '<option value="' . $filaAlumnos['NombreDelEstudiante'] . '">' . $filaAlumnos['NombreDelEstudiante'] . '</option>';
+                $alumnosArray[] = $filaAlumnos;
+            }                        
+
+            // Convertir el arreglo a formato JSON para su uso en JavaScript
+            $jsonAlumnos = json_encode($alumnosArray);
+            ?>
+        </select>
+        <!-- Agregar un campo oculto para almacenar el valor seleccionado -->
+        <input type="hidden" name="valor_seleccionado" id="valorSeleccionado" value="">
 
         <label for="fecha">Fecha:</label>
         <input type="date" id="fecha" name="fecha" required><br>
 
         <label for="numeroControl">Número de Control:</label>
-        <input type="text" id="numeroControl" name="numeroControl" required><br>
+        <input type='text' id='numeroControl' name='numeroControl' placeholder='Selecciona un nombre del estudiante' value='' readonly><br>
+
+        <script>
+            function guardarValorSeleccionado() {
+                // Obtener el elemento select y el valor seleccionado
+                var selectElement = document.getElementById("nombre");
+                var selectedValue = selectElement.options[selectElement.selectedIndex].value;
+
+                // Convertir el JSON de PHP a un objeto de JavaScript
+                var alumnosArray = <?php echo $jsonAlumnos; ?>;
+
+                // Buscar el objeto que coincide con el valor seleccionado
+                var selectedAlumno = alumnosArray.find(function(alumno) {
+                    return alumno.NombreDelEstudiante === selectedValue;
+                });
+
+                // Acceder a la propiedad deseada y asignarla al campo oculto
+                document.getElementById("numeroControl").value = selectedAlumno.NumeroDeControl;
+            }
+        </script>
 
         <label for="semestre">Semestre:</label>
         <input type="text" id="semestre" name="semestre" required><br>
@@ -147,7 +262,7 @@ $carrera=$_GET['carrera']??"";
         <textarea id="problematica" name="problematica" rows="4" required></textarea><br>
 
         <label for="servicioSolicitado">Servicio Solicitado:</label>
-        <input type="text" id="servicioSolicitado" name="servicioSolicitado" required value="servicio solicitado"><br>
+        <input type="text" id="servicioSolicitado" name="servicioSolicitado" required><br>
 
         <label for="observaciones">Observaciones:</label>
         <textarea id="observaciones" name="observaciones" rows="4" required></textarea><br>
