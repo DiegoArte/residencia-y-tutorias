@@ -131,7 +131,7 @@ if ($conn->connect_error) {
 }
 else{
     $sql = "SELECT DISTINCT Nombre FROM `fecha_enviada_tutorias`  WHERE `Tipo`='".$tipo."'";
-    echo $sql;
+    //echo $sql;
     $resultado = mysqli_query($conn,$sql);
     //echo $sql;
     if ($resultado->num_rows > 0){
