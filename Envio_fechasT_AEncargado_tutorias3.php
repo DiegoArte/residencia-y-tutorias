@@ -92,7 +92,7 @@ $conn->close();
             
                 <?php
                 include 'php/Mostrar_tablaT_AEncargadoT.php';
-                $tipo = '1';
+                $tipo = '3';
                 Tabla($nombre,$tipo);
                 ?>
                 <form action="php/Mostrar_tablaT_AEncargadoT.php" class="Tabla_contenido" method="post">
