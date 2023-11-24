@@ -1,6 +1,12 @@
 <?php
 
+$revision=Revision::find("idalumno='$idsec' and iddocente='$id'");
+
 $chats=Chat::find("(idinput='$id' and idaoutput='$idsec') or (idinput='$idsec' and idaoutput='$id')");
+
+if(sizeof($revision)>0){
+    $revision=$revision[0];
+}
 
 ?>
 
@@ -8,24 +14,24 @@ $chats=Chat::find("(idinput='$id' and idaoutput='$idsec') or (idinput='$idsec' a
     <form class="checklist cajaRevision" method="POST" action="">
         <input type="text" name="iddocente" style="display: none" value="<?php echo $id; ?>">
         <input type="text" name="idalumno" style="display: none" value="<?php echo $idsec; ?>">
-        <input value="1" name="nombreProyecto" type="checkbox" id="01">
+        <input value="1" name="nombreProyecto" type="checkbox" id="01" <?php if($revision->nombreProyecto==1){echo "checked";} ?>>
         <label for="01">Nombre del proyecto</label>
-        <textarea name="comnombreProyecto" id="" cols="20" rows="2" placeholder="Escribe un comentario" ></textarea>
-        <input value="1" name="empresa" type="checkbox" id="02">
+        <textarea name="comnombreProyecto" id="" cols="20" rows="2" placeholder="Escribe un comentario" ><?php echo $revision->comnombreProyecto ?></textarea>
+        <input value="1" name="empresa" type="checkbox" id="02" <?php if($revision->empresa==1){echo "checked";} ?>>
         <label for="02">Empresa</label>
-        <textarea name="comempresa" id="" cols="20" rows="2" placeholder="Escribe un comentario" ></textarea>
-        <input value="1" name="objetivos" type="checkbox" id="03">
+        <textarea name="comempresa" id="" cols="20" rows="2" placeholder="Escribe un comentario" ><?php echo $revision->comempresa ?></textarea>
+        <input value="1" name="objetivos" type="checkbox" id="03" <?php if($revision->objetivos==1){echo "checked";} ?>>
         <label for="03">Objetivos</label>
-        <textarea name="comobjetivos" id="" cols="20" rows="2" placeholder="Escribe un comentario" ></textarea>
-        <input value="1" name="justificacion" type="checkbox" id="04">
+        <textarea name="comobjetivos" id="" cols="20" rows="2" placeholder="Escribe un comentario" > <?php echo $revision->comobjetivos ?></textarea>
+        <input value="1" name="justificacion" type="checkbox" id="04" <?php if($revision->justificacion==1){echo "checked";} ?>>
         <label for="04">Justificación</label>
-        <textarea name="comjustificacion" id="" cols="20" rows="2" placeholder="Escribe un comentario" ></textarea>
-        <input value="1" name="cronograma" type="checkbox" id="05">
+        <textarea name="comjustificacion" id="" cols="20" rows="2" placeholder="Escribe un comentario" > <?php echo $revision->comjustificacion ?></textarea>
+        <input value="1" name="cronograma" type="checkbox" id="05" <?php if($revision->cronograma==1){echo "checked";} ?>>
         <label for="05">Cronograma de act.</label>
-        <textarea name="comcronograma" id="" cols="20" rows="2" placeholder="Escribe un comentario" ></textarea>
-        <input value="1" name="descripcion" type="checkbox" id="06">
+        <textarea name="comcronograma" id="" cols="20" rows="2" placeholder="Escribe un comentario" ><?php echo $revision->comcronograma ?></textarea>
+        <input value="1" name="descripcion" type="checkbox" id="06" <?php if($revision->descripcion==1){echo "checked";} ?>>
         <label for="06">Descripción de act.</label>
-        <textarea name="comdescripcion" id="" cols="20" rows="2" placeholder="Escribe un comentario" ></textarea>
+        <textarea name="comdescripcion" id="" cols="20" rows="2" placeholder="Escribe un comentario" ><?php echo $revision->comdescripcion ?></textarea>
         <button id="enviarFormulario">
             <div class="svg-wrapper-1">
                 <div class="svg-wrapper">
@@ -37,5 +43,6 @@ $chats=Chat::find("(idinput='$id' and idaoutput='$idsec') or (idinput='$idsec' a
             </div>
             <span>Enviar</span>
         </button>
+        
     </form>
 </div>
