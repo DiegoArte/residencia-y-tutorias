@@ -23,3 +23,23 @@ chatInput.addEventListener("keydown", (e) => {
     }
 });
 sendChatBtn.addEventListener("click", handleChat);
+
+
+const uno=document.getElementById('01');
+const dos=document.getElementById('02');
+const tres=document.getElementById('03');
+const cuatro=document.getElementById('04');
+const cinco=document.getElementById('05');
+const seis=document.getElementById('06');
+const contenedor=document.getElementById('containerLiberar');
+const liberado=document.getElementById('liberado');
+
+if(uno.checked && dos.checked && tres.checked && cuatro.checked && cinco.checked && seis.checked) {
+    const boton=document.createElement('button');
+    boton.classList.add("btn", "btn-success");
+    boton.textContent="Liberar";
+    contenedor.appendChild(boton);
+    boton.addEventListener('click', function() {
+        liberado.value='1';
+    });
+}

@@ -18,6 +18,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             $revision=new Revision($_POST);
             $revision->actualizar("idalumno='$idsec'");
         }
+        $valueLiberado=$_POST['liberado'];
+        $actualizarDocumento=mysqli_query($db, "UPDATE documento SET liberado='$valueLiberado' WHERE idalumno='$idsec'");
         
     } else {
         $chat=new Chat($_POST);

@@ -8,12 +8,15 @@ if(sizeof($revision)>0){
     $revision=$revision[0];
 }
 
+$documento = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM documento WHERE idalumno='$idsec'"));
+
 ?>
 
 <div class="col">
     <form class="checklist cajaRevision" method="POST" action="">
         <input type="text" name="iddocente" style="display: none" value="<?php echo $id; ?>">
         <input type="text" name="idalumno" style="display: none" value="<?php echo $idsec; ?>">
+        <input type="text" name="liberado" id="liberado" style="display: none" value="0">
         <input value="1" name="nombreProyecto" type="checkbox" id="01" <?php if($revision->nombreProyecto==1){echo "checked";} ?>>
         <label for="01">Nombre del proyecto</label>
         <textarea name="comnombreProyecto" id="" cols="20" rows="2" placeholder="Escribe un comentario" ><?php echo $revision->comnombreProyecto ?></textarea>
@@ -43,12 +46,12 @@ if(sizeof($revision)>0){
             </div>
             <span>Enviar</span>
         </button>
-        <?php if($revision->nombreProyecto==1 && $revision->empresa==1 && $revision->objetivos==1 && $revision->justificacion==1 && $revision->cronograma==1 && $revision->descripcion==1){
+        <?php
+        if($documento['liberado']==0){
             ?>
-
-            
-
+            <div id="containerLiberar"></div>
             <?php
-        } ?>
+        }
+        ?>
     </form>
 </div>
