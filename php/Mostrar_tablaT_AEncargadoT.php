@@ -130,7 +130,8 @@ if ($conn->connect_error) {
     //die("Conexión fallida: " . $conn->connect_error);
 }
 else{
-    $sql = "SELECT * FROM `fecha_enviada_tutorias`  WHERE `Tipo`='".$tipo."'";
+    $sql = "SELECT DISTINCT Nombre FROM `fecha_enviada_tutorias`  WHERE `Tipo`='".$tipo."'";
+    echo $sql;
     $resultado = mysqli_query($conn,$sql);
     //echo $sql;
     if ($resultado->num_rows > 0){
@@ -199,7 +200,7 @@ else{
                     echo"<br>";
                 }
                 echo"</td> ";
-            
+                echo "</tr>";
             }
         
         
@@ -208,7 +209,7 @@ else{
 
 
             
-            echo "</tr>";
+            
            
 
         echo "</table>";
