@@ -17,6 +17,7 @@ $carrera=$_GET['carrera']??"";
     <link rel="stylesheet" href="css/estiloInforRes.css" />
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">
     <title>Informe de resultados</title>
     <link rel="icon" type="image/gif" href="css/plano.gif">
     </head>
@@ -34,7 +35,10 @@ $carrera=$_GET['carrera']??"";
     </header>
     <main>
         <div class="barraLateral fixed h-100">
-            <a href="#"></a>
+        <a href="formatos.php" class="back-arrow rounded-pill d-flex justify-content-start">
+            <img src="img/back.svg" alt="" height="50">
+            <span class="regresar d-none text-white m-auto">Regresar</span>
+        </a>
         </div>
         <div class="container" style="margin-top: 80px;">
             <div class="row">
