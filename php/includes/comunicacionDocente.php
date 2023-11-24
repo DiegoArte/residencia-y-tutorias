@@ -43,6 +43,12 @@ if(sizeof($revision)>0){
             </div>
             <span>Enviar</span>
         </button>
-        
+        <?php if($revision->nombreProyecto==1 && $revision->empresa==1 && $revision->objetivos==1 && $revision->justificacion==1 && $revision->cronograma==1 && $revision->descripcion==1){
+            ?>
+
+            
+
+            <?php
+        } ?>
     </form>
 </div>
