@@ -192,7 +192,7 @@ $carrera=$_GET['carrera']??"";
 
     <form id="form"> <!-- Inicio del formulario -->
         <h3>Formato de Canalización</h3><hr><br>
-        <label for="nombreCompleto">Nombre Completo del Estudiante:</label>
+        <label for="nombreCompleto">Nombre Completo del Estudiante:*</label>
         <!--<input type="text" id="nombre" name="nombre" required><br>-->
         <select name="nombre" id="nombre" onchange="guardarValorSeleccionado()" required>
             <option value="0">Seleccione</option>
@@ -209,14 +209,34 @@ $carrera=$_GET['carrera']??"";
             $jsonAlumnos = json_encode($alumnosArray);
             ?>
         </select>
-        <!-- Agregar un campo oculto para almacenar el valor seleccionado -->
-        <input type="hidden" name="valor_seleccionado" id="valorSeleccionado" value="">
 
-        <label for="fecha">Fecha:</label>
+
+        <label for="fecha">Fecha:*</label>
         <input type="date" id="fecha" name="fecha" required><br>
 
         <label for="numeroControl">Número de Control:</label>
         <input type='text' id='numeroControl' name='numeroControl' placeholder='Selecciona un nombre del estudiante' value='' readonly><br>
+
+        <label for="semestre">Semestre:</label>
+        <?php echo "<input type='text' id='semestre' name='semestre' value='$semestre' readonly><br>";?>
+
+        <label for="edad">Edad:*</label>
+        <input type="number" id="edad" name="edad" required><br>
+
+        <label for="nombreTutor">Nombre del Tutor(a):*</label>
+        <!--<input type="text" id="nombreTutor" name="nombreTutor" required><br>-->
+        <select name="nombreTutor" id="nombreTutor" required>
+            <option value="0">Seleccione</option>
+            <?php
+            while ($filaDoc = $resultadoDoc->fetch_assoc()) {
+                echo '<option value="' . $filaDoc['NombredelDocente'] . '">' . $filaDoc['NombredelDocente'] . '</option>';
+            }                        
+            ?>
+        </select>
+
+        <label for="estudio" class="form-label">Plan de estudio</label>
+        <!--<select class="form-select" id="estudio" required>-->
+        <input type='text' id='estudio' name='estudio' placeholder='Selecciona un nombre del estudiante' value='' readonly><br>
 
         <script>
             function guardarValorSeleccionado() {
@@ -234,44 +254,20 @@ $carrera=$_GET['carrera']??"";
 
                 // Acceder a la propiedad deseada y asignarla al campo oculto
                 document.getElementById("numeroControl").value = selectedAlumno.NumeroDeControl;
+
+
+                // Acceder a la propiedad deseada y asignarla al campo oculto
+                document.getElementById("estudio").value = selectedAlumno.Academia;
             }
         </script>
 
-        <label for="semestre">Semestre:</label>
-        <?php echo "<input type='text' id='semestre' name='semestre' value='$semestre' readonly><br>";?>
-
-        <label for="edad">Edad:</label>
-        <input type="number" id="edad" name="edad" required><br>
-
-        <label for="nombreTutor">Nombre del Tutor(a):</label>
-        <!--<input type="text" id="nombreTutor" name="nombreTutor" required><br>-->
-        <select name="nombreTutor" id="nombreTutor" required>
-            <option value="0">Seleccione</option>
-            <?php
-            while ($filaDoc = $resultadoDoc->fetch_assoc()) {
-                echo '<option value="' . $filaDoc['NombredelDocente'] . '">' . $filaDoc['NombredelDocente'] . '</option>';
-            }                        
-            ?>
-        </select>
-
-        <label for="estudio" class="form-label">Plan de estudio</label>
-        <select class="form-select" id="estudio" required>
-            <option value="0">Seleccione</option> 
-            <option value="Ingeniería Industrial">Ingeniería Industrial</option>
-            <option value="Ingeniería en Sistemas Computacionales">Ingeniería en Sistemas Computacionales</option>
-            <option value="Ingeniería en Electromecánica">Ingeniería en Electromecánica</option>
-            <option value="Ingeniería en Gestión Empresarial">Ingeniería en Gestión Empresarial</option>
-            <option value="Contador Público">Contador Público</option>
-            <option value="Ingeniería en Administración">Ingeniería en Administración</option>
-        </select>
-
-        <label for="problematica">Problemática Identificada:</label>
+        <label for="problematica">Problemática Identificada:*</label>
         <textarea id="problematica" name="problematica" rows="4" required></textarea><br>
 
-        <label for="servicioSolicitado">Servicio Solicitado:</label>
+        <label for="servicioSolicitado">Servicio Solicitado:*</label>
         <input type="text" id="servicioSolicitado" name="servicioSolicitado" required><br>
 
-        <label for="observaciones">Observaciones:</label>
+        <label for="observaciones">Observaciones:*</label>
         <textarea id="observaciones" name="observaciones" rows="4" required></textarea><br>
 
         <label for="imagen1">Firma del coordindor(a) de tutorías:</label>
