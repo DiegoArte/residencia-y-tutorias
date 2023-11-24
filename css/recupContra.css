@@ -25,13 +25,13 @@
     position: fixed;
     right: 10%;
     background-color: rgb(255, 78, 78);
-    font-size:15px;
+    font-size:20px;
     border-radius: 15px;
     padding: 10px;
     border-color: transparent;
     color:white;
     cursor: pointer;
-    width: 130px;
+    width: 180px;
 }
 
 .cerrar:hover{
@@ -45,13 +45,13 @@
     transform: translateX(-50%);
 
     background-color: rgb(255, 78, 78);
-    font-size:15px;
+    font-size:20px;
     border-radius: 15px;
     padding: 10px;
     border-color: transparent;
     color:white;
     cursor: pointer;
-    width: 130px;
+    width: 180px;
 }
 
 .cerrar1:hover{
@@ -63,13 +63,13 @@
     position: fixed;
     left: 10%;
     background-color: #5252fc;
-    font-size: 15px;
+    font-size: 20px;
     border-radius: 15px;
     padding: 10px;
     border-color: transparent;
     color:white;
     cursor: pointer;
-    width: 130px;
+    width: 180px;
 }
 
 .enviar1:hover{
@@ -147,7 +147,7 @@
     left: 50%;
     transform: translateX(-50%);
     background-color: #5252fc;
-    font-size: 15px;
+    font-size: 20px;
     border-radius: 15px;
     padding: 10px;
     border-color: transparent;

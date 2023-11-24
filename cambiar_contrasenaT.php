@@ -102,7 +102,7 @@ $conexion->close();
 
         .modal-content {
             background-color: #0D65D9;
-            color: #000000;
+            color: #ffffff;
             width: 500px;
             right: 100px;
             margin: 18% auto; /* Centrar verticalmente */
@@ -206,7 +206,7 @@ $conexion->close();
             font-size: 30px;
             font-weight: bold;
             font-family: 'Open Sans', sans-serif;
-            color: #000000;
+            color: #ffffff;
             text-align: center;
 
 
@@ -424,11 +424,11 @@ $conexion->close();
                         var numberRequirement = document.getElementById("number-requirement");
                         var specialCharacterRequirement = document.getElementById("special-character-requirement");
                         
-                        lengthRequirement.style.color = password.length >= 8 ? "white" : "red";
-                        uppercaseRequirement.style.color = /[A-Z]/.test(password) ? "white" : "red";
-                        lowercaseRequirement.style.color = /[a-z]/.test(password) ? "white" : "red";
-                        numberRequirement.style.color = /\d/.test(password) ? "white" : "red";
-                        specialCharacterRequirement.style.color = /[^A-Za-z0-9]/.test(password) ? "white" : "red";
+                        lengthRequirement.style.color = password.length >= 8 ? "#66ff66" : "red";
+                        uppercaseRequirement.style.color = /[A-Z]/.test(password) ? "#66ff66"  : "red";
+                        lowercaseRequirement.style.color = /[a-z]/.test(password) ? "#66ff66"  : "red";
+                        numberRequirement.style.color = /\d/.test(password) ? "#66ff66"  : "red";
+                        specialCharacterRequirement.style.color = /[^A-Za-z0-9]/.test(password) ? "#66ff66"  : "red";
                         
                         // Aplica clases al campo de contraseña
                         nuevaContrasenaInput.className = (

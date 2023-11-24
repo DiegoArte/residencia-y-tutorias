@@ -54,7 +54,7 @@ require 'php/db.php';
 $conn=conectar();
 
 // Consulta SQL para obtener las fechas de la tabla fecharepo1
-$sql = "SELECT fechaini, fechafin FROM fecharepo1";
+$sql = "SELECT fechaini, fechafin FROM fecharepotu1";
 $result = $conn->query($sql);
 
 

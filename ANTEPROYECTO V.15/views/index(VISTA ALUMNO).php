@@ -132,6 +132,8 @@ $conn->close();
                                 <th>Descargar</th>
                                 <th>Ver PDF</th>
                                 <th>Eliminar</th>
+                                <th>Editar</th>
+                                
                                 <?php
                                 require_once "../../php/db.php";
                                 $conexion = conectar();
@@ -146,9 +148,7 @@ $conn->close();
                         <tbody>
                             <?php
                            
-                           
-
-                            
+            
                             $consulta = mysqli_query($conexion, "SELECT * FROM documento WHERE idalumno='$id' GROUP BY nombrealumno");
 
                             while ($fila = mysqli_fetch_assoc($consulta)):
@@ -188,6 +188,12 @@ $conn->close();
                                         Eliminar
                                     </button>
                                     </td>
+                                    <td>
+                                    <a href="editar_registro.php">
+                                        <button class="btn btn-warning btn-editar" data-id="<?php echo $fila['idalumno']; ?>">
+                                            Editar
+                                        </button>
+                                    </td>
                                     <?php
                                         if(mysqli_query($conexion, "SELECT Alumno FROM asesorados WHERE Alumno='$id'")->num_rows>0){
                                     ?>
@@ -203,10 +209,12 @@ $conn->close();
                                         }
                                     ?>
 
+
                                 </tr>
 
                             <?php endwhile; ?>
 
+                           
                             </tr>
                         </tbody>
                     </table>
@@ -235,6 +243,8 @@ $conn->close();
                 if (response.ok) {
                     // Registro eliminado exitosamente
                     // Puedes actualizar la interfaz o hacer lo que necesites
+                    window.close();
+                    const nuevaVentana = window.open("index(VISTA ALUMNO).php");
                     console.log("Registro eliminado correctamente");
                 } else {
                     // Hubo un error al eliminar el registro
@@ -247,9 +257,6 @@ $conn->close();
         });
     });
 </script>
-
-            
-</body>
 
 
 <?php include "agregar.php"; ?>

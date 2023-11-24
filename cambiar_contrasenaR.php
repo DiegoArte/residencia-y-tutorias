@@ -103,7 +103,7 @@ $conexion->close();
 
         .modal-content {
             background-color: #0D65D9;
-            color: #000000;
+            color: #ffffff;
             width: 500px;
             right: 100px;
             margin: 18% auto; /* Centrar verticalmente */
@@ -115,9 +115,7 @@ $conexion->close();
         }
         .enlace-exito {
             color:#2c2f63;  /* Cambia el color del texto del enlace a blanco */
-           
             padding: 5px 10px; /* Añade relleno alrededor del enlace para hacerlo más grande */
-            
             text-decoration: none; /* Quita el subrayado del enlace */
             font-weight: bold; /* Hace que el texto del enlace sea más audaz */
             transition: background-color 0.3s, color 0.3s; /* Agrega una transición suave al color de fondo y al color del texto al pasar el cursor sobre el enlace */
@@ -199,7 +197,7 @@ $conexion->close();
             font-size: 30px;
             font-weight: bold;
             font-family: 'Open Sans', sans-serif;
-            color: #000000;
+            color: #ffffff;
             text-align: center;
 
 
@@ -282,7 +280,7 @@ $conexion->close();
 
         /* ENTRADAS DE TEXTO DONDE VA LA CONTRASEÑA*/
         input {
-            background: linear-gradient(to bottom, #49C2F2, #A3E7FD);
+            background: WHITE;
             border: 2px solid #1E5C97;
             height: 40px;
             width: 300px;
@@ -293,7 +291,7 @@ $conexion->close();
         }
 
         input:hover {
-            background: linear-gradient(to bottom, #45B8E8, #A3E7FD);
+            background: WHITE;
             border: 2px solid #1E5C97;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
@@ -405,7 +403,7 @@ $conexion->close();
                         }
                     }
                                 
-                    // JavaScript para validar la contraseña en tiempo real
+                    // JavaScript para validar la contraseña en tiempo real "#aef359"
                     var nuevaContrasenaInput = document.getElementById("nuevaContrasena");
                     var passwordRequirements = document.getElementById("password-requirements");
                     
@@ -417,11 +415,11 @@ $conexion->close();
                         var numberRequirement = document.getElementById("number-requirement");
                         var specialCharacterRequirement = document.getElementById("special-character-requirement");
                         
-                        lengthRequirement.style.color = password.length >= 8 ? "white" : "red";
-                        uppercaseRequirement.style.color = /[A-Z]/.test(password) ? "white" : "red";
-                        lowercaseRequirement.style.color = /[a-z]/.test(password) ? "white" : "red";
-                        numberRequirement.style.color = /\d/.test(password) ? "white" : "red";
-                        specialCharacterRequirement.style.color = /[^A-Za-z0-9]/.test(password) ? "white" : "red";
+                        lengthRequirement.style.color = password.length >= 8 ? "#66ff66" : "red";
+                        uppercaseRequirement.style.color = /[A-Z]/.test(password) ? "#66ff66"  : "red";
+                        lowercaseRequirement.style.color = /[a-z]/.test(password) ? "#66ff66"  : "red";
+                        numberRequirement.style.color = /\d/.test(password) ? "#66ff66"  : "red";
+                        specialCharacterRequirement.style.color = /[^A-Za-z0-9]/.test(password) ? "#66ff66"  : "red";
                         
                         // Aplica clases al campo de contraseña
                         nuevaContrasenaInput.className = (
