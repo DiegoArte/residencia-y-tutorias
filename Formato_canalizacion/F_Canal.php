@@ -163,9 +163,8 @@ $carrera=$_GET['carrera']??"";
             $consultaAlumnos = "SELECT NombreDelEstudiante, Academia, NumeroDeControl FROM alumnosnormales WHERE Numerocontrolgrupo = '$numeroControlGrupo'";
             $resultadoAlumnos = $mysqli->query($consultaAlumnos);
 
-            //echo '<script>';
-            //echo 'var resultadoAlumnos = ' . json_encode($resultadoAlumnos) . ';';
-            //echo '</script>';
+            $consultaDoc = "SELECT NombredelDocente,Asesor FROM docentes";
+            $resultadoDoc = $mysqli->query($consultaDoc);
 
             $consultaGrupos = "SELECT Semestre FROM grupos WHERE NumerodeControl = '$numeroControlGrupo'";
             $resultadoGrupos = $mysqli->query($consultaGrupos);
@@ -239,13 +238,21 @@ $carrera=$_GET['carrera']??"";
         </script>
 
         <label for="semestre">Semestre:</label>
-        <input type="text" id="semestre" name="semestre" required><br>
+        <?php echo "<input type='text' id='semestre' name='semestre' value='$semestre' readonly><br>";?>
 
         <label for="edad">Edad:</label>
         <input type="number" id="edad" name="edad" required><br>
 
         <label for="nombreTutor">Nombre del Tutor(a):</label>
-        <input type="text" id="nombreTutor" name="nombreTutor" required><br>
+        <!--<input type="text" id="nombreTutor" name="nombreTutor" required><br>-->
+        <select name="nombreTutor" id="nombreTutor" required>
+            <option value="0">Seleccione</option>
+            <?php
+            while ($filaDoc = $resultadoDoc->fetch_assoc()) {
+                echo '<option value="' . $filaDoc['NombredelDocente'] . '">' . $filaDoc['NombredelDocente'] . '</option>';
+            }                        
+            ?>
+        </select>
 
         <label for="estudio" class="form-label">Plan de estudio</label>
         <select class="form-select" id="estudio" required>
