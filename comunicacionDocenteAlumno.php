@@ -10,8 +10,15 @@ require 'php/Revision.php';
 
 if($_SERVER['REQUEST_METHOD']==='POST'){
     if(count($_POST)>3) {
-        $revision=new Revision($_POST);
-        $revision->crear();
+        $filas=Revision::find("idalumno='$idsec'");
+        if(count($filas)==0) {
+            $revision=new Revision($_POST);
+            $revision->crear();
+        }else {
+            $revision=new Revision($_POST);
+            $revision->actualizar("idalumno='$idsec'");
+        }
+        
     } else {
         $chat=new Chat($_POST);
         $chat->crear();
