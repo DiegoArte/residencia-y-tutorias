@@ -200,6 +200,8 @@ else{
                 
         <form action="php/elininarEF.php" method="post">      
         <input type="hidden" name="id" value="<?php echo $row3["id"]?>">
+        <input type="hidden" name="sitio" value="Envio_fechas.php">
+        <input type="hidden" name="datos" value="fecha_enviada">
         <button type="submit" class="elimina"><i class="fa-solid fa-trash"></i></button>
         </form>
 

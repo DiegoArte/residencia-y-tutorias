@@ -18,8 +18,7 @@ session_start();
     <link rel="stylesheet" href="css/Envio_fecha.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">  
-    <link rel="stylesheet" href="css/normalize.css">  
-    
+    <link rel="stylesheet" href="css/normalize.css"> 
     <title>Envío de fecha tutor o asesor</title>
 </head>
 <body>

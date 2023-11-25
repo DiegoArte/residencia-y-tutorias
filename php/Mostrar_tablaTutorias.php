@@ -135,6 +135,7 @@ if ($conn->connect_error) {
 }
 else{
     $sql = "SELECT * FROM `fecha_enviada_tutorias` WHERE `Nombre`='".$login."' and `Tipo`='".$tipo2."';";
+    echo $sql;
     $resultado = mysqli_query($conn,$sql);
     if ($resultado->num_rows > 0){
         echo "<table id='table-responsive' >";
