@@ -135,7 +135,7 @@ if ($conn->connect_error) {
 }
 else{
     $sql = "SELECT * FROM `fecha_enviada_tutorias` WHERE `Nombre`='".$login."' and `Tipo`='".$tipo2."';";
-    echo $sql;
+    //echo $sql;
     $resultado = mysqli_query($conn,$sql);
     if ($resultado->num_rows > 0){
         echo "<table id='table-responsive' >";
@@ -178,7 +178,7 @@ else{
             echo "<td class = 'tipo' >" ;
             
             $axu = $login;
-            $sql3 = "SELECT * FROM `fecha_enviada_tutorias` WHERE Nombre='$axu';";
+            $sql3 = "SELECT * FROM `fecha_enviada_tutorias` WHERE Nombre='$axu'and `Tipo`='".$tipo2."';";
             $resultado3 = mysqli_query($conn,$sql3);
             while($row3 = $resultado3->fetch_array()){
                 //echo "". $row2["Nombre"]. "";
@@ -201,7 +201,7 @@ else{
         }
             echo"</td>";
             echo "<td class='t'>";
-            $sql3 = "SELECT * FROM `fecha_enviada_tutorias` WHERE Nombre='$axu';";
+            $sql3 = "SELECT * FROM `fecha_enviada_tutorias` WHERE Nombre='$axu' and `Tipo`='".$tipo2."';";
             $resultado3 = mysqli_query($conn,$sql3);
            
             while($row3 = $resultado3->fetch_array()){
