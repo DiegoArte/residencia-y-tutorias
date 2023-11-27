@@ -52,7 +52,7 @@
                 <?php
                 if (isset($_POST['enviar'])) {
                     require_once "../includes/db.php"; // Incluye el archivo de conexión a la base de datos
-                    
+                
 
                     // Recupera los datos del formulario
                     $idalumno = $_POST['idalumno'];
@@ -76,28 +76,22 @@
                 }
                 ?>
 
-                <form method="post" action="">
-                    <input type="text" name="idalumno" placeholder="ID del alumno">
-                    <input type="text" name="nombrealumno" placeholder="Nombre del alumno">
-
-                    
-
-                    <div class="btn_enviar">
-                        <button class="btn btn-primary enviar-otro" type="submit" name="enviar">Enviar</button>
-                    </div>
-                </form>
-
                 <?php
-                require_once "../includes/db.php";
-
+                require_once "../includes/db.php"; // Asegúrate de incluir tu archivo de conexión a la base de datos
+                
                 $carreras = array(); // Un arreglo para almacenar las carreras
+                
+                // Consulta para obtener los nombres de los docentes
+                $query = "SELECT NombredelDocente FROM docentes";
+                $result = mysqli_query($conexion, $query);
+
+                // Verifica si hay resultados y almacena los nombres en el arreglo $carreras
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $carreras[] = $row['NombredelDocente'];
+                    }
+                }
                 ?>
-                        <?php
-                        foreach ($carreras as $carrera) {
-                            echo '<option value="' . $carrera . '">' . $carrera . '</option>';
-                        }
-                        ?>
-                    </select>
 
                 <div class="container">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -107,6 +101,7 @@
                                 <th>Nombre</th>
                                 <th>Nombre del proyecto</th>
                                 <th>Empresa</th>
+                                <th>Asesor</th>
                                 <th>Archivo</th>
                                 <th>Descargar</th>
                                 <th>Ver PDF</th>
@@ -128,12 +123,24 @@
                                         <td>
                                             <?php echo $fila['nombrealumno']; ?>
                                         </td>
-                                        
+                                   
+
                                         <td>
                                             <?php echo $fila['nombreproyecto']; ?>
                                         </td>
                                         <td>
                                             <?php echo $fila['empresa']; ?>
+                                        </td>
+                                        <td>
+                                            <select name="nombre_docente" id="docenteSelect">
+                                                <?php
+                                                foreach ($carreras as $docente) {
+                                                    echo '<option value="' . $docente . '">' . $docente . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+
+                                            </select>
                                         </td>
                                         <td>
                                             <?php echo $fila['archivo']; ?>
@@ -160,23 +167,40 @@
 
                 </div>
             </div>
-            <script>
-function filtrarRegistros() {
-    var selectedCarrera = document.getElementById('carreraSelect').value;
-    var tableRows = document.querySelectorAll('#dataTable tbody tr');
 
-    for (var i = 0; i < tableRows.length; i++) {
-        var carreraCell = tableRows[i].querySelector('td:nth-child(3)'); // La tercera columna contiene la carrera
-        if (selectedCarrera === 'Todas' || carreraCell.textContent === selectedCarrera) {
-            tableRows[i].style.display = 'table-row'; // Muestra la fila
-        } else {
-            tableRows[i].style.display = 'none'; // Oculta la fila
+            
+
+        <form method="post" action="">
+            <div class="btn_guardar">
+                <button class="btn btn-success guardar-cambios" type="submit" name="guardar_cambios">Guardar Cambios</button>
+            </div>
+        </form>
+        <?php
+        if (isset($_POST['guardar_cambios'])) {
+            require_once "../includes/db.php"; // Asegúrate de incluir tu archivo de conexión a la base de datos
+
+            // Recupera los datos del formulario o los datos que deseas guardar en la nueva tabla
+            $idalumno = $_POST['idalumno'];
+            $nombrealumno = $_POST['nombrealumno'];
+            $nombreass = $_POST['NombredelDocente'];
+            
+            // Inserta los datos en la nueva tabla
+            $sqlGuardarCambios = "INSERT INTO asesorados (id, alumno, asesor) VALUES ('$idalumno', '$nombrealumno', '$nombreass')";
+            $resultadoGuardarCambios = mysqli_query($conexion, $sqlGuardarCambios);
+
+            if ($resultadoGuardarCambios) {
+                echo "<script language='JavaScript'>
+                alert('Cambios guardados en la nueva tabla');
+                </script>";
+            } else {
+                echo "<script language='JavaScript'>
+                alert('Error al guardar los cambios en la nueva tabla: " . mysqli_error($conexion) . "');
+                </script>";
+            }
         }
-    }
-}
-</script>
+        ?>
 
-</body >
+</body>
 
 
-</html >
+</html>
