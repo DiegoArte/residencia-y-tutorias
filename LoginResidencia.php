@@ -37,9 +37,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $resultado = $conexion->query($sql);
                 $resultado=$resultado->fetch_assoc();
                 $_SESSION['nombre'] = $resultado['NombredelDocente'];
-                if($resultado['Presidente']==1) {
+                if($resultado['Presidente']==1 and $resultado['Asesor']==1) {
+                    $_SESSION['presidente'] = true;
+                    header("Location: ANTEPROYECTO V.15/views/index(VISTA ASESOR).php");
+                }else if($resultado['Presidente']==1) {
                     header("Location: asignar_Asesores.php");
                 } else if($resultado['Asesor']==1){
+                    $_SESSION['presidente'] = false;
                     header("Location: ANTEPROYECTO V.15/views/index(VISTA ASESOR).php");
                 }
                 exit;
