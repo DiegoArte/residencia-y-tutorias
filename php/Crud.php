@@ -20,6 +20,17 @@ class Crud {
         $resultado= self::$db->query($query);
     }
 
+    public function actualizar($clause) {
+        $atributos=$this->sanitizar();
+        $valores=[];
+        foreach($atributos as $key=>$value) {
+            $valores[]="{$key}='{$value}'";
+        }
+        $string=join(', ', $valores);
+        $query="UPDATE ".static::$tabla." SET $string WHERE ".$clause;
+        $resultado= self::$db->query($query);
+    }
+
     public static function eliminar($clause) {
         $query="DELETE FROM ".static::$tabla." WHERE ".$clause;
         $resultado=self::$db->query($query);

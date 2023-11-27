@@ -39,7 +39,7 @@ foreach ($_FILES['fichero']['name'] as $key => $value){
             }
             $query = "INSERT INTO `fecha_enviada_tutorias`(`id`, `Archivo`, `Nombre`, `Tipo_de_archivo`, `ruta`, `tipo`) 
           VALUES (NULL,'$nombrefinal2','$Nombre', '$Tipo_dearch', '$upload','$tipoFrecha')";
-          echo $query;
+          //echo $query;
 
 
 $result = mysqli_query($connect, $query);

@@ -18,12 +18,12 @@ session_start();
     <link rel="stylesheet" href="css/Envio_fecha.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">  
-    <link rel="stylesheet" href="css/normalize.css"> 
+    <link rel="stylesheet" href="css/normalize.css">  
     <title>Envío de fecha tutor o asesor</title>
 </head>
 <body>
     <header class="fixed w-100">
-        <a href="ANTEPROYECTO V.15/views/index(VISTA ASESOR).php" class="back-arrow rounded-pill d-flex justify-content-start">
+        <a href="asignar_Tutores.php" class="back-arrow rounded-pill d-flex justify-content-start">
                 <img src="img/back.svg" alt="" height="50">
                 <span class="regresar d-none text-white m-auto">Regresar</span>
         </a>
@@ -54,7 +54,7 @@ require 'php/db.php';
 $conn=conectar();
 
 // Consulta SQL para obtener las fechas de la tabla fecharepo1
-$sql = "SELECT fechaini, fechafin FROM fecharepo3";
+$sql = "SELECT fechaini, fechafin FROM fecharepotu1";
 $result = $conn->query($sql);
 
 
@@ -66,7 +66,7 @@ if ($result->num_rows > 0) {
         $fechaFinal = $row["fechafin"];
         
         echo '<form action="" method="POST">';
-        echo '<h2>Reporte 3</h2>';
+        echo '<h2>Reporte 1</h2>';
         echo '<label>Fecha de inicio</label>';
         echo '<input type="date" name="fechaFinal1" value="' . $fechaInicio . '" readonly >';
         echo '<label>Fecha final</label>';
@@ -91,10 +91,11 @@ $conn->close();
     
             
                 <?php
-                include 'php/Mostrar_tablaT_A3.php';
-                Tabla();
+                include 'php/Mostrar_tablaT_AEncargadoT.php';
+                $tipo = '2';
+                Tabla($nombre,$tipo);
                 ?>
-                <form action="php/Enviartabla.php" class="Tabla_contenido" method="post">
+                <form action="php/Mostrar_tablaT_AEncargadoT.php" class="Tabla_contenido" method="post">
                 
             
         </section>

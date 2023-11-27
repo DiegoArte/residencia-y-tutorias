@@ -110,10 +110,10 @@ $conn->close();
         <a class="beautiful-button7" href="FichaTecnica.php">Ficha técnica</a>
         <a href="Formato_canalizacion/FormatoEncuestaIni.php" class="beautiful-button8">Diagnóstico original</a>
         <a class="beautiful-button9">Evaluacion al docente</a>
-        <a class="beautiful-button10">Lista de asistencia</a>
-        <a  class="beautiful-button3">Informe de resultados</a>
+        <a class="beautiful-button10" href="AsistenciasTut.php">Lista de asistencia</a>
+        <a  class="beautiful-button3" href="pagInfoRes.php">Informe de resultados</a>
         <a href="Formato_canalizacion/F_Canal.php" class="beautiful-button4">Formato de canalización</a>
-        <a class="beautiful-button5">Evaluación al alumno</a>
+        <a class="beautiful-button5" href="pagEvaAl.html">Evaluación al alumno</a>
         <a class="beautiful-button6">Informe parcial</a>        
         <a href="hoja de vida/hv2.php"class="beautiful-button">Hoja de vida</a>
         <a class="beautiful-button1">Plan de acción</a>

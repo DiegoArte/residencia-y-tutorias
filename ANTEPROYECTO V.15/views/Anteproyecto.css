@@ -224,3 +224,22 @@ to {
     transform: translateY(-0.1em);
 }
 }
+
+.cuadro-verde {
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cuadro-rojo {
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}

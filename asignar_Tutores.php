@@ -18,7 +18,9 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/estilo01_botones.css">
     <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">
+
 
     <title>Asignar tutores</title>
 
@@ -26,12 +28,76 @@ session_start();
 
 <body>
 
-<main class="d-flex">
-    <div class="barraLateral fixed h-100">
-        <a href="#"></a>
-    </div>
-</main>
+<?php
+require 'php/app.php';
+$conn = $db;
 
+// Obtener la fecha actual
+$fecha_actual = date('Y-m-d');
+
+// Consultar las fechas de las tablas
+$consulta1 = "SELECT fechaini, fechafin FROM fecharepotu1";
+$consulta2 = "SELECT fechaini, fechafin FROM fecharepotu2";
+$consulta3 = "SELECT fechaini, fechafin FROM fecharepotu3";
+
+$resultado1 = mysqli_query($conn, $consulta1);
+$resultado2 = mysqli_query($conn, $consulta2);
+$resultado3 = mysqli_query($conn, $consulta3);
+
+// Comprobar si la fecha actual está dentro del rango para cada botón
+$mostrar_reporte1 = false;
+$mostrar_reporte2 = false;
+$mostrar_reporte3 = false;
+
+if ($row1 = mysqli_fetch_assoc($resultado1)) {
+    if ($fecha_actual >= $row1['fechaini'] && $fecha_actual <= $row1['fechafin']) {
+        $mostrar_reporte1 = true;
+    }
+}
+
+if ($row2 = mysqli_fetch_assoc($resultado2)) {
+    if ($fecha_actual >= $row2['fechaini'] && $fecha_actual <= $row2['fechafin']) {
+        $mostrar_reporte2 = true;
+    }
+}
+
+if ($row3 = mysqli_fetch_assoc($resultado3)) {
+    if ($fecha_actual >= $row3['fechaini'] && $fecha_actual <= $row3['fechafin']) {
+        $mostrar_reporte3 = true;
+    }
+}
+
+// Cerrar la conexión a la base de datos
+
+// Mostrar los botones en el div "barraLateral" si corresponde
+?>
+<div class="barraLateral fixed h-100">
+<div style="padding-top: 80px;">
+    <?php
+    if ($mostrar_reporte1) {
+        ?>
+        <form style="padding-bottom: 70px;" action="Envio_fechasT_AEncargado_tutorias.php" method="post">
+            <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
+        <?php
+        echo '<button class="botonFec">Reporte 1</button></form>';
+    }
+    if ($mostrar_reporte2) {
+        ?>
+        <form style="padding-bottom: 70px;" action="Envio_fechasT_AEncargado_tutorias2.php" method="post">
+        <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
+        <?php
+        echo '<button class="botonFec"">Reporte 2</button></form>';
+    }
+    if ($mostrar_reporte3) {
+        ?>
+        <form style="padding-bottom: 70px;" action="Envio_fechasT_AEncargado_tutorias3.php" method="post">
+        <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
+        <?php
+        echo '<button class="botonFec"">Reporte 3</button></form>';
+    }
+    ?>
+</div>
+</div>
 
 <header class="fixed w-100">
 <div class="usuarioOp d-flex justify-content-end">
@@ -47,7 +113,7 @@ session_start();
 
 
 <?php
-require 'php/app.php';
+
 require 'php/Grupos.php';
 require 'php/Docentes.php';
 require 'php/Tutorados.php';
