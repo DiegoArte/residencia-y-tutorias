@@ -23,20 +23,7 @@ if (isset($_GET['id'])) {
         $stmtDeleteDocentes->bind_param("i", $id);
 
         if ($stmtDeleteDocentes->execute()) {
-            // Ahora elimina la fila correspondiente en la tabla usuarios
-            $deleteQueryUsuarios = "DELETE FROM usuarios WHERE usuario = ?";
-            $stmtDeleteUsuarios = $mysqli->prepare($deleteQueryUsuarios);
-            $stmtDeleteUsuarios->bind_param("s", $numeroControl);
-
-            if ($stmtDeleteUsuarios->execute()) {
-                // Redirige de nuevo a la página principal o a donde desees después de eliminar
-                header("Location: ../RegistraDOC.php");
-                exit();
-            } else {
-                echo "Error al eliminar fila en usuarios: " . $stmtDeleteUsuarios->error;
-            }
-
-            $stmtDeleteUsuarios->close();
+            header("Location: ../RegistraDOC.php");
         } else {
             echo "Error al eliminar fila en docentes: " . $stmtDeleteDocentes->error;
         }

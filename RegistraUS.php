@@ -177,12 +177,6 @@ session_start();
                 } else {
                     echo "Error al eliminar datos existentes: " . $mysqli->error . "<br>";
                 }
-                $deleteQuery = "DELETE FROM usuarios WHERE tipo_usuario = 'alumno'";
-                if ($mysqli->query($deleteQuery)) {
-                // echo "Datos existentes eliminados correctamente.<br>";
-                } else {
-                    echo "Error al eliminar datos existentes: " . $mysqli->error . "<br>";
-                }
             }
             
             // Cargo la hoja de cálculo
