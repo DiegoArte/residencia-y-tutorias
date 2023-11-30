@@ -105,6 +105,7 @@ $conn->close();
           
     </main>
     <script src="js/envia_FECH.js"></script>
+    <script src="js/recarga.js"></script>
     
     
 

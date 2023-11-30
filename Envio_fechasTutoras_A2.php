@@ -183,6 +183,7 @@ $conn->close();
           
     </main>
     <script src="js/envia_FECH.js"></script>
+    <script src="js/recarga.js"></script>
     <script>
         function mostrarModal2() {
             document.getElementById("myModal").style.display = "block";
