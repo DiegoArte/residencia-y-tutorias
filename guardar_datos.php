@@ -7,7 +7,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 use \ConvertApi\ConvertApi;
 
-$temlateProcesor = new \PhpOffice\PhpWord\TemplateProcessor('..\Nueva_carpeta\Periodo.docx'); 
+$temlateProcesor = new \PhpOffice\PhpWord\TemplateProcessor('..\Formatos\Periodo.docx'); 
 
 
 // Botones de radio
