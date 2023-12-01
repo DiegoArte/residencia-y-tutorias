@@ -1,7 +1,14 @@
+<?php
+session_start();
+$carrera = $_GET['carrera'] ?? "";
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,13 +27,18 @@
     <div class="barraLateral fixed h-100">
     </div>
     <div class="barraLateral fixed h-100">
+
       <header class="fixed w-100">
         <div class="usuarioOp d-flex justify-content-end">
           <img src="img/profile.png" alt="" />
-          <p>Usuario</p>
+          <?php
+          $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+          echo '<p>' . $nombre . '</p>';
+          ?>
           <a href="#">Cerrar sesión</a>
         </div>
-      </header <a href="#"></a>
+      </header>
+
     </div>
     <div class="barraLateral fixed h-100">
     </div>
@@ -85,8 +97,8 @@
             echo "<td>" . $row["nomAlu"] . "</td>";
             echo "<td>" . $row["nomMaes"] . "</td>";
             echo "<td>" . $row["motivo"] . "</td>";
-            // Agrega un botón para responder
-            echo '<td><button onclick="responder()">Responder</button></td>';
+            // Agrega un botón para responder con el atributo data-nombre-maestro
+            echo '<td><button value="' . $row['nomMaes'] . '" onclick="responder(this)">Responder</button></td>';
             // Agrega un botón para abrir pdf en la última columna
             echo '<td><button onclick="abrirPDF(' . $cont . ')">Abrir Pdf</button></td>';
             echo "</tr>";
@@ -130,9 +142,26 @@
       }
     }
 
-    function responder() {
-      alert('Función de responder no implementada');
+
+    function responder(boton) {
+      var nombreMaestro = boton.value;
+
+      // Construye la URL con la variable
+      var url = "contraReferencia/contraRef.php?miVariable=" + encodeURIComponent(nombreMaestro);
+
+      // Redirige a la página del archivo PHP
+      window.location.href = url;
     }
+
+
+
+
+
+
+
+
+
+
 
     function base64toBlob(base64, contentType) {
       contentType = contentType || '';
