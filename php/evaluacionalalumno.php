@@ -14,6 +14,7 @@
         'timeout' => 30000, // Establecer el tiempo de espera en milisegundos (por ejemplo, 10000 milisegundos = 10 segundos)
     ];
 
+
     $Nomb=$_POST["Nombre"];
     $Actividad=$_POST["actividad"];
     $Periodo=$_POST["periodo"];
@@ -60,9 +61,9 @@
     $N7=$_POST["N7"];
     $E7=$_POST["E7"];   
     
-    $Observaciones=$_POST["Observaciones"];
-    $Valor=$_POST["Valor"];
-    $Nivel=$_POST["Nivel"];
+    $Observaciones=$_POST["observaciones"];
+    $Valor=$_POST["valor"];
+    $Nivel=$_POST["nivel"];
     
 
     $templateProcessor-> setValue('Nomb',$Nomb);
@@ -139,7 +140,7 @@
     $result->saveFiles($outputDir);
 
     $currentDate = date('d-m-y');
-    $filename = "Evaluacion Al Alumno {$Nomb} {$currentDate}.pdf";
+    $filename = "Evaluacion al alumno {$Nomb} {$currentDate}.pdf";
     header("Content-Disposition: attachment; filename={$filename}");
     echo file_get_contents('archivos/EvaluacionAl.pdf');
 
