@@ -49,6 +49,59 @@
             <div class="col-sm-12">
                 <h2 class="text-center">Anteproyecto</h2>
 
+                <form method="post" action="">
+    <input type="text" name="idalumno" placeholder="ID del alumno"><br>
+    <input type="text" name="nombrealumno" placeholder="Nombre del alumno"><br>
+    <input type="text" name="nombreass" placeholder="Nombre del asesor"><br>
+    <button type="submit" name="guardar_cambios">Guardar Cambios</button>
+</form>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Verifica si se ha enviado el formulario
+
+    // Establece la conexión a la base de datos (reemplaza con tus propias credenciales)
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "tutorias_residencia";
+
+    // Crea la conexión
+    $conexion = new mysqli($servername, $username, $password, $dbname);
+
+    // Verifica la conexión
+    if ($conexion->connect_error) {
+        die("Conexión fallida: " . $conexion->connect_error);
+    }
+
+    // Prepara la consulta SQL utilizando consultas preparadas
+    $sqlGuardarCambios = "INSERT INTO asesorados (id, alumno, asesor) VALUES (?, ?, ?)";
+
+    // Prepara la declaración
+    $stmt = $conexion->prepare($sqlGuardarCambios);
+
+    // Vincula parámetros y ejecuta la consulta
+    $idalumno = $_POST['idalumno'];
+    $nombrealumno = $_POST['nombrealumno'];
+    $nombreass = $_POST['nombreass'];
+
+    $stmt->bind_param("sss", $idalumno, $nombrealumno, $nombreass);
+
+    if ($stmt->execute()) {
+        echo "<script language='JavaScript'>
+                alert('Cambios guardados en la nueva tabla');
+              </script>";
+    } else {
+        echo "<script language='JavaScript'>
+                alert('Error al guardar los cambios en la nueva tabla: " . $stmt->error . "');
+              </script>";
+    }
+
+    // Cierra la declaración y la conexión
+    $stmt->close();
+    $conexion->close();
+}
+?>
+
                 <?php
                 if (isset($_POST['enviar'])) {
                     require_once "../includes/db.php"; // Incluye el archivo de conexión a la base de datos
@@ -192,58 +245,7 @@
 
             
 
-            <form method="post" action="">
-    <input type="text" name="idalumno" placeholder="ID del alumno"><br>
-    <input type="text" name="nombrealumno" placeholder="Nombre del alumno"><br>
-    <input type="text" name="nombreass" placeholder="Nombre del asesor"><br>
-    <button type="submit" name="guardar_cambios">Guardar Cambios</button>
-</form>
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Verifica si se ha enviado el formulario
-
-    // Establece la conexión a la base de datos (reemplaza con tus propias credenciales)
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "tutorias_residencia";
-
-    // Crea la conexión
-    $conexion = new mysqli($servername, $username, $password, $dbname);
-
-    // Verifica la conexión
-    if ($conexion->connect_error) {
-        die("Conexión fallida: " . $conexion->connect_error);
-    }
-
-    // Prepara la consulta SQL utilizando consultas preparadas
-    $sqlGuardarCambios = "INSERT INTO asesorados (id, alumno, asesor) VALUES (?, ?, ?)";
-
-    // Prepara la declaración
-    $stmt = $conexion->prepare($sqlGuardarCambios);
-
-    // Vincula parámetros y ejecuta la consulta
-    $idalumno = $_POST['idalumno'];
-    $nombrealumno = $_POST['nombrealumno'];
-    $nombreass = $_POST['nombreass'];
-
-    $stmt->bind_param("sss", $idalumno, $nombrealumno, $nombreass);
-
-    if ($stmt->execute()) {
-        echo "<script language='JavaScript'>
-                alert('Cambios guardados en la nueva tabla');
-              </script>";
-    } else {
-        echo "<script language='JavaScript'>
-                alert('Error al guardar los cambios en la nueva tabla: " . $stmt->error . "');
-              </script>";
-    }
-
-    // Cierra la declaración y la conexión
-    $stmt->close();
-    $conexion->close();
-}
-?>
+      
 
 
 </body>
