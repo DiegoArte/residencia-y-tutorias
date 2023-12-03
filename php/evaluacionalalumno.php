@@ -125,7 +125,7 @@
     
     
     // Configurar la clave de API
-    ConvertApi::setApiSecret('eK14Lc7mJ5IuOzlA');
+    ConvertApi::setApiSecret('lkvvXv7xNZokSFln');
 
     // Ruta al archivo Word
     $inputFilePath = 'archivos/EvaluacionAl.docx';
