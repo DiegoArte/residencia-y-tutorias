@@ -140,7 +140,7 @@
     $result->saveFiles($outputDir);
 
     $currentDate = date('d-m-y');
-    $filename = "Evaluacion al alumno {$currentDate}.pdf";
+    $filename = "Evaluacion Al Alumno {$Nomb} {$currentDate}.pdf";
     header("Content-Disposition: attachment; filename={$filename}");
     echo file_get_contents('archivos/EvaluacionAl.pdf');
 

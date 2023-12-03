@@ -18,8 +18,13 @@
     <header class="fixed w-100">
         <div class="usuarioOp d-flex justify-content-end">
             <img src="img/profile.png" alt="" >
-            <p>Usuario</p>
-            <a href="#">Cerrar sesión</a>
+            <?php
+            $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+            echo '<p>' . $nombre . '</p>';
+            ?>
+             <div class="dropdown-content">
+                <a href="logout.php">Cerrar sesión</a>
+       
         </div>
     </header>
     <main>
@@ -33,15 +38,17 @@
                     <hr>
                     <form action="php/evaluacionalalumno.php" method="post" class="needs-validation" novalidate>
                         
-                        <div class="row mb-3">
-                            <div class="form-floating">
-                                <input type="text" name="Nombre" id="nombre" class="form-control" placeholder="Leave a comment here" required>
-                                <label for="nombre"> NOMBRE DEL ESTUDIANTE (1)</label>
-                                <div class="invalid-feedback">
-                                    Completa el campo!!
-                                </div>
+                    <div class="row mb-3">
+                        <div class="form-floating">
+                            <!-- Reemplazamos el input por la lista desplegable generada desde PHP -->
+                            <?php include 'alumnocheck.php'; ?>
+                            <label for="opciones">NOMBRE DEL ESTUDIANTE (1):</label>
+                            <div class="invalid-feedback">
+                                Completa el campo!!
                             </div>
                         </div>
+                    </div>
+
 
                         <div class="row mb-3">
                             <div class="form-floating">
