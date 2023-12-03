@@ -14,7 +14,6 @@
         'timeout' => 30000, // Establecer el tiempo de espera en milisegundos (por ejemplo, 10000 milisegundos = 10 segundos)
     ];
 
-
     $Nomb=$_POST["Nombre"];
     $Actividad=$_POST["actividad"];
     $Periodo=$_POST["periodo"];
