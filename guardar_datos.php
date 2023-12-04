@@ -2,12 +2,12 @@
 
 $outputDir="Imagenes/";
 
-require_once 'vendor\autoload.php';
+require_once 'phpoffice/vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 use \ConvertApi\ConvertApi;
 
-$temlateProcesor = new \PhpOffice\PhpWord\TemplateProcessor('..\Formatos\Periodo.docx'); 
+$temlateProcesor = new \PhpOffice\PhpWord\TemplateProcessor('Formatos/Periodo1.docx'); 
 
 
 // Botones de radio
@@ -137,7 +137,7 @@ $pathToSave='resultados.docx';
 $temlateProcesor->saveAs("resultados.docx");
 
 // Configurar la clave de API
-ConvertApi::setApiSecret('eK14Lc7mJ5IuOzlA');
+ConvertApi::setApiSecret('qgZqzA3KYLmClT47');
 
 // Ruta al archivo Word
 $inputFilePath = 'resultados.docx';
