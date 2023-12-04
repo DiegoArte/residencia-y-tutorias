@@ -14,7 +14,7 @@ $outputDir = 'archivos/';
 
 $Periodo = $_POST["Periodo"];
 $Feca = $_POST["Fecha"];
-$nombreE = $_POST["NE"];
+$nombreE = $_POST["nombre"];
 $semestre = $_POST["Semestre"];
 $planE = $_POST["PE"];
 $Actiidades = $_POST["ASR"];
