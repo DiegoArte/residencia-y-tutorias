@@ -29,8 +29,8 @@
             <img src="profile.png" alt="">
             <?php
             session_start();
-            $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
-            echo '<p>' . $nombre . '</p>';
+            $nombrealumno = $_SESSION['nombrealumno']; // Asigna el valor a $nombrealumno
+            echo '<p>' . $nombrealumno . '</p>';
             ?>
             <div class="dropdown-content">
                 <a href="../../../logout.php">Cerrar sesión</a>
@@ -49,6 +49,59 @@
             <div class="col-sm-12">
                 <h2 class="text-center">Anteproyecto</h2>
 
+                <form method="post" action="">
+    <input type="text" name="idalumno" placeholder="ID del alumno"><br>
+    <input type="text" name="nombrealumno" placeholder="Nombre del alumno"><br>
+    <input type="text" name="nombreass" placeholder="Nombre del asesor"><br>
+    <button type="submit" name="guardar_cambios">Guardar Cambios</button>
+</form>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Verifica si se ha enviado el formulario
+
+    // Establece la conexión a la base de datos (reemplaza con tus propias credenciales)
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "tutorias_residencia";
+
+    // Crea la conexión
+    $conexion = new mysqli($servername, $username, $password, $dbname);
+
+    // Verifica la conexión
+    if ($conexion->connect_error) {
+        die("Conexión fallida: " . $conexion->connect_error);
+    }
+
+    // Prepara la consulta SQL utilizando consultas preparadas
+    $sqlGuardarCambios = "INSERT INTO asesorados (id, alumno, asesor) VALUES (?, ?, ?)";
+
+    // Prepara la declaración
+    $stmt = $conexion->prepare($sqlGuardarCambios);
+
+    // Vincula parámetros y ejecuta la consulta
+    $idalumno = $_POST['idalumno'];
+    $nombrealumno = $_POST['nombrealumno'];
+    $nombreass = $_POST['nombreass'];
+
+    $stmt->bind_param("sss", $idalumno, $nombrealumno, $nombreass);
+
+    if ($stmt->execute()) {
+        echo "<script language='JavaScript'>
+                alert('Cambios guardados en la nueva tabla');
+              </script>";
+    } else {
+        echo "<script language='JavaScript'>
+                alert('Error al guardar los cambios en la nueva tabla: " . $stmt->error . "');
+              </script>";
+    }
+
+    // Cierra la declaración y la conexión
+    $stmt->close();
+    $conexion->close();
+}
+?>
+
                 <?php
                 if (isset($_POST['enviar'])) {
                     require_once "../includes/db.php"; // Incluye el archivo de conexión a la base de datos
@@ -59,7 +112,7 @@
                     $nombrealumno = $_POST['nombrealumno'];
 
                     // Inserta los datos en la base de datos
-                    $sql = "INSERT INTO asesorados (id, Alumno) 
+                    $sql = "INSERT INTO asesorados (idalumno, Alumno) 
             VALUES ('$idalumno', '$nombrealumno')";
                     $resultado = mysqli_query($conexion, $sql);
 
@@ -94,7 +147,7 @@
                 ?>
 
                 <div class="container">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" idalumno="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Id Alumno</th>
@@ -133,7 +186,7 @@
                                             <?php echo $fila['empresa']; ?>
                                         </td>
                                         <td>
-                                            <select name="nombre_docente" id="docenteSelect">
+                                            <select name="nombre_docente" idalumno="docenteSelect">
                                                 <?php
                                                 foreach ($carreras as $docente) {
                                                     echo '<option value="' . $docente . '">' . $docente . '</option>';
@@ -147,7 +200,7 @@
                                             <?php echo $fila['archivo']; ?>
                                         </td>
                                         <td>
-                                            <a href="../includes/download.php?id=<?php echo $fila['idalumno']; ?>"
+                                            <a href="../includes/download.php?idalumno=<?php echo $fila['idalumno']; ?>"
                                                 class="btn btn-primary">
                                                 <i class="fas fa-download"></i> Descargar
                                             </a>
@@ -192,35 +245,8 @@
 
             
 
-        <form method="post" action="">
-            <div class="btn_guardar">
-                <button class="btn btn-success guardar-cambios" type="submit" name="guardar_cambios">Guardar Cambios</button>
-            </div>
-        </form>
-        <?php
-        if (isset($_POST['guardar_cambios'])) {
-            require_once "../includes/db.php"; // Asegúrate de incluir tu archivo de conexión a la base de datos
+      
 
-            // Recupera los datos del formulario o los datos que deseas guardar en la nueva tabla
-            $idalumno = $_POST['idalumno'];
-            $nombrealumno = $_POST['nombrealumno'];
-            $nombreass = $_POST['NombredelDocente'];
-            
-            // Inserta los datos en la nueva tabla
-            $sqlGuardarCambios = "INSERT INTO asesorados (id, alumno, asesor) VALUES ('$idalumno', '$nombrealumno', '$nombreass')";
-            $resultadoGuardarCambios = mysqli_query($conexion, $sqlGuardarCambios);
-
-            if ($resultadoGuardarCambios) {
-                echo "<script language='JavaScript'>
-                alert('Cambios guardados en la nueva tabla');
-                </script>";
-            } else {
-                echo "<script language='JavaScript'>
-                alert('Error al guardar los cambios en la nueva tabla: " . mysqli_error($conexion) . "');
-                </script>";
-            }
-        }
-        ?>
 
 </body>
 
