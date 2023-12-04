@@ -36,7 +36,7 @@
             <a href="#"></a>
         </div>
         <div class="container" style="margin-top: 80px;">
-            <a class="eliminar" href='anadir.php?id=" . $row["id"] . "'>Añadir</a>
+            <a class="eliminar" href='anadir2.php?id=" . $row["id"] . "'>Añadir</a>
             </td>
             <a class="eliminar" href="NUEVO2.PHP">Generar índice</a>
             <a class="eliminar" href="NUEVO.php">Generar todos los índices</a>

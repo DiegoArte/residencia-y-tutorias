@@ -62,6 +62,14 @@ class Crud {
         return $resultado;
     }
 
+    public static function countFills($clause) {
+        $query="SELECT COUNT(*) AS total_filas FROM ".static::$tabla." WHERE ".$clause;
+        $result = self::$db->query($query);
+        $row = $result->fetch_assoc();
+        $totalFilas = $row['total_filas'];
+        return $totalFilas;
+    }
+
     public static function find($clause) {
         $query="SELECT * FROM ".static::$tabla." WHERE ".$clause;
         $resultado=self::consultarSQL($query);

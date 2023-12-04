@@ -2,12 +2,12 @@
 
 $outputDir="Imagenes/";
 
-require_once 'vendor\autoload.php';
+require_once 'phpoffice/vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 use \ConvertApi\ConvertApi;
 
-$temlateProcesor = new \PhpOffice\PhpWord\TemplateProcessor('..\Nueva_carpeta\Periodo.docx'); 
+$temlateProcesor = new \PhpOffice\PhpWord\TemplateProcessor('Formatos/Periodo1.docx'); 
 
 
 // Botones de radio
@@ -130,14 +130,14 @@ $temlateProcesor->setValue('fecha_final3', $_POST['fecha_final3']);
 $temlateProcesor->setValue('info_adicional1', $_POST['info_adicional1']);
 $temlateProcesor->setValue('info_adicional2', $_POST['info_adicional2']);
 $temlateProcesor->setValue('info_adicional3', $_POST['info_adicional3']);
-
+$temlateProcesor->setValue('periodo', $_POST['periodo']);
 
 //resto del código anterior 
 $pathToSave='resultados.docx';
 $temlateProcesor->saveAs("resultados.docx");
 
 // Configurar la clave de API
-ConvertApi::setApiSecret('eK14Lc7mJ5IuOzlA');
+ConvertApi::setApiSecret('qgZqzA3KYLmClT47');
 
 // Ruta al archivo Word
 $inputFilePath = 'resultados.docx';
@@ -154,7 +154,7 @@ try {
     echo 'Error en la conversión: ',  $e->getMessage(), "\n";
 }
 
-// ... (código existente) ...
+// ... (código existente) ...dhhfg
 
 // Realizar la conversión
 $result = ConvertApi::convert('pdf', ['File' => $inputFilePath], 'doc');
@@ -164,5 +164,18 @@ $result = ConvertApi::convert('pdf', ['File' => $inputFilePath], 'doc');
 
 // Guardar los archivos resultantes
 $result->saveFiles("Imagenes/");
+
+//-----------------------------------------------------------------------------
+// Nombre del archivo PDF generado
+$pdfFileName = "resultados.pdf";
+
+// Ruta completa al archivo PDF
+$pdfFilePath = $savePath . $pdfFileName;
+
+// Descargar automáticamente el archivo PDF
+header('Content-Type: application/pdf');
+header('Content-Disposition: attachment; filename="' . $pdfFileName . '"');
+readfile($pdfFilePath);
+//----------------------------------------------------------------------------
 
 ?>

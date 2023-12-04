@@ -14,7 +14,7 @@ $outputDir = 'archivos/';
 
 $Periodo = $_POST["Periodo"];
 $Feca = $_POST["Fecha"];
-$nombreE = $_POST["NE"];
+$nombreE = $_POST["nombre"];
 $semestre = $_POST["Semestre"];
 $planE = $_POST["PE"];
 $Actiidades = $_POST["ASR"];
@@ -55,7 +55,7 @@ $temlateProcesor->saveAs('archivos/FichaTecnica.docx');
 
 
 // Configurar la clave de API
-ConvertApi::setApiSecret('eK14Lc7mJ5IuOzlA');
+ConvertApi::setApiSecret('qgZqzA3KYLmClT47');
 
 // Ruta al archivo Word
 $inputFilePath = 'archivos/FichaTecnica.docx';
