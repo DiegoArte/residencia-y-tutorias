@@ -19,11 +19,41 @@ $carrera = $_GET['carrera'] ?? "";
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="indices.css">
 
+  <style>
+    header {
+      z-index: 1;
+    }
+
+    .back-arrow {
+      position: absolute !important;
+      margin: 90px 70px;
+      background-color: #4F648B;
+      padding: 10px;
+      top: 15px;
+      font-size: 16px;
+    }
+
+    .back-arrow:hover .regresar {
+      display: block !important;
+    }
+
+    img {
+      width: 50px;
+      /* Puedes ajustar el valor según tus necesidades */
+      height: auto;
+      /* Para mantener la proporción de la imagen */
+    }
+  </style>
+
   <title>Informe de Índices</title>
 </head>
 
 <body>
   <header class="fixed w-100">
+    <a href="Tabla_mostrar.php" class="back-arrow rounded-pill d-flex justify-content-start">
+      <img src="../img/back.svg" alt="" height="50">
+      <span class="regresar d-none text-white m-auto">Regresar</span>
+    </a>
     <div class="usuarioOp d-flex justify-content-end">
       <img src="profile.png" alt="">
       <?php
@@ -207,7 +237,7 @@ $carrera = $_GET['carrera'] ?? "";
   </script>
 
 
-  <a class="eliminar2" href="Tabla_mostrar.php">Regresar</a>
+
 </body>
 
 </html>

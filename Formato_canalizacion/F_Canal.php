@@ -111,6 +111,7 @@ $carrera = $_GET['carrera'] ?? "";
             <div class="dropdown-content">
                 <a href="../logout.php">Cerrar sesión</a>
             </div>
+            </div>
     </header>
     <br><br><br><br>
 
