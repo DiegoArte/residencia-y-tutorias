@@ -116,6 +116,8 @@ $carrera = $_GET['carrera'] ?? "";
       // Cerrar conexión
       $conn->close();
       ?>
+
+
     </div>
   </main>
 
@@ -130,10 +132,13 @@ $carrera = $_GET['carrera'] ?? "";
 
       Array.from(charts).forEach(function(chart) {
         var ctx = chart.getContext('2d');
+        var carrera = chart.getAttribute('data-carrera');
+        var materia = chart.getAttribute('data-materia');
+        var semestre = chart.getAttribute('data-semestre');
         var labels = JSON.parse(chart.getAttribute('data-labels'));
         var data = JSON.parse(chart.getAttribute('data-data'));
 
-        var myChart = new Chart(ctx, {
+        new Chart(ctx, {
           type: 'bar',
           data: {
             labels: labels,
@@ -158,8 +163,8 @@ $carrera = $_GET['carrera'] ?? "";
             },
             plugins: {
               title: {
-                display: false,
-                text: ''
+                display: true,
+                text: carrera + ' - Materia: ' + materia + ' - Semestre: ' + semestre
               }
             }
           }
