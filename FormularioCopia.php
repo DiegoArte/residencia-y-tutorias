@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">
     <title>Plan de Acción Tutorial</title>
 
-    <style>
+    <style> 
         .formulario {
             padding: 50px;
         }

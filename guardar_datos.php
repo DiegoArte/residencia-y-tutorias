@@ -165,4 +165,17 @@ $result = ConvertApi::convert('pdf', ['File' => $inputFilePath], 'doc');
 // Guardar los archivos resultantes
 $result->saveFiles("Imagenes/");
 
+//-----------------------------------------------------------------------------
+// Nombre del archivo PDF generado
+$pdfFileName = "resultados.pdf";
+
+// Ruta completa al archivo PDF
+$pdfFilePath = $savePath . $pdfFileName;
+
+// Descargar automáticamente el archivo PDF
+header('Content-Type: application/pdf');
+header('Content-Disposition: attachment; filename="' . $pdfFileName . '"');
+readfile($pdfFilePath);
+//----------------------------------------------------------------------------
+
 ?>
