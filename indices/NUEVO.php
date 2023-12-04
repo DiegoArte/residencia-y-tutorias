@@ -41,6 +41,7 @@ $carrera = $_GET['carrera'] ?? "";
     </div>
     <div class="container" style="margin-top: 10%;">
       <h1>Informe de Índices</h1>
+      <br><br>
       <?php
       // Configuración de la conexión a la base de datos
       $servername = "localhost";
@@ -106,7 +107,7 @@ $carrera = $_GET['carrera'] ?? "";
               . json_encode($data['data']) . '\'></canvas>';
             // Add download button for each chart
             echo '<button class="btn btn-primary download-button" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '" onclick="downloadChart(this)">Descargar Gráfica</button>';
-            echo '</div>';
+            echo '<br><br><br><br></div>';
           }
         }
       } else {
