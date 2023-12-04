@@ -130,7 +130,7 @@ $temlateProcesor->setValue('fecha_final3', $_POST['fecha_final3']);
 $temlateProcesor->setValue('info_adicional1', $_POST['info_adicional1']);
 $temlateProcesor->setValue('info_adicional2', $_POST['info_adicional2']);
 $temlateProcesor->setValue('info_adicional3', $_POST['info_adicional3']);
-
+$temlateProcesor->setValue('periodo', $_POST['periodo']);
 
 //resto del código anterior 
 $pathToSave='resultados.docx';
@@ -154,7 +154,7 @@ try {
     echo 'Error en la conversión: ',  $e->getMessage(), "\n";
 }
 
-// ... (código existente) ...
+// ... (código existente) ...dhhfg
 
 // Realizar la conversión
 $result = ConvertApi::convert('pdf', ['File' => $inputFilePath], 'doc');
