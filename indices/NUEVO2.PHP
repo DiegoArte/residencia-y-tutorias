@@ -312,7 +312,6 @@ $carrera = $_GET['carrera'] ?? "";
   </script>
 
 
-  <a class="eliminar2" href="Tabla_mostrar.php">Regresar</a>
 </body>
 
 </html>
