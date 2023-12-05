@@ -61,13 +61,14 @@
 
             if ($result->num_rows > 0) {
                 echo "<table>";
-                echo "<tr><th>Plan de estudio</th><th>Materia</th><th>Semestre</th><th>Unidad</th><th>AlumnosA</th><th>AlumnosR</th><th>Acciones</th></tr>";
+                echo "<tr><th>Plan de estudio</th><th>Materia</th><th>Semestre</th><th>Grupo</th><th>Unidad</th><th>AlumnosA</th><th>AlumnosR</th><th>Acciones</th></tr>";
 
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $row["carrera"] . "</td>";
                     echo "<td>" . $row["materia"] . "</td>";
                     echo "<td>" . $row["semestre"] . "</td>";
+                    echo "<td>" . $row["grupo"] . "</td>";
                     echo "<td>" . $row["unidad"] . "</td>";
                     echo "<td>" . $row["alumnosA"] . "</td>";
                     echo "<td>" . $row["alumnosR"] . "</td>";

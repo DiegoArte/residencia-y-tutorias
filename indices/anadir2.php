@@ -31,12 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $carrera = $_POST["carrera"];
     $materia = $_POST["materia"];
     $semestre = $_POST["semestre"];
+    $grupo = $_POST["grupo"];
     $unidad = $_POST["unidad"];
     $alumnosA = $_POST["alumnosA"];
     $alumnosR = $_POST["alumnosR"];
 
     // Insertar nuevo registro en la base de datos
-    $sql = "INSERT INTO indices (carrera, materia, semestre, unidad, alumnosA, alumnosR) VALUES ('$carrera', '$materia', '$semestre', '$unidad', '$alumnosA', '$alumnosR')";
+    $sql = "INSERT INTO indices (carrera, materia, semestre, grupo, unidad, alumnosA, alumnosR) VALUES ('$carrera', '$materia', '$semestre','$grupo', '$unidad', '$alumnosA', '$alumnosR')";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: Tabla_mostrar.php");
@@ -121,7 +122,8 @@ $conn->close();
             </div>
             <div class="col-md-5">
 
-                
+
+                Grupo: <input type="text" name="grupo" required><br>
                 Unidad: <input type="text" name="unidad" required><br>
                 Alumnos Aprobados : <input type="text" name="alumnosA" required><br>
                 Alumnos Reprobados: <input type="text" name="alumnosR" required><br>
