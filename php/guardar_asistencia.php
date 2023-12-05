@@ -24,12 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultado_activi = $conexion->query($query_activi);
 
     if ($resultado_activi) {
-        // Justo antes del bucle foreach
-        echo '<pre>';
-        print_r($_POST['NoControl']);
-        echo '</pre>';
-        
-        foreach ($numerosControl as $numeroControl) {
+        foreach ($asistencias as $index => $asistencia) {
+            // Obtener los datos asociados a esta asistencia
+            $numeroControl = $numerosControl[$index];
+            $nombre = $nombres[$index];
             // Obtener el nombre del estudiante de la tabla 'alumnosnormales'
             $query_nombre = "SELECT NombreDelEstudiante FROM alumnosnormales WHERE NumeroDeControl = '$numeroControl'";
             $resultado_nombre = $conexion->query($query_nombre);
