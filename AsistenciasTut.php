@@ -3,7 +3,6 @@ session_start();
 $carrera=$_GET['carrera']??"";
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,26 +102,26 @@ $carrera=$_GET['carrera']??"";
                 $activi =$_POST["Actividad"];
                 $fechaObj = new DateTime($fecha);
                 $fechaFormateada = $fechaObj->format('d/m/Y');
-                
+                echo "<form action='php/guardar_asistencia.php' method='post'>";
                 echo "<div class='row mb-3'>";
                 echo "<div class='col'>";
                 echo "<div class='form-floating'>";
-                echo "<input class='form-control' id='grup' name='grup' type='text' value='$acade' aria-label='Disabled input example' disabled readonly>";
+                echo "<input class='form-control' id='grup' name='grup' type='text' value='$acade'>";
                 echo " <label for='grup'>Grupo</label>";
                 echo "</div>";
                 echo "</div>";
                 echo "<div class='col'>";
                 echo "<div class='form-floating'>";
-                echo "<input class='form-control' id='date' name='date' type='text' value='$fechaFormateada' aria-label='Disabled input example' disabled readonly>";
+                echo "<input class='form-control' id='date' name='date' type='text' value='$fechaFormateada'>";
                 echo " <label for='fecha'>Fecha</label>";
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";
                 echo "<div class='form-floating'>";
-                echo "<textarea class='form-control' id='act' name='act' type='text'  aria-label='Disabled input example' disabled readonly>$activi</textarea>";
+                echo "<textarea class='form-control' id='act' name='act' type='text'>$activi</textarea>";
                 echo " <label for='act'>Actividad del dia planeada</label>";
                 echo "</div>";
-                echo "<table class='table table-bordered'>";
+                echo "<table name='lista' id='lista' class='table table-bordered'>";
                 echo "<thead>";
                 echo "<tr>";
                 echo "<th>Número de Control</th>";
@@ -141,7 +140,10 @@ $carrera=$_GET['carrera']??"";
                         echo "<tr>";
                         echo "<td>" . $fila["NumeroDeControl"] . "</td>";
                         echo "<td>" . $fila["NombreDelEstudiante"] . "</td>";
-                        echo "<td><input type='checkbox' name='asistencia[]' value='1'" . $fila["NumeroDeControl"] . "'></td>";
+                        // Añadir campos ocultos con otros datos de la fila
+                        echo "<td style='display: none;'><input type='hidden' name='NoControl[]' value='" . $fila["NumeroDeControl"] . "'></td>";
+                        echo "<td style='display: none;'><input type='hidden' name='nombre[]' value='" . $fila["NombreDelEstudiante"] . "'></td>";
+                        echo "<td><input type='checkbox' name='asistencia[]'" . $fila["NumeroDeControl"] . "'></td>";
                         echo "</tr>";
                     }
                 }
@@ -151,8 +153,10 @@ $carrera=$_GET['carrera']??"";
                 echo "</tbody>";
                 echo "</table>";
                 echo "<div class='col mb-3'>";
-                    echo "<button class='btn btn-primary' id='btnGuardar' name='btnGuardar'>Guardar</button>";
+                    echo "<button type='submit' class='btn btn-primary' id='btnGuardar' name='btnGuardar'>Guardar</button>";
                 echo "</div>";
+                echo "</form>";
+
             $conexion->close();
             }
             
@@ -160,49 +164,6 @@ $carrera=$_GET['carrera']??"";
 
         </div>
     </main>
-
-    <script>
-    // Asigna el evento al botón de guardar con un identificador único
-    document.getElementById('btnGuardar').addEventListener('click', function() {
-        var data = {
-            'actividad': document.querySelector('textarea[name=act]').value,
-            'fecha': document.querySelector('input[name=date]').value,
-            'grupo': document.querySelector('input[name=grup]').value,
-            'asistencias': []
-        };
-
-        var rows = document.querySelectorAll('table tbody tr');
-        rows.forEach(function(row) {
-            var rowData = {
-                'numeroControl': row.cells[0].innerText,
-                'nombreEstudiante': row.cells[1].innerText,
-                'asistencia': row.cells[2].querySelector('input[type=checkbox]').checked ? 1 : 0 // Verificar si está marcado el checkbox
-            };
-            data.asistencias.push(rowData);
-        });
-
-        // Enviar los datos a un archivo PHP utilizando fetch
-        fetch('php/AsisTutback.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => {
-            if (response.ok) {
-                console.log('Datos enviados con éxito');
-                // Aquí puedes realizar acciones después de enviar los datos
-            } else {
-                throw new Error('Error al enviar los datos');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    });
-</script>
-
 
 </body>
 </html>
