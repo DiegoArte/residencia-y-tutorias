@@ -141,9 +141,7 @@ $carrera=$_GET['carrera']??"";
                         echo "<td>" . $fila["NumeroDeControl"] . "</td>";
                         echo "<td>" . $fila["NombreDelEstudiante"] . "</td>";
                         // Añadir campos ocultos con otros datos de la fila
-                        echo "<td style='display: none;'><input type='hidden' name='NoControl[]' value='" . $fila["NumeroDeControl"] . "'></td>";
-                        echo "<td style='display: none;'><input type='hidden' name='nombre[]' value='" . $fila["NombreDelEstudiante"] . "'></td>";
-                        echo "<td><input type='checkbox' name='asistencia[]'" . $fila["NumeroDeControl"] . "'></td>";
+                        echo "<td><input type='checkbox' name='asistencia[]' value='" . $fila["NumeroDeControl"] . "' id='asistencia-" . $fila["NumeroDeControl"] . "'></td>";
                         echo "</tr>";
                     }
                 }

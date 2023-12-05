@@ -9,10 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
      // Obtener los valores de asistencia y guardar en la tabla 'asistut'
      $asistencias = $_POST['asistencia'];
-     // Acceder a los valores adicionales
-     $numerosControl = $_POST["NoControl"]; // Array de números de control
-     $nombres = $_POST["nombre"]; // Array de nombres de estudiantes
-
     $fechaObj = DateTime::createFromFormat('d/m/Y', $fecha);
     $fechaFormateada = $fechaObj->format('Y-m-d');
     // Conexión a la base de datos (asumiendo que ya tienes la función conectar())
@@ -24,10 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultado_activi = $conexion->query($query_activi);
 
     if ($resultado_activi) {
-        foreach ($asistencias as $index => $asistencia) {
-            // Obtener los datos asociados a esta asistencia
-            $numeroControl = $numerosControl[$index];
-            $nombre = $nombres[$index];
+        
+        foreach ($asistencias as $numeroControl) {
             // Obtener el nombre del estudiante de la tabla 'alumnosnormales'
             $query_nombre = "SELECT NombreDelEstudiante FROM alumnosnormales WHERE NumeroDeControl = '$numeroControl'";
             $resultado_nombre = $conexion->query($query_nombre);
@@ -39,6 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Insertar datos en la tabla 'asistut'
                 $query_asistut = "INSERT INTO asistut (NumeroControl, Nombre, Fecha, carrera, Asistio) VALUES ('$numeroControl', '$nombre', '$fechaFormateada', '$acade', 1)";
                 $resultado_asistut = $conexion->query($query_asistut);
+
+                echo "<script>alert('La lista de asistencia fue guardada con exito');window.location.href = '../AsistenciasTut.php';</script>";
 
                 // Manejo de errores o mensajes de éxito
                 if (!$resultado_asistut) {
