@@ -135,7 +135,7 @@ $carrera = $_GET['carrera'] ?? "";
         </div>
 
         <button class="eliminar" onclick="filtrarDatos()">Filtrar</button>
-      </form>
+      </form><br><br>
 
 
 
@@ -217,7 +217,8 @@ $carrera = $_GET['carrera'] ?? "";
               echo '<canvas class="bar-chart" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '" data-labels=\''
                 . json_encode($data['labels']) . '\' data-data=\''
                 . json_encode($data['data']) . '\'></canvas>';
-              echo '</div>';
+              echo '<button class="btn btn-primary download-button" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '" onclick="downloadChart(this)">Descargar Gráfica</button>';
+              echo '<br><br><br><br></div>';
               //echo '<script>filtrarDatos();</script>';
             }
           }
@@ -240,6 +241,9 @@ $carrera = $_GET['carrera'] ?? "";
   </main>
 
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Llama a la función que deseas ejecutar automáticamente
@@ -309,6 +313,38 @@ $carrera = $_GET['carrera'] ?? "";
       xhr.send();
     }
     // Función para crear las gráficas
+
+          // Función para descargar la gráfica específica como PDF
+          window.downloadChart = function(button) {
+        console.log('Descargando gráfica...');
+        var carrera = button.getAttribute('data-carrera');
+        var materia = button.getAttribute('data-materia');
+        var semestre = button.getAttribute('data-semestre');
+        var chartCanvas = document.querySelector('.bar-chart[data-carrera="' + carrera + '"][data-materia="' + materia + '"][data-semestre="' + semestre + '"]');
+
+        // Esperar 500 milisegundos antes de convertir a PDF
+        setTimeout(function() {
+          // Utilizar html2pdf para generar el PDF
+          var pdfOptions = {
+            margin: 10,
+            filename: carrera + '_' + materia + '_Semestre_' + semestre + '_Chart.pdf',
+            image: {
+              type: 'jpeg',
+              quality: 0.98
+            },
+            html2canvas: {
+              scale: 2
+            },
+            jsPDF: {
+              unit: 'mm',
+              format: 'a4',
+              orientation: 'landscape'
+            },
+          };
+
+          html2pdf().from(chartCanvas).set(pdfOptions).save();
+        }, 500);
+      };
   </script>
 
 
