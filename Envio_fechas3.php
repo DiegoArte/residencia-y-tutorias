@@ -156,6 +156,7 @@ $conn->close();
             <form action="php/llenado_Archivo_EF3.php" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario()">
                 <input type="hidden" name="Nombre" id="Nombre" value="<?php echo $Log;?>">
                 <input name="fichero[]" type="file" size="150" maxlength="150" multiple>
+                <input type="hidden" name="dir" id="dir" value="../Envio_fechas3.php">
                 <br>
                 <br>
                 <button type="submit">Insertar</button>

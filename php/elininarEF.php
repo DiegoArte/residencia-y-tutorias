@@ -10,17 +10,23 @@ $sql = "DELETE FROM `$base` WHERE id=".$id."";
 $que = mysqli_query($cone,$sql);
 
 echo "
-function mostrar(){
-    alert('Datos eliminados');
-    '<script>window.history.back();</script>';
-    
+<script>
+    function mostrar() {
+        Swal.fire({
+            title: 'Datos eliminados',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(function() {
+            window.location.href = '../$regreso';
+        });
+    }
 
-}
-mostrar();
+    mostrar();
 </script>
 
 ";
-header("Location: ../$regreso");
+//header("Location: ../$regreso");
 
 
 ?>
