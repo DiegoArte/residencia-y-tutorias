@@ -6,8 +6,8 @@ $carrera=$_GET['carrera']??"";
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
@@ -17,6 +17,7 @@ $carrera=$_GET['carrera']??"";
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">
+    <link rel="stylesheet" href="css/estilo01_botones.css">
     <title>Asistencia</title>
     <link rel="icon" type="image/gif" href="css/plano.gif">
 </head>
@@ -38,6 +39,44 @@ $carrera=$_GET['carrera']??"";
             <img src="img/back.svg" alt="" height="50">
             <span class="regresar d-none text-white m-auto">Regresar</span>
         </a>
+        <button type="button" class="boton2" data-bs-toggle="modal" data-bs-target="#exampleModal">Generar lista</button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Generar la lista para imprimir</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="php/GeneraAsis.php" method="POST">
+                        <div class="row mb-3">
+                        <div class="form-floating">
+                            <select class="form-select" name="acade" id="acade">
+                                <option value="Ingeniería en sistemas computacionales">Ingeniería en sistemas computacionales</option>
+                                <option value="Ingeniería en gestión Empresarial">Ingeniería en gestión Empresarial</option>
+                                <option value="Ingeniería en administración">Ingeniería en administración</option>
+                                <option value="Ingeniería en electromecánica">Ingeniería en electromecánica</option>
+                                <option value="Ingeniería industrial">Ingeniería industrial</option>
+                                <option value="Contador público">Contador público</option>
+                            </select>
+                            <label for="acade">Selecciona la carrera</label>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="form-label">Selecciona la fecha de la asistencia</label>
+                        <input type="date" name="fecha">
+                    </div>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Generar</button>
+            </div>
+            </div>
+            </form>
+        </div>
         </div>
 
         <div class="container" style="padding-top: 80px; padding-left: 50px;">
@@ -162,6 +201,8 @@ $carrera=$_GET['carrera']??"";
 
         </div>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </body>
 </html>

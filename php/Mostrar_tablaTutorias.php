@@ -120,7 +120,7 @@ tr:nth-child(odd) {
 <?php
 
 // Establecer la conexión a la base de datos
-function Tabla($tipo2,$nombre){
+function Tabla($tipo2,$nombre,$dire){
 include 'conexion.php';
 $conn = conecta();
 $login = $nombre;
@@ -209,6 +209,7 @@ else{
                 
         <form action="php/elininarEFTutores.php" method="post">      
         <input type="hidden" name="id" value="<?php echo $row3["id"]?>">
+        <input type="hidden" name="dire"id="dire" value="<?php echo $dire?>">
         <button type="submit" class="elimina"><i class="fa-solid fa-trash"></i></button>
         
         </form>
