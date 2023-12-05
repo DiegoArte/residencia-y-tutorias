@@ -88,7 +88,7 @@ $carrera = $_GET['carrera'] ?? "";
       }
 
       // Consulta SQL para obtener los datos
-      $sql = "SELECT carrera, materia, semestre, unidad, alumnosA, alumnosR FROM indices";
+      $sql = "SELECT carrera, materia, semestre, grupo, unidad, alumnosA, alumnosR FROM indices";
 
       $result = $conn->query($sql);
 
@@ -101,6 +101,7 @@ $carrera = $_GET['carrera'] ?? "";
           $carrera = $row["carrera"];
           $materia = $row["materia"];
           $semestre = $row["semestre"];
+          $grupo = $row["grupo"];
           $unidad = $row["unidad"];
           $alumnosA = $row["alumnosA"];
           $alumnosR = $row["alumnosR"];
@@ -132,11 +133,11 @@ $carrera = $_GET['carrera'] ?? "";
           echo '<h2>' . $carrera . '</h2>';
           foreach ($materias as $materia => $data) {
             echo '<div class="chart-container">';
-            echo '<canvas class="bar-chart" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '" data-labels=\''
+            echo '<canvas class="bar-chart" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '"data-grupo"'.$grupo.'" data-labels=\''
               . json_encode($data['labels']) . '\' data-data=\''
               . json_encode($data['data']) . '\'></canvas>';
             // Add download button for each chart
-            echo '<button class="btn btn-primary download-button" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '" onclick="downloadChart(this)">Descargar Gráfica</button>';
+            echo '<button class="btn btn-primary download-button" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '"data-grupo"'.$grupo.'" onclick="downloadChart(this)">Descargar Gráfica</button>';
             echo '<br><br><br><br></div>';
           }
         }
@@ -166,6 +167,7 @@ $carrera = $_GET['carrera'] ?? "";
         var carrera = chart.getAttribute('data-carrera');
         var materia = chart.getAttribute('data-materia');
         var semestre = chart.getAttribute('data-semestre');
+        var grupo=chart.getAttribute('data-grupo');
         var labels = JSON.parse(chart.getAttribute('data-labels'));
         var data = JSON.parse(chart.getAttribute('data-data'));
 
@@ -195,7 +197,7 @@ $carrera = $_GET['carrera'] ?? "";
             plugins: {
               title: {
                 display: true,
-                text: carrera + ' - Materia: ' + materia + ' - Semestre: ' + semestre
+                text: carrera + ' - Materia: ' + materia + ' - Semestre: ' + semestre +'-Grupo:'+ grupo
               }
             }
           }
@@ -208,7 +210,7 @@ $carrera = $_GET['carrera'] ?? "";
         var carrera = button.getAttribute('data-carrera');
         var materia = button.getAttribute('data-materia');
         var semestre = button.getAttribute('data-semestre');
-        var chartCanvas = document.querySelector('.bar-chart[data-carrera="' + carrera + '"][data-materia="' + materia + '"][data-semestre="' + semestre + '"]');
+        var chartCanvas = document.querySelector('.bar-chart[data-carrera="' + carrera + '"][data-materia="' + materia + '"][data-semestre="' + semestre + '"]'+'[data-grupo="'+ grupo+'"]');
 
         // Esperar 500 milisegundos antes de convertir a PDF
         setTimeout(function() {

@@ -151,6 +151,7 @@ $carrera = $_GET['carrera'] ?? "";
                             $carrera = $row["carrera"];
                             $materia = $row["materia"];
                             $semestre = $row["semestre"];
+                            $grupo = $row["grupo"];
                             $unidad = $row["unidad"];
                             $alumnosA = $row["alumnosA"];
                             $alumnosR = $row["alumnosR"];
@@ -182,7 +183,7 @@ $carrera = $_GET['carrera'] ?? "";
                             echo '<h2>' . $carrera . '</h2>';
                             foreach ($materias as $materia => $data) {
                                 echo '<div class="chart-container">';
-                                echo '<canvas class="bar-chart" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '" data-labels=\''
+                                echo '<canvas class="bar-chart" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '"data-grupo="'.$grupo.'" data-labels=\''
                                     . json_encode($data['labels']) . '\' data-data=\''
                                     . json_encode($data['data']) . '\'></canvas>';
                                 echo '</div>';

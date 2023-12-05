@@ -27,6 +27,7 @@
             $carrera = $row["carrera"];
             $materia = $row["materia"];
             $semestre = $row["semestre"];
+            $grupo = $row["grupo"];
             $unidad = $row["unidad"];
             $alumnosA = $row["alumnosA"];
             $alumnosR = $row["alumnosR"];
@@ -39,12 +40,13 @@
         $carrera = $_POST["carrera"];
         $materia = $_POST["materia"];
         $semestre = $_POST["semestre"];
+        $grupo = $_POST["grupo"];
         $unidad = $_POST["unidad"];
         $alumnosA = $_POST["alumnosA"];
         $alumnosR = $_POST["alumnosR"];
 
         // Actualizar el registro en la base de datos
-        $sql = "UPDATE indices SET carrera='$carrera', materia='$materia', semestre='$semestre', unidad='$unidad', alumnosA='$alumnosA', alumnosR='$alumnosR' WHERE id=$id";
+        $sql = "UPDATE indices SET carrera='$carrera', materia='$materia', semestre='$semestre',grupo='$grupo', unidad='$unidad', alumnosA='$alumnosA', alumnosR='$alumnosR' WHERE id=$id";
 
         if ($conn->query($sql) === TRUE) {
             header("Location: Tabla_mostrar.php");
@@ -107,8 +109,10 @@
                 </select>
             </div>
 
+
                 Materia: <input type="text" name="materia" value="<?php echo $materia; ?>"><br>
                 Semestre: <input type="text" name="semestre" value="<?php echo $semestre; ?>"><br>
+                Grupo: <input type="text" name="grupo" value="<?php echo $grupo;?>"><br>
                 Unidad: <input type="text" name="unidad" value="<?php echo $unidad; ?>"><br>
                 AlumnosA: <input type="text" name="alumnosA" value="<?php echo $alumnosA; ?>"><br>
                 AlumnosR: <input type="text" name="alumnosR" value="<?php echo $alumnosR; ?>"><br>
