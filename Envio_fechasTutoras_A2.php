@@ -88,7 +88,7 @@ if ($result->num_rows > 0) {
         $fechaFinal = $row["fechafin"];
         
         echo '<form action="" method="POST">';
-        echo '<h2>Reporte 1</h2>';
+        echo '<h2>Reporte 2</h2>';
         echo '<label>Fecha de inicio</label>';
         echo '<input type="date" name="fechaFinal1" value="' . $fechaInicio . '" readonly >';
         echo '<label>Fecha final</label>';
@@ -183,6 +183,7 @@ $conn->close();
           
     </main>
     <script src="js/envia_FECH.js"></script>
+    <script src="js/recarga.js"></script>
     <script>
         function mostrarModal2() {
             document.getElementById("myModal").style.display = "block";

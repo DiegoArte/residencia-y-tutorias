@@ -29,8 +29,8 @@ session_start();
 <body>
 
 <?php
-require_once 'php/db.php';
-$conn = conectar();
+require 'php/app.php';
+$conn = $db;
 
 // Obtener la fecha actual
 $fecha_actual = date('Y-m-d');
@@ -68,7 +68,7 @@ if ($row3 = mysqli_fetch_assoc($resultado3)) {
 }
 
 // Cerrar la conexión a la base de datos
-$conn->close();
+
 // Mostrar los botones en el div "barraLateral" si corresponde
 ?>
 <div class="barraLateral fixed h-100">
@@ -76,21 +76,21 @@ $conn->close();
     <?php
     if ($mostrar_reporte1) {
         ?>
-        <form style="padding-bottom: 70px;" action="../../Envio_fechasT_A.php" method="post">
+        <form style="padding-bottom: 70px;" action="Envio_fechasT_AEncargado_tutorias.php" method="post">
             <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
         <?php
         echo '<button class="botonFec">Reporte 1</button></form>';
     }
     if ($mostrar_reporte2) {
         ?>
-        <form style="padding-bottom: 70px;" action="../../Envio_fechasT_A2.php" method="post">
+        <form style="padding-bottom: 70px;" action="Envio_fechasT_AEncargado_tutorias2.php" method="post">
         <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
         <?php
         echo '<button class="botonFec"">Reporte 2</button></form>';
     }
     if ($mostrar_reporte3) {
         ?>
-        <form style="padding-bottom: 70px;" action="../../Envio_fechasT_A3.php" method="post">
+        <form style="padding-bottom: 70px;" action="Envio_fechasT_AEncargado_tutorias3.php" method="post">
         <input type="hidden" name="ses" id="ses" value="<?php echo $id; ?>">
         <?php
         echo '<button class="botonFec"">Reporte 3</button></form>';
@@ -113,7 +113,7 @@ $conn->close();
 
 
 <?php
-require 'php/app.php';
+
 require 'php/Grupos.php';
 require 'php/Docentes.php';
 require 'php/Tutorados.php';

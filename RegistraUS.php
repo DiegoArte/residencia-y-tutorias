@@ -177,12 +177,6 @@ session_start();
                 } else {
                     echo "Error al eliminar datos existentes: " . $mysqli->error . "<br>";
                 }
-                $deleteQuery = "DELETE FROM usuarios WHERE tipo_usuario = 'alumno'";
-                if ($mysqli->query($deleteQuery)) {
-                // echo "Datos existentes eliminados correctamente.<br>";
-                } else {
-                    echo "Error al eliminar datos existentes: " . $mysqli->error . "<br>";
-                }
             }
             
             // Cargo la hoja de cálculo
@@ -296,24 +290,6 @@ session_start();
                         $insertQueryAlumnos = "INSERT INTO alumnos (Academia, NumerodeControl, NombredelEstudiante, NombredelAnteproyecto, correo) VALUES ('$rowData[0]', '$rowData[1]', '$rowData[2]', ' $rowData[3]', ' $rowData[4]')";
                         
                         if ($mysqli->query($insertQueryAlumnos) ) {
-                            // Insertar usuario de alumno en la tabla "usuarios"
-                            $usuario = $rowData[1];
-                            $contrasena = $rowData[1]; // Puedes establecer una contraseña predeterminada aquí
-                            
-                
-                            $sqlInsertAlumno = "INSERT INTO usuarios (usuario, contrasena, tipo_usuario) VALUES ('$usuario', '$contrasena','alumno')";
-                
-                            if ($mysqli->query($sqlInsertAlumno) === TRUE) {
-                                //echo "Usuario $usuario agregado correctamente.<br>";
-                            } else {
-                                $valid = false;
-                                $errorMsg = "Error al agregar usuario $usuario: " . $mysqli->error  ;
-        
-                                // Llama a una función JavaScript para mostrar el modal de error
-                                echo '<script>';
-                                echo 'mostrarErrorModal("' . addslashes($errorMsg) . '");';
-                                echo '</script>';
-                            }
                         } else {
                             $valid = false;
                             $errorMsg =  "Error al insertar datos en la tabla alumnos: " . $mysqli->error ;

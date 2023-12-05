@@ -130,7 +130,8 @@ if ($conn->connect_error) {
     //die("Conexión fallida: " . $conn->connect_error);
 }
 else{
-    $sql = "SELECT * FROM `fecha_enviada_tutorias`  WHERE `Tipo`='".$tipo."'";
+    $sql = "SELECT DISTINCT Nombre FROM `fecha_enviada_tutorias`  WHERE `Tipo`='".$tipo."'";
+    //echo $sql;
     $resultado = mysqli_query($conn,$sql);
     //echo $sql;
     if ($resultado->num_rows > 0){
@@ -144,7 +145,7 @@ else{
 
         while ($row = $resultado->fetch_array()){
             
-            $sql2 = "SELECT * FROM `fecha_enviada_tutorias` WHERE `Nombre`='".$row["Nombre"]."'" ;
+            $sql2 = "SELECT * FROM `fecha_enviada_tutorias` WHERE `Nombre`='".$row["Nombre"]."' and `Tipo`='".$tipo."';" ;
             //echo $row["Nombre"];
             //echo $row["Alumno"];
             $resultado2 = mysqli_query($conn,$sql2);
@@ -179,7 +180,7 @@ else{
                 }
                 echo"</td> ";
                 ///
-                $sql4 = "SELECT * FROM `fecha_enviada_tutorias` WHERE `Nombre`='".$row["Nombre"]."';";
+                $sql4 = "SELECT * FROM `fecha_enviada_tutorias` WHERE `Nombre`='".$row["Nombre"]."' and `Tipo`='".$tipo."';";
                 $resultado4 = mysqli_query($conn,$sql4);
                 echo"<td> ";
                 while($row4 = $resultado4->fetch_array()){
@@ -199,7 +200,7 @@ else{
                     echo"<br>";
                 }
                 echo"</td> ";
-            
+                echo "</tr>";
             }
         
         
@@ -208,7 +209,7 @@ else{
 
 
             
-            echo "</tr>";
+            
            
 
         echo "</table>";

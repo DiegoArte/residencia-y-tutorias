@@ -23,7 +23,7 @@ session_start();
 </head>
 <body>
     <header class="fixed w-100">
-        <a href="ANTEPROYECTO V.15/views/index(VISTA ASESOR).php" class="back-arrow rounded-pill d-flex justify-content-start">
+        <a href="asignar_Tutores.php" class="back-arrow rounded-pill d-flex justify-content-start">
                 <img src="img/back.svg" alt="" height="50">
                 <span class="regresar d-none text-white m-auto">Regresar</span>
         </a>
@@ -105,6 +105,7 @@ $conn->close();
           
     </main>
     <script src="js/envia_FECH.js"></script>
+    <script src="js/recarga.js"></script>
     
     
 

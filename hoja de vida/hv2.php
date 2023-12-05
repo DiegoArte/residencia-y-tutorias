@@ -18,7 +18,7 @@ $carrera=$_GET['carrera']??"";
     <script src="jspdf.min.js"></script>
     <script src="hv2.js"></script>
     <STYle>
-        .boton {
+          .boton {
             font-size: 16px;
             position: relative;
             margin: auto;
@@ -39,7 +39,7 @@ $carrera=$_GET['carrera']??"";
 
         }
 
-        /*.boton1 {
+        .boton1 {
             font-size: 16px;
             margin: auto;
             text-decoration: none; 
@@ -61,36 +61,7 @@ $carrera=$_GET['carrera']??"";
             background: linear-gradient(to bottom, #2c2f63, #5b67b7);
             animation: button-particles 1s ease-in-out infinite;
             transform: translateY(-2px);
-        }*/
-        
-        .boton{
-            display: inline-block;
-            background: linear-gradient(to bottom, #0D65D9, #57E3F2);
-            width: 300px;
-            height: 80px;
-            text-align: center;
-            color: #000000;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: bold;
-            font-size: 18px;
-            
-            border-radius: 20px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            animation: button-shimmer 2s infinite;
-            transition: all 0.3s ease-in-out;
-            white-space: nowrap; /* Evita que el texto se divida en varias líneas */
-            
-            }
-
-
-            /* Hover animation */
-        .boton:hover {
-            background: linear-gradient(to bottom, #49C2F2, white);
-            animation: button-particles 1s ease-in-out infinite;
-            transform: translateY(-2px);
-            }
-
+        }
         h2{
             text-align: center;
             background-color: #2c2f63;
@@ -164,6 +135,7 @@ $carrera=$_GET['carrera']??"";
             position: fixed;
         }
         
+
        
     </STYle>
 </head>

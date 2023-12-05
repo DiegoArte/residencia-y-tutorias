@@ -20,9 +20,9 @@ foreach ($_FILES['fichero']['name'] as $key => $value){
     $nombrefinal = "";
     $nombrefinal = trim ($_FILES['fichero']['name'][$key]);
     $nombrefinal2 = mb_ereg_replace (" ", "", $nombrefinal);
-    echo $_FILES['fichero']['name'][$key]."---".$nombrefinal2;
+    //echo $_FILES['fichero']['name'][$key]."---".$nombrefinal2;
     $upload = $ruta.$nombrefinal2;
-    echo "<br>";
+    //echo "<br>";
     if(move_uploaded_file($_FILES['fichero']['tmp_name'][$key], $upload)) { //movemos el archivo a su ubicacion 
         $Tipo_dearch = 0;
             if ($extension === "pdf"){

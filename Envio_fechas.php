@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,10 +100,11 @@ $conn->close();
     
             
                 <?php
-                $Log = $_POST["ses"];
+                $nombre = $_SESSION['nombre'];
+                $Log = $nombre;
                 //echo $Log;
                 include 'php/Mostrar_tabla.php';
-                Tabla();
+                Tabla($nombre);
                 ?>
                 <form action="php/Enviartabla.php" class="Tabla_contenido" method="post">
                 
@@ -165,6 +169,7 @@ $conn->close();
           
     </main>
     <script src="js/envia_FECH.js"></script>
+    <script src="js/recarga.js"></script>
     <script>
         function mostrarModal2() {
             document.getElementById("myModal").style.display = "block";

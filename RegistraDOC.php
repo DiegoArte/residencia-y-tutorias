@@ -217,12 +217,6 @@ session_start();
                 } else {
                     echo "Error al eliminar datos existentes: " . $mysqli->error . "<br>";
                 }
-                $deleteQuery = "DELETE FROM usuarios WHERE tipo_usuario = 'docente'";
-                if ($mysqli->query($deleteQuery)) {
-                   // echo "Datos existentes eliminados correctamente.<br>";
-                } else {
-                    echo "Error al eliminar datos existentes: " . $mysqli->error . "<br>";
-                }
             }
         }
             
@@ -329,21 +323,6 @@ session_start();
                                     VALUES ('$rowData[0]', '$rowData[1]', '$rowData[2]', '$Asesor', '$Presidente', '$Secretaria', '$rowData[3]')";
 
                     if ($mysqli->query($insertQuery)) {
-                        // Insertar usuario de docente en la tabla "usuarios"
-                        $usuario = $rowData[1];
-                        $contrasena = $rowData[1]; // Puedes establecer una contraseña predeterminada aquí
-                        $sqlInsertDocente = "INSERT INTO usuarios (usuario, contrasena, tipo_usuario) VALUES ('$usuario', '$contrasena', 'docente')";
-
-                        if ($mysqli->query($sqlInsertDocente) === TRUE) {
-                            //echo "Usuario $usuario agregado correctamente.<br>";
-                        } else {
-                            $valid = false;
-                            $errorMsg = "Error al agregar docente $usuario: " . $mysqli->error;
-                            // Llama a una función JavaScript para mostrar el modal de error
-                            echo '<script>';
-                            echo 'mostrarErrorModal("' . addslashes($errorMsg) . '");';
-                            echo '</script>';
-                        }
                     } else {
                         $valid = false;
                         $errorMsg = "Error al insertar datos en la tabla docente: " . $mysqli->error;
