@@ -4,6 +4,7 @@ include "conexion.php";
 $connect = conecta();
 $Nombre = $_POST["Nombre"];
 $archivo = $_FILES["fichero"]["name"];
+$dire = $_POST["dir"];
 //$archivo2 = $_FILES['fichero']['name'];
 //echo $Nombre;
 echo "<br>";
@@ -50,7 +51,7 @@ Swal.fire({
     text: 'Ha ocurrido un error al subir los datos'
 }).then(() => {
     // Después de hacer clic en 'Aceptar' en la alerta, regresar a la página anterior
-    window.history.back();
+    window.location.href = '$dire';
 });
 </script>";
 }
@@ -62,7 +63,7 @@ title: 'Datos enviados',
 text: 'Los datos se enviaron correctamente '}
 ).then(() => {
 // Después de hacer clic en 'Aceptar' en la alerta, regresar a la página anterior
-window.history.back();
+window.location.href = '$dire';
 });
 
 </script>
