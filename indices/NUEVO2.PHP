@@ -122,14 +122,12 @@ $carrera = $_GET['carrera'] ?? "";
                     die("Conexión fallida: " . $conn->connect_error);
                 }
 
-                // Obtener los parámetros de la URL
-                // Obtener los parámetros de la URL
                 $carrera1 = isset($_GET['carrera1']) ? htmlspecialchars($_GET['carrera1']) : null;
                 $semestre1 = isset($_GET['semestre1']) ? htmlspecialchars($_GET['semestre1']) : null;
                 $unidad1 = isset($_GET['unidad1']) ? htmlspecialchars($_GET['unidad1']) : null;
 
                 // Consulta SQL para obtener los datos filtrados de manera segura
-                $sql = "SELECT carrera, materia, semestre, unidad, alumnosA, alumnosR FROM indices 
+                $sql = "SELECT carrera, materia, semestre, grupo, unidad, alumnosA, alumnosR FROM indices 
                         WHERE carrera = ? AND semestre = ? AND unidad = ?";
 
                 $stmt = $conn->prepare($sql);
@@ -173,8 +171,8 @@ $carrera = $_GET['carrera'] ?? "";
                             $chartData[$carrera][$materia]['data'][] = array(
                                 'Aprobados' => $alumnosA,
                                 'Reprobados' => $alumnosR,
-                                'PorcentajeAprobados' => $porcentajeAlumnosA,
-                                'PorcentajeReprobados' => $porcentajeAlumnosR
+                                'PorcentajeAprobados %' => $porcentajeAlumnosA,
+                                'PorcentajeReprobados %' => $porcentajeAlumnosR
                             );
                         }
 
@@ -183,7 +181,7 @@ $carrera = $_GET['carrera'] ?? "";
                             echo '<h2>' . $carrera . '</h2>';
                             foreach ($materias as $materia => $data) {
                                 echo '<div class="chart-container">';
-                                echo '<canvas class="bar-chart" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '"data-grupo="'.$grupo.'" data-labels=\''
+                                echo '<canvas class="bar-chart" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '"data-grupo="'. $grupo .'" data-labels=\''
                                     . json_encode($data['labels']) . '\' data-data=\''
                                     . json_encode($data['data']) . '\'></canvas>';
                                 echo '</div>';
@@ -234,6 +232,7 @@ $carrera = $_GET['carrera'] ?? "";
                             var carreraChart = chart.getAttribute('data-carrera');
                             var materia = chart.getAttribute('data-materia');
                             var semestreChart = chart.getAttribute('data-semestre');
+                            var grupo = chart.getAttribute('data-grupo')
                             var labels = JSON.parse(chart.getAttribute('data-labels'));
                             var data = JSON.parse(chart.getAttribute('data-data'));
 
@@ -263,7 +262,7 @@ $carrera = $_GET['carrera'] ?? "";
                                     plugins: {
                                         title: {
                                             display: true,
-                                            text: carreraChart + ' - Materia: ' + materia + ' - Semestre: ' + semestreChart
+                                            text: carreraChart + ' - Materia: ' + materia + ' - Semestre: ' + semestreChart +' - Grupo:' + grupo
                                         }
                                     }
                                 }
