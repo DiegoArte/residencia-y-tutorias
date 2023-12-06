@@ -1,10 +1,13 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <?php
+session_start();
+//echo $_SESSION['nombre'];
 include "conexion.php";
 $connect = conecta();
 $Nombre = $_POST["Nombre"];
 $archivo = $_FILES["fichero"]["name"];
 $tipoFrecha = $_POST["Fecha1"];
+$dire = $_POST["dire"];
 echo $tipoFrecha;
 
 //$archivo2 = $_FILES['fichero']['name'];
@@ -52,7 +55,7 @@ Swal.fire({
     text: 'Ha ocurrido un error al subir los datos'
 }).then(() => {
     // Después de hacer clic en 'Aceptar' en la alerta, regresar a la página anterior
-    window.history.back();
+    window.location.href = '$dire';
 });
 </script>";
 }
@@ -64,7 +67,7 @@ title: 'Datos enviados',
 text: 'Los datos se enviaron correctamente '}
 ).then(() => {
 // Después de hacer clic en 'Aceptar' en la alerta, regresar a la página anterior
-window.history.back();
+window.location.href = '$dire';
 });
 
 </script>

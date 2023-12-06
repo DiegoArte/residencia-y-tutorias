@@ -3,9 +3,10 @@
 if (isset($_FILES['archivo'])) {
     extract($_POST);
     $idalumno = $_POST['idalumno'];
-    $nombre = $_POST['nombrealumno'];
+    $nombrealumno = $_POST['nombrealumno'];
     $nombreproyecto = $_POST['nombreproyecto'];
     $empresa = $_POST['empresa'];
+    $carrera = $_POST['carrera']; // This line assumes the career information is obtained from the form
     
     // Verificar si se ha cargado un archivo
     if (!empty($_FILES["archivo"]["name"])) {
@@ -22,9 +23,11 @@ if (isset($_FILES['archivo'])) {
             if (move_uploaded_file($_FILES["archivo"]["tmp_name"], $carpeta_destino . $nombre_archivo)) {
                 // Insertar la información del archivo en la base de datos
                 include "db.php";
-                $sql = "INSERT INTO documento (idalumno, nombrealumno, nombreproyecto, empresa, archivo) 
-                VALUES ( '$idalumno', '$nombrealumno', '$nombreproyecto', '$empresa', '$nombre_archivo')";
+                $sql = "INSERT INTO documento (idalumno, nombrealumno, nombreproyecto, empresa, carrera, archivo) 
+                VALUES ('$idalumno', '$nombrealumno', '$nombreproyecto', '$empresa', '$carrera', '$nombre_archivo')";
+                
                 $resultado = mysqli_query($conexion, $sql);
+                
                 if ($resultado) {
                     echo "<script language='JavaScript'>
                     alert('Registro Guardado');
@@ -51,9 +54,11 @@ if (isset($_FILES['archivo'])) {
     } else {
         // Insertar la información en la base de datos sin el archivo
         include "db.php";
-        $sql = "INSERT INTO documento (idalumno, nombrealumno, nombreproyecto, empresa, asesor) 
-        VALUES ( '$idalumno', '$nombrealumno', '$nombreproyecto', '$empresa', '$asesor')";
+        $sql = "INSERT INTO documento (idalumno, nombrealumno, nombreproyecto, empresa, carrera, asesor) 
+        VALUES ('$idalumno', '$nombrealumno', '$nombreproyecto', '$empresa', '$carrera', '$asesor')";
+        
         $resultado = mysqli_query($conexion, $sql);
+        
         if ($resultado) {
             echo "<script language='JavaScript'>
             alert('Registro Guardado');
@@ -67,3 +72,4 @@ if (isset($_FILES['archivo'])) {
         }
     }
 }
+?>

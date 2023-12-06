@@ -61,7 +61,7 @@
 
             if ($result->num_rows > 0) {
                 echo "<table>";
-                echo "<tr><th>Plan de estudio</th><th>Materia</th><th>Semestre</th><th>Grupo</th><th>Unidad</th><th>AlumnosA</th><th>AlumnosR</th><th>Acciones</th></tr>";
+                echo "<tr><th>Plan de estudio</th><th>Materia</th><th>Semestre</th><th>Grupo</th><th>Unidad</th><th>AlumnosAprobados</th><th>AlumnosReprobados</th><th>Acciones</th></tr>";
 
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";

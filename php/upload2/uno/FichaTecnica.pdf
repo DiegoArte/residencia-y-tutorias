@@ -1,0 +1,5 @@
+<br />
+<b>Warning</b>:  readfile(archivos/FichaTecnica.pdf): Failed to open stream: No such file or directory in <b>C:\xampp8_1\htdocs\Proyectos\Proyecto_Uni\residencia-y-tutorias\php\Full_FichaT.php</b> on line <b>46</b><br />
+<script type="text/javascript">
+swal("Correcto", "Los datos fueron enviados correctamente", "success");
+</script>
