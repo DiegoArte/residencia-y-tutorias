@@ -14,6 +14,8 @@
                     $alumno = mysqli_fetch_assoc($consulta);
 
 
+                    $consulta_carreras = mysqli_query($conexion, "SELECT NombredeCarrera FROM carrera");
+
 
                     ?>
                     <div class="row">
@@ -47,7 +49,6 @@
                             <input type="text" id="empresa" name="empresa" class="form-control">
                         </div>
                     </div>
-
                     <div class="col-sm-6">
                     <div class="mb-3 form-check">
                         <input type="checkbox" id="guardarEmpresa" name="guardarEmpresa" class="form-check-input" onclick="habilitarEmpresa()">
@@ -69,6 +70,21 @@
                     }
                 </script>
 
+
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <label for="carrera" class="form-label">Selecciona una carrera</label>
+                            <select id="carrera" name="carrera" class="form-control">
+                                <?php while($carrera = mysqli_fetch_assoc($consulta_carreras)) { ?>
+                                    <option value="<?php echo $carrera['NombredeCarrera']; ?>">
+                                        <?php echo $carrera['NombredeCarrera']; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                   
 
 
                     <div class="col-12">
