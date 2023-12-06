@@ -50,20 +50,6 @@
                     </div>
 
 
-                    <div class="col-sm-6">
-                        <div class="mb-3">
-                            <label for="carrera" class="form-label">Selecciona una carrera</label>
-                            <select id="carrera" name="carrera" class="form-control">
-                                <?php while($carrera = mysqli_fetch_assoc($consulta_carreras)) { ?>
-                                    <option value="<?php echo $carrera['NombredeCarrera']; ?>">
-                                        <?php echo $carrera['NombredeCarrera']; ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-
-
 
                     <div class="col-12">
                         <label for="yourPassword" class="form-label">Archivo (PDF)</label>
