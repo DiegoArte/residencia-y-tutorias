@@ -133,11 +133,11 @@ $carrera = $_GET['carrera'] ?? "";
           echo '<h2>' . $carrera . '</h2>';
           foreach ($materias as $materia => $data) {
             echo '<div class="chart-container">';
-            echo '<canvas class="bar-chart" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '"data-grupo"'. $grupo .'" data-labels=\''
+            echo '<canvas class="bar-chart" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '"data-grupo"' . $grupo . '" data-labels=\''
               . json_encode($data['labels']) . '\' data-data=\''
               . json_encode($data['data']) . '\'></canvas>';
             // Add download button for each chart
-            echo '<button class="btn btn-primary download-button" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '"data-grupo"'. $grupo .'" onclick="downloadChart(this)">Descargar Gráfica</button>';
+            echo '<button class="btn btn-primary download-button" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '"data-grupo"' . $grupo . '" onclick="downloadChart(this)">Descargar Gráfica</button>';
             echo '<br><br><br><br></div>';
           }
         }
@@ -197,7 +197,7 @@ $carrera = $_GET['carrera'] ?? "";
             plugins: {
               title: {
                 display: true,
-                text: carrera + ' - Materia: ' + materia + ' - Semestre: ' + semestre +'- Grupo:'+ grupo
+                text: carrera + ' - Materia: ' + materia + ' - Semestre: ' + semestre + '- Grupo:' + grupo
               }
             }
           }
@@ -210,8 +210,7 @@ $carrera = $_GET['carrera'] ?? "";
         var carrera = button.getAttribute('data-carrera');
         var materia = button.getAttribute('data-materia');
         var semestre = button.getAttribute('data-semestre');
-        var grupo =button.getAttribute('data-grupo');
-        var chartCanvas = document.querySelector('.bar-chart[data-carrera="' + carrera + '"][data-materia="' + materia + '"][data-semestre="' + semestre + '"]'+'[data-grupo="'+ grupo+'"]');
+        var chartCanvas = document.querySelector('.bar-chart[data-carrera="' + carrera + '"][data-materia="' + materia + '"][data-semestre="' + semestre + '"]');
 
         // Esperar 500 milisegundos antes de convertir a PDF
         setTimeout(function() {

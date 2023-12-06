@@ -1,6 +1,9 @@
 <?php
 session_start();
 $carrera = $_GET['carrera'] ?? "";
+$carrera1_actual = $_GET['carrera1'] ?? '';
+$semestre1_actual = $_GET['semestre1'] ?? '';
+$unidad1_actual = $_GET['unidad1'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -100,14 +103,20 @@ $carrera = $_GET['carrera'] ?? "";
 
       ?>
 
-      <form id="filtro-form" action="#">
+      <form id="filtro-form" action="NUEVO2.PHP" method="get">
         <div class="col-md-5">
           <label for="carrera1" class="form-label">Carrera:</label>
           <select class="form-select" name="carrera1" id="carrera1">
             <option value="">Todas las carreras</option>
             <?php
+            $carreras_options = array();
+            $carreras_result->data_seek(0); // Reinicia el puntero a la posición inicial
             while ($carrera_row = $carreras_result->fetch_assoc()) {
-              echo '<option value="' . $carrera_row['carrera'] . '">' . $carrera_row['carrera'] . '</option>';
+              $selected = ($carrera1_actual == $carrera_row['carrera']) ? 'selected' : '';
+              $carreras_options[] = array('value' => $carrera_row['carrera'], 'selected' => $selected);
+            }
+            foreach ($carreras_options as $option) {
+              echo '<option value="' . $option['value'] . '" ' . $option['selected'] . '>' . $option['value'] . '</option>';
             }
             ?>
           </select>
@@ -117,8 +126,14 @@ $carrera = $_GET['carrera'] ?? "";
           <select class="form-select" name="semestre1" id="semestre1">
             <option value="">Todos los semestres</option>
             <?php
+            $semestres_options = array();
+            $semestres_result->data_seek(0);
             while ($semestre_row = $semestres_result->fetch_assoc()) {
-              echo '<option value="' . $semestre_row['semestre'] . '">' . $semestre_row['semestre'] . '</option>';
+              $selected = ($semestre1_actual == $semestre_row['semestre']) ? 'selected' : '';
+              $semestres_options[] = array('value' => $semestre_row['semestre'], 'selected' => $selected);
+            }
+            foreach ($semestres_options as $option) {
+              echo '<option value="' . $option['value'] . '" ' . $option['selected'] . '>' . $option['value'] . '</option>';
             }
             ?>
           </select>
@@ -127,8 +142,14 @@ $carrera = $_GET['carrera'] ?? "";
           <select class="form-select" name="unidad1" id="unidad1">
             <option value="">Todas las unidades</option>
             <?php
+            $unidades_options = array();
+            $unidades_result->data_seek(0);
             while ($unidad_row = $unidades_result->fetch_assoc()) {
-              echo '<option value="' . $unidad_row['unidad'] . '">' . $unidad_row['unidad'] . '</option>';
+              $selected = ($unidad1_actual == $unidad_row['unidad']) ? 'selected' : '';
+              $unidades_options[] = array('value' => $unidad_row['unidad'], 'selected' => $selected);
+            }
+            foreach ($unidades_options as $option) {
+              echo '<option value="' . $option['value'] . '" ' . $option['selected'] . '>' . $option['value'] . '</option>';
             }
             ?>
           </select>
@@ -136,6 +157,7 @@ $carrera = $_GET['carrera'] ?? "";
 
         <button class="eliminar" onclick="filtrarDatos()">Filtrar</button>
       </form>
+      <br><br>
 
 
 
@@ -217,6 +239,7 @@ $carrera = $_GET['carrera'] ?? "";
               echo '<canvas class="bar-chart" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '" data-labels=\''
                 . json_encode($data['labels']) . '\' data-data=\''
                 . json_encode($data['data']) . '\'></canvas>';
+              echo '<button class="btn btn-primary download-button" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '" onclick="downloadChart(this)">Descargar Gráfica</button>';
               echo '<br><br><br><br></div>';
               //echo '<script>filtrarDatos();</script>';
             }
@@ -239,7 +262,9 @@ $carrera = $_GET['carrera'] ?? "";
     </div>
   </main>
 
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Llama a la función que deseas ejecutar automáticamente
@@ -309,6 +334,38 @@ $carrera = $_GET['carrera'] ?? "";
       xhr.send();
     }
     // Función para crear las gráficas
+
+    // Función para descargar la gráfica específica como PDF
+    window.downloadChart = function(button) {
+      console.log('Descargando gráfica...');
+      var carrera = button.getAttribute('data-carrera');
+      var materia = button.getAttribute('data-materia');
+      var semestre = button.getAttribute('data-semestre');
+      var chartCanvas = document.querySelector('.bar-chart[data-carrera="' + carrera + '"][data-materia="' + materia + '"][data-semestre="' + semestre + '"]');
+
+      // Esperar 500 milisegundos antes de convertir a PDF
+      setTimeout(function() {
+        // Utilizar html2pdf para generar el PDF
+        var pdfOptions = {
+          margin: 10,
+          filename: carrera + '_' + materia + '_Semestre_' + semestre + '_Chart.pdf',
+          image: {
+            type: 'jpeg',
+            quality: 0.98
+          },
+          html2canvas: {
+            scale: 2
+          },
+          jsPDF: {
+            unit: 'mm',
+            format: 'a4',
+            orientation: 'landscape'
+          },
+        };
+
+        html2pdf().from(chartCanvas).set(pdfOptions).save();
+      }, 500);
+    };
   </script>
 
 

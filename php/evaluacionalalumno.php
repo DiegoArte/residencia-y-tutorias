@@ -87,25 +87,25 @@
     $templateProcessor-> setValue('S3',$S3);
     $templateProcessor-> setValue('B3',$B3);
     $templateProcessor-> setValue('N3',$N3);
-    $templateProcessor-> setValue('S3',$E3);
+    $templateProcessor-> setValue('E3',$E3);
     
     $templateProcessor-> setValue('I4',$I4);
     $templateProcessor-> setValue('S4',$S4);
     $templateProcessor-> setValue('B4',$B4);
     $templateProcessor-> setValue('N4',$N4);
-    $templateProcessor-> setValue('S4',$E4);
+    $templateProcessor-> setValue('E4',$E4);
     
     $templateProcessor-> setValue('I5',$I5);
     $templateProcessor-> setValue('S5',$S5);
     $templateProcessor-> setValue('B5',$B5);
     $templateProcessor-> setValue('N5',$N5);
-    $templateProcessor-> setValue('S5',$E5);
+    $templateProcessor-> setValue('E5',$E5);
     
     $templateProcessor-> setValue('I6',$I6);
     $templateProcessor-> setValue('S6',$S6);
     $templateProcessor-> setValue('B6',$B6);
     $templateProcessor-> setValue('N6',$N6);
-    $templateProcessor-> setValue('S6',$E6);
+    $templateProcessor-> setValue('E6',$E6);
 
     $templateProcessor-> setValue('I7',$I7);
     $templateProcessor-> setValue('S7',$S7);
