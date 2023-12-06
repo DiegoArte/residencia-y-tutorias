@@ -202,23 +202,27 @@ session_start();
 <button id="guardarDatos">Guardar Datos</button> <!-- Botón fuera de la tabla -->
 
 <script>
-    $(document).ready(function () {
-        $('#guardarDatos').click(function () {
-            // Realizar una petición AJAX al script PHP para guardar los datos en la base de datos
-            $.ajax({
-                type: 'POST',
-                url: 'guardar_asesorados.php', // Reemplaza 'guardar_datos.php' con la ruta a tu script PHP
-                success: function (response) {
-                    alert('Datos guardados correctamente.');
-                    // Puedes agregar aquí cualquier lógica adicional después de guardar los datos
-                },
-                error: function (xhr, status, error) {
-                    alert('Error al guardar los datos. Inténtalo de nuevo.');
-                    console.error(error);
-                }
-            });
+   $(document).ready(function () {
+    $('#guardarDatos').click(function () {
+        var carreraSeleccionada = $('#searchInput').val(); // Obtener la carrera seleccionada
+
+        // Realizar una petición AJAX al script PHP para guardar los datos filtrados por carrera
+        $.ajax({
+            type: 'POST',
+            url: 'guardar_asesorados.php', // Ruta al script PHP para guardar los datos
+            data: { carrera: carreraSeleccionada }, // Enviar la carrera seleccionada como datos
+            success: function (response) {
+                alert('Datos guardados correctamente para la carrera seleccionada.');
+                // Puedes agregar aquí cualquier lógica adicional después de guardar los datos
+            },
+            error: function (xhr, status, error) {
+                alert('Error al guardar los datos. Inténtalo de nuevo.');
+                console.error(error);
+            }
         });
     });
+});
+
 </script>
 
 
