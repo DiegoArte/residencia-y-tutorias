@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="mb-3">
-                                <label for="idalumno" class="form-label">Id Alumno</label>
+                                <label for="idalumno" class="form-label">Id alumno</label>
                                 <input type="text" id="idalumno" name="idalumno" class="form-control" required readonly
                                     value="<?php echo $id; ?>">
                             </div>
