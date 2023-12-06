@@ -128,7 +128,6 @@ $conn->close();
                                 <th>Nombre</th>
                                 <th>Nombre del proyecto</th>
                                 <th>Empresa</th>
-                                <th>Carrera</th>
                                 <th>Archivo</th>
                                 <th>Descargar</th>
                                 <th>Ver PDF</th>
@@ -169,9 +168,6 @@ $conn->close();
                                     </td>
                                     <td>
                                         <?php echo $fila['empresa']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $fila['carrera']; ?>
                                     </td>
                                     
                                     <td>
