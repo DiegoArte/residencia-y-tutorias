@@ -116,9 +116,10 @@ $conn->close();
                 <?php
                 $tipo2 ="1";
                 $Log = $nombre;
+                $dic = "../Envio_fechasTutoras_A1.php";
                 //echo $Log;
                 include 'php/Mostrar_tablaTutorias.php';
-                Tabla($tipo2,$nombre);
+                Tabla($tipo2,$nombre,$dic);
                 ?>
                 <form action="php/Enviartabla.php" class="Tabla_contenido" method="post">
                 
@@ -171,6 +172,7 @@ $conn->close();
             <form action="php/llenado_Archivo_EF_Tutorias.php" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario()">
                 <input type="hidden" name="Nombre" id="Nombre" value="<?php echo $Log;?>">
                 <input type="hidden" name="Fecha1"id="Fecha1" value="1">
+                <input type="hidden" name="dire"id="dire" value="../Envio_fechasTutoras_A1.php">
                 <br>
                 
                 <input name="fichero[]" type="file" size="150" maxlength="150" multiple>
