@@ -13,26 +13,31 @@
                     $consulta = mysqli_query($conexion, "SELECT * FROM alumnos WHERE NumerodeControl='$id'");
                     $alumno = mysqli_fetch_assoc($consulta);
 
-                  
+                    $consulta_carreras = mysqli_query($conexion, "SELECT NombredeCarrera FROM carrera");
+
+
                     ?>
-                        <div class="row">
+                    <div class="row">
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="idalumno" class="form-label">Id Alumno</label>
-                                <input type="text" id="idalumno" name="idalumno" class="form-control" required readonly value="<?php echo $id; ?>">
+                                <input type="text" id="idalumno" name="idalumno" class="form-control" required readonly
+                                    value="<?php echo $id; ?>">
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="nombrealumno" class="form-label">Nombre alumno</label>
-                                <input type="text" id="nombrealumno" name="nombrealumno" class="form-control" required readonly value="<?php echo $alumno['NombredelEstudiante']; ?>">
+                                <input type="text" id="nombrealumno" name="nombrealumno" class="form-control" required
+                                    readonly value="<?php echo $alumno['NombredelEstudiante']; ?>">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="nombreproyecto" class="form-label">Nombre proyecto</label>
-                                <input type="text" id="nombreproyecto" name="nombreproyecto" class="form-control" required readonly value="<?php echo $alumno['NombredelAnteproyecto']; ?>">
+                                <input type="text" id="nombreproyecto" name="nombreproyecto" class="form-control"
+                                    required readonly value="<?php echo $alumno['NombredelAnteproyecto']; ?>">
                             </div>
                         </div>
                     </div>
@@ -40,43 +45,37 @@
                     <div class="col-sm-6">
                         <div class="mb-3">
                             <label for="empresa" class="form-label">Empresa</label>
-                            <input type="text" id="empresa" name="empresa" class="form-control" >
+                            <input type="text" id="empresa" name="empresa" class="form-control">
                         </div>
                     </div>
 
+
                     <div class="col-sm-6">
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" id="guardarEmpresa" name="guardarEmpresa" class="form-check-input" onclick="habilitarEmpresa()">
-                        <label for="guardarEmpresa" class="form-check-label">Guardar información de la empresa</label>
+                        <div class="mb-3">
+                            <label for="carrera" class="form-label">Selecciona una carrera</label>
+                            <select id="carrera" name="carrera" class="form-control">
+                                <?php while($carrera = mysqli_fetch_assoc($consulta_carreras)) { ?>
+                                    <option value="<?php echo $carrera['NombredeCarrera']; ?>">
+                                        <?php echo $carrera['NombredeCarrera']; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
                     </div>
-                </div>
-
-                <script>
-                    function habilitarEmpresa() {
-                        var empresaInput = document.getElementById('empresa');
-                        var checkbox = document.getElementById('guardarEmpresa');
-
-                        if (checkbox.checked) {
-                            empresaInput.removeAttribute('readonly');
-                        } else {
-                            empresaInput.setAttribute('readonly', 'readonly');
-                            empresaInput.value = '';
-                        }
-                    }
-                </script>
 
 
-                <div class="col-12">
-                    <label for="yourPassword" class="form-label">Archivo (PDF)</label>
-                    <input type="file" name="archivo" id="archivo" class="form-control">
-                </div>
 
-                <br>
+                    <div class="col-12">
+                        <label for="yourPassword" class="form-label">Archivo (PDF)</label>
+                        <input type="file" name="archivo" id="archivo" class="form-control">
+                    </div>
 
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="register" name="registrar">Guardar</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                </div>
+                    <br>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="register" name="registrar">Guardar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
                 </form>
             </div>
         </div>
