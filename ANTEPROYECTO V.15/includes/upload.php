@@ -35,11 +35,17 @@ if (isset($_FILES['archivo'])) {
                     </script>";
                 } else {
                     echo "<script language='JavaScript'>
-                    alert('Error al subir el archivo: " . mysqli_error($conexion) . "');
+                    alert('Error al subir el archivo: ');
                     location.assign('../views/index(VISTA ALUMNO).php');
                     </script>";
                 }
             } else {
+                echo "<script language='JavaScript'>
+                alert('Error al subir el archivo. ');
+                location.assign('../views/index(VISTA ALUMNO).php');
+                </script>";
+            }
+        } else {
             echo "<script language='JavaScript'>
             alert('Solo se permiten archivos PDF.');
             location.assign('../views/index(VISTA ALUMNO).php');
@@ -65,6 +71,5 @@ if (isset($_FILES['archivo'])) {
             </script>";
         }
     }
-}
 }
 ?>
