@@ -73,7 +73,7 @@
                     echo "<td>" . $row["alumnosA"] . "</td>";
                     echo "<td>" . $row["alumnosR"] . "</td>";
                     echo "<td>
-                            <a href='eliminar.php?id=" . $row["id"] . "'><img src='E1.png' alt='NM'></a>
+                            <a href='confirmacion_eliminar.php?id=" . $row["id"] . "'><img src='E1.png' alt='NM'></a>
                             <a href='editar.php?id=" . $row["id"] . "'><img src='E2.png' alt='NM'></a>
                         </td>";
                     echo "</tr>";
@@ -85,37 +85,8 @@
             ?>
         </div>
     </main>
-    <div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="eliminarModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="eliminarModalLabel">Confirmar Eliminación</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ¿Estás seguro de que deseas eliminar este elemento?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <a class="btn btn-danger" id="eliminarEnlace" href="#">Eliminar</a>
-            </div>
-            </div>
-        </div>
-    </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Captura el clic en el botón de eliminación
-        const eliminarButtons = document.querySelectorAll('.eliminar-btn');
-        eliminarButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const id = this.getAttribute('data-id');
-                // Configura el enlace del modal para la eliminación
-                const eliminarEnlace = document.getElementById('eliminarEnlace');
-                eliminarEnlace.href = 'eliminar.php?id=' + id;
-            });
-        });
-    });
-</script>
+
+<br><br><br>
 
 </body>
 </html>
