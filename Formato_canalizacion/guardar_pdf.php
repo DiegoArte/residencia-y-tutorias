@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['campoOculto2'];
     $nombreTutor = $_POST['campoOculto3'];
     $problematica = $_POST['campoOculto4'];
-    $reporte = "reporte";
 
     // Verificar si se cargó correctamente
     if ($pdfFile['error'] === UPLOAD_ERR_OK) {
@@ -27,6 +26,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($mysqli->connect_error) {
             die("Error de conexión: " . $mysqli->connect_error);
         }
+
+
+
+        // Tu consulta SQL
+        $sql11 = "SELECT reporte FROM tablavispsico ORDER BY reporte DESC LIMIT 1";
+
+        // Ejecutar la consulta
+        $result11 = $mysqli->query($sql11);
+
+        // Verificar si la consulta fue exitosa
+        if ($result11) {
+            // Obtener el resultado como array asociativo
+            $datos11 = $result11->fetch_assoc();
+
+            // Verificar si se obtuvieron datos
+            if ($datos11) {
+                // Acceder al valor de la columna "reporte"
+                $reporte = $datos11['reporte'];
+
+                // Obtener el último carácter
+                $ultimoCaracter = substr($reporte, -1);
+
+                // Convertir el último carácter a un tipo numérico
+                $numero = intval($ultimoCaracter);
+            }
+        }
+
+        $numero = $numero +1;
+        $reporte = "Reporte" . $numero;
+
+
+
 
         // Preparar la consulta para insertar en la base de datos
         $stmt = $mysqli->prepare("INSERT INTO tabla_pdf (nombre, archivo) VALUES (?, ?)");
