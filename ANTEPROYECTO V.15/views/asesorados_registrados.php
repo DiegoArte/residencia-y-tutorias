@@ -108,31 +108,41 @@ session_start();
     </div>
     <section style="margin-top: 70px;">
 
-        
-
-</body>
-<section>
         <h2 class="text-center">Asesorados registrados</h2>
 
-        <form id="carreraForm">
-        <label for="carrera">Selecciona una carrera:</label>
-        <select name="carrera" id="carrera">
-            <option value="">Todas las carreras</option>
-            <!-- Aquí se cargarán dinámicamente las opciones de carrera -->
+        <select id="searchInput" name="search">
+      
+            <option value="">Seleccionar carrera</option>
+            <?php
+
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "tutorias_residencia";
+
+            // Crea la conexión
+            $conexion = new mysqli($servername, $username, $password, $dbname);
+
+
+            $sql_carreras = "SELECT DISTINCT carrera FROM documento";
+            $result_carreras = $conexion->query($sql_carreras);
+
+            if($result_carreras->num_rows > 0) {
+                while($row_carrera = $result_carreras->fetch_assoc()) {
+                    echo '<option value="'.$row_carrera["carrera"].'">'.$row_carrera["carrera"].'</option>';
+                }
+            }
+            ?>
         </select>
-        <button type="submit">Filtrar</button>
-    </form>
+        <button id="filtrarDatosPorCarrera">Filtrar por Carrera</button>
 
         <table id="dataTable">
-            <thead>
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Carrera</th>
                 <th>Anteproyecto</th>
             </tr>
-        </thead>
-        <tbody>
             <?php
             $servername = "localhost";
             $username = "root";
@@ -141,7 +151,7 @@ session_start();
 
             // Crea la conexión
             $conexion = new mysqli($servername, $username, $password, $dbname);
-        
+
             $search = $_GET['search'] ?? '';
             $sql = "SELECT idalumno, nombrealumno, carrera, archivo FROM documento WHERE liberado = 0";
 
@@ -160,30 +170,62 @@ session_start();
                 echo "<tr><td colspan='4'>No hay asesorados registrados</td></tr>";
             }
             ?>
-            <tbody>
+
         </table>
     </section>
+    <script>
+        $(document).ready(function () {
+            // Evento de clic en el botón de filtrar por carrera
+            $('#filtrarDatosPorCarrera').click(function () {
+                var carreraSeleccionada = $('#searchInput').val(); // Obtener el valor de la carrera seleccionada
+                // Realizar una petición AJAX al script PHP para filtrar por carrera
+                $.ajax({
+                    type: 'GET', // Cambiar a GET para enviar la información como parámetro en la URL
+                    url: 'buscar_carrera.php?search=' + carreraSeleccionada, // Reemplazar 'tu_script_php.php' con tu script PHP
+                    success: function (response) {
+                        // Reemplazar el contenido de la tabla con la respuesta obtenida
+                        $('#dataTable').html(response);
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error al filtrar por carrera. Inténtalo de nuevo.');
+                        console.error(error);
+                    }
+                });
+            });
+
+            // Resto del código
+        });
+    </script>
+</body>
+    
+</body>
 <button id="guardarDatos">Guardar Datos</button> <!-- Botón fuera de la tabla -->
 
 <script>
-    $(document).ready(function () {
-        $('#guardarDatos').click(function () {
-            // Realizar una petición AJAX al script PHP para guardar los datos en la base de datos
-            $.ajax({
-                type: 'POST',
-                url: 'guardar_asesorados.php', // Reemplaza 'guardar_datos.php' con la ruta a tu script PHP
-                success: function (response) {
-                    alert('Datos guardados correctamente.');
-                    // Puedes agregar aquí cualquier lógica adicional después de guardar los datos
-                },
-                error: function (xhr, status, error) {
-                    alert('Error al guardar los datos. Inténtalo de nuevo.');
-                    console.error(error);
-                }
-            });
+   $(document).ready(function () {
+    $('#guardarDatos').click(function () {
+        var carreraSeleccionada = $('#searchInput').val(); // Obtener la carrera seleccionada
+
+        // Realizar una petición AJAX al script PHP para guardar los datos filtrados por carrera
+        $.ajax({
+            type: 'POST',
+            url: 'guardar_asesorados.php', // Ruta al script PHP para guardar los datos
+            data: { carrera: carreraSeleccionada }, // Enviar la carrera seleccionada como datos
+            success: function (response) {
+                alert('Datos guardados correctamente para la carrera seleccionada.');
+                // Puedes agregar aquí cualquier lógica adicional después de guardar los datos
+            },
+            error: function (xhr, status, error) {
+                alert('Error al guardar los datos. Inténtalo de nuevo.');
+                console.error(error);
+            }
         });
     });
+});
+
 </script>
+
+
 
 
 </html>

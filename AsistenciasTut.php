@@ -95,7 +95,7 @@ $carrera=$_GET['carrera']??"";
                     
                     <div class="row mb-3">
                         <label class="form-label">Selecciona la fecha de la asistencia</label>
-                        <input type="date" name="fecha">
+                        <input type="date" name="fecha" value="<?php echo date('d-m-Y'); ?>"/>
                     </div>
                 </div>
             <div class="modal-footer">
@@ -243,7 +243,7 @@ $carrera=$_GET['carrera']??"";
                 echo "<tbody>";
                 require_once "php/db.php";
                 $conexion=conectar();
-                $sql = "SELECT NumeroDeControl, NombreDelEstudiante FROM alumnosnormales WHERE Academia='$acade'";
+                $sql = "SELECT NumeroDeControl, NombreDelEstudiante FROM alumnosnormales WHERE Numerocontrolgrupo='$gru'";
                 $resul = $conexion->query($sql);
 
                 if ($resul->num_rows > 0) {

@@ -35,8 +35,16 @@ function enteroARomano($numero) {
 }
 
 if($_SERVER['REQUEST_METHOD']==='POST') {
-    $informe=new InformeParcial($_POST);
-    $informe->crear();
+    $asignatura=$_POST['asignatura'];
+    $group=$_POST['grupo'];
+    $filas=InformeParcial::countFills("asignatura='$asignatura' and grupo='$group'");
+    if($filas==0){
+        $informe=new InformeParcial($_POST);
+        $informe->crear();
+    } else {
+        $informe=new InformeParcial($_POST);
+        $informe->actualizar("asignatura='$asignatura' and grupo='$group'");
+    }
 }
 
 ?>
@@ -117,8 +125,7 @@ if($_SERVER['REQUEST_METHOD']==='POST') {
                             <?php
                             for($i=1; $i<=6; $i++){
                                 ?>
-                                <th>No R</th>
-                                <th>%R</th>
+                                <th colspan="2">No R</th>
                                 <?php
                             } 
                             ?>
@@ -132,11 +139,8 @@ if($_SERVER['REQUEST_METHOD']==='POST') {
                             for($i=1; $i<=6; $i++){
                                 $unidad=enteroARomano($i);
                                 ?>
-                                <td>
+                                <td colspan="2">
                                     <input type="text" name="<?php echo "numReprobados".$unidad ?>">
-                                </td>
-                                <td> 
-                                    <input type="text" name="<?php echo "porReprobados".$unidad ?>">
                                 </td>
                                 <?php
                             } 
@@ -159,7 +163,7 @@ if($_SERVER['REQUEST_METHOD']==='POST') {
                                 <?php
                                 $estudiantes=AlumnoMateria::countFills("idmateria='$materiaNum' AND idalumno IN(SELECT NumeroDeControl FROM alumnosnormales WHERE Numerocontrolgrupo='$grupito')");
                                 ?>
-                                <input type="text" name="estudiantes" value="<?php echo $estudiantes; ?>" disabled>
+                                <input type="text" name="estudiantes" value="<?php echo $estudiantes; ?>" readonly>
                             </td>
                         </tr>
                         <tr>
@@ -188,6 +192,7 @@ if($_SERVER['REQUEST_METHOD']==='POST') {
             <?php
             }
             ?>
+            <a class="gen_boton" href="informe parcial/formato.php">Generar formato</a>
         </div>
     </main>
     <script src="js/informe_parcial.js"></script>

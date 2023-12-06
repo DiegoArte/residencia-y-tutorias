@@ -170,12 +170,58 @@ $result->saveFiles("Imagenes/");
 $pdfFileName = "resultados.pdf";
 
 // Ruta completa al archivo PDF
-$pdfFilePath = $savePath . $pdfFileName;
+//$pdfFilePath = $savePath . $pdfFileName;
 
 // Descargar automáticamente el archivo PDF
-header('Content-Type: application/pdf');
-header('Content-Disposition: attachment; filename="' . $pdfFileName . '"');
-readfile($pdfFilePath);
+
 //----------------------------------------------------------------------------
 
 ?>
+<style>
+    .custom-button-visualizar {
+        background-color: #4CAF50; /* Verde */
+        color: white;
+    }
+
+    .custom-button-descargar {
+        background-color: #008CBA; /* Azul */
+        color: white;
+    }
+</style>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+    // Mostrar SweetAlert con botones "Visualizar" y "Descargar"
+    document.addEventListener('DOMContentLoaded', function() {// Mostrar SweetAlert con botones "Visualizar" y "Descargar"
+    swal({
+        title: "Éxito",
+        text: "Los datos fueron enviados correctamente.",
+        icon: "success",
+        buttons: {
+            visualizar: {
+                text: "Visualizar",
+                value: "visualizar",
+                className: "custom-button-visualizar",
+            },
+            descargar: {
+                text: "Descargar",
+                value: "descargar",
+                className: "custom-button-descargar",
+            },
+        },
+    })
+    .then((value) => {
+        // Redirigir según la opción seleccionada por el usuario
+        if (value === "visualizar") {
+            var pdfFilePath = "Imagenes/resultados.pdf";;
+            // Redirigir a una página que muestre el PDF en línea
+            window.open(pdfFilePath, "_blank");
+        } else if (value === "descargar") {
+            var pdfFilePath = "Imagenes/resultados.pdf";;
+            // Redirigir para descargar el PDF
+            var link = document.createElement('a');
+            link.href = pdfFilePath;
+            link.download = "resultados.pdf";;
+            link.click();
+        }
+    });})
+</script>

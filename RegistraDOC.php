@@ -419,7 +419,7 @@ session_start();
                 $result = $mysqli->query($selectQuery);
         
                 if ($result) {
-                    echo '<table border=2><tr><td>Academia</td><td>Número de Control</td><td>Nombre del Docente</td><td>Correo</td><td>Asesor</td><td>Presidente</td><td>Secretaria</td><td>Acción</td></tr>'; // Cambio de "Estudiante" a "Docente"
+                    echo '<table border=2><tr><td>Academia</td><td>Número de Control</td><td>Nombre del Docente</td><td>Correo</td><td>Asesor(a)</td><td>Presidente(a)</td><td>Secretaria(o)</td><td>Acción</td></tr>'; // Cambio de "Estudiante" a "Docente"
                     while ($row = $result->fetch_assoc()) {
                         echo '<tr id="fila-' . $row['id'] . '">';
                         echo '<td>'. $row['Academia'].'</td>';

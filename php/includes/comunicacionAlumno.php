@@ -1,8 +1,8 @@
 <?php
 
-$revision=Revision::find("idalumno='$id'");
+$revision=Revision::find("idalumno='$id'  and iddocente='$idsec'");
 
-$chats=Chat::find("idinput='$id' or idaoutput='$id'");
+$chats=Chat::find("(idinput='$id' and idaoutput='$idsec') or (idinput='$idsec' and idaoutput='$id')");
 if(sizeof($revision)>0){
     $revision=$revision[0];
 ?>
