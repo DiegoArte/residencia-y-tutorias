@@ -119,28 +119,3 @@
 
 </body>
 </html>
-
-
-
-$carrera1_actual = $_GET['carrera1'] ?? '';
-$semestre1_actual = $_GET['semestre1'] ?? '';
-$unidad1_actual = $_GET['unidad1'] ?? '';
-
-
-<form id="filtro-form" action="NUEVO2.PHP" method="get">
-        <div class="col-md-5">
-          <label for="carrera1" class="form-label">Carrera:</label>
-          <select class="form-select" name="carrera1" id="carrera1">
-            <option value="">Todas las carreras</option>
-            <?php
-            $carreras_options = array();
-            $carreras_result->data_seek(0); // Reinicia el puntero a la posición inicial
-            while ($carrera_row = $carreras_result->fetch_assoc()) {
-              $selected = ($carrera1_actual == $carrera_row['carrera']) ? 'selected' : '';
-              $carreras_options[] = array('value' => $carrera_row['carrera'], 'selected' => $selected);
-            }
-            foreach ($carreras_options as $option) {
-              echo '<option value="' . $option['value'] . '" ' . $option['selected'] . '>' . $option['value'] . '</option>';
-            }
-            ?>
-          </select>
