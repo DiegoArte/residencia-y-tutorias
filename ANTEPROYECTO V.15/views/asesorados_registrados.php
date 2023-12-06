@@ -26,28 +26,58 @@ session_start();
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <style>
-        table {
-            margin: 0 auto;
-            /* Para centrar la tabla */
-            border-collapse: collapse;
-            width: 100%;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-size: 14px;
+    }
 
-        th,
-        td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
 
-        th {
-            background-color: #f2f2f2;
-        }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
 
-        button {
-            margin-top: 20px;
-        }
-    </style>
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    #searchInput {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    button#guardarDatos {
+        display: block;
+        margin: 20px auto;
+        padding: 12px 24px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    button#guardarDatos:hover {
+        background-color: #45a049;
+    }
+</style>
 
 </head>
 
