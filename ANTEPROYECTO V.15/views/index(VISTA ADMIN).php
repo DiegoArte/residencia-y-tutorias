@@ -148,7 +148,7 @@ require_once "../includes/db.php";
                                 <thead>
                                     <tr>
                                         <!-- Encabezados de la tabla -->
-                                        <th>Id Alumno</th>
+                                        <th>Id alumno</th>
                                         <th>Nombre</th>
                                         <th>Nombre del proyecto</th>
                                         <th>Empresa</th>

@@ -14,12 +14,14 @@
                     $alumno = mysqli_fetch_assoc($consulta);
 
 
+                    $consulta_carreras = mysqli_query($conexion, "SELECT NombredeCarrera FROM carrera");
+
 
                     ?>
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="mb-3">
-                                <label for="idalumno" class="form-label">Id Alumno</label>
+                                <label for="idalumno" class="form-label">Id alumno</label>
                                 <input type="text" id="idalumno" name="idalumno" class="form-control" required readonly
                                     value="<?php echo $id; ?>">
                             </div>
@@ -32,6 +34,7 @@
                                     readonly value="<?php echo $alumno['NombredelEstudiante']; ?>">
                             </div>
                         </div>
+
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="nombreproyecto" class="form-label">Nombre proyecto</label>
@@ -41,6 +44,7 @@
                         </div>
                     </div>
 
+
                     <div class="col-sm-6">
                         <div class="mb-3">
                             <label for="empresa" class="form-label">Empresa</label>
@@ -48,21 +52,54 @@
                         </div>
                     </div>
 
-
-
-                    <div class="col-12">
-                        <label for="yourPassword" class="form-label">Archivo (PDF)</label>
-                        <input type="file" name="archivo" id="archivo" class="form-control">
+                    <div class="col-sm-6">
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" id="guardarEmpresa" name="guardarEmpresa" class="form-check-input"
+                                onclick="habilitarEmpresa()">
+                            <label for="guardarEmpresa" class="form-check-label">Guardar información de la
+                                empresa</label>
+                        </div>
                     </div>
 
-                    <br>
+                    <script>
+                        function habilitarEmpresa() {
+                            var empresaInput = document.getElementById('empresa');
+                            var checkbox = document.getElementById('guardarEmpresa');
 
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" id="register" name="registrar">Guardar</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            if (checkbox.checked) {
+                                empresaInput.removeAttribute('readonly');
+                            } else {
+                                empresaInput.setAttribute('readonly', 'readonly');
+                                empresaInput.value = '';
+                            }
+                        }
+                    </script>
+
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <label for="carrera" class="form-label">Carrera</label>
+                            <input type="text" id="carrera" name="carrera" class="form-control" required readonly
+                                value="<?php echo $alumno['Academia']; ?>">
+                        </div>
                     </div>
-                </form>
             </div>
+
+
+
+
+            <div class="col-12">
+                <label for="yourPassword" class="form-label">Archivo (PDF)</label>
+                <input type="file" name="archivo" id="archivo" class="form-control">
+            </div>
+
+            <br>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="register" name="registrar">Guardar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
