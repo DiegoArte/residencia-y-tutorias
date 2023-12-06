@@ -200,40 +200,49 @@ $conn->close();
                             </div>
 
                             <div class="col-md-5">
-                                <label for="nombre" class="form-label">Nombre del estudiante</label>
-                                <select class="form-select" id="nombre">
-                                     <!--La lista de nombres se llenará dinámicamente mediante JavaScript -->
+                                <label for="nombre" class="form-label" >Nombre del estudiante</label>
+                                <select class="form-select" id="nombre" onchange="updateNames()">
+                                    <option value="">Seleccione</option>
+                                    <?php
+                                    $result->data_seek(0); // Reinicia el puntero del conjunto de resultados al principio
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<option value='{$row['nombre']}'>{$row['nombre']}</option>";
+                                    }
+                                    ?>
                                 </select>
                             </div>
-                        
 
                             <script>
-                               
                                 function updateNames() {
                                     var estudioSelect = document.getElementById('estudio');
                                     var nombreSelect = document.getElementById('nombre');
                                     var selectedEstudio = estudioSelect.options[estudioSelect.selectedIndex].value;
 
-                                    console.log('Selected estudio:', selectedEstudio);
+                                    // Verificar si se seleccionó un estudio antes de hacer la solicitud AJAX
+                                    if (selectedEstudio) {
+                                        // Realizar una solicitud AJAX usando Fetch API
+                                        fetch('hv.php?estudio=' + encodeURIComponent(selectedEstudio))
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                // Limpiar opciones existentes
+                                                nombreSelect.innerHTML = '<option value="">Seleccione</option>';
 
-                                    // Realizar una solicitud AJAX usando Fetch API
-                                    fetch('hv.php?estudio=' + selectedEstudio)
-                                        .then(response => response.json())
-                                        .then(data => {
-                                            console.log('Response from server:', data);
-
-                                            // Llenar el menú desplegable de nombres con los resultados de la solicitud
-                                            nombreSelect.innerHTML = '<option value="">Seleccione</option>'; // Limpiar opciones existentes
-                                            data.forEach(item => {
-                                                var option = document.createElement('option');
-                                                option.value = item.nombre;
-                                                option.text = item.nombre;
-                                                nombreSelect.appendChild(option);
-                                            });
-                                        })
-                                        .catch(error => console.error('Error:', error));
+                                                // Llenar el menú desplegable de nombres con los resultados de la solicitud
+                                                data.forEach(item => {
+                                                    var option = document.createElement('option');
+                                                    option.value = item.nombre;
+                                                    option.text = item.nombre;
+                                                    nombreSelect.appendChild(option);
+                                                });
+                                            })
+                                            .catch(error => console.error('Error:', error));
+                                    } else {
+                                        // Limpiar opciones si no se seleccionó un estudio
+                                        nombreSelect.innerHTML = '<option value="">Seleccione</option>';
+                                    }
                                 }
                             </script>
+
 
                             <br>
                             <br>
