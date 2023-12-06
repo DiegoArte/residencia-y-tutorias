@@ -31,6 +31,10 @@ session_start();
 
 
 <header class="fixed w-100">
+<a href="<?php if($_SESSION['presidente']){ echo "ANTEPROYECTO V.15/views/index(VISTA ASESOR).php"; }else {echo "LoginResidencia.php";}  ?>" class="back-arrow rounded-pill d-flex justify-content-start">
+        <img src="img/back.svg" alt="" height="50">
+        <span class="regresar d-none text-white m-auto">Regresar</span>
+</a>
 <div class="usuarioOp d-flex justify-content-end">
     <img src="img/profile.png" alt="" >
     <?php
