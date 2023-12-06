@@ -78,7 +78,7 @@ session_start();
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Email</th>
+                <th>Anteproyecto</th>
             </tr>
             <?php
             $servername = "localhost";
@@ -94,7 +94,7 @@ session_start();
                 die("Conexión fallida: " . $conexion->connect_error);
             }
 
-            $sql = "SELECT idalumno, nombrealumno, archivo FROM documento";
+            $sql = "SELECT idalumno, nombrealumno, archivo FROM documento WHERE liberado = 0";
             $result = $conexion->query($sql);
 
             if ($result->num_rows > 0) {
