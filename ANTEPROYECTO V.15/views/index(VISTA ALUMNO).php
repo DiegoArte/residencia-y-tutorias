@@ -124,7 +124,7 @@ $conn->close();
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Id Alumno</th>
+                                <th>Id alumno</th>
                                 <th>Nombre</th>
                                 <th>Nombre del proyecto</th>
                                 <th>Empresa</th>
