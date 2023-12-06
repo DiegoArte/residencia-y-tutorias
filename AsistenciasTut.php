@@ -52,19 +52,47 @@ $carrera=$_GET['carrera']??"";
             </div>
             <div class="modal-body">
                 <form action="php/GeneraAsis.php" method="POST">
-                        <div class="row mb-3">
-                        <div class="form-floating">
-                            <select class="form-select" name="acade" id="acade">
-                                <option value="Ingeniería en sistemas computacionales">Ingeniería en sistemas computacionales</option>
-                                <option value="Ingeniería en gestión Empresarial">Ingeniería en gestión Empresarial</option>
-                                <option value="Ingeniería en administración">Ingeniería en administración</option>
-                                <option value="Ingeniería en electromecánica">Ingeniería en electromecánica</option>
-                                <option value="Ingeniería industrial">Ingeniería industrial</option>
-                                <option value="Contador público">Contador público</option>
-                            </select>
-                            <label for="acade">Selecciona la carrera</label>
+                <div class="row mb-3">
+                        <div class="col mb-3">
+                        <label for="acade">Selecciona la carrera</label>
+                        <select class="form-select" name="acade" id="acade">
+                            <?php
+                            require_once "php/db.php";
+                            $conexion = conectar();
+
+                            $sql = "SELECT NombredeCarrera, Semestre FROM grupos";
+                            $result = $conexion->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                $currentGroup = '';
+
+                                while ($row = $result->fetch_assoc()) {
+                                    $carrera = $row["NombredeCarrera"];
+                                    $semestre = $row["Semestre"];
+                                    $opcion = $carrera . " - " . $semestre;
+
+                                    if ($currentGroup !== $carrera) {
+                                        if ($currentGroup !== '') {
+                                            echo '</optgroup>';
+                                        }
+                                        echo '<optgroup label="' . $carrera . '">';
+                                        $currentGroup = $carrera;
+                                    }
+
+                                    echo "<option value='" . $opcion . "'>" . $opcion . "</option>";
+                                }
+
+                                echo '</optgroup>';
+                            } else {
+                                echo "<option value=''>No hay datos</option>";
+                            }
+
+                            $conexion->close();
+                            ?>
+                        </select>
                         </div>
-                    </div>
+                        </div>
+                    
                     <div class="row mb-3">
                         <label class="form-label">Selecciona la fecha de la asistencia</label>
                         <input type="date" name="fecha">
@@ -91,36 +119,80 @@ $carrera=$_GET['carrera']??"";
                             </div>
                         </div>
                     </div>
+
+                    <?php
+                    $conec=conectar();
+                    $com1="SELECT NumerodeControl FROM `docentes` WHERE NombredelDocente = '$nombre'";
+                    $res1=$conec->query($com1);
+
+                    while ($row=$res1->fetch_assoc()){
+                        $de=$row['NumerodeControl'];                        
+                    }
+
+                    $com2="SELECT Grupo FROM `tabla_tutorados` WHERE Tutor = '$de'";
+                    $res2=$conec->query($com2);
+
+                    while ($row=$res2->fetch_assoc()){
+                        $gru=$row['Grupo'];                        
+                    }
+
+                    $com3="SELECT NombredeCarrera, Semestre FROM `grupos` WHERE NumerodeControl = '$gru'";
+                    $res3=$conec->query($com3);
+
+                    while ($row=$res3->fetch_assoc()){
+                        $ca=$row['NombredeCarrera'];
+                        $se=$row['Semestre'];
+                        $op=$ca . " - " . $se;
+
+                    }
+                    $conec->close();
+                    ?>
+
                     <div class="row mb-3">
                         <div class="col mb-3">
-                            <div class="form-floating">
-                                <select class="form-select" name="acade" id="acade">
-                                    <option value="Ingeniería en sistemas computacionales">Ingeniería en sistemas computacionales</option>
-                                    <option value="Ingeniería en gestión Empresarial">Ingeniería en gestión Empresarial</option>
-                                    <option value="Ingeniería en administración">Ingeniería en administración</option>
-                                    <option value="Ingeniería en electromecánica">Ingeniería en electromecánica</option>
-                                    <option value="Ingeniería industrial">Ingeniería industrial</option>
-                                    <option value="Contador público">Contador público</option>
-                                </select>
-                                <label for="acade">Selecciona la carrera</label>
-                            </div>
+                        <label for="acade">Selecciona la carrera</label>
+                        <select class="form-select" name="acade" id="acade">
+                            <?php
+                            require_once "php/db.php";
+                            $conexion = conectar();
+
+                            $sql = "SELECT NombredeCarrera, Semestre FROM grupos";
+                            $result = $conexion->query($sql);
+
+                            $opSeleccionada = $op; // La opción que deseas seleccionar por defecto
+
+                            if ($result->num_rows > 0) {
+                                $currentGroup = '';
+
+                                while ($row = $result->fetch_assoc()) {
+                                    $carrera = $row["NombredeCarrera"];
+                                    $semestre = $row["Semestre"];
+                                    $opcion = $carrera . " - " . $semestre;
+
+                                    $selected = ($opcion === $opSeleccionada) ? 'selected' : ''; // Compara y selecciona la opción deseada
+
+                                    if ($currentGroup !== $carrera) {
+                                        if ($currentGroup !== '') {
+                                            echo '</optgroup>';
+                                        }
+                                        echo '<optgroup label="' . $carrera . '">';
+                                        $currentGroup = $carrera;
+                                    }
+
+                                    echo "<option value='" . $opcion . "' " . $selected . ">" . $opcion . "</option>";
+                                }
+
+                                echo '</optgroup>';
+                            } else {
+                                echo "<option value=''>No hay datos</option>";
+                            }
+
+                            $conexion->close();
+                            ?>
+                        </select>
                         </div>
-                        <div class="col mb-3">
-                            <div class="form-floating">
-                                <select class="form-select" id="semes">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="1">4</option>
-                                    <option value="2">5</option>
-                                    <option value="3">6</option>
-                                    <option value="2">7</option>
-                                    <option value="3">8</option>
-                                </select>
-                                <label for="semes">Selecciona el grupo</label>
-                            </div>
                         </div>
-                    </div>
+
                     <div class="row mb-3">
                         <div class="col mb-3">
                             <label class="form-label">Selecciona la fecha de hoy</label>

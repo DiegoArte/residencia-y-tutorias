@@ -2,7 +2,7 @@
 
 class InformeParcial extends Crud {
     protected static $tabla="informe_parcial";
-    protected static $columnasDB=['asignatura', 'numReprobadosI', 'porReprobadosI', 'numReprobadosII', 'porReprobadosII', 'numReprobadosIII', 'porReprobadosIII', 'numReprobadosIV', 'porReprobadosIV', 'numReprobadosV', 'porReprobadosV', 'numReprobadosVI', 'porReprobadosVI', 'aprobadosI', 'aprobadosII', 'aprobadosIII', 'aprobadosIV', 'aprobadosV', 'aprobadosVI', 'estudiantes', 'grupo'];
+    protected static $columnasDB=['asignatura', 'numReprobadosI', 'porReprobadosI', 'numReprobadosII', 'porReprobadosII', 'numReprobadosIII', 'porReprobadosIII', 'numReprobadosIV', 'porReprobadosIV', 'numReprobadosV', 'porReprobadosV', 'numReprobadosVI', 'porReprobadosVI', 'aprobadosI', 'aprobadosII', 'aprobadosIII', 'aprobadosIV', 'aprobadosV', 'aprobadosVI', 'estudiantes', 'grupo', 'docente'];
     public $asignatura;
     public $numReprobadosI;
     public $porReprobadosI;
@@ -24,6 +24,7 @@ class InformeParcial extends Crud {
     public $aprobadosVI;
     public $estudiantes;
     public $grupo;
+    public $docente;
 
     public function __construct($args=[]) {
         $this->asignatura=$args['asignatura']??"";
@@ -47,5 +48,6 @@ class InformeParcial extends Crud {
         $this->aprobadosVI=$args['aprobadosVI']??0;
         $this->estudiantes=$args['estudiantes']??0;
         $this->grupo=$args['grupo']??"";
+        $this->docente=$args['docente']??"";
     }
 }
