@@ -36,10 +36,21 @@ input {
     padding: 0.5em 1.5em;
 }
 
-input[type="submit"] {
+input[type="submit"], .gen_boton {
     background-color: var(--color9);
     border: none;
     color: #fff;
     margin-left: 82%;
     width: 80px;
+}
+
+.gen_boton {
+    text-decoration: none;
+    padding: 20px;
+    margin: 0 auto;
+    margin-left: 45%;
+}
+
+.gen_boton:hover {
+    color: #fff;
 }
