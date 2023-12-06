@@ -13,7 +13,6 @@
                     $consulta = mysqli_query($conexion, "SELECT * FROM alumnos WHERE NumerodeControl='$id'");
                     $alumno = mysqli_fetch_assoc($consulta);
 
-                    $consulta_carreras = mysqli_query($conexion, "SELECT NombredeCarrera FROM carrera");
 
 
                     ?>
