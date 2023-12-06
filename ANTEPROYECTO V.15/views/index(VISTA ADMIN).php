@@ -1,3 +1,8 @@
+<?php
+session_start();
+$carrera=$_GET['carrera']??"";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,9 +41,8 @@
         <div class="usuarioOp d-flex justify-content-end">
             <img src="profile.png" alt="">
             <?php
-            session_start();
-            $nombrealumno = $_SESSION['nombrealumno']; // Asigna el valor a $nombrealumno
-            echo '<p>' . $nombrealumno . '</p>';
+            $nombre = $_SESSION['nombre']; // Asigna el valor a $nombrealumno
+            echo '<p>' . $nombre . '</p>';
             ?>
             <div class="dropdown-content">
                 <a href="../../../logout.php">Cerrar sesión</a>

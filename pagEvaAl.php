@@ -1,3 +1,7 @@
+<?php
+session_start();
+$carrera=$_GET['carrera']??"";
+?>
 <!DOCTYPE html>
 <html lang="es">
 

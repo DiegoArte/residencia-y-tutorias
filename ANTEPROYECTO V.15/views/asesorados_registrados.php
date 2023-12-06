@@ -62,8 +62,8 @@ session_start();
         <div class="usuarioOp d-flex justify-content-end">
             <img src="profile.png" alt="">
             <?php
-            $nombrealumno = $_SESSION['nombrealumno']; // Asigna el valor a $nombrealumno
-            echo '<p>' . $nombrealumno . '</p>';
+            $nombre = $_SESSION['nombre']; // Asigna el valor a $nombrealumno
+            echo '<p>' . $nombre . '</p>';
             ?>
             <div class="dropdown-content">
                 <a href="../../../logout.php">Cerrar sesión</a>
