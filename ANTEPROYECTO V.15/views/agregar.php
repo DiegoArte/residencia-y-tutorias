@@ -48,6 +48,27 @@
                         </div>
                     </div>
 
+                    <div class="col-sm-6">
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" id="guardarEmpresa" name="guardarEmpresa" class="form-check-input" onclick="habilitarEmpresa()">
+                        <label for="guardarEmpresa" class="form-check-label">Guardar información de la empresa</label>
+                    </div>
+                </div>
+
+                <script>
+                    function habilitarEmpresa() {
+                        var empresaInput = document.getElementById('empresa');
+                        var checkbox = document.getElementById('guardarEmpresa');
+
+                        if (checkbox.checked) {
+                            empresaInput.removeAttribute('readonly');
+                        } else {
+                            empresaInput.setAttribute('readonly', 'readonly');
+                            empresaInput.value = '';
+                        }
+                    }
+                </script>
+
 
 
                     <div class="col-12">
