@@ -19,6 +19,9 @@ session_start();
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="Anteproyecto.css">
+    <link rel="stylesheet" href="../../css/normalize.css">
+    <link rel="stylesheet" href="../../css/comunicacionDocenteAlumno.css">
+    
 
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
@@ -52,6 +55,10 @@ session_start();
     <br>
 
     <header class="fixed w-100">
+    <a href="index(VISTA ADMIN).php" class="back-arrow rounded-pill d-flex justify-content-start">
+            <img src="../../img/back.svg" alt="" height="50">
+            <span class="regresar d-none text-white m-auto">Regresar</span>
+    </a>
         <div class="usuarioOp d-flex justify-content-end">
             <img src="profile.png" alt="">
             <?php

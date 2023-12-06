@@ -15,7 +15,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="Anteproyecto.css">
+    <link rel="stylesheet" href="Anteproyecto.css"><!-- Agrega el estilo del modal -->
+    <link rel="stylesheet" href="../../css/normalize.css">
+    <link rel="stylesheet" href="../../css/comunicacionDocenteAlumno.css">
+    
+    
 
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
@@ -25,6 +29,10 @@
     <br>
 
     <header class="fixed w-100">
+    <a href="../../princi_Super_Admin.php" class="back-arrow rounded-pill d-flex justify-content-start">
+            <img src="../../img/back.svg" alt="" height="50">
+            <span class="regresar d-none text-white m-auto">Regresar</span>
+    </a>
         <div class="usuarioOp d-flex justify-content-end">
             <img src="profile.png" alt="">
             <?php
@@ -38,7 +46,7 @@
         </div>
     </header>
 
-
+    <main class="d-flex">
     <div class="barraLateral fixed h-100">
         <a href="#"></a>
     </div>
@@ -48,22 +56,6 @@
         <div class="container">
             <div class="col-sm-12">
                 <h2 class="text-center">Anteproyecto</h2>
-
-            
-                <?php
-/*
-<!-- 
-<form method="post" action="">
-    <input type="text" name="idalumno" placeholder="ID del alumno"><br>
-    <input type="text" name="nombrealumno" placeholder="Nombre del alumno"><br>
-    <input type="text" name="nombreass" placeholder="Nombre del asesor"><br>
-    <button type="submit" name="guardar_cambios">Guardar Cambios</button>
-</form>
--->
-*/
-?>
-
-
 
                
                 <button onclick="window.location.href = 'asesorados_registrados.php'">Asesorados Registrados</button>
