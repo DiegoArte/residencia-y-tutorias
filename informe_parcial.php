@@ -3,6 +3,7 @@ session_start();
 require 'php/app.php';
 require 'php/Materias.php';
 require 'php/Alumno_materia.php';
+require 'php/Informe_parcial.php';
 
 function enteroARomano($numero) {
     $valores = array(
@@ -34,7 +35,8 @@ function enteroARomano($numero) {
 }
 
 if($_SERVER['REQUEST_METHOD']==='POST') {
-
+    $informe=new InformeParcial($_POST);
+    $informe->crear();
 }
 
 ?>
@@ -86,8 +88,11 @@ if($_SERVER['REQUEST_METHOD']==='POST') {
             $materias=Materias::find("NumerodeControl IN(SELECT idmateria from alumno_materia WHERE idalumno IN(SELECT NumeroDeControl from alumnosnormales WHERE Numerocontrolgrupo='$grupito'))");
             foreach($materias as $materia) { 
             ?>
-            <form action="">
-                <input type="hidden" name="asignatura" value="<?php echo $materia->NumerodeControl ?>">
+            <form  method="POST" action="">
+                <?php
+                $materiaNum=$materia->NumerodeControl;
+                ?>
+                <input type="hidden" name="asignatura" value="<?php echo $materiaNum ?>">
                 <table>
                     <thead>
                         <tr>
@@ -151,8 +156,10 @@ if($_SERVER['REQUEST_METHOD']==='POST') {
                             } 
                             ?>
                             <td colspan="2">
-                                
-                                <input type="text" name="estudiantes" value="<?php>  ?>">
+                                <?php
+                                $estudiantes=AlumnoMateria::countFills("idmateria='$materiaNum' AND idalumno IN(SELECT NumeroDeControl FROM alumnosnormales WHERE Numerocontrolgrupo='$grupito')");
+                                ?>
+                                <input type="text" name="estudiantes" value="<?php echo $estudiantes; ?>" disabled>
                             </td>
                         </tr>
                         <tr>
@@ -168,7 +175,8 @@ if($_SERVER['REQUEST_METHOD']==='POST') {
                     </tbody>
                 </table>
                 <input type="hidden" name="grupo" value="<?php echo $grupo['Grupo']; ?>">
-                <input type="submit" value="Enviar" method="POST" action="">
+                <input type="hidden" name="docente" value="<?php echo $numero_control; ?>">
+                <input type="submit" value="Enviar">
                 <button class="agregar" onclick="agregarColumna('<?php echo "tabla".$materia->NumerodeControl; ?>', event)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
