@@ -1,7 +1,28 @@
 <?php
 session_start();
-$carrera=$_GET['carrera']??"";
+$carrera = $_GET['carrera'] ?? "";
+
+// Conexión a la base de datos (debes modificar los valores según tu configuración)
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tutorias_residencia";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Consulta para obtener los nombres y estudios de la tabla hv
+$sql = "SELECT nombre, estudio FROM hv";
+$result = $conn->query($sql);
+
+// Cerrar la conexión
+$conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,8 +156,6 @@ $carrera=$_GET['carrera']??"";
             position: fixed;
         }
         
-
-       
     </STYle>
 </head>
 <body>
@@ -165,25 +184,66 @@ $carrera=$_GET['carrera']??"";
                     <hr>
                     <form id="form"> <!-- Inicio del formulario -->
                         <div class="row mb-5">
-                            
-                            
-                            <div class="col-md-5">
-                                <label for="nombre" class="form-label">Nombre del estudiante</label>
-                                <input type="text" class="form-control" id="nombre" required>
-                            </div>
-                            <div class="col-md-5">
-                                <label for="estudio" class="form-label">Plan de estudio</label>
-                                <select class="form-select" id="estudio" required>
-                                    <option value="0">Seleccione</option> 
-                                    <option value="Ingeniería Industrial">Ingeniería Industrial</option>
-                                    <option value="Ingeniería en Sistemas Computacionales">Ingeniería en Sistemas Computacionales</option>
-                                    <option value="Ingeniería en Electromecánica">Ingeniería en Electromecánica</option>
-                                    <option value="Ingeniería en Gestión Empresarial">Ingeniería en Gestión Empresarial</option>
-                                    <option value="Contador Público">Contador Público</option>
-                                    <option value="Ingeniería en Administración">Ingeniería en Administración</option>
+                        
 
+                            <div class="col-md-5">
+                                <label for="estudio" class="form-label" >Plan de estudio</label>
+                                <select class="form-select" id="estudio" onchange="updateNames()">
+                                    <option value="">Seleccione</option>
+                                    <?php
+                                    $result->data_seek(0); // Reinicia el puntero del conjunto de resultados al principio
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<option value='{$row['estudio']}'>{$row['estudio']}</option>";
+                                    }
+                                    ?>
                                 </select>
                             </div>
+
+                            <div class="col-md-5">
+                                <label for="nombre" class="form-label" >Nombre del estudiante</label>
+                                <select class="form-select" id="nombre" onchange="updateNames()">
+                                    <option value="">Seleccione</option>
+                                    <?php
+                                    $result->data_seek(0); // Reinicia el puntero del conjunto de resultados al principio
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<option value='{$row['nombre']}'>{$row['nombre']}</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <script>
+                                function updateNames() {
+                                    var estudioSelect = document.getElementById('estudio');
+                                    var nombreSelect = document.getElementById('nombre');
+                                    var selectedEstudio = estudioSelect.options[estudioSelect.selectedIndex].value;
+
+                                    // Verificar si se seleccionó un estudio antes de hacer la solicitud AJAX
+                                    if (selectedEstudio) {
+                                        // Realizar una solicitud AJAX usando Fetch API
+                                        fetch('hv.php?estudio=' + encodeURIComponent(selectedEstudio))
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                // Limpiar opciones existentes
+                                                nombreSelect.innerHTML = '<option value="">Seleccione</option>';
+
+                                                // Llenar el menú desplegable de nombres con los resultados de la solicitud
+                                                data.forEach(item => {
+                                                    var option = document.createElement('option');
+                                                    option.value = item.nombre;
+                                                    option.text = item.nombre;
+                                                    nombreSelect.appendChild(option);
+                                                });
+                                            })
+                                            .catch(error => console.error('Error:', error));
+                                    } else {
+                                        // Limpiar opciones si no se seleccionó un estudio
+                                        nombreSelect.innerHTML = '<option value="">Seleccione</option>';
+                                    }
+                                }
+                            </script>
+
+
                             <br>
                             <br>
                             <br>
