@@ -1,9 +1,8 @@
 table {
     border-collapse: collapse;
     width: 80%;
-    margin: 20px auto 0 auto;
+    margin: 5px auto 50px auto;
     margin-left: 10%;
-    margin-top: 5%;
     background-color: #f5f5f5;
     border: 1px solid #d1d1d1;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -13,6 +12,14 @@ table, th, td {
     border: 1px solid #d1d1d1;
     padding: 2px;
     text-align: left;
+}
+
+th, td {
+    width: 100px;
+}
+
+.al {
+    width: 500px;
 }
 
 th {
@@ -40,7 +47,6 @@ input[type="submit"], .gen_boton {
     background-color: var(--color9);
     border: none;
     color: #fff;
-    margin-left: 82%;
     width: 80px;
 }
 
@@ -53,4 +59,8 @@ input[type="submit"], .gen_boton {
 
 .gen_boton:hover {
     color: #fff;
+}
+
+h3 {
+    text-align: center;
 }
