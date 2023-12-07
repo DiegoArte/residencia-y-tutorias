@@ -112,8 +112,6 @@ if ($row3 = mysqli_fetch_assoc($resultado3)) {
                 <a href="logout.php">Cerrar sesión</a>
     </div>
 </header>
-
-
 <?php
 
 require 'php/Grupos.php';

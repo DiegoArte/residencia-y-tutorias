@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
     $sql = "UPDATE indices SET carrera='$carrera', materia='$materia', semestre='$semestre',grupo='$grupo', unidad='$unidad', alumnosA='$alumnosA', alumnosR='$alumnosR' WHERE id=$id";
 
     if ($conn->query($sql) === TRUE) {
-        header("Location: Tabla_mostrar.php");
+        header("Location: /Tabla_mostrar.php");
     } else {
         echo "Error al actualizar el registro: " . $conn->error;
     }
@@ -112,7 +112,7 @@ $conn->close();
 
 
         <header class="fixed w-100">
-            <a href="Tabla_mostrar.php" class="back-arrow rounded-pill d-flex justify-content-start">
+            <a href=".../Tabla_mostrar.php" class="back-arrow rounded-pill d-flex justify-content-start">
                 <img src="../img/back.svg" alt="" height="50">
                 <span class="regresar d-none text-white m-auto">Regresar</span>
             </a>

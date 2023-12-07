@@ -51,7 +51,7 @@ $unidad1_actual = $_GET['unidad1'] ?? '';
 
 <body>
   <header class="fixed w-100">
-    <a href="Tabla_mostrar.php" class="back-arrow rounded-pill d-flex justify-content-start">
+    <a href="/Tabla_mostrar.php" class="back-arrow rounded-pill d-flex justify-content-start">
       <img src="../img/back.svg" alt="" height="50">
       <span class="regresar d-none text-white m-auto">Regresar</span>
     </a>

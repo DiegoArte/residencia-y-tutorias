@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
     $sql = "DELETE FROM indices WHERE id=$id";
 
     if ($conn->query($sql) === TRUE) {
-        header("Location: Tabla_mostrar.php");
+        header("Location: /Tabla_mostrar.php");
     } else {
         echo "Error al eliminar el registro: " . $conn->error;
         

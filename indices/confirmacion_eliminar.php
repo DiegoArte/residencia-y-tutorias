@@ -2,6 +2,7 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
     $id = $_GET["id"];
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
                 if (this.readyState == 4) {
                     if (this.status == 200) {
                         // Redirige después de la eliminación
-                        window.location.href = 'Tabla_mostrar.php';
+                        window.location.href = '/Tabla_mostrar.php';
                     } else {
                         console.error('Error al eliminar el registro: ' + this.responseText);
                     }
@@ -27,16 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
             xhr.send();
         } else {
             // El usuario canceló la eliminación
-            window.location.href = 'Tabla_mostrar.php';
+            window.location.href = '/Tabla_mostrar.php';
         }
     </script>
 </head>
 <body>
 </body>
 </html>
-
-<?php
-}
-
-$conn->close();
-?>
