@@ -111,12 +111,12 @@ $conn->close();
         <a href="Formato_canalizacion/FormatoEncuestaIni.php" class="beautiful-button8">Diagnóstico original</a>
         <!--<a class="beautiful-button9">Evaluacion al docente</a>-->
         <a class="beautiful-button9" href="AsistenciasTut.php">Lista de asistencia</a>
-        <a  class="beautiful-button3" href="pagInfoRes.php">Informe de resultados</a>
-        <a href="Formato_canalizacion/F_Canal.php" class="beautiful-button4">Formato de canalización</a>
-        <a class="beautiful-button5" href="pagEvaAl.php">Evaluación al alumno</a>
-        <a class="beautiful-button6" href="informeParcial.php">Informe parcial</a>        
-        <a href="hoja de vida/hv2.php"class="beautiful-button">Hoja de vida</a>
-        <a href="FormularioCopia.php" class="beautiful-button1">Plan de acción</a>
+        <a  class="beautiful-button10" href="pagInfoRes.php">Informe de resultados</a>
+        <a href="Formato_canalizacion/F_Canal.php" class="beautiful-button3">Formato de canalización</a>
+        <a class="beautiful-button4" href="pagEvaAl.php">Evaluación al alumno</a>
+        <a class="beautiful-button5" href="informeParcial.php">Informe parcial</a>        
+        <a href="hoja de vida/hv2.php"class="beautiful-button6">Hoja de vida</a>
+        <a href="FormularioCopia.php" class="beautiful-button">Plan de acción</a>
         <!--<a class="beautiful-button2">Retícula</a>-->
 
     </main>
