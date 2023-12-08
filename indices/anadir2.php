@@ -16,21 +16,21 @@ if ($conn->connect_error) {
 }
 
 // Obtener opciones para carrera
-$queryCarreras = "SELECT DISTINCT carrera FROM materia";
+$queryCarreras = "SELECT DISTINCT NombredeCarrera FROM carrera";
 $resultCarreras = $conn->query($queryCarreras);
 
 // Obtener opciones para semestre
-$querySemestres = "SELECT DISTINCT semestre FROM materia";
+$querySemestres = "SELECT DISTINCT Semestre FROM grupos";
 $resultSemestres = $conn->query($querySemestres);
 
 // Obtener opciones para unidad
-$queryMaterias = "SELECT DISTINCT materia FROM materia";
+$queryMaterias = "SELECT DISTINCT NombredelaMateria FROM materias";
 $resultMaterias = $conn->query($queryMaterias);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $carrera = $_POST["carrera"];
-    $materia = $_POST["materia"];
-    $semestre = $_POST["semestre"];
+    $carrera = $_POST["NombredeCarrera"];
+    $materia = $_POST["NombredelaMateria"];
+    $semestre = $_POST["Semestre"];
     $grupo = $_POST["grupo"];
     $unidad = $_POST["unidad"];
     $alumnosA = $_POST["alumnosA"];
@@ -59,11 +59,10 @@ $conn->close();
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" >
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">  
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/comunicacionDocenteAlumno.css">  
     <link rel="stylesheet" href="indices.css">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/normalize.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <title>Añadir Registro</title>
@@ -121,36 +120,36 @@ $conn->close();
 
         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
             <div class="col-md-5">
-                <label for="carrera" class="form-label">Plan de estudio</label>
-                <select class="form-select" id="carrera" name="carrera" required>
+                <label for="NombredeCarrera" class="form-label">Plan de estudio</label>
+                <select class="form-select" id="NombredeCarrera" name="NombredeCarrera" required>
                     <option value="">Seleccione</option>
                     <?php
                     while ($row = $resultCarreras->fetch_assoc()) {
-                        echo "<option value='" . $row['carrera'] . "'>" . $row['carrera'] . "</option>";
+                        echo "<option value='" . $row['NombredeCarrera'] . "'>" . $row['NombredeCarrera'] . "</option>";
                     }
                     ?>
                 </select>
             </div>
 
             <div class="col-md-5">
-                <label for="semestre" class="form-label">Semestre</label>
-                <select class="form-select" id="semestre" name="semestre" required>
+                <label for="Semestre" class="form-label">Semestre</label>
+                <select class="form-select" id="Semestre" name="Semestre" required>
                     <option value="">Seleccione</option>
                     <?php
                     while ($row = $resultSemestres->fetch_assoc()) {
-                        echo "<option value='" . $row['semestre'] . "'>" . $row['semestre'] . "</option>";
+                        echo "<option value='" . $row['Semestre'] . "'>" . $row['Semestre'] . "</option>";
                     }
                     ?>
                 </select>
             </div>
 
             <div class="col-md-5">
-                <label for="materia" class="form-label">Materia</label>
-                <select class="form-select" id="materia" name="materia" required>
+                <label for="NombredelaMateria" class="form-label">Materia</label>
+                <select class="form-select" id="NombredelaMateria" name="NombredelaMateria" required>
                     <option value="">Seleccione</option>
                     <?php
                     while ($row = $resultMaterias->fetch_assoc()) {
-                        echo "<option value='" . $row['materia'] . "'>" . $row['materia'] . "</option>";
+                        echo "<option value='" . $row['NombredelaMateria'] . "'>" . $row['NombredelaMateria'] . "</option>";
                     }
                     ?>
                 </select>
@@ -166,7 +165,7 @@ $conn->close();
             <input class="eliminar" type="submit" value="Añadir">
             
         </form>
-        <a class="eliminar" href="/Tabla_mostrar.php">Regresar</a>
+       
     </div>
     
 

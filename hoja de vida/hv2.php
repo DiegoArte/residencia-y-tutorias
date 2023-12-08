@@ -15,30 +15,30 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Consulta para obtener los nombres y estudios de la tabla hv
-$sql = "SELECT nombre, estudio FROM hv";
+// Consulta para obtener los nombres, estudios y semestres de la tabla hv2
+$sql = "SELECT DISTINCT estudio, semestre FROM hv2";
 $result = $conn->query($sql);
 
 // Cerrar la conexión
 $conn->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formato Hoja de vida</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script src="jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    <script src="appFormatoEncuesta.js"></script>
+
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/comunicacionDocenteAlumno.css">
+    <title>Hoja de vida</title>
+
     <script src="hv2.js"></script>
-    <STYle>
+    <style>
           .boton {
             font-size: 16px;
             position: relative;
@@ -156,23 +156,56 @@ $conn->close();
             position: fixed;
         }
         
-    </STYle>
+       
+        header {
+            z-index: 1;
+        }
+
+        .back-arrow {
+            position: absolute !important;
+            margin: 90px 70px;
+            background-color: #4F648B;
+            padding: 10px;
+            top: 15px;
+            font-size: 16px;
+        }
+
+        .back-arrow:hover .regresar {
+            display: block !important;
+        }
+
+        .image {
+            width: 50px;
+            /* Puedes ajustar el valor según tus necesidades */
+            height: auto;
+            /* Para mantener la proporción de la imagen */
+        }
+    </style>
 </head>
 <body>
-    <header class="fixed w-100">
-        <div class="usuarioOp d-flex justify-content-end">
-            <img src="img/profile.png" alt="">
-            <?php
-                $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
-                echo '<p>' . $nombre . '</p>';
-            ?>
-            <a href="/formatos.php">Regresar</a>
-        </div>
-    </header>
-    <main>
+    <main class="d-flex">
         <div class="barraLateral fixed h-100">
             <a href="#"></a>
         </div>
+    </main>
+
+    <header class="fixed w-100">
+        <a href="../formatos.php" class="back-arrow rounded-pill d-flex justify-content-start">
+                <img class="image" src="../img/back.svg" alt="" height="50">
+                <span class="regresar d-none text-white m-auto">Regresar</span>
+        </a>
+        
+        <div class="usuarioOp d-flex justify-content-end">
+                <img src="../img/profile.png" alt="">
+                <?php
+                $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+                echo '<p>' . $nombre . '</p>';
+                ?>
+                <div class="dropdown-content">
+                    <a href="logout.php">Cerrar sesión</a>
+            </div>
+        </div>
+    </header>
         <div class="container" style="margin-top: 80px;">
     
     <!--<a class="boton1" href="/formatos.php">Regresar</a>-->
@@ -184,14 +217,14 @@ $conn->close();
                     <hr>
                     <form id="form"> <!-- Inicio del formulario -->
                         <div class="row mb-5">
-                        
+                                                
 
                             <div class="col-md-5">
-                                <label for="estudio" class="form-label" >Plan de estudio</label>
-                                <select class="form-select" id="estudio" onchange="updateNames()">
+                                <label for="estudio" class="form-label">Plan de estudio</label>
+                                <select class="form-select" id="estudio" onchange="updateSemestres()">
                                     <option value="">Seleccione</option>
                                     <?php
-                                    $result->data_seek(0); // Reinicia el puntero del conjunto de resultados al principio
+                                    $result->data_seek(0);
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<option value='{$row['estudio']}'>{$row['estudio']}</option>";
                                     }
@@ -200,28 +233,62 @@ $conn->close();
                             </div>
 
                             <div class="col-md-5">
-                                <label for="nombre" class="form-label" >Nombre del estudiante</label>
-                                <select class="form-select" id="nombre" onchange="updateNames()">
+                                <label for="semestre" class="form-label">Semestre</label>
+                                <select class="form-select" id="semestre" onchange="updateNames()">
                                     <option value="">Seleccione</option>
-                                    <?php
-                                    $result->data_seek(0); // Reinicia el puntero del conjunto de resultados al principio
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "<option value='{$row['nombre']}'>{$row['nombre']}</option>";
-                                    }
-                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="nombre" class="form-label">Nombre del estudiante</label>
+                                <select class="form-select" id="nombre">
+                                    <option value="">Seleccione</option>
                                 </select>
                             </div>
 
                             <script>
-                                function updateNames() {
+                                function updateSemestres() {
                                     var estudioSelect = document.getElementById('estudio');
-                                    var nombreSelect = document.getElementById('nombre');
+                                    var semestreSelect = document.getElementById('semestre');
+
                                     var selectedEstudio = estudioSelect.options[estudioSelect.selectedIndex].value;
 
                                     // Verificar si se seleccionó un estudio antes de hacer la solicitud AJAX
                                     if (selectedEstudio) {
                                         // Realizar una solicitud AJAX usando Fetch API
-                                        fetch('hv.php?estudio=' + encodeURIComponent(selectedEstudio))
+                                        fetch('hv2.php?estudio=' + encodeURIComponent(selectedEstudio))
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                // Limpiar opciones existentes
+                                                semestreSelect.innerHTML = '<option value="">Seleccione</option>';
+
+                                                // Llenar el menú desplegable de semestres con los resultados de la solicitud
+                                                data.forEach(item => {
+                                                    var option = document.createElement('option');
+                                                    option.value = item.semestre;
+                                                    option.text = item.semestre;
+                                                    semestreSelect.appendChild(option);
+                                                });
+                                            })
+                                            .catch(error => console.error('Error:', error));
+                                    } else {
+                                        // Limpiar opciones si no se seleccionó un estudio
+                                        semestreSelect.innerHTML = '<option value="">Seleccione</option>';
+                                    }
+                                }
+
+                                function updateNames() {
+                                    var estudioSelect = document.getElementById('estudio');
+                                    var semestreSelect = document.getElementById('semestre');
+                                    var nombreSelect = document.getElementById('nombre');
+
+                                    var selectedEstudio = estudioSelect.options[estudioSelect.selectedIndex].value;
+                                    var selectedSemestre = semestreSelect.options[semestreSelect.selectedIndex].value;
+
+                                    // Verificar si se seleccionó un estudio y un semestre antes de hacer la solicitud AJAX
+                                    if (selectedEstudio && selectedSemestre) {
+                                        // Realizar una solicitud AJAX usando Fetch API
+                                        fetch('hv2.php?estudio=' + encodeURIComponent(selectedEstudio) + '&semestre=' + encodeURIComponent(selectedSemestre))
                                             .then(response => response.json())
                                             .then(data => {
                                                 // Limpiar opciones existentes
@@ -237,7 +304,7 @@ $conn->close();
                                             })
                                             .catch(error => console.error('Error:', error));
                                     } else {
-                                        // Limpiar opciones si no se seleccionó un estudio
+                                        // Limpiar opciones si no se seleccionó un estudio o un semestre
                                         nombreSelect.innerHTML = '<option value="">Seleccione</option>';
                                     }
                                 }

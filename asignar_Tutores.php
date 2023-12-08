@@ -96,7 +96,7 @@ if ($row3 = mysqli_fetch_assoc($resultado3)) {
         echo '<button class="botonFec"">Reporte 3</button></form>';
     }
     ?>
-     <a style="padding: top 80px;" class="botonFec" href="indices/Tabla_mostrar.php">Generar indices</a>
+     <a style="padding: top 80px;" class="botonFec" href="/Tabla_mostrar.php">Generar indices</a>
     
 </div>
 </div>

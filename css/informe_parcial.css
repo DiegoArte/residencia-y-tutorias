@@ -64,3 +64,52 @@ input[type="submit"], .gen_boton {
 h3 {
     text-align: center;
 }
+
+.boton2 {
+    font-size: 17px;
+    padding: 1em 1em;
+    border: transparent;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    background: #1C3089;
+    color: white;
+    position: fixed;
+    top: 170px;
+    left: 35px;
+    cursor: pointer;
+   }
+   
+   .boton2:hover {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, #2445D9 0%, #2445D9 100%);
+    color: white;
+   }
+   
+   .boton2:active {
+    transform: translate(0em, 0.2em);
+   }
+
+   .boton3 {
+    font-size: 17px;
+    padding: 1em 1.2em;
+    border: transparent;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    background: #1C3089;
+    color: white;
+    /*border-radius: 4px;*/
+    position: fixed;
+    top: 240px;
+    left: 35px;
+    cursor: pointer;
+   }
+   
+   .boton3:hover {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, #2445D9 0%, #2445D9 100%);
+    color: white;
+   }
+   
+   .boton3:active {
+    transform: translate(0em, 0.2em);
+   }
