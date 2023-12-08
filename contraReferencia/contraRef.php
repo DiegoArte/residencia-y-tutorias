@@ -126,7 +126,7 @@ $carrera = $_GET['carrera'] ?? "";
     $mysqli = conectar();
 
     // Obtener el nombre del tutor de la sesión
-    $nombreTutor = $_SESSION['nombre'];
+    $nombreTutor = "Ramon Castro";
 
     // Realizar la consulta a la tabla carrera para obtener los nombres de las carreras
     $consulta = "SELECT NombredeCarrera FROM carrera";

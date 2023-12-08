@@ -65,6 +65,7 @@ $conexion=conectar();
                 header("Location: cambiar_contrasenaT.php");
                 exit;
             }else {
+                $_SESSION['nombre'] = "psicologa";
             header("Location: VistaPsicologa1.php");
             exit;
             }
