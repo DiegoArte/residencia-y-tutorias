@@ -24,6 +24,20 @@ $resultSemestres = $conn->query($querySemestres);
 $queryMaterias = "SELECT DISTINCT NombredelaMateria FROM materias";
 $resultMaterias = $conn->query($queryMaterias);
 
+$queryGrupos = "SELECT DISTINCT NumerodeControl FROM materias";
+$resultGrupos = $conn->query($queryGrupos);
+
+$queryLimiteUnidad = "SELECT MAX(Unidades) AS limite FROM materias";
+$resultLimiteUnidad = $conn->query($queryLimiteUnidad);
+// Verificar si la consulta fue exitosa
+if ($resultLimiteUnidad) {
+    $rowLimiteUnidad = $resultLimiteUnidad->fetch_assoc();
+    $limiteUnidad = $rowLimiteUnidad['limite'];
+} else {
+    // Manejo de error si la consulta falla
+    $limiteUnidad = 10; // Establecer un valor predeterminado en caso de error
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
     $id = $_GET["id"];
 
@@ -51,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
     $carrera = $_POST["NombredeCarrera"];
     $materia = $_POST["NombredelaMateria"];
     $semestre = $_POST["Semestre"];
-    $grupo = $_POST["grupo"];
+    $grupo = $_POST["NumerodeControl"];
     $unidad = $_POST["unidad"];
     $alumnosA = $_POST["alumnosA"];
     $alumnosR = $_POST["alumnosR"];
@@ -126,7 +140,7 @@ $conn->close();
                 <span class="regresar d-none text-white m-auto">Regresar</span>
             </a>
             <div class="usuarioOp d-flex justify-content-end">
-                <img src=".../img/profile.png" alt="">
+                <img src="../img/profile.png" alt="">
                 <?php
                 $nombre = $_SESSION['nombre'];
                 echo '<p>' . $nombre . '</p>';
@@ -182,12 +196,37 @@ $conn->close();
                             ?>
                         </select>
                     </div>
+                    <div class="col-md-5">
+                        <label for="NumerodeControl" class="form-label">Número de control</label>
+                        <select class="form-select" id="NumerodeControl" name="NumerodeControl" required>
+                            <option value="">Seleccione</option>
+                            <?php
+                            // Obtener opciones para grupo
+                            while ($row = $resultGrupos->fetch_assoc()) {
+                                $selected = ($row['NumerodeControl'] == $grupo) ? 'selected' : '';
+                                echo "<option value='" . $row['NumerodeControl'] . "' $selected>" . $row['NumerodeControl'] . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="col-md-5">
+                        <label for="unidad" class="form-label">Unidad</label>
+                        <select class="form-select" id="unidad" name="unidad" required>
+                            <option value="">Seleccione</option>
+                            <?php
+                            for ($i = 1; $i <= $limiteUnidad; $i++) {
+                                $selected = ($i == $unidad) ? 'selected' : '';
+                                echo "<option value='" . $i . "' $selected>" . $i . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+
 
 
                     <div>
 
-                        Grupo= <input type="text" name="grupo" value="<?php echo $grupo; ?>"><br>
-                        Unidad: <input type="text" name="unidad" value="<?php echo $unidad; ?>"><br>
                         AlumnosA: <input type="text" name="alumnosA" value="<?php echo $alumnosA; ?>"><br>
                         AlumnosR: <input type="text" name="alumnosR" value="<?php echo $alumnosR; ?>"><br>
                         <input class="eliminar" type="submit" value="Actualizar">
@@ -199,4 +238,4 @@ $conn->close();
 
     </body>
 
-    </html>
+</html>

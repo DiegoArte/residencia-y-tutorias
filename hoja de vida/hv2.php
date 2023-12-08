@@ -16,8 +16,15 @@ if ($conn->connect_error) {
 }
 
 // Consulta para obtener los nombres, estudios y semestres de la tabla hv2
-$sql = "SELECT DISTINCT estudio, semestre FROM hv2";
-$result = $conn->query($sql);
+$sqlestudio = "SELECT DISTINCT estudio FROM hv2";
+$resultestudio = $conn->query($sqlestudio);
+
+$sqlsemestre = "SELECT DISTINCT semestre FROM hv2";
+$resultsemestre = $conn->query($sqlsemestre);
+
+$sqlnombre = "SELECT DISTINCT nombre FROM hv2";
+$resultnombre = $conn->query($sqlnombre);
+
 
 // Cerrar la conexión
 $conn->close();

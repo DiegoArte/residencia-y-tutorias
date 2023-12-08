@@ -7,17 +7,17 @@ $carrera = $_GET['carrera'] ?? "";
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="indices.css">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" >
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/comunicacionDocenteAlumno.css">  
+    <link rel="stylesheet" href="indices.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <style>
     header {
@@ -49,26 +49,27 @@ $carrera = $_GET['carrera'] ?? "";
 </head>
 
 <body>
-  <header class="fixed w-100">
-    <a href="/Tabla_mostrar.php" class="back-arrow rounded-pill d-flex justify-content-start">
-      <img src="../img/back.svg" alt="" height="50">
-      <span class="regresar d-none text-white m-auto">Regresar</span>
-    </a>
-    <div class="usuarioOp d-flex justify-content-end">
-      <img src="profile.png" alt="">
-      <?php
-      $nombre = $_SESSION['nombre'];
-      echo '<p>' . $nombre . '</p>';
-      ?>
-      <div class="dropdown-content">
-        <a href="logout.php">Cerrar sesión</a>
-      </div>
-    </div>
-  </header>
-  <main>
-    <div class="barraLateral fixed h-100">
-      <a href="#"></a>
-    </div>
+    <header class="fixed w-100">
+        <a href="/Tabla_mostrar.php" class="back-arrow rounded-pill d-flex justify-content-start">
+        <img src="../img/back.svg" alt="" height="50">
+        <span class="regresar d-none text-white m-auto">Regresar</span>
+        </a>
+        <div class="usuarioOp d-flex justify-content-end">
+        <img src="profile.png" alt="">
+        <?php
+        $nombre = $_SESSION['nombre'];
+        echo '<p>' . $nombre . '</p>';
+        ?>
+        <div class="dropdown-content">
+            <a href="logout.php">Cerrar sesión</a>
+        </div>
+        </div>
+    </header>
+    <main>
+        <div class="barraLateral fixed h-100">
+            <a href="#"></a>
+        </div>
+    </main>
     <div class="container" style="margin-top: 10%;">
       <h1>Informe de Índices</h1>
       <br><br>

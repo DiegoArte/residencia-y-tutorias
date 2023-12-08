@@ -6,18 +6,17 @@ $carrera = $_GET['carrera'] ?? "";
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
-    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" >
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">  
-    <link rel="stylesheet" href="indices/indices.css">
+    <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="indices/indices.css">
+    
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <title>Tabla de Índices</title>
@@ -40,7 +39,7 @@ $carrera = $_GET['carrera'] ?? "";
             display: block !important;
         }
 
-        .image {
+        img {
             width: 50px;
             /* Puedes ajustar el valor según tus necesidades */
             height: auto;
@@ -51,29 +50,28 @@ $carrera = $_GET['carrera'] ?? "";
 
 <body>
 
-    <main class="d-flex">
+   <main class="d-flex">
         <div class="barraLateral fixed h-100">
             <a href="#"></a>
         </div>
     </main>
-
     <header class="fixed w-100">
-        <a href="../asignar_Tutores.php" class="back-arrow rounded-pill d-flex justify-content-start">
-                <img class="image" src="../img/back.svg" alt="" height="50">
-                <span class="regresar d-none text-white m-auto">Regresar</span>
-        </a>
-        
-        <div class="usuarioOp d-flex justify-content-end">
-                <img src="../indices/profile.png" alt="">
-                <?php
+            <a href="../asignar_Tutores.php" class="back-arrow rounded-pill d-flex justify-content-start">
+            <img src="img/back.svg" alt="" height="50">
+            <span class="regresar d-none text-white m-auto">Regresar</span>
+    </a>
+    <div class="usuarioOp d-flex justify-content-end">
+        <img src="indices/profile.png" alt="" >
+        <?php
                 $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
                 echo '<p>' . $nombre . '</p>';
                 ?>
                 <div class="dropdown-content">
                     <a href="logout.php">Cerrar sesión</a>
-            </div>
         </div>
     </header>
+
+
 
     <main>
        
@@ -103,7 +101,7 @@ $carrera = $_GET['carrera'] ?? "";
 
             if ($result->num_rows > 0) {
                 echo "<table>";
-                echo "<tr><th>Plan de estudio</th><th>Materia</th><th>Semestre</th><th>Grupo</th><th>Unidad</th><th>AlumnosAprobados</th><th>AlumnosReprobados</th><th>Acciones</th></tr>";
+                echo "<tr><th>Plan de estudio</th><th>Materia</th><th>Semestre</th><th>Número de control</th><th>Unidad</th><th>AlumnosAprobados</th><th>AlumnosReprobados</th><th>Acciones</th></tr>";
 
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";

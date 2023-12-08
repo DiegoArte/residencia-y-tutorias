@@ -93,29 +93,6 @@ body {
     background-color: var(--color9);
 }
 
-.usuarioOp {
-    gap: 15px;
-    padding: 10px 40px;
-}
-
-.usuarioOp a {
-    padding: 10px 0;
-    color: rgb(37, 74, 236);
-}
-
-.usuarioOp a:hover {
-    color: #FFF;
-}
-
-.usuarioOp p {
-    padding: 10px 0;
-    color: #Fff;
-}
-
-.usuarioOp img {
-    padding: 40px;
-    border-radius: 1.5rem;
-}
 
 .barraLateral {
     top: 0;
