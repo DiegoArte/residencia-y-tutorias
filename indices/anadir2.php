@@ -132,7 +132,7 @@ $conn->close();
     <div class="container" style="margin-top: 10%;">
         <div class="container mt-4">
             <div class="row">
-                <h1>Añadir Registro</h1>
+                <h2>Añadir Registro</h2>
                 <hr>
                 <div class="col-md-8 offset-md-2">
                     

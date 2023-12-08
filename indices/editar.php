@@ -158,7 +158,7 @@ $conn->close();
 
             <div class="container" style="margin-top: 10%;">
                     <div class="container mt-8">
-                        <h1>Editar Registro</h1>
+                        <h2>Editar Registro</h2>
                                 <hr>
                         <div class="row">
                             <div class="col-md-8 offset-md-4">

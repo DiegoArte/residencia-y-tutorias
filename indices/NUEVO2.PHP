@@ -75,7 +75,7 @@ $unidad1_actual = $_GET['unidad1'] ?? '';
         </div>
     </main>
     <div class="container" style="margin-top: 10%;">
-      <h1>Informe de Índices</h1>
+      <h2>Informe de Índices</h2>
 
 
 
@@ -237,7 +237,7 @@ $unidad1_actual = $_GET['unidad1'] ?? '';
 
           // Generar HTML de las gráficas
           foreach ($chartData as $carrera => $materias) {
-            echo '<h2>' . $carrera . '</h2>';
+            echo '<h1>' . $carrera . '</h1>';
             foreach ($materias as $materia => $data) {
               echo '<div class="chart-container">';
               echo '<canvas class="bar-chart" data-carrera="' . $carrera . '" data-materia="' . $materia . '" data-semestre="' . $semestre . '" data-labels=\''
