@@ -59,11 +59,10 @@ $conn->close();
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" >
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/comunicacionDocenteAlumno.css">  
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/comunicacionDocenteAlumno.css">  
     <link rel="stylesheet" href="indices.css">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/normalize.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <title>Añadir Registro</title>
@@ -166,7 +165,7 @@ $conn->close();
             <input class="eliminar" type="submit" value="Añadir">
             
         </form>
-        <a class="eliminar" href="/Tabla_mostrar.php">Regresar</a>
+       
     </div>
     
 

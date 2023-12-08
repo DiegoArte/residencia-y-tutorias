@@ -64,7 +64,7 @@ $carrera = $_GET['carrera'] ?? "";
         </a>
         
         <div class="usuarioOp d-flex justify-content-end">
-                <img src="img/profile.png" alt="">
+                <img src="../indices/profile.png" alt="">
                 <?php
                 $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
                 echo '<p>' . $nombre . '</p>';
@@ -75,7 +75,6 @@ $carrera = $_GET['carrera'] ?? "";
         </div>
     </header>
 
-    
     <main>
        
         <div class="container" style="margin-top: 80px;">
