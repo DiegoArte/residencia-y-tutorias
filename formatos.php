@@ -109,8 +109,8 @@ $conn->close();
     </header>
         <a class="beautiful-button7" href="FichaTecnica.php">Ficha técnica</a>
         <a href="Formato_canalizacion/FormatoEncuestaIni.php" class="beautiful-button8">Diagnóstico original</a>
-        <a class="beautiful-button9">Evaluacion al docente</a>
-        <a class="beautiful-button10" href="AsistenciasTut.php">Lista de asistencia</a>
+        <!--<a class="beautiful-button9">Evaluacion al docente</a>-->
+        <a class="beautiful-button9" href="AsistenciasTut.php">Lista de asistencia</a>
         <a  class="beautiful-button3" href="pagInfoRes.php">Informe de resultados</a>
         <a href="Formato_canalizacion/F_Canal.php" class="beautiful-button4">Formato de canalización</a>
         <a class="beautiful-button5" href="pagEvaAl.php">Evaluación al alumno</a>
