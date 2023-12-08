@@ -132,9 +132,10 @@ $conn->close();
     <div class="container" style="margin-top: 10%;">
         <div class="container mt-4">
             <div class="row">
+                <h1>Añadir Registro</h1>
+                <hr>
                 <div class="col-md-8 offset-md-2">
-                    <h1>Añadir Registro</h1>
-                    <hr>
+                    
                     <form id="form"> <!-- Inicio del formulario -->
                         <div class="row mb-5">
         
@@ -223,9 +224,10 @@ $conn->close();
                 <label for="alumnosR"  class="form-label">Alumnos Reprobados:</label>
                 <input type="text" class="form-control" name="alumnosR" required><br>
             </div>
+            <input class="eliminar" type="submit" value="Añadir">
         </div>
     </div>
-    <input class="eliminar" type="submit" value="Añadir">
+   
             
 
 </main>

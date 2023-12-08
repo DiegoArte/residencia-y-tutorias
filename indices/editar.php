@@ -249,11 +249,13 @@ $conn->close();
                         
                             <input type="text" class="form-control" name="alumnosR" value="<?php echo $alumnosR; ?>"><br>
                         </div>
+
+                        <input class="eliminar" type="submit" value="Actualizar">
                     </div>
                 </div>
                        
             </form>
-            <input class="eliminar" type="submit" value="Actualizar">
+            
 
         </main>
 
