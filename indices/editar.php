@@ -12,31 +12,45 @@ if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
+// Obtener opciones de carrera, materia y semestre desde la tabla "materia"
+$queryCarreras = "SELECT DISTINCT NombredeCarrera FROM carrera";
+$resultCarreras = $conn->query($queryCarreras);
+
+// Obtener opciones para semestre
+$querySemestres = "SELECT DISTINCT Semestre FROM grupos";
+$resultSemestres = $conn->query($querySemestres);
+
+// Obtener opciones para unidad
+$queryMaterias = "SELECT DISTINCT NombredelaMateria FROM materias";
+$resultMaterias = $conn->query($queryMaterias);
+
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
     $id = $_GET["id"];
 
-    // Obtener datos del registro específico
+    
     $sql = "SELECT * FROM indices WHERE id=$id";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
-        $carrera = $row["carrera"];
-        $materia = $row["materia"];
-        $semestre = $row["semestre"];
-        $grupo = $row["grupo"];
-        $unidad = $row["unidad"];
-        $alumnosA = $row["alumnosA"];
-        $alumnosR = $row["alumnosR"];
+        $carrera = $row["carrera"];  // Corregir la asignación de la variable
+        $materia = $row["materia"];  // Corregir la asignación de la variable
+        $semestre = $row["semestre"];  // Corregir la asignación de la variable
+        $grupo = $row["grupo"];  // Corregir la asignación de la variable
+        $unidad = $row["unidad"];  // Corregir la asignación de la variable
+        $alumnosA = $row["alumnosA"];  // Corregir la asignación de la variable
+        $alumnosR = $row["alumnosR"];  // Corregir la asignación de la variable
+   
+    
     } else {
         echo "Registro no encontrado";
         exit();
     }
 } elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"])) {
     $id = $_POST["id"];
-    $carrera = $_POST["carrera"];
-    $materia = $_POST["materia"];
-    $semestre = $_POST["semestre"];
+    $carrera = $_POST["NombredeCarrera"];
+    $materia = $_POST["NombredelaMateria"];
+    $semestre = $_POST["Semestre"];
     $grupo = $_POST["grupo"];
     $unidad = $_POST["unidad"];
     $alumnosA = $_POST["alumnosA"];
@@ -52,15 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
     }
 }
 
-// Obtener opciones de carrera, materia y semestre desde la tabla "materia"
-$queryCarreras = "SELECT DISTINCT carrera FROM materia";
-$resultCarreras = $conn->query($queryCarreras);
 
-$querySemestres = "SELECT DISTINCT semestre FROM materia";
-$resultSemestres = $conn->query($querySemestres);
-
-$queryMaterias = "SELECT DISTINCT materia FROM materia";
-$resultMaterias = $conn->query($queryMaterias);
 
 $conn->close();
 ?>
@@ -139,39 +145,39 @@ $conn->close();
                     <input type="hidden" name="id" value="<?php echo $id; ?>">
 
                     <div class="col-md-5">
-                        <label for="carrera" class="form-label">Plan de estudio</label>
-                        <select class="form-select" id="carrera" name="carrera" required>
+                        <label for="NombredeCarrera" class="form-label">Plan de estudio</label>
+                        <select class="form-select" id="NombredeCarrera" name="NombredeCarrera" required>
                             <option value="">Seleccione</option>
                             <?php
                             while ($row = $resultCarreras->fetch_assoc()) {
-                                $selected = ($row['carrera'] == $carrera) ? 'selected' : '';
-                                echo "<option value='" . $row['carrera'] . "' $selected>" . $row['carrera'] . "</option>";
-                            }
+                                $selected = ($row['NombredeCarrera'] == $carrera) ? 'selected' : '';
+                                echo "<option value='" . $row['NombredeCarrera'] . "' $selected>" . $row['NombredeCarrera'] . "</option>";
+                                }
                             ?>
                         </select>
                     </div>
 
 
                     <div class="col-md-5">
-                        <label for="materia" class="form-label">Materia</label>
-                        <select class="form-select" id="materia" name="materia" required>
+                        <label for="NombredelaMateria" class="form-label">Materia</label>
+                        <select class="form-select" id="NombredelaMateria" name="NombredelaMateria" required>
                             <option value="">Seleccione</option>
                             <?php
                             while ($row = $resultMaterias->fetch_assoc()) {
-                                $selected = ($row['materia'] == $materia) ? 'selected' : '';
-                                echo "<option value='" . $row['materia'] . "' $selected>" .  $row['materia'] . "</option>";
+                                $selected = ($row['NombredelaMateria'] == $materia) ? 'selected' : '';
+                                echo "<option value='" . $row['NombredelaMateria'] . "' $selected>" .  $row['NombredelaMateria'] . "</option>";
                             }
                             ?>
                         </select>
                     </div>
                     <div class="col-md-5">
-                        <label for="semestre" class="form-label">Semestre</label>
-                        <select class="form-select" id="semestre" name="semestre" required>
+                        <label for="Semestre" class="form-label">Semestre</label>
+                        <select class="form-select" id="Semestre" name="Semestre" required>
                             <option value="">Seleccione</option>
                             <?php
                             while ($row = $resultSemestres->fetch_assoc()) {
-                                $selected = ($row['semestre'] == $semestre) ? 'selected' : '';
-                                echo "<option value='" . $row['semestre'] . "' $selected>" .  $row['semestre'] . "</option>";
+                                $selected = ($row['Semestre'] == $semestre) ? 'selected' : '';
+                                echo "<option value='" . $row['Semestre'] . "' $selected>" .  $row['Semestre'] . "</option>";
                             }
                             ?>
                         </select>
