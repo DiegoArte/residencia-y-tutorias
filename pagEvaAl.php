@@ -25,7 +25,7 @@ $carrera=$_GET['carrera']??"";
 <body>
     
     <header class="fixed w-100">
-    <a href="princi_Super_Admin.php" class="back-arrow rounded-pill d-flex justify-content-start">
+    <a href="formatos.php" class="back-arrow rounded-pill d-flex justify-content-start">
             <img src="img/back.svg" alt="" height="50">
             <span class="regresar d-none text-white m-auto">Regresar</span>
     </a>
