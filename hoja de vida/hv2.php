@@ -189,7 +189,7 @@ $conn->close();
     </main>
 
     <header class="fixed w-100">
-        <a href="../asignar_Tutores.php" class="back-arrow rounded-pill d-flex justify-content-start">
+        <a href="/formatos.php" class="back-arrow rounded-pill d-flex justify-content-start">
                 <img class="image" src="../img/back.svg" alt="" height="50">
                 <span class="regresar d-none text-white m-auto">Regresar</span>
         </a>
