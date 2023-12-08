@@ -20,8 +20,8 @@ window.addEventListener('load', async () => {
     const form = document.querySelector('#form');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        let nombre = document.getElementById('nombre').value;
-        let plan = document.getElementById('estudio').value;
+        let nombre = document.getElementById('NombredelEstudiante').value;
+        let plan = document.getElementById('NombredeCarrera').value;
         const opcionesSeleccionadas1 = [];
         const opcionesSeleccionadas2 = [];
         const opcionesSeleccionadas3 = [];
