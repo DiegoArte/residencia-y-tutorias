@@ -114,6 +114,7 @@ $carrera = $_GET['carrera'] ?? "";
         $nombre = $_POST['nombre'] ?? "";
         $nombreTutor = $_POST['nombreTutor'] ?? "";
         $problematica = $_POST['problematica'] ?? "";
+        $reporte = $_POST['reporte'] ?? "";
     }
     
     echo "
@@ -125,6 +126,7 @@ $carrera = $_GET['carrera'] ?? "";
         <input type='hidden' id='campoOculto2' name='campoOculto2' value='$nombre'>
         <input type='hidden' id='campoOculto3' name='campoOculto3' value='$nombreTutor'>
         <input type='hidden' id='campoOculto4' name='campoOculto4' value='$problematica'>
+        <input type='hidden' id='campoOculto5' name='campoOculto5' value='$reporte'>
         <button type='submit'>Enviar</button>
     </form>";
 

@@ -117,8 +117,9 @@ $carrera = $_GET['carrera'] ?? "";
 
 
     <?php
-    if (isset($_GET['miVariable'])) {
-        $tutor = $_GET['miVariable'];
+    if (isset($_GET['nombreMaestro']) && isset($_GET['reporte'])) {
+        $tutor = $_GET['nombreMaestro'];
+        $reporte = $_GET['reporte'];
     }
 
     require '../php/db.php';
@@ -235,6 +236,7 @@ $carrera = $_GET['carrera'] ?? "";
 
         <label for="nombreTutor">Nombre del Tutor(a):*</label>
         <?php echo "<input type='text' id='nombreTutor' name='nombreTutor' value='$tutor' readonly><br>"; ?>
+        <?php echo "<input type='hidden' id='reporte' name='reporte' value='$reporte' readonly><br>"; ?>
 
         <script>
             function guardarValorSeleccionado() {

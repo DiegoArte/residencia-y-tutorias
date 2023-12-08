@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['campoOculto2'];
     $nombreTutor = $_POST['campoOculto3'];
     $problematica = $_POST['campoOculto4'];
-    $reporte = "reporte";
+    $reporte = $_POST['campoOculto5'];
 
     // Verificar si se cargó correctamente
     if ($pdfFile['error'] === UPLOAD_ERR_OK) {
@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Preparar la consulta para insertar en la base de datos
-        $stmt = $mysqli->prepare("INSERT INTO tabla1_pdf (nombre, archivo) VALUES (?, ?)");
-        $stmt->bind_param("ss", $pdfFile['name'], $pdfData);
+        $stmt = $mysqli->prepare("INSERT INTO tabla1_pdf (nombre, archivo, reporte) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $pdfFile['name'], $pdfData, $reporte);
 
         // Ejecutar la consulta
         if ($stmt->execute()) {

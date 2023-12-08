@@ -25,8 +25,6 @@ $carrera = $_GET['carrera'] ?? "";
 <body>
   <main>
     <div class="barraLateral fixed h-100">
-    </div>
-    <div class="barraLateral fixed h-100">
 
       <header class="fixed w-100">
         <div class="usuarioOp d-flex justify-content-end">
@@ -121,11 +119,11 @@ $carrera = $_GET['carrera'] ?? "";
             echo "<td>" . $row["nomMaes"] . "</td>";
             echo "<td>" . $row["motivo"] . "</td>";
             // Agrega un botón para responder con el atributo data-nombre-maestro
-            echo '<td><button value="' . $row['nomMaes'] , $row['reporte'] . '" onclick="responder(this)">Responder</button></td>';
+            echo '<td><button value="' . $row['nomMaes']  . '|' .  $row['reporte'] . '" onclick="responder(this)">Responder</button></td>';
             // Agrega un botón para abrir pdf en la última columna
             echo '<td><button onclick="abrirPDF(' . $cont . ')">Abrir Pdf</button></td>';
             echo "</tr>";
-            $cont++;
+            $cont++; 
           }
         } else {
           echo "<tr><td colspan='7'>No se encontraron resultados</td></tr>";
@@ -167,14 +165,21 @@ $carrera = $_GET['carrera'] ?? "";
 
 
     function responder(boton) {
-      var nombreMaestro = boton.value;
+      var valores = boton.value.split('|');
+      var nombreMaestro = valores[0];
+      var reporte = valores[1];
 
-      // Construye la URL con la variable
-      var url = "contraReferencia/contraRef.php?miVariable=" + encodeURIComponent(nombreMaestro);
+      // Codificar los datos para asegurar que se transmitan correctamente en la URL
+      var nombreMaestroCodificado = encodeURIComponent(nombreMaestro);
+      var reporteCodificado = encodeURIComponent(reporte);
 
-      // Redirige a la página del archivo PHP
+      // Construir la URL con ambas variables codificadas
+      var url = "contraReferencia/contraRef.php?nombreMaestro=" + nombreMaestroCodificado + "&reporte=" + reporteCodificado;
+
+      // Redirigir a la URL construida
       window.location.href = url;
     }
+
 
 
 
