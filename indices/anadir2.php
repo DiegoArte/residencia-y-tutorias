@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 $carrera = $_GET['carrera'] ?? "";
@@ -41,6 +42,8 @@ if ($resultLimiteUnidad) {
     // Manejo de error si la consulta falla
     $limiteUnidad = 10; // Establecer un valor predeterminado en caso de error
 }
+
+// Añadir el manejo del formulario aquí para evitar el formulario anidado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $carrera = $_POST["NombredeCarrera"];
     $materia = $_POST["NombredelaMateria"];
@@ -65,8 +68,10 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="es">
+
+
 <head>
-<meta charset="UTF-8">
+   <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
@@ -79,7 +84,8 @@ $conn->close();
     <link rel="stylesheet" href="../css/normalize.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <title>Añadir Registro</title>
+</head>
+<title>Añadir Registro</title>
     <style>
     header {
       z-index: 1;
@@ -135,102 +141,104 @@ $conn->close();
                 <h2>Añadir Registro</h2>
                 <hr>
                 <div class="col-md-8 offset-md-2">
-                    
-                    <form id="form"> <!-- Inicio del formulario -->
-                        <div class="row mb-5">
-        
 
-                <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-                    <div class="col-md-5">
-                        <label for="NombredeCarrera" class="form-label">Plan de estudio</label>
-                        <select class="form-select" id="NombredeCarrera" name="NombredeCarrera" required>
-                            <option value="">Seleccione</option>
-                            <?php
-                            // Obtener opciones para carrera
-                            while ($row = $resultCarreras->fetch_assoc()) {
-                                echo "<option value='" . $row['NombredeCarrera'] . "'>" . $row['NombredeCarrera'] . "</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
 
-                    <div class="col-md-5">
-                        <label for="Semestre" class="form-label">Semestre</label>
-                        <select class="form-select" id="Semestre" name="Semestre" required>
-                            <option value="">Seleccione</option>
-                            <?php
-                            // Obtener opciones para semestre
-                            while ($row = $resultSemestres->fetch_assoc()) {
-                                echo "<option value='" . $row['Semestre'] . "'>" . $row['Semestre'] . "</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
+                    <!-- Inicio del formulario -->
+                    <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+                        <div class="row">
+                        <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+                        <div class="col-md-5">
+                                <label for="NombredeCarrera" class="form-label">Plan de estudio</label>
+                                <select class="form-select" id="NombredeCarrera" name="NombredeCarrera" required>
+                                    <option value="">Seleccione</option>
+                                    <?php
+                                    // Obtener opciones para carrera
+                                    while ($row = $resultCarreras->fetch_assoc()) {
+                                        echo "<option value='" . $row['NombredeCarrera'] . "'>" . $row['NombredeCarrera'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
 
-                    <div class="col-md-5">
-                        <label for="NombredelaMateria" class="form-label">Materia</label>
-                        <select class="form-select" id="NombredelaMateria" name="NombredelaMateria" required>
-                            <option value="">Seleccione</option>
-                            <?php
-                            // Obtener opciones para materia
-                            while ($row = $resultMaterias->fetch_assoc()) {
-                                echo "<option value='" . $row['NombredelaMateria'] . "'>" . $row['NombredelaMateria'] . "</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
+                            <div class="col-md-5">
+                                <label for="Semestre" class="form-label">Semestre</label>
+                                <select class="form-select" id="Semestre" name="Semestre" required>
+                                    <option value="">Seleccione</option>
+                                    <?php
+                                    // Obtener opciones para semestre
+                                    while ($row = $resultSemestres->fetch_assoc()) {
+                                        echo "<option value='" . $row['Semestre'] . "'>" . $row['Semestre'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
 
-                    <!-- Código posterior -->
+                            <div class="col-md-5">
+                                <label for="NombredelaMateria" class="form-label">Materia</label>
+                                <select class="form-select" id="NombredelaMateria" name="NombredelaMateria" required>
+                                    <option value="">Seleccione</option>
+                                    <?php
+                                    // Obtener opciones para materia
+                                    while ($row = $resultMaterias->fetch_assoc()) {
+                                        echo "<option value='" . $row['NombredelaMateria'] . "'>" . $row['NombredelaMateria'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
 
-                    <div class="col-md-5">
-                        <label for="NumerodeControl" class="form-label">Número de control</label>
-                        <select class="form-select" id="NumerodeControl" name="NumerodeControl" required>
-                            <option value="">Seleccione</option>
-                            <?php
-                            // Obtener opciones para grupo
-                            while ($row = $resultGrupos->fetch_assoc()) {
-                                echo "<option value='" . $row['NumerodeControl'] . "'>" . $row['NumerodeControl'] . "</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
+                            <!-- Código posterior -->
 
-                    <div class="col-md-5">
-                        <label for="unidad" class="form-label">Unidad</label>
-                        <select class="form-select" id="unidad" name="unidad" required>
-                            <option value="">Seleccione</option>
-                            <?php
-                            for ($i = 1; $i <= $limiteUnidad; $i++) {
-                                echo "<option value='" . $i . "'>" . $i . "</option>";
-                            }
-                            ?>
-                        </select>
+                            <div class="col-md-5">
+                                <label for="NumerodeControl" class="form-label">Número de control</label>
+                                <select class="form-select" id="NumerodeControl" name="NumerodeControl" required>
+                                    <option value="">Seleccione</option>
+                                    <?php
+                                    // Obtener opciones para grupo
+                                    while ($row = $resultGrupos->fetch_assoc()) {
+                                        echo "<option value='" . $row['NumerodeControl'] . "'>" . $row['NumerodeControl'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="unidad" class="form-label">Unidad</label>
+                                <select class="form-select" id="unidad" name="unidad" required>
+                                    <option value="">Seleccione</option>
+                                    <?php
+                                    for ($i = 1; $i <= $limiteUnidad; $i++) {
+                                        echo "<option value='" . $i . "'>" . $i . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                                </div>
+                            <div class="col-md-5">
+                                <label for="alumnosA"  class="form-label">Alumnos Aprobados:</label>
+                                <input type="text" class="form-control" name="alumnosA" required><br>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="alumnosR"  class="form-label">Alumnos Reprobados:</label>
+                                <input type="text" class="form-control" name="alumnosR" required><br>
+                            </div>
+
+                                
+
+                            <!-- Add the rest of your input fields here -->
+
+                            <div class="col-md-5">
+                                <input class="eliminar" type="submit" value="Añadir">
+                            </div>
                         </div>
-                  
-                </form>
-            </div>
+                    </form>
+                    <!-- Fin del formulario -->
 
-        </div>
-   
-    
-        <div class="container mt-2">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-            <div class="col-md-5">
-                <label for="alumnosA"  class="form-label">Alumnos Aprobados:</label>
-                <input type="text" class="form-control" name="alumnosA" required><br>
+                </div>
             </div>
-            <div class="col-md-5">
-                <label for="alumnosR"  class="form-label">Alumnos Reprobados:</label>
-                <input type="text" class="form-control" name="alumnosR" required><br>
-            </div>
-            <input class="eliminar" type="submit" value="Añadir">
         </div>
     </div>
-   
-            
 
-</main>
+ 
 
 </body>
+
 </html>
