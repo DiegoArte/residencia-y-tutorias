@@ -1,3 +1,7 @@
+<?php
+session_start();
+$carrera = $_GET['carrera'] ?? "";
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -72,7 +76,10 @@
 <header class="fixed w-100">
 <div class="usuarioOp d-flex justify-content-end">
     <img src="img/profile.png" alt="">
-    <p>Usuario</p>
+    <?php
+        $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+        echo '<p>' . $nombre . '</p>';
+    ?>
     <a href="#">Cerrar sesión</a>
 </div>
 
