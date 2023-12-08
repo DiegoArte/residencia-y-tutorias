@@ -129,64 +129,7 @@ $conn->close();
         }
 
 
-        .usuarioOp {
-            gap: 15px;
-            padding: 10px 40px;
-        }
-
-        .usuarioOp a{
-            padding: 10px 0;
-            color: rgb(37, 74, 236);
-        }
-        .usuarioOp a:hover{
-            color:#FFF;
-        }
-        .usuarioOp p{
-            padding: 10px 0;
-            color: #Fff;
-
-        }
-        .usuarioOp img {
-            padding: 40px;
-            border-radius: 1.5rem;
-        }
-       
-
-        .barraLateral {
-            top: 0;
-            left: 0; 
-            width: 100px; 
-        }
-
-        .fixed {
-            background-color:  #1E3C6C;
-            position: fixed;
-        }
         
-       
-        header {
-            z-index: 1;
-        }
-
-        .back-arrow {
-            position: absolute !important;
-            margin: 90px 70px;
-            background-color: #4F648B;
-            padding: 10px;
-            top: 15px;
-            font-size: 16px;
-        }
-
-        .back-arrow:hover .regresar {
-            display: block !important;
-        }
-
-        .image {
-            width: 50px;
-            /* Puedes ajustar el valor según tus necesidades */
-            height: auto;
-            /* Para mantener la proporción de la imagen */
-        }
     </style>
 </head>
 <body>

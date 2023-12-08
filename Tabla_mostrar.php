@@ -45,6 +45,7 @@ $carrera = $_GET['carrera'] ?? "";
             height: auto;
             /* Para mantener la proporción de la imagen */
         }
+       
     </style>
 </head>
 
@@ -59,19 +60,20 @@ $carrera = $_GET['carrera'] ?? "";
             <a href="../asignar_Tutores.php" class="back-arrow rounded-pill d-flex justify-content-start">
             <img src="img/back.svg" alt="" height="50">
             <span class="regresar d-none text-white m-auto">Regresar</span>
-    </a>
-    <div class="usuarioOp d-flex justify-content-end">
-        <img src="indices/profile.png" alt="" >
-        <?php
-                $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
-                echo '<p>' . $nombre . '</p>';
-                ?>
-                <div class="dropdown-content">
-                    <a href="logout.php">Cerrar sesión</a>
+        </a>
+        <div class="usuarioOp d-flex justify-content-end">
+            <img src="img/profile.png" alt="" >
+            <?php
+            $nombre = $_SESSION['nombre']; // Asigna el valor a $nombre
+            echo '<p>' . $nombre . '</p>';
+            ?>
+            <div class="dropdown-content">
+                <a href="logout.php">Cerrar sesión</a>
+            </div>
         </div>
     </header>
-
-
+        </div>
+    </header>
 
     <main>
        
@@ -113,8 +115,8 @@ $carrera = $_GET['carrera'] ?? "";
                     echo "<td>" . $row["alumnosA"] . "</td>";
                     echo "<td>" . $row["alumnosR"] . "</td>";
                     echo "<td>
-                            <a href='indices/confirmacion_eliminar.php?id=" . $row["id"] . "'><img src='indices/E1.png' alt='NM'></a>
-                            <a href='indices/editar.php?id=" . $row["id"] . "'><img src='indices/E2.png' alt='NM'></a>
+                            <a href='indices/confirmacion_eliminar.php?id=" . $row["id"] . "'><img class='cak' src='indices/E1.png' alt='NM'></a>
+                            <a href='indices/editar.php?id=" . $row["id"] . "'><img class='cak' src='indices/E2.png' alt='NM'></a>
                         </td>";
                     echo "</tr>";
                 }
