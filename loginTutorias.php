@@ -38,10 +38,11 @@ $conexion=conectar();
                 header("Location: cambiar_contrasenaT.php");
                 exit;
             }else {
-                $sql = "SELECT NombredelDocente FROM docentes WHERE NumerodeControl = '$numControl'";
+                $sql = "SELECT NombredelDocente, Academia FROM docentes WHERE NumerodeControl = '$numControl'";
                 $resultado = $conexion->query($sql);
                 $resultado=$resultado->fetch_assoc();
                 $_SESSION['nombre'] = $resultado['NombredelDocente'];
+                $_SESSION['academia'] = $resultado['Academia'];
                 header("Location: formatos.php");
                 exit;
             }

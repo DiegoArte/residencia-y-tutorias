@@ -230,16 +230,9 @@ $carrera = $_GET['carrera'] ?? "";
         <label for="edad">Edad:*</label>
         <input type="number" id="edad" name="edad" required><br>
 
-        <label for="nombreTutor">Nombre del Tutor(a):*</label>
-        <!--<input type="text" id="nombreTutor" name="nombreTutor" required><br>-->
-        <select name="nombreTutor" id="nombreTutor" required>
-            <option value="0">Seleccione</option>
-            <?php
-            while ($filaDoc = $resultadoDoc->fetch_assoc()) {
-                echo '<option value="' . $filaDoc['NombredelDocente'] . '">' . $filaDoc['NombredelDocente'] . '</option>';
-            }
-            ?>
-        </select>
+        <label for="nombreTutor">Nombre del Tutor(a):</label>
+        <?php echo "<input type='text' id='nombreTutor' value='$nombre' name='nombreTutor' readonly><br>"?>
+        
 
         <script>
             function guardarValorSeleccionado() {

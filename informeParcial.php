@@ -6,6 +6,11 @@ require 'php/Alumno_materia.php';
 require 'php/Calificaciones.php';
 require 'php/Alumnosnormales.php';
 
+$numero_control=$_SESSION['usuario'];
+$grupo=mysqli_fetch_assoc(mysqli_query($db, "SELECT Grupo FROM tabla_tutorados WHERE Tutor='$numero_control'"));
+$grupito=$grupo['Grupo'];
+$cal=AlumnoMateria::countFills("idalumno IN(SELECT NumeroDeControl FROM alumnosnormales WHERE Numerocontrolgrupo='$grupito')");
+
 function enteroARomano($numero) {
     $valores = array(
         1000 => 'M',
@@ -45,7 +50,7 @@ if($_SERVER['REQUEST_METHOD']==='POST') {
             $informe->crear();
         } else {
             $informe=new Calificaciones($_POST);
-            $informe->actualizar("alumn='$alumn'");
+            $informe->actualizar("alumno='$alumn'");
         }
     } else {
         echo '<script>alert("Error: Al menos una de las calificaciones no está en un formato correcto");</script>';
@@ -77,6 +82,11 @@ if($_SERVER['REQUEST_METHOD']==='POST') {
             <img src="img/back.svg" alt="" height="50">
             <span class="regresar d-none text-white m-auto">Regresar</span>
     </a>
+    <?php
+    $calSubidas=Calificaciones::countFills("grupo='$grupito' and docente='$numero_control'");
+    ?>
+    <a href="<?php if($calSubidas==$cal){echo "informe parcial/formato.php";}else{echo "informe parcial/error.html";} ?>" class="boton2">Generar formato</a>
+    <a href="" class="boton3">Asignar materias</a>
         <div class="usuarioOp d-flex justify-content-end">
             <img src="img/profile.png" alt="">
             <?php
@@ -96,9 +106,6 @@ if($_SERVER['REQUEST_METHOD']==='POST') {
         <div class="barraLateral h-100"></div>
         <div class="tasks">
             <?php
-            $numero_control=$_SESSION['usuario'];
-            $grupo=mysqli_fetch_assoc(mysqli_query($db, "SELECT Grupo FROM tabla_tutorados WHERE Tutor='$numero_control'"));
-            $grupito=$grupo['Grupo'];
             $materias=Materias::find("NumerodeControl IN(SELECT idmateria from alumno_materia WHERE idalumno IN(SELECT NumeroDeControl from alumnosnormales WHERE Numerocontrolgrupo='$grupito'))");
             foreach($materias as $materia) { 
                 $materiaNum=$materia->NumerodeControl;
@@ -121,10 +128,11 @@ if($_SERVER['REQUEST_METHOD']==='POST') {
                 <?php
                 $alumnos=Alumnosnormales::find("NumeroDeControl IN(SELECT idalumno FROM alumno_materia WHERE idmateria='$materiaNum')");
                 foreach($alumnos as $alumno) {
+                    $cal++;
                 ?>
                 
                 <form  method="POST" action="">
-                    <input type="hidden" name="alumno" value="<?php echo $alumno->NombreDelEstudiante ?>">
+                    <input type="hidden" name="alumno" value="<?php echo $alumno->NumeroDeControl ?>">
                     <input type="hidden" name="materia" value="<?php echo $materiaNum ?>">
                     
                     <tr>
