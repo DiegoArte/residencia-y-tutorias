@@ -1,3 +1,76 @@
+header, .headerHidden {
+    min-height: 70px;
+    z-index: 1;
+}
+
+.usuarioOp {
+    gap: 15px;
+    padding: 10px 40px;
+    cursor: pointer;
+    position: relative;
+    display: block;
+}
+
+.usuarioOp p {
+    padding: 10px 0;
+    color: var(--color2);
+}
+
+.usuarioOp img {
+    height: 20%;
+    border-radius: 80%;
+}
+
+.dropdown-content {
+    top: 55px;
+    right: 10px;
+    display: none;
+    position: absolute;
+    z-index: 1;
+    min-width: 100px;
+    background-color: #fff;
+    border-radius: 0px 15px 15px 15px;
+}
+
+.dropdown-content a {
+    padding: 8px 10px;
+    color: var(--color6);
+    text-decoration: none;
+    display: block;
+    transition: 0.1s;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--color9);
+    color: #fff;
+}
+
+.usuarioOp:hover .dropdown-content {
+    display: block;
+}
+
+.barraLateral {
+    top: 0;
+    left: 0; 
+    min-width: 100px;
+}
+
+.back-arrow {
+    position: absolute !important;
+    margin: 90px 70px;
+    background-color: var(--color9);
+    padding: 10px;
+}
+
+.back-arrow:hover .regresar {
+    display: block !important;
+}
+
+.fixed {
+    background-color: var(--color7); 
+    position: fixed;
+}
+
 table {
     width: 110%;
     height: 60%;
@@ -26,7 +99,7 @@ tr:nth-child(odd) {
     background-color: #f0f0f0;
 }
 
-img {
+.cak {
     width: 20px; /* Ancho deseado */
     height: 20px; /* Alto deseado */
 }
@@ -93,29 +166,6 @@ body {
     background-color: var(--color9);
 }
 
-.usuarioOp {
-    gap: 15px;
-    padding: 10px 40px;
-}
-
-.usuarioOp a {
-    padding: 10px 0;
-    color: rgb(37, 74, 236);
-}
-
-.usuarioOp a:hover {
-    color: #FFF;
-}
-
-.usuarioOp p {
-    padding: 10px 0;
-    color: #Fff;
-}
-
-.usuarioOp img {
-    padding: 40px;
-    border-radius: 1.5rem;
-}
 
 .barraLateral {
     top: 0;
