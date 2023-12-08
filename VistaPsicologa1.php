@@ -87,18 +87,41 @@ $carrera = $_GET['carrera'] ?? "";
         // Cierra el recurso de resultado de la segunda consulta
         $resultado->close();
 
+
+        // Consulta SQL para obtener todos los registros
+        $consulta = "SELECT reporte FROM tabla1_pdf";
+        $resultado55 = $conn->query($consulta);
+
+        $data = array();
+        // Obtener cada fila como un arreglo asociativo
+        while ($rows = $resultado55->fetch_assoc()) {
+          //$data[] = $rows;
+          $data[] = strval($rows['reporte']);
+        }
+
+        // Cierra el recurso de resultado de la segunda consulta
+        $resultado55->close();
+
+
         if (count($filas) > 0) {
           // Imprime los datos en la tabla
           $cont = 0;
           foreach ($filas as $row) {
-            echo "<tr>";
+            // Verifica si el valor de $row["reporte"] está en $data
+            $filaEnVerde = in_array($row["reporte"], $data);
+
+            // Aplica un estilo de fondo verde si la condición es verdadera
+            $style = $filaEnVerde ? 'background-color: rgba(0, 253, 55, 0.377);' : '';
+
+            // Imprime la fila con el estilo condicional
+            echo '<tr style="' . $style . '">';
             echo "<td>" . $row["reporte"] . "</td>";
             echo "<td>" . $row["nocontrol"] . "</td>";
             echo "<td>" . $row["nomAlu"] . "</td>";
             echo "<td>" . $row["nomMaes"] . "</td>";
             echo "<td>" . $row["motivo"] . "</td>";
             // Agrega un botón para responder con el atributo data-nombre-maestro
-            echo '<td><button value="' . $row['nomMaes'] . '" onclick="responder(this)">Responder</button></td>';
+            echo '<td><button value="' . $row['nomMaes'] , $row['reporte'] . '" onclick="responder(this)">Responder</button></td>';
             // Agrega un botón para abrir pdf en la última columna
             echo '<td><button onclick="abrirPDF(' . $cont . ')">Abrir Pdf</button></td>';
             echo "</tr>";
