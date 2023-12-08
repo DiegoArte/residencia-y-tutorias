@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 $carrera = $_GET['carrera'] ?? "";
@@ -51,6 +52,7 @@ $carrera = $_GET['carrera'] ?? "";
 
 <body>
 
+
    <main class="d-flex">
         <div class="barraLateral fixed h-100">
             <a href="#"></a>
@@ -74,8 +76,10 @@ $carrera = $_GET['carrera'] ?? "";
     </header>
         </div>
     </header>
+   
 
     <main>
+        
        
         <div class="container" style="margin-top: 80px;">
             <a class="eliminar" href='indices/anadir2.php?id=" . $row["id"] . "'>Añadir</a>

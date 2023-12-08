@@ -29,6 +29,7 @@ $resultGrupos = $conn->query($queryGrupos);
 
 $queryLimiteUnidad = "SELECT MAX(Unidades) AS limite FROM materias";
 $resultLimiteUnidad = $conn->query($queryLimiteUnidad);
+
 // Verificar si la consulta fue exitosa
 if ($resultLimiteUnidad) {
     $rowLimiteUnidad = $resultLimiteUnidad->fetch_assoc();
@@ -38,24 +39,30 @@ if ($resultLimiteUnidad) {
     $limiteUnidad = 10; // Establecer un valor predeterminado en caso de error
 }
 
+$id = '';
+$carrera = '';
+$materia = '';
+$semestre = '';
+$grupo = '';
+$unidad = '';
+$alumnosA = '';
+$alumnosR = '';
+
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
     $id = $_GET["id"];
 
-    
     $sql = "SELECT * FROM indices WHERE id=$id";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
-        $carrera = $row["carrera"];  // Corregir la asignación de la variable
-        $materia = $row["materia"];  // Corregir la asignación de la variable
-        $semestre = $row["semestre"];  // Corregir la asignación de la variable
-        $grupo = $row["grupo"];  // Corregir la asignación de la variable
-        $unidad = $row["unidad"];  // Corregir la asignación de la variable
-        $alumnosA = $row["alumnosA"];  // Corregir la asignación de la variable
-        $alumnosR = $row["alumnosR"];  // Corregir la asignación de la variable
-   
-    
+        $carrera = $row["carrera"];
+        $materia = $row["materia"];
+        $semestre = $row["semestre"];
+        $grupo = $row["grupo"];
+        $unidad = $row["unidad"];
+        $alumnosA = $row["alumnosA"];
+        $alumnosR = $row["alumnosR"];
     } else {
         echo "Registro no encontrado";
         exit();
@@ -71,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
     $alumnosR = $_POST["alumnosR"];
 
     // Actualizar el registro en la base de datos
-    $sql = "UPDATE indices SET carrera='$carrera', materia='$materia', semestre='$semestre',grupo='$grupo', unidad='$unidad', alumnosA='$alumnosA', alumnosR='$alumnosR' WHERE id=$id";
+    $sql = "UPDATE indices SET carrera='$carrera', materia='$materia', semestre='$semestre', grupo='$grupo', unidad='$unidad', alumnosA='$alumnosA', alumnosR='$alumnosR' WHERE id=$id";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: /Tabla_mostrar.php");
@@ -80,11 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
     }
 }
 
-
-
 $conn->close();
 ?>
-
 <<!DOCTYPE html>
     <html lang="es">
 
@@ -133,132 +137,124 @@ $conn->close();
 
     <body>
         
-
-
-        <header class="fixed w-100">
-            <a href="../Tabla_mostrar.php" class="back-arrow rounded-pill d-flex justify-content-start">
-                <img src="../img/back.svg" alt="" height="50">
-                <span class="regresar d-none text-white m-auto">Regresar</span>
-            </a>
-            <div class="usuarioOp d-flex justify-content-end">
-                <img src="../img/profile.png" alt="">
-                <?php
-                $nombre = $_SESSION['nombre'];
-                echo '<p>' . $nombre . '</p>';
-                ?>
-                <div class="dropdown-content">
-                    <a href="logout.php">Cerrar sesión</a>
-                </div>
-        </header>
-        <main>
-            <div class="barraLateral fixed h-100">
-                <a href="#"></a>
+    <header class="fixed w-100">
+        <a href="../Tabla_mostrar.php" class="back-arrow rounded-pill d-flex justify-content-start">
+            <img src="../img/back.svg" alt="" height="50">
+            <span class="regresar d-none text-white m-auto">Regresar</span>
+        </a>
+        <div class="usuarioOp d-flex justify-content-end">
+            <img src="../img/profile.png" alt="">
+            <?php
+            $nombre = $_SESSION['nombre'];
+            echo '<p>' . $nombre . '</p>';
+            ?>
+            <div class="dropdown-content">
+                <a href="logout.php">Cerrar sesión</a>
             </div>
+        </div>
+    </header>
 
+    <main>
+        <div class="barraLateral fixed h-100">
+            <a href="#"></a>
+        </div>
 
-            <div class="container" style="margin-top: 10%;">
-                    <div class="container mt-8">
-                        <h1>Editar Registro</h1>
-                                <hr>
-                        <div class="row">
-                            <div class="col-md-8 offset-md-4">
-                               
-                                   
+        <div class="container" style="margin-top: 10%;">
+            <div class="container mt-8">
+                <h2>Editar Registro</h2>
+                <hr>
+                <div class="row">
+                    <div class="col-md-8 offset-md-4">
 
-               
-                                <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-                                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+                        <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+                            <input type="hidden" name="id" value="<?php echo $id; ?>">
 
-                                    <div class="col-md-5">
-                                        <label for="NombredeCarrera" class="form-label">Plan de estudio</label>
-                                        <select class="form-select" id="NombredeCarrera" name="NombredeCarrera" required>
-                                            <option value="">Seleccione</option>
-                                            <?php
-                                            while ($row = $resultCarreras->fetch_assoc()) {
-                                                $selected = ($row['NombredeCarrera'] == $carrera) ? 'selected' : '';
-                                                echo "<option value='" . $row['NombredeCarrera'] . "' $selected>" . $row['NombredeCarrera'] . "</option>";
-                                                }
-                                            ?>
-                                        </select>
-                                    </div>
-
-                   
-                                    <div class="col-md-5">
-                                        <label for="NombredelaMateria" class="form-label">Materia</label>
-                                        <select class="form-select" id="NombredelaMateria" name="NombredelaMateria" required>
-                                            <option value="">Seleccione</option>
-                                            <?php
-                                            while ($row = $resultMaterias->fetch_assoc()) {
-                                                $selected = ($row['NombredelaMateria'] == $materia) ? 'selected' : '';
-                                                echo "<option value='" . $row['NombredelaMateria'] . "' $selected>" .  $row['NombredelaMateria'] . "</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <label for="Semestre" class="form-label">Semestre</label>
-                                        <select class="form-select" id="Semestre" name="Semestre" required>
-                                            <option value="">Seleccione</option>
-                                            <?php
-                                            while ($row = $resultSemestres->fetch_assoc()) {
-                                                $selected = ($row['Semestre'] == $semestre) ? 'selected' : '';
-                                                echo "<option value='" . $row['Semestre'] . "' $selected>" .  $row['Semestre'] . "</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <label for="NumerodeControl" class="form-label">Número de control</label>
-                                        <select class="form-select" id="NumerodeControl" name="NumerodeControl" required>
-                                            <option value="">Seleccione</option>
-                                            <?php
-                                            // Obtener opciones para grupo
-                                            while ($row = $resultGrupos->fetch_assoc()) {
-                                                $selected = ($row['NumerodeControl'] == $grupo) ? 'selected' : '';
-                                                echo "<option value='" . $row['NumerodeControl'] . "' $selected>" . $row['NumerodeControl'] . "</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-5">
-                                        <label for="unidad" class="form-label">Unidad</label>
-                                        <select class="form-select" id="unidad" name="unidad" required>
-                                            <option value="">Seleccione</option>
-                                            <?php
-                                            for ($i = 1; $i <= $limiteUnidad; $i++) {
-                                                $selected = ($i == $unidad) ? 'selected' : '';
-                                                echo "<option value='" . $i . "' $selected>" . $i . "</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </form>
+                            <div class="col-md-5">
+                                <label for="NombredeCarrera" class="form-label">Plan de estudio</label>
+                                <select class="form-select" id="NombredeCarrera" name="NombredeCarrera" required>
+                                    <option value="">Seleccione</option>
+                                    <?php
+                                    while ($row = $resultCarreras->fetch_assoc()) {
+                                        $selected = ($row['NombredeCarrera'] == $carrera) ? 'selected' : '';
+                                        echo "<option value='" . $row['NombredeCarrera'] . "' $selected>" . $row['NombredeCarrera'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
                             </div>
-                        </div>
-                    <div>
-                    <div class="container mt-2">
-                        <div class="row">
-                            <div class="col-md-8 offset-md-4">
-                        <div class="col-md-5">
-                            <label for="alumnosA"  class="form-label">Alumnos Aprobados:</label>
-                            <input type="text" class="form-control" name="alumnosA" value="<?php echo $alumnosA; ?>"><br>
-                        </div>
-                        <div class="col-md-5">
-                            <label for="alumnosA"  class="form-label">Alumnos Aprobados:</label>
-                        
-                            <input type="text" class="form-control" name="alumnosR" value="<?php echo $alumnosR; ?>"><br>
-                        </div>
 
-                        <input class="eliminar" type="submit" value="Actualizar">
+                            <div class="col-md-5">
+                                <label for="NombredelaMateria" class="form-label">Materia</label>
+                                <select class="form-select" id="NombredelaMateria" name="NombredelaMateria" required>
+                                    <option value="">Seleccione</option>
+                                    <?php
+                                    while ($row = $resultMaterias->fetch_assoc()) {
+                                        $selected = ($row['NombredelaMateria'] == $materia) ? 'selected' : '';
+                                        echo "<option value='" . $row['NombredelaMateria'] . "' $selected>" .  $row['NombredelaMateria'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="Semestre" class="form-label">Semestre</label>
+                                <select class="form-select" id="Semestre" name="Semestre" required>
+                                    <option value="">Seleccione</option>
+                                    <?php
+                                    while ($row = $resultSemestres->fetch_assoc()) {
+                                        $selected = ($row['Semestre'] == $semestre) ? 'selected' : '';
+                                        echo "<option value='" . $row['Semestre'] . "' $selected>" .  $row['Semestre'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="NumerodeControl" class="form-label">Número de control</label>
+                                <select class="form-select" id="NumerodeControl" name="NumerodeControl" required>
+                                    <option value="">Seleccione</option>
+                                    <?php
+                                    // Obtener opciones para grupo
+                                    while ($row = $resultGrupos->fetch_assoc()) {
+                                        $selected = ($row['NumerodeControl'] == $grupo) ? 'selected' : '';
+                                        echo "<option value='" . $row['NumerodeControl'] . "' $selected>" . $row['NumerodeControl'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="unidad" class="form-label">Unidad</label>
+                                <select class="form-select" id="unidad" name="unidad" required>
+                                    <option value="">Seleccione</option>
+                                    <?php
+                                    for ($i = 1; $i <= $limiteUnidad; $i++) {
+                                        $selected = ($i == $unidad) ? 'selected' : '';
+                                        echo "<option value='" . $i . "' $selected>" . $i . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="alumnosA" class="form-label">Alumnos Aprobados:</label>
+                                <input type="text" class="form-control" name="alumnosA" value="<?php echo $alumnosA; ?>"><br>
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="alumnosR" class="form-label">Alumnos Reprobados:</label>
+                                <input type="text" class="form-control" name="alumnosR" value="<?php echo $alumnosR; ?>"><br>
+                            </div>
+
+                            <input class="eliminar" type="submit" value="Actualizar">
+                        </form>
+
                     </div>
                 </div>
-                       
-            </form>
-            
+            </div>
+        </div>
 
-        </main>
+    </main>
 
-    </body>
+</body>
 
 </html>

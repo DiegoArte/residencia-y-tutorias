@@ -16,13 +16,13 @@ if ($conn->connect_error) {
 }
 
 // Consulta para obtener los nombres, estudios y semestres de la tabla hv2
-$sqlestudio = "SELECT DISTINCT NombredeCarrera FROM carrera";
+$sqlestudio = "SELECT DISTINCT estudio FROM hv2";
 $resultestudio = $conn->query($sqlestudio);
 
-$sqlsemestre = "SELECT DISTINCT Semestre FROM grupos";
+$sqlsemestre = "SELECT DISTINCT semestre FROM hv2";
 $resultsemestre = $conn->query($sqlsemestre);
 
-$sqlnombre = "SELECT DISTINCT NombredelEstudiante FROM alumnos";
+$sqlnombre = "SELECT DISTINCT nombre FROM hv2";
 $resultnombre = $conn->query($sqlnombre);
 
 
@@ -167,48 +167,48 @@ $conn->close();
                 <form id="form">
                     <div class="row mb-5">
                         <div class="col-md-5">
-                            <label for="NombredeCarrera" class="form-label">Plan de estudio</label>
-                            <select class="form-select" id="NombredeCarrera" onchange="updateSemestres()">
+                            <label for="estudio" class="form-label">Plan de estudio</label>
+                            <select class="form-select" id="estudio" onchange="updateSemestres()">
                                 <option value="">Seleccione</option>
                                 <?php
                                 $resultestudio->data_seek(0);
                                 while ($row = $resultestudio->fetch_assoc()) {
-                                    echo "<option value='{$row['NombredeCarrera']}'>{$row['NombredeCarrera']}</option>";
+                                    echo "<option value='{$row['estudio']}'>{$row['estudio']}</option>";
                                 }
                                 ?>
                             </select>
                         </div>
 
                         <div class="col-md-5">
-                            <label for="Semestre" class="form-label">Semestre</label>
-                            <select class="form-select" id="Semestre" onchange="updateNames()">
+                            <label for="semestre" class="form-label">Semestre</label>
+                            <select class="form-select" id="semestre" onchange="updateNames()">
                                 <option value="">Seleccione</option>
                                 <?php
                                 $resultsemestre->data_seek(0);
                                 while ($row = $resultsemestre->fetch_assoc()) {
-                                    echo "<option value='{$row['Semestre']}'>{$row['Semestre']}</option>";
+                                    echo "<option value='{$row['semestre']}'>{$row['semestre']}</option>";
                                 }
                                 ?>
                             </select>
                         </div>
     
                         <div class="col-md-5">
-                            <label for="NombredelEstudiante" class="form-label">Nombre del estudiante</label>
-                            <select class="form-select" id="NombredelEstudiante">
+                            <label for="nombre" class="form-label">Nombre del estudiante</label>
+                            <select class="form-select" id="nombre">
                                 <option value="">Seleccione</option>
                                 <?php
                                 $resultnombre->data_seek(0);
                                 while ($row = $resultnombre->fetch_assoc()) {
-                                    echo "<option value='{$row['NombredelEstudiante']}'>{$row['NombredelEstudiante']}</option>";
+                                    echo "<option value='{$row['nombre']}'>{$row['nombre']}</option>";
                                 }
                                 ?>
                             </select>
                         </div>
                         <script>
                     function updateSemestres() {
-                        var estudioSelect = document.getElementById('NombredeCarrera');
-                        var semestreSelect = document.getElementById('Semestre');
-                        var nombreSelect = document.getElementById('NombredelEstudiante');
+                        var estudioSelect = document.getElementById('estudio');
+                        var semestreSelect = document.getElementById('semestre');
+                        var nombreSelect = document.getElementById('nombre');
 
                         var selectedEstudio = estudioSelect.options[estudioSelect.selectedIndex].value;
 
@@ -242,9 +242,9 @@ $conn->close();
                     }
 
                     function updateNames() {
-                        var estudioSelect = document.getElementById('NombredeCarrera');
-                        var semestreSelect = document.getElementById('Semestre');
-                        var nombreSelect = document.getElementById('NombredelEstudiante');
+                        var estudioSelect = document.getElementById('estudio');
+                        var semestreSelect = document.getElementById('semestre');
+                        var nombreSelect = document.getElementById('nombre');
 
                         var selectedEstudio = estudioSelect.options[estudioSelect.selectedIndex].value;
                         var selectedSemestre = semestreSelect.options[semestreSelect.selectedIndex].value;
@@ -252,7 +252,7 @@ $conn->close();
                         // Verificar si se seleccionó un estudio y un semestre antes de hacer la solicitud AJAX
                         if (selectedEstudio && selectedSemestre) {
                             // Realizar una solicitud AJAX usando Fetch API
-                            fetch('hv2.php?NombredeCarrera=' + encodeURIComponent(selectedEstudio) + '&Semestre=' + encodeURIComponent(selectedSemestre))
+                            fetch('hv2.php?estudio=' + encodeURIComponent(selectedEstudio) + '&semestre=' + encodeURIComponent(selectedSemestre))
                                 .then(response => response.json())
                                 .then(data => {
                                     // Limpiar opciones existentes
