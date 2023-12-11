@@ -435,14 +435,14 @@ session_start();
                         echo '></td>';
                     
                         // Casilla de verificación para Presidente (usar radio)
-                        echo '<td><input type="radio" id="presidente-' . $row['id'] . '" name="presidente" value="' . $row['id'] . '"';
+                        echo '<td><input type="checkbox" id="presidente-' . $row['id'] . '" name="presidente[]" value="' . $row['id'] . '"';
                         if ($row['Presidente'] == 1) {
                             echo ' checked';
                         }
                         echo '></td>';
                     
                         // Casilla de verificación para Secretaria (usar radio)
-                        echo '<td><input type="radio" id="secretaria-' . $row['id'] . '" name="secretaria" value="' . $row['id'] . '"';
+                        echo '<td><input type="checkbox" id="secretaria-' . $row['id'] . '" name="secretaria[]" value="' . $row['id'] . '"';
                         if ($row['Secretaria'] == 1) {
                             echo ' checked';
                         }

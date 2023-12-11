@@ -78,18 +78,18 @@ function obtenerSeleccionados() {
     });
 
     // Obtener botones de radio para Presidente
-    const presidenteRadios = document.querySelectorAll('input[type="radio"][name="presidente"]');
-    presidenteRadios.forEach((radio) => {
-        if (radio.checked) {
-            elementosSeleccionados.push({ tipo: 'Presidente', id: radio.value });
+    const presidenteRadios = document.querySelectorAll('input[type="checkbox"][name="presidente[]"]');
+    presidenteRadios.forEach((checkbox) => {
+        if (checkbox.checked) {
+            elementosSeleccionados.push({ tipo: 'Presidente', id: checkbox.value });
         }
     });
 
     // Obtener botones de radio para Secretaria
-    const secretariaRadios = document.querySelectorAll('input[type="radio"][name="secretaria"]');
-    secretariaRadios.forEach((radio) => {
-        if (radio.checked) {
-            elementosSeleccionados.push({ tipo: 'Secretaria', id: radio.value });
+    const secretariaRadios = document.querySelectorAll('input[type="checkbox"][name="secretaria[]"]');
+    secretariaRadios.forEach((checkbox) => {
+        if (checkbox.checked) {
+            elementosSeleccionados.push({ tipo: 'Secretaria', id: checkbox.value });
         }
     });
 
